@@ -1,0 +1,150 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: ml-profiler
+parameters:
+
+- description: ml profiler
+  displayName: ml-profiler
+  name: DOCKER_REGISTRY
+  value: 
+
+- description: ml profiler
+  displayName: ml-profiler
+  name: DOCKER_IMAGE_NAME
+  value: 
+
+- description: ml profiler
+  displayName: ml-profiler
+  name: DOCKER_IMAGE_TAG
+  value: 
+
+- description: NFS SERVER
+  displayName: ml-profiler
+  name: NFS_SERVER
+  value: 
+
+- description: NFS PATH
+  displayName: ml-profiler
+  name: NFS_PATH
+  value: 
+
+- description: ml-profiler 
+  displayName: ml-profiler
+  name: CONFIG_MAP_NAME
+  value: profiler-config
+
+objects:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: ml-profiler
+    labels:
+      draft: draft-app
+      chart: "ml-profiler"
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          draft: draft-app
+          app: ml-profiler
+      spec:
+        containers:
+        - name: ml-profiler
+          image: ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8000
+          resources:
+            limits:
+              cpu: 1
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+          volumeMounts:
+          - mountPath: /mnt/nfs/var/nfsshare/
+            name: tf-mounts
+          - mountPath: /etc/config
+            name: config
+        volumes:
+        - name: tf-mounts
+          nfs:
+            server: ${NFS_SERVER}
+            path: ${NFS_PATH}
+        - name: config
+          configMap:
+            name: ${CONFIG_MAP_NAME}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: profiler
+    labels:
+      chart: "ml-profiler"
+    annotations:
+      fabric8.io/expose: "true"
+      fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+    
+  spec:
+    type: NodePort
+    ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 31018
+      protocol: TCP
+      name: http
+    selector:
+      app: ml-profiler
+
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: ${CONFIG_MAP_NAME}
+    labels:
+      chart: "ml-profiler"
+  data:
+    profiler_conf.txt: |
+      [PROFILER]
+      ES_HOST=elasticsearch.elk.svc
+      ES_PORT=9200
+      SEARCH_SIZE=50000
+      NA_RATIO=0.5
+      DATA_FORMAT=Json
+      SCHEMA_URL=http://167.254.204.64:31017/datasource/api/getDataSource?dataSetName=
+
+      [ANOMALY PROFILER]
+      TARGET=call_type
+      ENCODER_FILE=/mnt/nfs/var/nfsshare/
+      DT_INDEX=anomaly_profiler
+      HYPERPARAMETER_FLAG=True
+      HYPERPARAMETERS={"ccp_alpha": 0.0, "class_weight":null, "criterion": "gini", "max_depth": null, "max_features": null, "max_leaf_nodes": null, "min_impurity_decrease": 0.0, "min_impurity_split": null, "min_samples_leaf": 1, "min_samples_split": 2,"min_weight_fraction_leaf": 0.0, "presort": "deprecated", "random_state": null,"splitter": "best"}
+      AM_INDEX=anomalies
+      PATTERN_URL=http://167.254.204.64:32203/api/v1/modelconfigs/
+
+      [BASIC PROFILER]
+      DT_INDEX=basic_profiler
+      GROUP_DETAILS_API=http://167.254.204.64:31126/api/classification/v1/groups/CLASSIFICATION/PROFILER/
+      HYPERPARAMETER_FLAG=True
+      HYPERPARAMETERS={"ccp_alpha": 0.0, "class_weight": null, "criterion": "gini", "max_depth": null, "max_features": null, "max_leaf_nodes": null, "min_impurity_decrease": 0.00002, "min_impurity_split": null, "min_samples_leaf": 2, "min_samples_split": 5,"min_weight_fraction_leaf": 0.0, "presort": "deprecated", "random_state": 0,"splitter": "best"}
+      IMAGE_PATH=/mnt/nfs/var/nfsshare/profiler
+
+      [RCA PROFILER]
+      ENCODER_FILE=/mnt/k8sMount/ml/alarmStorm/encoder/
+      TARGET=clusterId
+      HYPERPARAMETER_FLAG=True
+      HYPERPARAMETERS={"ccp_alpha": 0.0, "class_weight":null, "criterion": "gini", "max_depth": null, "max_features": null, "max_leaf_nodes": null, "min_impurity_decrease": 0.0, "min_impurity_split": null, "min_samples_leaf": 1, "min_samples_split": 2,"min_weight_fraction_leaf": 0.0, "presort": "deprecated", "random_state": null,"splitter": "best"}
+      CLUSTER_DATA_INDEX = cluster_alarms
+      RCA_INDEX=cluster_profiling
+      PATTERN_URL=http://167.254.204.64:32203/api/v1/modelconfigs/
+      RAW_URL=http://167.254.204.64:31018/api/v1/profiling/asc/raw/
+      
+      [SEQUENCE]
+      ES_HOST=elasticsearch.elk.svc
+      ES_PORT=9200
+      SEARCH_SIZE=50000
+      SEQ_INDEX = sequence_index
+      TARGET = Alarm Description
+      RAW_TIME_COLUMN = pm_alm.EMS Date Time(CDT)
+      MIN_LEN = 2
+      MAX_LEN = 4

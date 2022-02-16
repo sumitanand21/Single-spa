@@ -1,0 +1,129 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: datamanagement
+parameters:
+
+- description: ml datamanagement
+  displayName: ml-datamanagement
+  name: DOCKER_REGISTRY
+  value:
+
+- description: ml datamanagement
+  displayName: ml-datamanagement
+  name: DOCKER_IMAGE_NAME
+  value:
+
+- description: ml datamanagement
+  displayName: ml-datamanagement
+  name: DOCKER_IMAGE_TAG
+  value:
+
+- description: NFS SERVER
+  displayName: ml-datamanagement
+  name: NFS_SERVER
+  value:
+
+- description: NFS PATH
+  displayName: ml-datamanagement
+  name: NFS_PATH
+  value:
+
+- description: training scheduler for schedule the jobs for training, prediction modules and monitoring the training status for lte app.
+  displayName: ml-datamanagement
+  name: CONFIG_MAP_NAME
+  value: datamanagement-config
+
+objects:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: ml-datamanagement
+    labels:
+      draft: draft-app
+      chart: "ml-datamanagement-v0.1.0"
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          draft: draft-app
+          app: ml-datamanagement
+      spec:
+        containers:
+        - name: ml-datamanagement
+          image: ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - mountPath: /mnt/nfs/var/nfsshare/
+            name: tf-mounts
+          - mountPath: /etc/config
+            name: config
+        volumes:
+        - name: tf-mounts
+          nfs:
+            server: ${NFS_SERVER}
+            path: ${NFS_PATH}
+        - name: config
+          configMap:
+            name: ${CONFIG_MAP_NAME}
+          ports:
+          - containerPort: 8000
+          resources:
+            limits:
+              cpu: 2
+              memory: 4Gi
+            requests:
+              cpu: 1
+              memory: 1Gi
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ml-datamanagement
+    labels:
+      chart: "ml-datamanagement-0.1.0-SNAPSHOT"
+    annotations:
+      fabric8.io/expose: "true"
+      fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+
+  spec:
+    type: NodePort
+    ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 31017
+      protocol: TCP
+      name: http
+    selector:
+      app: ml-datamanagement
+
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: ${CONFIG_MAP_NAME}
+    labels:
+      chart: "ml-datamanagement-v0.1.0"
+  data:
+    datamanagement_conf.txt: |
+      [datamanagement]
+      logs_folder = /logs/
+      upload_path = /mnt/nfs/var/nfsshare/
+      pod_list = http://167.254.204.64:30301/api/fabric8-rest/v1/get/podlist?namespace=
+      delete_pod = http://167.254.204.64:30301/api/job-pod/v1/deletePod/
+      namespace = task-execution
+      [elasticsearch]
+      host = elasticsearch.elk.svc
+      port = 9200
+      search_size = 100000
+      n_hits = 1
+      scroll_size = 5000
+      [mongo_db]
+      mongo_rs = mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+      [kafka]
+      kafka_server=kafka-svc.msgbus
+      kafka_port=9093
+      kafka_schedule_topic=POD_TRIGGER
+      data_format=Json
+      kafka_pod_status=TES_POD_STATUS
+      consumer_group=datamanagement_group

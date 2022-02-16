@@ -1,0 +1,284 @@
+apiVersion: v1
+kind: Template
+metadata:
+   name: mongodb
+   annotations:
+     description: Cross-platform document-oriented database program
+     tags: database,NOSQL
+parameters:
+- description: docker registry
+  displayName: docker registry
+  name: DOCKER_REGISTRY
+  value:
+- description: Mongodb image name
+  displayName: Mongodb image Name
+  name: MONGODB_IMAGE_NAME
+  value: 
+- description: Mongodb image tag
+  displayName: Mongodb image tag
+  name: MONGODB_IMAGE_TAG
+  value: 
+- description: Storage size for PVC
+  displayName: Storage size 
+  name: STORAGE_SIZE
+  value:
+- description: ip address of NFS server
+  displayName: NFS server
+  name: NFS_SERVER
+  value: 
+objects:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: 1-pv-mongo-node
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: ${STORAGE_SIZE}
+    nfs:
+      path: /mnt/k8sMount/1-pv-mongo-node
+      server: ${NFS_SERVER}
+    persistentVolumeReclaimPolicy: Retain
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: 2-pv-mongo-node
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: ${STORAGE_SIZE}
+    nfs:
+      path: /mnt/k8sMount/2-pv-mongo-node
+      server: ${NFS_SERVER}
+    persistentVolumeReclaimPolicy: Retain
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: 3-pv-mongo-node
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: ${STORAGE_SIZE}
+    nfs:
+      path: /mnt/k8sMount/3-pv-mongo-node
+      server: ${NFS_SERVER}
+    persistentVolumeReclaimPolicy: Retain
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: 1-pvc-mongo-node
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: ${STORAGE_SIZE}
+    storageClassName: ""
+    volumeName: 1-pv-mongo-node
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: 2-pvc-mongo-node
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: ${STORAGE_SIZE}
+    storageClassName: ""
+    volumeName: 2-pv-mongo-node
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: 3-pvc-mongo-node
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: ${STORAGE_SIZE}
+    storageClassName: ""
+    volumeName: 3-pv-mongo-node
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      name: mongo-node-1
+    name: mongo-node-1
+  spec:
+    ports:
+    - name: mongo-node-1
+      port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      name: mongo-node-1
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      name: mongo-node-2
+    name: mongo-node-2
+  spec:
+    ports:
+    - name: mongo-node-2
+      port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      name: mongo-node-2
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      name: mongo-node-3
+    name: mongo-node-3
+  spec:
+    ports:
+    - name: mongo-node-3
+      port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      name: mongo-node-3
+    type: ClusterIP
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    labels:
+      name: mongo-node-1-rc
+    name: mongo-node-1-rc
+  spec:
+    replicas: 1
+    selector:
+      name: mongo-node-1
+    template:
+      metadata:
+        labels:
+          name: mongo-node-1
+      spec:
+        containers:
+        - command:
+          - mongod
+          - --replSet
+          - rs0
+          - --bind_ip_all
+          image: ${DOCKER_REGISTRY}/${MONGODB_IMAGE_NAME}:${MONGODB_IMAGE_TAG}
+          imagePullPolicy: Always
+          name: mongo-node-1
+          resources:
+            limits:
+              cpu: '1'
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /data/db
+            name: mongo-node-1-db
+        volumes:
+        - name: mongo-node-1-db
+          persistentVolumeClaim:
+            claimName: 1-pvc-mongo-node
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    labels:
+      name: mongo-node-2-rc
+    name: mongo-node-2-rc
+  spec:
+    replicas: 1
+    selector:
+      name: mongo-node-2
+    template:
+      metadata:
+        labels:
+          name: mongo-node-2
+      spec:
+        containers:
+        - command:
+          - mongod
+          - --replSet
+          - rs0
+          - --bind_ip_all
+          image: ${DOCKER_REGISTRY}/${MONGODB_IMAGE_NAME}:${MONGODB_IMAGE_TAG}
+          imagePullPolicy: Always
+          name: mongo-node-2
+          resources:
+            limits:
+              cpu: '1'
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /data/db
+            name: mongo-node-2-db
+        volumes:
+        - name: mongo-node-2-db
+          persistentVolumeClaim:
+            claimName: 2-pvc-mongo-node
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    labels:
+      name: mongo-node-3-rc
+    name: mongo-node-3-rc
+  spec:
+    replicas: 1
+    selector:
+      name: mongo-node-3
+    template:
+      metadata:
+        labels:
+          name: mongo-node-3
+      spec:
+        containers:
+        - command:
+          - mongod
+          - --replSet
+          - rs0
+          - --bind_ip_all
+          image: ${DOCKER_REGISTRY}/${MONGODB_IMAGE_NAME}:${MONGODB_IMAGE_TAG}
+          imagePullPolicy: Always
+          name: mongo-node-3
+          resources:
+            limits:
+              cpu: '1'
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi       
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /data/db
+            name: mongo-node-3-db
+        volumes:
+        - name: mongo-node-3-db
+          persistentVolumeClaim:
+            claimName: 3-pvc-mongo-node

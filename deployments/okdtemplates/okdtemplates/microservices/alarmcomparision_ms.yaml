@@ -1,0 +1,147 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: alarmcomparision
+parameters:
+
+- description: alarmcomparision
+  displayName: alarmcomparision
+  name: DOCKER_REGISTRY
+  value: 
+
+- description: alarmcomparision
+  displayName: alarmcomparision
+  name: DOCKER_IMAGE_NAME
+  value: 
+
+- description: alarmcomparision
+  displayName: alarmcomparision
+  name: DOCKER_IMAGE_TAG
+  value: 
+
+- description: NFS SERVER
+  displayName: alarmcomparision
+  name: NFS_SERVER
+  value: 167.254.204.123
+
+- description: NFS PATH
+  displayName: alarmcomparision
+  name: NFS_PATH
+  value: /mnt/k8sMount/ml
+
+- description: API to fetch anomaly reasons.
+  displayName: alarmcomparision
+  name: CONFIG_MAP_NAME
+  value: compare-config
+
+objects:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: alarmcomparision
+    labels:
+      draft: draft-app
+      chart: "ml-profiler-v0.1.0"
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          draft: draft-app
+          app: alarmcomparision
+      spec:
+        containers:
+        - name: alarmcomparision
+          image: ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+          imagePullPolicy: Always
+          volumeMounts:
+          - mountPath: /mnt/k8sMount/ml
+            name: tf-mounts
+          - mountPath: /etc/config
+            name: config
+        volumes:
+        - name: tf-mounts
+          nfs:
+            server: ${NFS_SERVER}
+            path: ${NFS_PATH}
+        - name: config
+          configMap:
+            name: ${CONFIG_MAP_NAME}
+          ports:
+          - containerPort: 8000
+          resources:
+              limits:
+                cpu: 1
+                memory: 3Gi
+              requests:
+                cpu: 1
+                memory: 2Gi
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: alarmcomparision
+    labels:
+      chart: "alarmcomparision-0.1.0-SNAPSHOT"
+    annotations:
+      fabric8.io/expose: "true"
+      fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+    
+  spec:
+    type: NodePort
+    ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 32018
+      protocol: TCP
+      name: http
+    selector:
+      app: alarmcomparision
+
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: ${CONFIG_MAP_NAME}
+    labels:
+      chart: "alarmcomparision-v0.1.0"
+  data:
+    alarmcomparision.txt: |
+        [CONTROLLER]
+        KAFKA_SERVER      = kafka-svc.msgbus.svc
+        KAFKA_SERVER_PORT = 9093
+        PRODUCER_TOPIC    = trainingstatus
+        pattern_url       = http://167.254.204.64:32203/api/v1/modelconfigs/ANOMALYTRAINING1/
+        schema_url        = http://167.254.204.64:31017/datasource/api/getDataSource?dataSetName=
+        sigma             = 3
+        l_CODE            = COMPARISON
+        l_IFPRINT         = true
+        l_LOG_LEVEL       = info
+        log_folder        = ./
+        dataformat        = Json
+        unique_field      = @timestamp
+
+        [DB]
+        db_ip     = elasticsearch.elk.svc
+        db_port   = 9200
+        mongo_rs  = mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+        mongo_db  = alarmStormClassification
+        mongo_col = modelconfiguration
+        jobType   = ANOMALYMODELI
+
+        [MODEL_CONFIG]
+        FEATURE_LIST        = xfeatureList
+        NODES               = nodes
+        UNIQUE_FEATURE      = uniqueFeature
+        STR_FEATURES        = stringFeatures
+        ENCODER             = encoder
+        SCALER              = scaler
+        TRAINING_FILTER     = trainingFilter
+        EPOCHS              = epochs
+        DROPOUT             = dropout
+        ACTIVATION          = activation
+        OPTIMIZER           = optimizer
+        L1L2                = l1L2
+        DECODER_ACTIVATION  = decoder_activation
+        LOSS                = loss
+        METRICS             = metrics
+        BATCH_SIZE          = batchSize

@@ -1,0 +1,82 @@
+apiVersion: v1 
+kind: Template 
+metadata: 
+  name: forecast-microservice
+parameters:
+
+- description: training scheduler for schedule the jobs for training, monitoring the training status for optical app.
+  displayName: forecast-microservice
+  name: DOCKER_REGISTRY
+  value: 
+
+- description: training scheduler for schedule the jobs for training, monitoring the training status for optical app.
+  displayName: forecast-microservice
+  name: DOCKER_IMAGE_NAME
+  value: 
+
+- description: training scheduler for schedule the jobs for training, monitoring the training status for optical app.
+  displayName: forecast-microservice
+  name: DOCKER_IMAGE_TAG
+  value: 
+
+objects:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: forecast-microservice
+    labels:
+      draft: forecast-microservice-app
+      chart: "forecast-microservice"
+  spec:
+    selector:
+      matchLabels:
+        app: forecast-microservice
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          draft: forecast-microservice-app
+          app: forecast-microservice
+      spec:
+        containers:
+        - name: forecast-microservice
+          image: ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+          imagePullPolicy: Always
+          env:
+          envFrom: 
+          ports:
+          - containerPort: 8080         
+          resources:
+              limits:
+                cpu: 800m
+                memory: 3Gi
+              requests:
+                cpu: 500m
+                memory: 1Gi
+        terminationGracePeriodSeconds: 
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: forecast-microservice
+    labels:
+      chart: "forecast-microservice"
+    annotations:
+      fabric8.io/expose: "true"
+      fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+  
+  spec:
+    type: NodePort
+    ports:
+    - name: http
+      nodePort: 30920
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    - name: https
+      nodePort: 31005
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    selector:
+      app: forecast-microservice
+  

@@ -1,0 +1,83 @@
+apiVersion: v1 
+kind: Template 
+metadata: 
+  name: tes-microservice
+parameters:
+
+- description: training tes for schedule the jobs for training, monitoring the training status for optical app.
+  displayName: tes-microservice
+  name: DOCKER_IMAGE
+  value: fnc-docker-reg:3000/tes:03.02.1
+
+objects:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: tes-microservice
+    labels:
+      draft: tes-microservice-app
+      chart: "tes-microservice"
+  spec:
+    selector:
+      matchLabels:
+        app: tes-microservice
+    replicas: 1
+    minReadySeconds: 120
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+    template:
+      metadata:
+        labels:
+          draft: tes-microservice-app
+          app: tes-microservice
+      spec:
+        containers:
+        - name: tes-microservice
+          image: ${DOCKER_IMAGE}
+          imagePullPolicy: Always
+          env:
+            - name: CRYPTO_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: key.txt
+                  name: crypto-key
+            - name: DNS_LINK
+              valueFrom:
+                secretKeyRef:
+                  key: dns.txt
+                  name: dns-link
+          envFrom: 
+          ports:
+          - containerPort: 8012
+          resources:
+              limits:
+                cpu: 2
+                memory: 4Gi
+              requests:
+                cpu: 1
+                memory: 2Gi
+        terminationGracePeriodSeconds: 
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: tes-microservice
+    labels:
+      chart: "tes-microservice"
+    annotations:
+      fabric8.io/expose: "true"
+      fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+  
+  spec:
+    type: NodePort
+    ports:
+    - port: 8012
+      targetPort: 8012
+      nodePort: 30301
+      protocol: TCP
+      name: http
+    selector:
+      app: tes-microservice
+  

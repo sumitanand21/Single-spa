@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-02-18T18:52:05Z
+  name: "classification"
+  labels:
+    chart: "classification"
+  #namespace:      {{ .Values.configMap.namespace }}
+  #labels:         <none>
+  #annotations:    <none>
+
+data:
+  profiler_conf.txt : |
+    [PROFILER]
+    ES_HOST=elasticsearch.elk.svc
+    ES_PORT=9200
+    SEARCH_SIZE=100000
+    MONGO_RS=mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+    NA_RATIO=0.5
+    MONGO_DB=anomalydetection
+    MONGO_MODEL_CONFIG_COL=modelconfiguration
+    LOGS_FOLDER=/logs/
+    KAFKA_SERVER=kafka-svc.msgbus
+    KAFKA_PORT=9093
+    KAFKA_TOPIC=TES_POD_STATUS
+    DATA_FORMAT=Json
+
+    [ANOMALY PROFILER]
+    TARGET=call_type
+    ENCODER_FILE=/mnt/k8sMount/ml
+    DT_INDX=anomaly_profiler
+    HYPERPARAMETER_FLAG=True
+    HYPERPARAMETERS={"ccp_alpha": 0.0, "class_weight":null, "criterion": "gini", "max_depth": null, "max_features": null, "max_leaf_nodes": null, "min_impurity_decrease": 0.0, "min_impurity_split": null, "min_samples_leaf": 1, "min_samples_split": 2,"min_weight_fraction_leaf": 0.0, "presort": "deprecated", "random_state": null,"splitter": "best"}
+    AM_INDX=anomalies
+    PATTERN_URL=http://167.254.204.64:30807/api/anomaly/v1/modelconfigs/
+
+    [BASIC PROFILER]
+    DT_INDX=basic_profiler
+    GROUP_DETAILS_API=http://167.254.204.64:31126/api/classification/v1/groups/CLASSIFICATION/PROFILER/
+    HYPERPARAMETER_FLAG=True
+    HYPERPARAMETERS={"ccp_alpha": 0.0, "class_weight": null, "criterion": "gini", "max_depth": null, "max_features": null, "max_leaf_nodes": null, "min_impurity_decrease": 0.00005, "min_impurity_split": null, "min_samples_leaf": 2, "min_samples_split": 5,"min_weight_fraction_leaf": 0.0, "presort": "deprecated", "random_state": 0,"splitter": "best"}
+    IMAGE_PATH=/mnt/k8sMount/ml/profiler

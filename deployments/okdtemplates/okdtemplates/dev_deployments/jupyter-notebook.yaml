@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: jupyter-notebook
+parameters:
+- description: jupyter-notebook
+  displayName: jupyter-notebook
+  name: DOCKER_IMAGE_NAME
+  value: docker-registry.default.svc:5000/ml/ml-decision-tree:0.0.0-SNAPSHOT-PR-15-2
+
+- description: NFS SERVER
+  displayName: jupyter-notebook
+  name: NFS_SERVER
+  value:
+
+objects:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: jupyter-notebook
+    labels:
+      chart: "jupyter-notebook"
+  spec:
+    type: NodePort
+    ports:
+    - port: 8888
+      nodePort: 32501
+      targetPort: 8888
+      protocol: TCP
+      name: http
+    selector:
+      app: jupyter-notebook
+    
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: jupyter-notebook
+    labels:
+      draft: draft-app
+      chart: "jupyter-notebook"
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          draft: draft-app
+          app: jupyter-notebook
+      spec:
+        containers:
+        - name: jupyter-notebook
+          image: ${DOCKER_IMAGE_NAME}
+          imagePullPolicy: IfNotPresent
+          command: ["sh","-c"]
+          args: ["jupyter notebook --allow-root --NotebookApp.token=''
+              --NotebookApp.password='' --no-browser --ip=0.0.0.0"]
+          volumeMounts:
+          - mountPath: /mnt/nfs/var/nfsshare/
+            name: tf-mounts
+          - mountPath: /etc/config 
+            name: config
+          ports:
+          - containerPort: 8888
+          resources:
+              limits:
+                cpu: 2
+                memory: 5Gi
+              requests:
+                cpu: 300m
+                memory: 2Gi
+        volumes:
+        - name: tf-mounts
+          nfs:
+            server: 167.254.204.64
+            path: /mnt/k8sMount/ml
+        - name: config
+          configMap:
+            name: jupyter-notebook
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: jupyter-notebook
+    labels:
+      chart: "jupyter-notebook"
+
+  data:
+    jupyternotebook.conf: |
+    #add here needed 

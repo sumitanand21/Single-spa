@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    creationTimestamp: 2016-02-18T18:52:05Z
+    name: "timeseries-prediction"
+    labels:
+      chart: "timeseries-prediction"
+data:
+    ts_execution.conf : |
+      [TS_INIT]
+      # Saved models config
+      DIR_LOCATION_MODEL          = /mnt/nfs/var/nfsshare/pm/timeseries_model2/training_model/
+      DIR_LOCATION_SCALER         = /mnt/nfs/var/nfsshare/pm/timeseries_model2/scaler/
+      MODEL_FILENAME_POSTFIX      = _model.hdf5
+      SCALER_FILENAME_POSTFIX     = _scaler.p
+      ENCODER_FILENAME_POSTFIX    = _encoder.p
+      # Logging config
+      l_CODE                      = TSPRED
+      l_IFPRINT                   = true
+      l_LOG_LEVEL                 = debug
+      # Kafka server/topics config
+      KAFKA_SERVER                = kafka-svc.msgbus.svc
+      KAFKA_PORT                  = 9093
+      DATA_FORMAT                 = Json
+      CONTROLLER_CONSUMER_GROUP   = scheduler_consumer_group
+      CONTROLLER_TOPIC            = PMFORECASTSTATUS
+      DATA_CONSUMER_TOPIC         = pmdata
+      PREDICTION_TOPIC            = forecast_model2_prediction_topic
+      METRICS_PRODUCER_TOPIC      = forecaststatus
+      TES_POD_STATUS_TOPIC        = TES_POD_STATUS
+      # MongoDB config
+      URL                         = mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+      DATABASE_NAME               = forecast
+      COLLECTION_NAME             = modelconfiguration
+      # Execution config
+      PATTERN_URL                 = http://167.254.204.64:31003/api/scheduler/v1/time-series-model-configs/
+      MONITOR_TENSORBOARD         = FALSE

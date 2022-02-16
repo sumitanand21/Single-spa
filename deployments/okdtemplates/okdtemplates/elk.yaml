@@ -1,0 +1,241 @@
+apiVersion: v1
+kind: Template
+metadata:
+   name: elk
+   annotations:
+     description: elasticseach and kibana for openshift (7.3.0)
+     tags: log,storage,data,visualization
+parameters:
+- description: Elastic image name
+  displayName: Elastic image Name
+  name: ELASTIC_IMAGE_NAME
+  value: elasticsearch
+- description: Elastic image tag
+  displayName: Elastic image tag
+  name: ELASTIC_IMAGE_TAG
+  value: 7.3.0
+- description: Image repository name
+  displayName: Repository Name
+  name: IMAGE_REPO_NAME
+  value: docker.elastic.co
+- description: Kibana image name
+  displayName: Kibana image Name
+  name: KIBANA_IMAGE_NAME
+  value: kibana/kibana-oss
+- description: Kibana image tag
+  displayName: Kibana image tag
+  name: KIBANA_IMAGE_TAG
+  value: 7.3.0
+- description: Storage size for PVC
+  displayName: Storage size 
+  name: STORAGE_SIZE
+  value: 15Gi
+- description: Storage class name for PVC
+  displayName: Storage class 
+  name: STORAGE_CLASS
+  value: nfs-storage
+- description: ip address of NFS server
+  displayName: NFS server
+  name: NFS_SERVER
+  value: 167.254.203.84
+- description: NFS path to store data for Kibana
+  displayName: NFS mountPath
+  name: NFS_PATH
+  value: /mnt/k8sMount/kibana
+- description: NFS path to store data for ELASTIC index
+  displayName: NFS mountPath
+  name: NFS_PATH_INDEX
+  value: /mnt/k8sMount/elastic
+- description: Replacing the value with project name will provide correct DNS name for connection of kibana with elasticsearch
+  displayName: Replace value with Project Name (Namespace)
+  name: NAMESPACE
+  value: elk
+objects:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      io.kompose.service: index
+    name: index
+  spec:
+    clusterIP: 
+    ports:
+    - name: "9200"
+      port: 9200
+      protocol: TCP
+      targetPort: 9200
+    - name: "9300"
+      port: 9300
+      protocol: TCP
+      targetPort: 9300
+    selector:
+      io.kompose.service: index
+    sessionAffinity: None
+    type: ClusterIP        
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: kibana
+    name: kibana-svc
+  spec:
+    clusterIP:
+    externalTrafficPolicy: Cluster
+    ports:
+    - nodePort: 30099
+      port: 5601
+      protocol: TCP
+      targetPort: 5601
+    selector:
+      app: kibana
+    sessionAffinity: None
+    type: NodePort
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: index-volume
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: ${STORAGE_SIZE}
+    nfs:
+      path: ${NFS_PATH_INDEX}
+      server: ${NFS_SERVER}
+    storageClassName: ${STORAGE_CLASS}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    labels:
+      io.kompose.service: index-claim0
+    name: index-claim0
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: ${STORAGE_SIZE}
+    storageClassName: ${STORAGE_CLASS}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: kibana-volume
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: ${STORAGE_SIZE}
+    nfs:
+      path: ${NFS_PATH}
+      server: ${NFS_SERVER}
+    storageClassName: ${STORAGE_CLASS}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: kibana-volume-claim
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: ${STORAGE_SIZE}
+    storageClassName: ${STORAGE_CLASS}
+- apiVersion: v1
+  data:
+    kibana.yml: |
+      elasticsearch.hosts: http://index.${NAMESPACE}.svc.cluster.local:9200
+      server.host: "0"
+      server.name: kibana
+      server.ssl.certificate: /usr/share/kibana/certs/server.crt
+      server.ssl.enabled: false
+      server.ssl.key: /usr/share/kibana/certs/server.key
+  kind: ConfigMap
+  metadata:
+    labels:
+      app: kibana
+    name: kibana
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    labels:
+      io.kompose.service: index
+    name: index
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: index
+    template:
+      metadata:
+        labels:
+          io.kompose.service: index
+      spec:
+        containers:
+        - env:
+          - name: discovery.type
+            value: single-node
+          image: ${ELASTIC_IMAGE_NAME}:${ELASTIC_IMAGE_TAG}
+          imagePullPolicy: IfNotPresent
+          name: index
+          ports:
+          - containerPort: 9200
+            protocol: TCP
+          - containerPort: 9300
+            protocol: TCP
+          resources: {}
+          volumeMounts:
+          - mountPath: /var/nfsshare/elastic
+            name: index-claim0
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        volumes:
+        - name: index-claim0
+          storageClassName: ${STORAGE_CLASS}
+        persistentVolumeClaim:
+            claimName: index-claim0
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      app: kibana
+    name: kibana
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: kibana
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app: kibana
+      spec:
+        containers:
+        - image: ${IMAGE_REPO_NAME}/${KIBANA_IMAGE_NAME}:${KIBANA_IMAGE_TAG}
+          imagePullPolicy: IfNotPresent
+          name: kibana
+          ports:
+          - containerPort: 5601
+            name: kibana
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /usr/share/kibana/config/kibana.yml
+            name: kibana
+            subPath: kibana.yml
+          - mountPath: /usr/share/kibana/certs
+            name: kibana-certs
+        volumes:
+        - configMap:
+            name: kibana
+          name: kibana
+        - name: kibana-certs
+          persistentVolumeClaim:
+            claimName: kibana-volume-claim

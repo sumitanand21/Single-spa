@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-02-18T18:52:05Z
+  name: "anomalymodel1prediction"
+  labels:
+    chart: "anomalymodel1prediction"
+  #namespace:      {{ .Values.configMap.namespace }}
+  #labels:         <none>
+  #annotations:    <none>
+
+data:
+  anomalymodel1_prediction.conf : |
+    [CONTROLLER]
+    MODEL_ID=modelName
+    DATASET=dataSetName
+    MODEL_CONFIG=modelConfigName
+    THRESHOLD=threshold
+
+    [AM1_EXECUTION]
+    PRODUCER_TOPIC=AM1_ANOMOLIES_DB
+    MONITOR_TOPIC=executionstatus
+    POD_STATUS=TES_POD_STATUS
+    AM2_MSE_THRESHOLD=8
+    AM2_MSE_EXPONENTS=-2
+    BULK_RECORD_SIZE=32
+    l_code=AEXEC
+    Print=true
+    log_dir=./
+    SCALER_FILENAME_POSTFIX =_scaler.p
+    MODEL_FILENAME_POSTFIX=_model.hdf5
+    ENCODER_FILENAME_POSTFIX=_encoder.p
+    DIR_LOCATION_MODEL=/mnt/k8sMount/ml/anomaly_model1/training_model/
+    DIR_LOCATION_ENCODER=/mnt/k8sMount/ml/anomaly_model1/encoder/
+    DIR_LOCATION_SCALER=/mnt/k8sMount/ml/anomaly_model1/scaler/
+    pattern_url=http://167.254.204.64:32203/api/v1/modelconfigs/ANOMALYTRAINING1/
+    schema_url=http://167.254.204.64:31017/datasource/api/getDataSource?dataSetName=
+
+    [INTERFACE]
+    KAFKA_SERVER=kafka-svc.msgbus.svc
+    KAFKA_SERVER_PORT=9093
+    mongo_rs=mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+    mongo_db=training-db
+    mongo_col=pattern-configs
+    jobtype=ANOMALYEXECUTION1
+
+    [MODEL_CONFIG]
+    XFEATURE_LIST=xfeatureList
+    UNIQUE_FEATURE=uniqueFeature
+    STRING_FEATURES=stringFeatures
+    ENCODER=encoder
+    SCALER=scaler
+    TRAINING_FILTER=trainingFilter
+    NODES=nodes
+    EPOCHS=epochs
+    DROPOUT=dropout
+    ACTIVATION=activation
+    OPTIMIZER=optimizer
+    L1L2=l1L2
+    DECODER_ACTIVATION=decoder_activation
+    LOSS=loss
+    METRICS=metrics
+    BATCH_SIZE=batchSize

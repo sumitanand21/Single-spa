@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-02-18T18:52:05Z
+  name: "anomalymodel2training"
+  labels:
+    chart: "anomalymodel2training"
+  #namespace:      {{ .Values.configMap.namespace }}
+  #labels:         <none>
+  #annotations:    <none>
+
+data:
+  anomalymodel2_training.conf : |
+    [AM2_TRAINING]
+    DIR_LOCATION_MODEL=/mnt/k8sMount/ml/anomaly_model2/training_model/
+    DIR_LOCATION_ENCODER=/mnt/k8sMount/ml/anomaly_model2/encoder/
+    DIR_LOCATION_SCALER=/mnt/k8sMount/ml/anomaly_model2/scaler/
+    SCALER_FILENAME_POSTFIX=_scaler.sav
+    MODEL_FILENAME_POSTFIX=_model.sav
+    ENCODER_FILENAME_POSTFIX=_encoder.p
+    JOB_TYPE=jobType
+    DATASET=dataSetName
+    MODEL_FROM=fromTime
+    MODEL_TO=toTime
+    SCHEDULE_NAME=scheduleName
+    MODELCONFIG=modelConfigName
+    LOG_FOLDER=/logs/
+    l_CODE=AM2_TRAINING
+    l_IFPRINT=true
+    l_LOG_LEVEL=info
+    KAFKA_SERVER=kafka-svc.msgbus.svc
+    KAFKA_SERVER_PORT=9093
+    PRODUCER_TOPIC=trainingstatus
+
+    [MODEL_CONFIG]
+    api_endpoint=http://167.254.204.64:32203/api/v1/modelconfigs/ANOMALYTRAINING2/
+    schema_url=http://167.254.204.64:31017/datasource/api/getDataSource?dataSetName=
+    XFEATURES=xfeatureList
+    UNIQUE_FEATURES=uniqueFeature
+    STRING_FEATURES=stringFeatures
+    ENCODER=encoder
+    SCALER=scaler
+    TRAINING_FILTER=trainingFilter
+    P_COMPONENTS=p_components
+
+    [DB]
+    ELK_IP=elasticsearch.elk.svc
+    ELK_PORT=9200
+    MONGO_RS=mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+    MONGO_DB=anomalydetection
+    MONGO_COLL=anomaly

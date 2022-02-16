@@ -1,0 +1,119 @@
+apiVersion: v1
+kind: Template
+metadata:
+   name: grafana
+   annotations:
+     description: grafana for visualization
+     tags: time series, visualization
+parameters:
+- description: Grafana image name
+  displayName: Grafana image Name
+  name: GRAFANA_IMAGE_NAME
+  value: 
+- description: Grafana image tag
+  displayName: Grafana image tag
+  name: GRAFANA_IMAGE_TAG
+  value: 
+- description: Image repository name
+  displayName: Repository Name
+  name: DOCKER_REGISTRY
+  value: 
+- description: Storage size for PVC
+  displayName: Storage size 
+  name: STORAGE_SIZE
+  value: 
+- description: Storage class name for PVC
+  displayName: Storage class 
+  name: STORAGE_CLASS
+  value: manual
+- description: ip address of NFS server
+  displayName: NFS server
+  name: NFS_SERVER
+  value: 
+- description: NFS path to store data for grafana
+  displayName: NFS mountPath
+  name: NFS_PATH
+  value: 
+objects:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: grafana-volume
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: ${STORAGE_SIZE}
+    nfs:
+      path: ${NFS_PATH}
+      server: ${NFS_SERVER}
+    storageClassName: ${STORAGE_CLASS}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: grafana-volume-claim
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: ${STORAGE_SIZE}
+    storageClassName: ${STORAGE_CLASS}
+    volumeName: "grafana-volume"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: grafana
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: grafana
+    template:
+      metadata:
+        name: grafana
+        labels:
+          app: grafana
+      spec:
+        securityContext:
+          runAsUser: 472
+          fsGroup: 472
+        containers:
+        - name: grafana
+          image: ${DOCKER_REGISTRY}/${GRAFANA_IMAGE_NAME}:${GRAFANA_IMAGE_TAG}
+          imagePullPolicy: Always
+          env:
+          - name: "GF_SECURITY_ALLOW_EMBEDDING"
+            value: "true"
+          ports:
+          - name: grafana
+            containerPort: 3000
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "2"
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana-certs
+        volumes:
+          - name: grafana-certs
+            persistentVolumeClaim:
+              claimName: grafana-volume-claim
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: grafana
+    annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port:   '3000'
+  spec:
+    selector:
+      app: grafana
+    type: NodePort
+    ports:
+      - port: 3000
+        targetPort: 3000
+        nodePort: 32300

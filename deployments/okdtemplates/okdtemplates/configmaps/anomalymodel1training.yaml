@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-02-18T18:52:05Z
+  name: "anomalymodel1training"
+  labels:
+    chart: "anomalymodel1training"
+  #namespace:      {{ .Values.configMap.namespace }}
+  #labels:         <none>
+  #annotations:    <none>
+
+data:
+  anomalymodel1_training.conf : |
+    [CONTROLLER]
+    KAFKA_SERVER=kafka-svc.msgbus.svc
+    CONTROLER_FROMTIME_LABEL=fromTime
+    CONTROLER_TOTIME_LABEL=toTime
+    CONTROLLER_MODELNAME_LABEL=scheduleName
+    DATASET   = dataSetName
+    LAST_RUN_TIME = lastRunTime
+    NEXT_RUN_TIME  = nextRunTime
+    SCHEDULE_STATUS = scheduleStatus
+    STRING_FIELDS  = stringFeatures
+    MODEL_TYPE   = modelType
+    SCHEDULE_NAME = scheduleName
+    MODEL_CONFIG = modelConfigName
+    TRAINING_STATUS = trainingstatus
+    PROGRESS = progress
+    MSE = mse
+    MODEL_NAME = modelName
+    SCALER_NAME = scalerName
+    MODEL_FROM = modelFrom
+    PORT_NO=9093
+    pattern_url                 = http://167.254.204.64:32203/api/v1/modelconfigs/ANOMALYTRAINING1/
+    schema_url                  = http://167.254.204.64:31017/datasource/api/getDataSource?dataSetName=
+    TRAINING_STATUS_TOPIC       = trainingstatus
+    CONTROLLER_GROUP_ID         = training_job
+
+    [TRAINING]
+    SCALER_FILENAME_POSTFIX     = _scaler.p
+    MODEL_FILENAME_POSTFIX      = _model.hdf5
+    ENCODER_FILENAME_POSTFIX    = _encoder.p
+    DIR_LOCATION_MODEL          = /mnt/k8sMount/ml/anomaly_model1/training_model/
+    DIR_LOCATION_ENCODER        = /mnt/k8sMount/ml/anomaly_model1/encoder/
+    DIR_LOCATION_SCALER         = /mnt/k8sMount/ml/anomaly_model1/scaler/
+    CONTROLLER_TOPIC            = ANOMALYTRAINING1
+    CONTROLLER_GROUP_ID         = training_job
+    AddFromAndToTime            = True
+    DataFormat                  = Json
+    l_CODE                      = LTE_AM1TRAIN
+    l_IFPRINT                   = true
+    l_LOG_LEVEL                 = info
+    log_folder                  = ./
+
+    [DB]
+    IP=elasticsearch.elk.svc
+    PORT=9200
+    mongo_rs=mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+    mongo_db=scheduler-db
+    mongo_col=pattern-configs
+    jobType=ANOMALYTRAINING1
+
+    [MODEL_CONFIG]
+    FEATURE_LIST                = xfeatureList
+    NODES                       = nodes
+    UNIQUE_FEATURE              = uniqueFeature
+    STR_FEATURES                = stringFeatures
+    ENCODER                     = encoder
+    SCALER                      = scaler
+    TRAINING_FILTER             = trainingFilter
+    EPOCHS                      = epochs
+    DROPOUT                     = dropout
+    ACTIVATION                  = activation
+    OPTIMIZER                   = optimizer
+    L1L2                        = l1L2
+    DECODER_ACTIVATION          = decoder_activation
+    LOSS                        = loss
+    METRICS                     = metrics
+    BATCH_SIZE                  = batchSize

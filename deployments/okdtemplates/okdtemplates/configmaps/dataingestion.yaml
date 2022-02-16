@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-02-18T18:52:05Z
+  name: "dataingestion"
+  labels:
+    chart: "dataingestion"
+  #namespace:      {{ .Values.configMap.namespace }}
+  #labels:         <none>
+  #annotations:    <none>
+
+data:
+  data_ingestion.conf : |
+    [DATA_INFO]
+    pattern_url = http://167.254.204.64:31017/datasource/api/getDataSource?dataSetName=
+
+    [ELASTICSEARCH]
+    elk_host = elasticsearch.elk.svc
+    elk_port = 9300
+
+    [KAFKA]
+    KAFKA_SERVER=kafka-svc.msgbus
+    KAFKA_PORT=9093
+    DATA_FORMAT=Json
+
+    [PARSE_PCAP]
+    PRODUCER_DB=di_es
+    PRODUCER_STAGE=di_stage
+    Processing_Speed_per_sec=5000
+    DurationSec=1
+    DICT_OR_LIST=list
+
+    [PMALARM_Config]
+    PRODUCER_DB=alarm_data
+    no_of_cols=10
+    anomalies_repeates_at=5
+    l_freq=5S
+    startdate=2020-02-19
+    enddate=2020-02-21
+    alarm_cols=['STL@A1','KAR@A2','BANG@A3','HOU@A4','RIC@A5','BANG@A6','RIC@A7','STL@8','HOU@A9','SEA@A10','PVD@A11','PVD@A12','CFO@A13','CFO@A14']
+    clean_percentage=.3
+
+    [ALARM_STORM_DATA]
+    producerTopic=alarm_storm_data
+    filePath= ./data/alarm_data/history_alarm_file.csv
+
+    [LOG_ALARM_CONFIG]
+    producer_db=log_alarm_data
+    no_of_cols=100
+    anomaly_combo=1
+    column_values=0,1
+    random_pattern_columns=99
+    anomalies_repeates_at=5
+    l_freq=172S
+    startdate=2021-05-10
+    enddate=2021-05-20
+    clean_percentage=.3
+    anomaly_percentage=0.05
+    anomaly_column=disk_write_error
+    anomaly_timestamps=2021-05-14 12:56:00,2021-05-16 23:13:20,2021-05-14 06:08:56,2021-05-15T23:20:00,2021-05-14 18:22:48,2021-05-17 23:06:40
+
+    [VAX_CONFIG]
+    PRODUCER_TOPIC = alarm_data_vax
+    DATASET_NAME = alarm_data_vax
+    FROM_TIME = 2021-05-10
+    TO_TIME = 2021-05-20
+    SLEEP_TIME = 1
+    FREQ = 172S
+    LOCAL_FILE_PATH = ./data/alarm_data/latestfile_HydroOne_demo_original.csv
+    FEARTURE_NAMES =
+
+    [FORECAST_CIRCUIT]
+    LOCAL_FILE_PATH = ./data/alarm_data/modified_circuit_data.csv
+    STREAM_COLUMNS =
+    TIME_INTERVAL=172
+    PM_NAME_AS_KEY=True
+    START_TIME=
+    SLEEP_TIME=0
+    PRODUCER_TOPIC=circuit_data
+
+    [FORECAST_PMDATA]
+    LOCAL_FILE_PATH = ./data/alarm_data/spanloss_pm_noise.csv
+    STREAM_COLUMNS =
+    TIME_INTERVAL=1
+    PM_NAME_AS_KEY=True
+    START_TIME=
+    SLEEP_TIME=0
+    PRODUCER_TOPIC=pmdata
+
+    [CIRCUIT_PMDATA]
+    PRODUCER_TOPIC = circuit_pmdata
+    SLEEP_TIME = 1
+    LOCAL_FILE_PATH = ./data/alarm_data/circuit_pmdata.csv
+
+    [CIRCUIT_ALARMDATA]
+    PRODUCER_TOPIC = circuit_alarmdata
+    SLEEP_TIME = 1
+    LOCAL_FILE_PATH = ./data/alarm_data/circuit_alarmdata.csv
+

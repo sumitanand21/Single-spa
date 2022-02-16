@@ -1,0 +1,132 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: ml-correlation-matrix
+parameters:
+
+- description: ml correlation-matrix
+  displayName: ml-correlation-matrix
+  name: DOCKER_REGISTRY
+  value:
+
+- description: ml correlation-matrix
+  displayName: ml-correlation-matrix
+  name: DOCKER_IMAGE_NAME
+  value:
+
+- description: ml correlation-matrix
+  displayName: ml-correlation-matrix
+  name: DOCKER_IMAGE_TAG
+  value:
+
+- description: NFS SERVER
+  displayName: ml-correlation-matrix
+  name: NFS_SERVER
+  value:
+
+- description: NFS PATH
+  displayName: ml-correlation-matrix
+  name: NFS_PATH
+  value:
+
+- description: training scheduler for schedule the jobs for training, prediction modules and monitoring the training status for lte app.
+  displayName: ml-correlation-matrix
+  name: CONFIG_MAP_NAME
+  value: correlation-matrix-config
+
+objects:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: ml-correlation-matrix
+    labels:
+      draft: draft-app
+      chart: "ml-correlation-matrix-v0.1.0"
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          draft: draft-app
+          app: ml-correlation-matrix
+      spec:
+        containers:
+        - name: ml-correlation-matrix
+          image: ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - mountPath: /mnt/nfs/var/nfsshare/
+            name: tf-mounts
+          - mountPath: /etc/config
+            name: config
+        volumes:
+        - name: tf-mounts
+          nfs:
+            server: ${NFS_SERVER}
+            path: ${NFS_PATH}
+        - name: config
+          configMap:
+            name: ${CONFIG_MAP_NAME}
+          ports:
+          - containerPort: 8000
+          resources:
+              limits:
+                cpu: 4
+                memory: 10Gi
+              requests:
+                cpu: 1
+                memory: 2Gi
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ml-correlation-matrix
+    labels:
+      chart: "ml-correlation-matrix-0.1.0-SNAPSHOT"
+    annotations:
+      fabric8.io/expose: "true"
+      fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+
+  spec:
+    type: NodePort
+    ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30065
+      protocol: TCP
+      name: http
+    selector:
+      app: ml-correlation-matrix
+
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: ${CONFIG_MAP_NAME}
+    labels:
+      chart: "ml-correlation-matrix-v0.1.0"
+  data:
+    correlation_conf.txt: |
+      [CORRELATION]
+      na_ratio = 0.25
+      logs_folder = /logs
+      sequence_datasets = alarm_data_vax,sample_alarm,alarm_storm_data
+      rows = 250
+      columns = 250
+      [elasticsearch]
+      host = elasticsearch.elk.svc
+      port = 9200
+      search_size = 100000
+      scroll_size = 100000
+      scroll_size_data = 100000
+      scroll_size_chart = 7500
+      scroll_size_chart_timefilter = 7500
+      n_hits = 1
+      [mongo_db]
+      mongo_rs = mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+      mongo_database = feature_datasets
+      dataset_mapping_col = dataset_mappings
+      group_mapping_col = feature_groups
+      [sequence]
+      min_grp_size = 2
+      min_time_interval = [{"dataSetName":"sample_alarm","interval":5},{"dataSetName":"alarm_data_vax","interval":180},{"dataSetName":"alarm_storm_data","interval":5}]
+      min_occur = 1

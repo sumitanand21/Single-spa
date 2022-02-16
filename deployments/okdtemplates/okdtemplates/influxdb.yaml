@@ -1,0 +1,160 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: influxdb
+  annotations:
+     description: influxdb template for openshift
+     tags: "monitoring,application metrics"
+parameters:
+- description: docker registry
+  displayName: docker registry
+  name: DOCKER_REGISTRY
+  value:
+- description: Image name for Influxdb
+  displayName: Influxdb image Name
+  name: INFLUXDB_IMAGE_NAME
+  value: 
+- description: Tag version for Influxdb
+  displayName: Influxdb Version
+  name: INFLUXDB_IMAGE_TAG
+  value:  
+- description: The size of the persistent storage for Influxdb
+  displayName: Storage size 
+  name: STORAGE_SIZE
+  value: 
+- description: Storage class name used for nfs 
+  displayName: Storage class
+  name: STORAGE_CLASS
+  value: 
+- description: ip address of NFS server
+  displayName: NFS server
+  name: NFS_SERVER
+  value: 
+- description: NFS path to store data 
+  displayName: NFS mountPath
+  name: NFS_PATH
+  value: 
+objects:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: influxdb
+  spec:
+    clusterIP: None
+    ports:
+    - name: api
+      port: 8086
+      protocol: TCP
+      targetPort: api
+    - name: admin
+      port: 8083
+      protocol: TCP
+      targetPort: admin
+    selector:
+      app: influxdb
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: influx-volume
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: ${STORAGE_SIZE}
+    nfs:
+      path: ${NFS_PATH}
+      server: ${NFS_SERVER}
+    storageClassName: ${STORAGE_CLASS}
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: influxdb
+  data:
+    influxdb.conf: |
+      [meta]
+        dir = "/var/lib/influxdb/meta"
+        retention-autocreate = false
+      [data]
+        dir = "/var/lib/influxdb/data"
+        engine = "tsm1"
+        wal-dir = "/var/lib/influxdb/wal"
+    init.iql: |
+      CREATE DATABASE "telegraf" WITH DURATION 90d REPLICATION 1 SHARD DURATION 1h NAME "rp_90d"
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    name: influxdb
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: influxdb
+    serviceName: influxdb
+    template:
+      metadata:
+        labels:
+          app: influxdb
+      spec:
+        containers:
+        - image: ${DOCKER_REGISTRY}/${INFLUXDB_IMAGE_NAME}:${INFLUXDB_IMAGE_TAG}
+          imagePullPolicy: IfNotPresent
+          name: influxdb
+          ports:
+          - containerPort: 8086
+            name: api
+            protocol: TCP
+          - containerPort: 8083
+            name: admin
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ping
+              port: api
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "2"
+              memory: 4Gi
+            requests:
+              cpu: "1"
+              memory: 2Gi
+          volumeMounts:
+          - mountPath: /var/lib/influxdb
+            name: data
+          - mountPath: /etc/telegraf
+            name: config
+          - mountPath: /docker-entrypoint-initdb.d
+            name: init-iql
+        volumes:
+        - configMap:
+            items:
+            - key: influxdb.conf
+              path: influxdb.conf
+            name: influxdb
+          name: config
+        - configMap:
+            items:
+            - key: init.iql
+              path: init.iql
+            name: influxdb
+          name: init-iql
+    volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+        - ReadWriteMany
+        resources:
+          requests:
+            storage: ${STORAGE_SIZE}
+        storageClassName: ${STORAGE_CLASS}
+        volumeName: "influx-volume"

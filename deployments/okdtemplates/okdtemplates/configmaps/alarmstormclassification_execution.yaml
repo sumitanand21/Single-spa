@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-02-18T18:52:05Z
+  name: "ascexecution"
+  labels:
+    chart: "ascexecution"
+  #namespace:      {{ .Values.configMap.namespace }}
+  #labels:         <none>
+  #annotations:    <none>
+data:
+  alarmstormclassificationexecution.conf: |
+    [kafka]
+    kafkaServer = kafka-svc.msgbus.svc
+    kafkaPort = 9093
+    monitor_topic = executionstatus
+    classification_topic  = classificationDB
+    statusTopic = TES_POD_STATUS
+    consumer_group = classificationexecution5
+    dataFormat=Json
+
+    [mongo]
+    mongoUrl = mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017
+    mongoDb  = alarmStormClassification
+    mongoCol = modelconfiguration
+
+    [classification]
+    scalerFileNamePostFix        = _scaler.p
+    pcaModelFileNamePostfix      = _dim.sav
+    kmeansModelFileNamePostfix   = _clus.sav
+    encoderFileNamePostFix       = _encoder.p
+    pcaDirLocation               = /mnt/k8sMount/ml/alarmStorm/training_model/
+    kmeansDirLocation            = /mnt/k8sMount/ml/alarmStorm/training_model/
+    encoderDirLocation           = /mnt/k8sMount/ml/alarmStorm/encoder/
+    scalerDirLocation            = /mnt/k8sMount/ml/alarmStorm/scaler/
+    logFolder                    = /logs
+    bulk_record_size             = 300
+    pattern_url                  = http://167.254.204.64:32203/api/v1/modelconfigs/ASCTRAINING/
+    schema_url                   = http://167.254.204.64:31017/datasource/api/getDataSource?dataSetName=
+    etl                          = ALARMSTORM CLASSIFICATION
+
+    [elk]
+    host  = elasticsearch.elk.svc
+    port  = 9200
+    index = rca
+

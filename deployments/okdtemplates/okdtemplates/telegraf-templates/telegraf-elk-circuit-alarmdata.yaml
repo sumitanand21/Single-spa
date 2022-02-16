@@ -1,0 +1,177 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: telegraf
+  annotations:
+     description: telegraf template for openshift
+     tags: "monitoring,application metrics"
+parameters:
+- description: Image name for Telegraf
+  displayName: Telegraf image Name
+  name: TELEGRAF_IMAGE_NAME
+  value: telegraf
+- description: Tag version for Telegraf
+  displayName: Telegraf Version
+  name: TELEGRAF_IMAGE_TAG
+  value: 1.13.0
+objects:
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: telegraf-elk-circuit-alarmdata
+  data:
+    telegraf.conf: |
+          [[outputs.elasticsearch]]
+            ## The full HTTP endpoint URL for your Elasticsearch instance
+            ## Multiple urls can be specified as part of the same cluster,
+            ## this means that only ONE of the urls will be written to each interval.
+            #  urls = [ "http://node1.es.example.com:9200"  ] # required.
+            urls = ["http://elasticsearch.elk.svc:9200" ]
+            ## Elasticsearch client timeout, defaults to "5s" if not set.
+            timeout = "50s"
+            ## Set to true to ask Elasticsearch a list of all cluster nodes,
+            ## thus it is not necessary to list all nodes in the urls config option
+            enable_sniffer = false
+            ## Set the interval to check if the Elasticsearch nodes are available
+            ## Setting to "0s" will disable the health check (not recommended in production)
+            health_check_interval = "10s"
+            ## HTTP basic authentication details (eg. when using Shield)
+            # username = "telegraf"
+            # password = "mypassword"
+
+            ## Index Config
+            ## The target index for metrics (Elasticsearch will create if it not exists).
+            ## You can use the date specifiers below to create indexes per time frame.
+            ## The metric timestamp will be used to decide the destination index name
+            #%Y - year (2016)
+            #%y - last two digits of year (00..99)
+            #%m - month (01..12)
+            #%d - day of month (e.g., 01)
+            #%H - hour (00..23)
+            #%V - week of the year (ISO week) (01..53)
+            ## Additionally, you can specify a tag name using the notation {{tag_name}}
+            ## which will be used as part of the index name. If the tag does not exist,
+            ## the default tag value will be used.
+            index_name = "circuit_alarmdata" # required.
+            # default_tag_value = "none"
+
+            ## Optional TLS Config
+            # tls_ca = "/etc/telegraf/ca.pem"
+            # tls_cert = "/etc/telegraf/cert.pem"
+            # tls_key = "/etc/telegraf/key.pem"
+            ## Use TLS but skip chain & host verification
+            # insecure_skip_verify = false
+
+            ## Template Config
+            ## Set to true if you want telegraf to manage its index template.
+            ## If enabled it will create a recommended index template for telegraf indexes
+            #manage_template = true
+            ## The template name used for telegraf indexes
+            template_name = "data_ingestion"
+            ## Set to true if you want telegraf to overwrite an existing template
+            # overwrite_template = false
+
+
+          #[[outputs.discard]]
+
+          [agent]
+            metric_batch_size = 1000
+            flush_interval = "1s"
+            interval = "1s"
+          [[inputs.kafka_consumer]]
+            name_override = "pm_alm"
+            brokers = ["kafka-svc.msgbus:9093"]
+            topics = ["circuit_alarmdata"]
+            max_undelivered_messages = 1500
+            consumer_group = "circuit_alarmdata"
+            offset = "oldest"
+            max_message_len = 1000000
+            json_time_key = "@timestamp"
+            json_time_format = "2006-01-02 15:04:05"
+            data_format = "json"
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    name: telegraf-elk-circuit-alarmdata
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: telegraf
+        type: di
+    template:
+      metadata:
+        labels:
+          app: telegraf
+          type: di
+      spec:
+        containers:
+        - env:
+          - name: HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: HOST_PROC
+            value: /rootfs/proc
+          - name: HOST_SYS
+            value: /rootfs/sys
+          image: ${TELEGRAF_IMAGE_NAME}:${TELEGRAF_IMAGE_TAG}
+          imagePullPolicy: IfNotPresent
+          name: telegraf
+          resources:
+            limits:
+              cpu: "1"
+              memory: 2G
+            requests:
+              cpu: 300m
+              memory: .5G
+          volumeMounts:
+          - mountPath: /rootfs/sys
+            name: sys
+            readOnly: true
+          - mountPath: /rootfs/proc
+            name: proc
+            readOnly: true
+          - mountPath: /var/run/docker.sock
+            name: docker-socket
+          - mountPath: /var/run/utmp
+            name: varrunutmp
+            readOnly: true
+          - mountPath: /var/log
+            name: varlog
+            readOnly: true
+          - mountPath: /var/lib/docker/containers
+            name: varlibdockercontainers
+            readOnly: true
+          - mountPath: /etc/telegraf
+            name: config
+            readOnly: true
+        volumes:
+        - hostPath:
+            path: /sys
+            type: ""
+          name: sys
+        - hostPath:
+            path: /var/run/docker.sock
+            type: ""
+          name: docker-socket
+        - hostPath:
+            path: /proc
+            type: ""
+          name: proc
+        - hostPath:
+            path: /var/run/utmp
+            type: ""
+          name: varrunutmp
+        - hostPath:
+            path: /var/log
+            type: ""
+          name: varlog
+        - hostPath:
+            path: /var/lib/docker/containers
+            type: ""
+          name: varlibdockercontainers
+        - configMap:
+            defaultMode: 420
+            name: telegraf-elk-circuit-alarmdata
+          name: config
