@@ -1,0 +1,913 @@
+
+@import'../../../../../app/scss/variables';
+.main_div{
+    border-top: 1px solid $mtsclr-border;
+    display: flex;
+    /* margin-left: 2%; */
+    /* margin-right: 2%; */
+    height: 100%;
+}
+
+.leftside_div{
+    /* padding-top: 2%; */
+    padding-right: 0;
+    border-right: 1px solid $mtsclr-border;
+}
+.radio_group_css{
+    display: table-caption;
+}
+.task_view_div{
+    /* display: flex; */
+    padding: 18px 12px 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    /* border-bottom: 1px solid #CBCBCB; */
+}
+.rightside_div{
+    display: flex;
+    /* padding-left: 0; */
+    padding: 0;
+    height:100%;
+    width:100%;
+}
+
+.right-inner-div{
+    height:100%;
+    display: flex;
+    width: 100%;
+}
+.right_view_leftcss{
+    border-right: 1px solid $mtsclr-border;
+    padding: 0;
+}
+.new_task_btn{
+    /* margin-left: 65%; */
+    color: #ffffff;
+    border-radius: 4px;
+    background-color: $mtsclr-success-btn;
+    padding-top: 0;
+    padding-bottom: 0;
+    height:32px; width:70px; float: right;
+}
+.no-mar{
+    margin: 0;
+}
+.task_css_view {
+    font: normal normal bold 18px Segoe UI;
+}
+.page_css_view{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 8px 12px 18px;
+    border-top: 1px solid $mtsclr-feild-border;
+}
+.paginate_css {
+    width: 142px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.search_fafa{
+    position: absolute;
+    margin: 7px;
+    font-size: 13px;
+    color: $mtsclr-icon;
+}
+.form-control{
+    color: $mtsclr-text;
+    background-color: #ffffff;
+    outline: 0;
+    border: 1px solid $mtsclr-feild-border;
+}
+.css_search{
+    height: 32px !important;
+    font-size: 12px;
+    max-width: 196px;
+    padding: 5px 5px 5px 23px;
+    border: 1px solid $mtsclr-feild-border;
+}
+.paginate-align{
+    width: 65%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.d-flex{
+    display: flex;
+    align-items: center;
+}
+.mar-r-8{
+    margin-right: 8px;
+}
+.paginate-text{
+    font-size: 12px;
+    color: #707070;
+}
+.select-page{
+    border-bottom: 1px solid $mtsclr-feild-border;
+    width: 45px;
+    height: auto !important;
+    font-size: 12px;
+    margin-right: 12px;
+}
+.pagination-btn{
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    background-color: transparent;
+}
+.currpage-input{
+    text-align: center;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid $mtsclr-feild-border;
+    width: 40px;
+    font-size: 12px;
+    outline: none;
+    margin-right: 5px;
+    margin-top: 0px;
+}
+.mod-table-scroll{
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 10px;
+    height: 0;
+    /* padding-left: 10px; */
+}
+
+.task_table{
+    padding: 0px 0px 0px 18px;
+    overflow: auto;
+}
+table{
+    /* overflow: auto; */
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.sticky-head{
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0;
+    z-index: 1;
+    background: #ffffff;
+}
+
+.no-rec-tr{
+    padding-left: 31px;
+}
+
+tr{
+    width: 100%;
+    margin: 0;
+}
+.text-center{
+    padding-left: 10px;
+}
+th{
+    font: normal normal 600 14px Segoe UI;
+    color: $mtsclr-label;
+    padding: 7px 6px 3px 0px;
+    text-align: left;
+}
+
+table tr.active{
+    background-color: $mtsclr-tr-background;
+    cursor: pointer;
+  }
+
+.table-link{
+   color: $mtsclr-link;
+   cursor: pointer;
+}
+
+.wrap-text{
+    /* white-space: nowrap; */
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    padding-left: 0;
+}
+
+.wrap-textDate{
+    /* white-space: inherit; */
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+    padding-left: 0;
+}
+
+tbody{
+    display: block;
+}
+td{
+    padding: 10px 6px 10px 0px;
+    text-align: left;
+    font: normal normal normal 14px Segoe UI;
+    color: $mtsclr-text;
+}
+.css_sub_border,.css_sub_border_nex{
+    display: flex;
+}
+.css_sub_border_nex{
+    padding: 10px 0px;
+}
+.grid_css_view{
+    /* display: grid; */
+    margin-bottom: 12px;
+}
+.sub_border_css{
+    padding: 10px 0px 0px 0px;
+    border: 1px solid $mtsclr-border;
+    /* margin: 10px 0px 10px 0px; */
+    background: #ffffff;
+    border-radius: 6px;
+    height: 100%;
+}
+.sch_btn_css{
+    float: right;
+    margin: -38px 0px 0px 0px;
+}
+.btn{
+    border: 1px solid $mtsclr-border;
+}
+.pause_css_btn{
+    margin: 0px 20px 0px 20px;
+    background-color: #ffffff;
+    //border: 1.5px solid $mtsclr-border;
+    color:$mtsclr-label;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0px;
+    float:right;
+}
+.edit_css_btn{
+    background-color: #fff;
+    border: 1.5px solid $mtsclr-border;
+    color:$mtsclr-label;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.right_most_css{
+    padding: 0;
+    background: #F1F0EF 0% 0% no-repeat padding-box;
+}
+.view_disp_css{
+    display: flex;
+    margin-left: -12px;
+}
+.model_css_type{
+    display: grid;
+    font: normal normal 600 14px Segoe UI;
+    color: #707070;
+    margin-bottom: 0.5em;
+}
+.scheduleName{
+    overflow: hidden;
+    /* white-space:nowrap; */
+    /* text-overflow:ellipsis; */
+    max-width: 100%;
+    /* display:inline-block;    */
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+}
+.ae1_css{
+    /* width: 25%; */
+    padding-left: 10px;
+    vertical-align: top;
+    margin-top: 10px;
+    overflow: hidden;
+    /* white-space:nowrap;
+    text-overflow:ellipsis; */
+    width: 40%;
+    /* display:inline-block; */
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+}
+.data_css_set{
+    overflow: hidden;
+    /* white-space:nowrap;
+    text-overflow:ellipsis; */
+    width:100%;
+    /* display:inline-block; */
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+    
+}
+
+.delete-btn-wrap{
+    padding-top: 8px;
+    padding-right: 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.det-wrap{
+    width: 100%;
+    /* height: 100%; */
+}
+
+.action-div{
+    margin-bottom: 10px;
+}
+
+.delete_css{
+    border-radius: 4px;
+    border: 1px solid $mtsclr-danger-btn;
+    background-color: $mtsclr-danger-btn;
+    color: #ffffff;
+    min-width: 66px;
+    float: right;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0px;
+}
+
+.edit_css_btn{
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1.5px solid $mtsclr-border;
+    color:$mtsclr-label;
+    width: 66px;
+}
+
+.sub-cont-scrl{
+    padding: 10px 18px 2px 18px;
+    width:100%;
+ }
+.collapse-view-cont{
+    position: fixed;
+    height: 20px;
+    width: 20px;
+    font-size: 11px;
+    box-shadow: 0px 3px 4px #00000029;
+    border: 1px solid $mtsclr-border;
+    margin-top: 20px;
+    margin-left: -10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.bg-open{
+    background-color: $mtsclr-active;
+}
+
+.close-tab{
+    color:$mtsclr-icon;
+    margin-left: -10%;
+}
+
+.open-tab{
+    color:#ffffff;
+      }
+
+.padd-22{
+    padding: 0px 0px 0px 22px;
+}
+.cont-scrl{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height:0;
+}
+.no-padd{
+    padding:0;
+}
+.sub_data_set_wid_css{
+    height: 32px;
+}
+.data_set_wid_css{
+    width: 177px;
+}
+.class_drop_view{
+    width: 128px;
+    height: 32px;
+}
+.delete_css_div{
+    float: right;
+    margin-top: -49px;
+}
+.font_sch_css{
+    color: $mtsclr-label;
+    font: normal normal 600 14px Segoe UI;
+}
+.font_sch_span{
+    color: $mtsclr-label;
+    font: normal normal 600 18px Segoe UI;
+}
+.span_css_view{
+    font: normal normal normal 14px Segoe UI;
+}
+/* .mod-table-scroll{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 0;
+} */
+/* input[type=checkbox]{
+    height: 16px;
+    width: 16px;
+} */
+.mat_css_group{
+    border: 1px solid $mtsclr-feild-border;
+    border-radius: 0px 4px 4px 0px !important;
+}
+.span_group_css{
+    border: 1px solid $mtsclr-feild-border ;
+    padding: 5px;
+    border-radius: 4px 0px 0px 4px !important;
+}
+.refresh_every_css{
+    display: flex;
+}
+.check-outer {
+    position: absolute;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* Hide the browser's default checkbox */
+.check-outer input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+
+/* On mouse-over, add a grey background color */
+.check-outer:hover input ~ .checkmark {
+    background-color: #ffffff;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .check-outer input:checked ~ .checkmark {
+    background-color: #ffffff;
+      border: 2px solid $mtsclr-success-btn;
+  }
+    /* Show the checkmark when checked */
+.check-outer input:checked ~ .checkmark:after {
+display: block;
+}
+
+/* Style the checkmark/indicator */
+.check-outer .checkmark:after {
+top: 0;
+left: 4px;
+width: 5px;
+height: 10px;
+border: solid white;
+border: 1px solid $mtsclr-success-btn;
+border-width: 0 2px 2px 0;
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform: rotate(45deg);
+}
+.checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: transparent;
+    border: 2px solid $mtsclr-cancel-btn;
+    border-radius: 2px;
+  }
+ /* When the checkbox is checked, add a blue background */
+ .container input:checked ~ .checkmark {
+    border: 2px solid $mtsclr-success-btn;
+    border-radius: 4px;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 4px;
+    top: 1px;
+    width: 7px;
+    height: 10px;
+    border: 1px solid $mtsclr-success-btn;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .p_class{
+    margin: 0% 0% 0% 200%;
+    font: normal normal normal 14px/13px Segoe UI;
+    text-transform: capitalize;
+  }
+  .border_view_css{
+    border-top: 1px solid $mtsclr-border;
+    /* margin: 0px 0px 0px -23px; */
+  }
+  .status{
+    /* display: inline-block; */
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+    /* white-space: nowrap; */
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    max-width: 75px;
+    background-color: $mtsclr-waiting;
+    border-radius: 50px;
+    padding: 1px 10px 2px 10px;
+    font: normal normal normal 10px Segoe UI;
+    text-transform: capitalize;
+  }
+  .bg-orange{
+    background-color: orange;
+  }
+  .bg-blue{
+    background-color: #74A7E0;
+  }
+  .bg-green{
+    background-color: green;
+  }
+  .bg-grey{
+    background-color: $mtsclr-suspended;
+  }
+  
+.prog-process{
+    margin-top:12px;
+    width: 142px;
+    margin-left: 5px;
+}
+
+.prog-process-progress-bar{
+    top: -5px;
+    height:14px !important;
+    border-radius: 4px;
+}
+
+.prog-val{
+    margin-top: -21px;
+    font: normal normal normal 12px Segoe UI;
+    color: #F1F0EF;
+    position: absolute;
+    margin-left: 5px;
+}
+.training_css{
+    margin: 6px 10px;
+    font: normal normal normal 10px Segoe UI;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    background: #74A7E0 0% 0% no-repeat padding-box;
+    border-radius: 15px;
+    width: 52px;
+    height: 16px;
+    padding: 1px 0px 0px 0px;
+    text-align: center;
+}
+
+.camel-case{
+    text-transform: capitalize;
+}
+.sub_view_prog_css{
+    color: #74A7E0;
+    cursor: pointer;
+}
+.sta_sch{
+    font: normal normal normal 14px Segoe UI;
+}
+.view_prog_css{
+    float: right;
+    padding-right: 10px;
+    margin-top: -27px;
+}
+.checkbox_col_one{
+    margin-left: -15px;
+}
+.mod-table-scroll_sec{
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    /* max-height: 500px; */
+    display: block;
+}
+.delete_icon{
+    width: 100px;
+    padding-right: 143px;
+    margin-top: 7px;
+}
+.trash_icon{
+    cursor: pointer;
+}
+.rad_css_view{
+    font: normal normal normal 14px Segoe UI;
+}
+.drop_css_view{
+    margin-top: 5%;
+}
+.btn_status_css{
+    padding-top: 12px;
+}
+.model_css_type_status{
+    display: grid;
+    font: normal normal 600 14px Segoe UI;
+    color: #707070;
+    margin-bottom: 15px;
+}
+
+
+.waiting_css {
+    margin: 6px 10px;
+    font: normal normal normal 10px Segoe UI;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    background: $mtsclr-waiting 0% 0% no-repeat padding-box;
+    border-radius: 15px;
+    width: 52px;
+    height: 16px;
+    padding: 1px 0px 0px 0px;
+    text-align: center;
+}
+.train_border_css{
+    border-left: 2px solid #74A7E0;
+}
+.waiting_border_css{
+    border-left: 2px solid $mtsclr-waiting;
+}
+.start_view_css{
+    margin-top: 3px;
+}
+.selectTask{
+    cursor: pointer;
+}
+.textFont{
+    font: normal normal normal 14px Segoe UI;
+}
+.headerFont{
+    font: normal normal 600 20px/13px Segoe UI;
+}
+.border_bot_css{
+    border-bottom: 1px solid $mtsclr-border;
+}
+.dataSet-font{
+    font: normal normal 600 14px/20px Segoe UI;
+    color: #707070;
+}
+
+.no-config{
+    padding: 12px 18px;
+}
+
+/* .cont-scrl{
+    overflow-x: hidden;
+    overflow-y: auto;
+  } */
+.training_table_css{
+    max-height: 500px;
+    height: auto !important;
+}
+
+
+.check_outer_css {
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* Hide the browser's default checkbox */
+.check_outer_css input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+
+/* On mouse-over, add a grey background color */
+.check_outer_css:hover input ~ .checkmark {
+    background-color: #ffffff;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .check_outer_css input:checked ~ .checkmark {
+    background-color: #ffffff;
+      border: 2px solid $mtsclr-success-btn;
+  }
+    /* Show the checkmark when checked */
+.check_outer_css input:checked ~ .checkmark:after {
+display: block;
+}
+
+/* Style the checkmark/indicator */
+.check_outer_css .checkmark:after {
+top: 0;
+left: 4px;
+width: 5px;
+height: 10px;
+border: solid white;
+border: 1px solid $mtsclr-success-btn;
+border-width: 0 2px 2px 0;
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform: rotate(45deg);
+}
+.checkbox_css_view{
+    height: 32px;
+    margin-top: -7px;
+}
+.data_set_css{
+    font: normal normal 600 14px Segoe UI;
+    color: #707070;
+}
+.df-col-dummy{
+    display: flex;
+    flex-direction: column;
+}
+.next_run_title{
+  text-align: left;
+  font: normal normal 600 14px/13px Segoe UI;
+  letter-spacing: 0px;
+  color: $mtsclr-label;
+  margin-bottom: 4px;
+}
+
+.next_run_value{
+  text-align: left;
+  font: normal normal normal 14px/13px Segoe UI;
+  letter-spacing: 0px;
+  color: $mtsclr-text;
+  word-break: break-word;
+  line-height: 18px;
+}
+.model_config_title{
+  text-align: left;
+  font: normal normal 600 14px/20px Segoe UI;
+  letter-spacing: 0px;
+  color:$mtsclr-label;
+  opacity: 1;
+}
+.model_config_value{
+
+  text-align: left;
+  font: normal normal normal 14px/20px Segoe UI;
+  letter-spacing: 0px;
+  color: $mtsclr-text;
+  opacity: 1;
+}
+.data_range_title{
+  top: 304px;
+  left: 1361px;
+  width: 74px;
+  height: 19px;
+  text-align: left;
+  font: normal normal 600 14px/20px Segoe UI;
+  letter-spacing: 0px;
+  color:$mtsclr-label;
+  opacity: 1;
+}
+.data_range_value{
+   top: 324px;
+   left: 1361px;
+   /* width: 56px; */
+   height: 19px;
+   text-align: left;
+   font: normal normal normal 14px/20px Segoe UI;
+   letter-spacing: 0px;
+   color: $mtsclr-text;
+   opacity: 1;
+}
+.frequency_title{
+    top: 359px;
+    left: 881px;
+    width: 69px;
+    height: 19px;
+    text-align: left;
+    font: normal normal 600 14px/20px Segoe UI;
+    letter-spacing: 0px;
+    color: $mtsclr-label;
+    opacity: 1;
+}
+.frequency_value{
+
+   text-align: left;
+   font: normal normal normal 14px/20px Segoe UI;
+   letter-spacing: 0px;
+   color: $mtsclr-text;
+   opacity: 1;
+
+}
+.sche_started_title{
+
+   text-align: left;
+   font: normal normal 600 14px/20px Segoe UI;
+   letter-spacing: 0px;
+   color: $mtsclr-label;
+   opacity: 1;
+}
+.sche_started_value{
+    text-align: left;
+    font: normal normal normal 14px/20px Segoe UI;
+    letter-spacing: 0px;
+    color: $mtsclr-text;
+    opacity: 1;
+}
+.sche_end_title{
+    text-align: left;
+    font: normal normal 600 14px/20px Segoe UI;
+    letter-spacing: 0px;
+    color: $mtsclr-label;
+    opacity: 1;
+}
+.sche_end_value{
+    text-align: left;
+    font: normal normal normal 14px/20px Segoe UI;
+    letter-spacing: 0px;
+    color: $mtsclr-text;
+    opacity: 1;
+}
+
+
+.right_div_head{
+    display: flex;
+    padding-left: 0px;
+}
+.arrow_mat{
+    cursor: pointer;
+}
+.div_seperation{
+    display: flex;
+}
+.css_detail{
+    margin-left: 15px;
+}
+
+.select-cur{
+    cursor: pointer;
+}
+
+.align-middle{
+    vertical-align: middle !important;
+}
+
+/* Media Quieres Starts Here */
+@media (min-width: 1598px) and (max-width: 1928px){
+    
+    .btn,.currpage-input,.css_search{
+        font-size: 18px;
+    }
+    .next_run_title{
+        font: normal normal 600 18px Segoe UI;
+    }
+    .next_run_value{
+        font: normal normal normal 18px Segoe UI;
+    }
+}
+
+/* Mozila Css Starts Here */
+@-moz-document url-prefix() {
+    @media (min-width: 1598px) and (max-width: 1928px){
+        .next_run_title{
+            font: normal normal 600 18px Segoe ui regular !important;
+        }
+        .next_run_value{
+            font: normal normal normal 18px Segoe ui regular !important;
+        } 
+    }
+}
+
+.ion_search{
+    height: 32px;
+    margin: 10px;
+  }
+  .ion_icon_search{
+    position: absolute;
+    padding: 0 10px;
+  }
+.ion_icon_search_val{
+    position: absolute;
+    padding: 0 5px;
+}
+

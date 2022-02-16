@@ -1,0 +1,71 @@
+
+.toasts-container
+{
+    min-width: 80%;
+    padding: 16px;
+    padding-top: 66px;
+    position:fixed;
+    top: 0;
+    transform: translate(-50%, 0px);
+    left: 52%;
+    padding-right: 30px;
+    pointer-events: none;
+    z-index: 99;
+}
+.success {
+  background-color: rgb(58, 90, 58);
+}
+.error {
+  background-color: rgb(142, 53 ,53);
+}
+
+.info {
+  background-color: #646e77;
+  color: white;
+}
+.toasts-container > div
+{
+    height: auto;
+    padding-left: 20px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0px 0px 10px 0px #5f9ea0cf;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: fill
+}
+.alert-dismissible {
+  padding-right: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 15px;
+}
+
+.alert:hover{
+    cursor: pointer;
+    opacity: 1.0;
+}
+.fa-close{
+    position: absolute;
+    top: 18px;
+    right: 15px;
+}
+.warning {
+  background-color: rgb(111, 111, 66);
+}
+
+.close-margin{
+   margin-right: 20px; 
+}
+p {
+    float: right;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .alert-success {
+    min-width: 100%;
+  }

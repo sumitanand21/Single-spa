@@ -1,0 +1,15 @@
+.kibanaFrame{
+    width:100%;
+    height:99%;
+    border: 0px solid;
+    overflow-y: auto;
+    }
+
+    .no-data-text{
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+        font: normal normal normal 14px Segoe UI;
+        color: var(--mtsclr-text);
+        width:100%;
+      }

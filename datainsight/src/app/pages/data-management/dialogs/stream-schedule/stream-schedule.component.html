@@ -1,0 +1,30 @@
+<ion-col class="disp-header d-flex">
+    <ion-col class="width-50">
+        <h4 id="dispHeader" class="disp-title">{{headerText}}</h4>
+    </ion-col>
+    <ion-col class="width-50">
+            <ion-icon class="ion_icon_search disp-close" id="dispModalClose" aria-label="Close" [src]="dataManagementService.createSvgUrl('close-outline.svg')"></ion-icon>
+    </ion-col>
+    </ion-col>
+        <ion-col class="disp-text">                
+
+                <ion-col class="base-flex">
+                    <ion-col class="label-text">Job Type:</ion-col>
+                    <ion-col>
+                          <ion-col class="wrap-mat">
+                            <mat-select disableOptionCentering placeholder="Select" class="form-control drop-mat-feature mat_width_css"
+                            name="JobTypeNm" [(ngModel)]="selectedJobType">
+                                <mat-option *ngFor="let jobType of jobTypeList" [value]="jobType">
+                                    {{jobType}}</mat-option>
+                            </mat-select>
+                        </ion-col>
+                        <!-- <input autocomplete="off" matInput class="form-control input-feild-name" type="text" [(ngModel)]="groupName" placeholder="Name" [appAlphaNumeric]="'text'"> -->
+                        <ion-col *ngIf="showErr && !selectedJobType" class="err-msg">Please select jobtype</ion-col>
+                    </ion-col>
+                </ion-col>
+        </ion-col>
+        <ion-col class="d-flex disp-footer">
+            <ion-button *ngIf="dispCancel" type="button" color="light" id="canceldispBtn" class="shadowbtn btn btn-default cancel-disp" aria-label="Close" mat-dialog-close>Cancel</ion-button>
+            <ion-button *ngIf="streamAction != 'stop'" type="button" id="actiondispBtn" class="shadowbtn btn btn-primary action-disp mar-l-15" aria-label="Close" (click)="returnvalue(buttonText)">{{buttonText}}</ion-button>
+            <ion-button *ngIf="streamAction == 'stop'" type="button" color="danger" id="actiondispBtn" class="shadowbtn btn btn-danger stop-disp mar-l-15" aria-label="Close" (click)="returnvalue(buttonText)">{{buttonText}}</ion-button>
+        </ion-col>

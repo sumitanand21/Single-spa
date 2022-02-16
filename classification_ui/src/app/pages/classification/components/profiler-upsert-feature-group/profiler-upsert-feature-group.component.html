@@ -1,0 +1,12 @@
+<ion-row class="upsert-feature">
+    <ion-col size="12" *ngIf="dataSetLoader || featureGroupLoader || timeFilterLoader" class="spinner-div">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-col>
+    <ion-col class="upsert-feature no-padding" [ngClass]="{'no-disp' : dataSetLoader || featureGroupLoader || timeFilterLoader}">
+        <!-- <div class="upsert-feature" *ngIf="!dataSetLoader && !featureGroupLoader && !timeFilterLoader"> -->
+        <app-feature-group [selectorType]="'profiler'" [featureLoader]="featuresLoader" [dataSet]="dataSet"
+            [featureLabel]="label" [featureGrp]="featureGrp" [timeFtr]="timeFtr" [timeFtrDate]="timeFtrDate"
+            [featureList]="featureVal" (emitOut)="providerOutput($event)"></app-feature-group>
+    </ion-col>
+</ion-row>

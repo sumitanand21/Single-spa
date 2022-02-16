@@ -1,0 +1,292 @@
+.model-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px 12px 18px;
+    border-bottom: 1px solid #CBCBCB;
+}
+
+.disp_css{
+  display: block;
+}
+
+.model-foot{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 25px 18px 12px 18px
+}
+
+.disp-close{
+    background-color: transparent;
+    border: none;
+    outline:none;
+    color: #707070;;
+    padding:0;
+    font-size: 26px;
+    cursor: pointer;
+    margin-top: -8px;
+}
+
+.done-btn{
+    font: normal normal normal 14px/20px Segoe UI;
+    color: #FFFFFF;
+    background: #3B73B7;
+    border-radius: 4px;
+    border:1px solid #3B73B7;
+    min-width: 70px;
+}
+
+.done-btn:focus{
+    border: 0.5px solid var(--mtsclr-border);
+    outline: 0.5px var(--mtsclr-border);
+}
+
+
+
+.model-body{
+// overflow: hidden;
+/* padding: 0px 18px 0px 18px; */
+display: block;
+padding: 0;
+}
+
+  .no-padd{
+    padding:0;
+    }
+  
+    .no-mar{
+      margin:0;
+      }
+
+      .record-det{
+        margin-bottom: 18px;
+      }    
+      
+
+      .head-rec{
+        font: normal normal 600 18px/13px Segoe UI;
+        color: var(--mtsclr-text);
+        margin-right: 50px;
+      }
+      
+      .num-rec{
+        font: normal normal 600 14px/13px Segoe UI;
+        color: #707070;
+      }
+
+      .rec-count{
+        font: normal normal normal 14px/13px Segoe UI;
+        letter-spacing: 0px;
+        color: #232323;
+      }
+.search_mat{
+  margin: -28px 7px;
+}
+      .prev-table-wrap{
+        /* border: 1px solid #CBCBCB; */
+        /* height: 100%;
+        overflow: auto;
+        padding: 0px 18px 0px 18px;
+        display:flex; */
+
+            //  height: 0;
+             display:flex;
+             padding: 0px 18px 0px 18px;
+             justify-content: center;
+      }
+
+      .prev-table{
+/* width:100%; */
+flex: 1;
+border-right: 1px solid #CBCBCB;
+      }
+
+      .prev-table-wrap .prev-table:last-child{
+          border-right: none;
+      }
+
+      .table-view-head{
+        /* width: 100%; */
+        height: 34px;
+        background: #F1F0EF;
+        border-bottom: 1.5px solid #CBCBCB;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 5px 4px 5px 4px;
+        /* display: block; */
+      }
+
+      .table-view-body{
+        display: flex;
+        justify-content: center;
+    }
+
+      .item-head{
+        font: normal normal normal 14px/13px Segoe UI;
+        color: #232323;
+      }
+
+ 
+
+      .item-body{
+        font: normal normal normal 14px/13px Segoe UI;
+        color: #232323;
+        padding: 15px 4px 5px 4px;
+      }
+
+      .no-div{
+        min-width: 18px;
+      }
+
+      
+      /**********table css Starts******************/
+
+    table{
+      border-top:none !important;
+      width: 100%;
+      border: 1px solid #CBCBCB;
+      border-collapse: collapse;
+    }
+
+  table td, th {
+    min-width: 120px;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+    th{
+      border: 1px solid #CBCBCB;
+      /* border-bottom: 1.5px solid #CBCBCB; */
+      border-top: none !important;
+      border-bottom: none !important;
+      height: 34px;
+      background: #F1F0EF;
+      text-align: center;
+      vertical-align: bottom;
+      padding: 5px 4px 5px 4px;
+      // font: normal normal normal 14px/13px Segoe UI;
+    color: #232323;
+    position: sticky;
+    top: 0;
+    box-shadow: inset 0 0.8px 0 #CBCBCB, inset 0 -1.5px 0 #CBCBCB;
+    }
+
+    td{
+      border-right: 1px solid #CBCBCB;
+      font: normal normal normal 14px/13px Segoe UI;
+      color: #232323;
+      padding: 15px 4px 5px 4px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    
+    .no-rec{
+      text-align: start;
+    }
+
+    
+
+      /**********table css Ends******************/
+
+      /********pagination css starts****************/
+
+      .page_css_view{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px 14px 12px 18px;
+    }
+    .paginate_css {
+        width: 250px;
+        margin-top: 3px;
+        display: block;
+    }
+    .search_fafa{
+        position: absolute;
+        margin: 7px;
+        font-size: 13px;
+        color: var(--mtsclr-icon);
+    }
+    .form-control{
+        color: var(--mtsclr-text);
+        background-color: #ffffff;
+        outline: 0;
+        border: 1px solid var(--mtsclr-feild-border);
+    }
+    .css_search{
+        height: 32px !important;
+        font-size: 12px;
+        max-width: 100%;
+        padding: 5px 5px 5px 23px;
+        border: 1px solid var(--mtsclr-feild-border);
+    }
+    .paginate-align{
+        width: 65%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .d-flex{
+        display: flex;
+        align-items: center;
+    }
+    .mar-r-8{
+        margin-right: 8px;
+    }
+    .paginate-text{
+        font-size: 12px;
+        color: #707070;
+    }
+    .select-page{
+        border-bottom: 1px solid var(--mtsclr-feild-border);
+        width: 45px;
+        height: auto !important;
+        font-size: 12px;
+        margin-right: 12px;
+    }
+    .pagination-btn{
+        cursor: pointer;
+        border: none;
+        font-weight: 600;
+        background-color: transparent;
+    }
+    .currpage-input{
+        text-align: center;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid var(--mtsclr-feild-border);
+        width: 40px;
+        font-size: 12px;
+        outline: none;
+        margin-right: 5px;
+        margin-top: 0px;
+    }
+          /********pagination css Ends****************/
+
+          .table-wrap{
+            max-height: 100%;
+            height: fit-content;
+            overflow-x: auto;
+            overflow-y: auto;
+            min-width: 100%;
+            //min-height: 500px;
+            height:254px;
+                  }
+
+                  .select-cur{
+                    cursor: pointer;
+                }
+                
+                .align-middle{
+                    vertical-align: middle !important;
+                }
+        
+                .feature-thead{ 
+                  display: block;
+                  align-items: baseline;
+                  justify-content: center;
+             
+                }

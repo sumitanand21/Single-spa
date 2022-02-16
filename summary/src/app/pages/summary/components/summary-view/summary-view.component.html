@@ -1,0 +1,30 @@
+<ion-row class="summary-view-wrap">
+    <ion-row>
+        <ion-col class="summary_main_css">
+            <ion-col size="2" class="dropdown-left-padding">
+                <mat-select disableOptionCentering class="form-control drop-mat mat_width_css sub_data_set_wid_css"
+                    [(ngModel)]="options" name="dropdownValue" (ngModelChange)="getIframeDetails(options)"
+                    placeholder="Select Dataset" required>
+                    <mat-option *ngFor="let dataset of datasetDropdown" [value]="dataset">{{dataset.dashBoardName}}</mat-option>
+                </mat-select>
+            </ion-col>
+            <ion-col size="10" class="ion-text-end button-right-padding">
+                <!-- <ion-icon class="ion_icon_dashbaord" [src]="summaryService.createSvgUrl('home-outline.svg')"
+                    (click)="dashboardNavigation('/dashboard/dashboardmgmt')"></ion-icon> -->
+                <ion-button type="button" (click)="dashboardNavigation('/dashboard/dashboardmgmt')" mat-stroked-button
+                    class="dashboard-button mts-btn-save">Dashboard</ion-button>
+            </ion-col>
+        </ion-col>
+    </ion-row>
+    <!-- <ion-row class="f-max scroll-view">
+        <iframe class="kibanaFrame" *ngIf="selectedUrl" [src]="selectedUrl">
+        </iframe>
+        <div *ngIf="!selectedUrl" class="no-data-text">No data available</div>
+        <ion-note slot="start" color="dark">88</ion-note>
+    </ion-row> -->
+    <div class="f-max scroll-view">
+        <router-outlet *ngIf="summaryService.dashboardDetails"></router-outlet>
+        <div *ngIf="!summaryService.dashboardDetails" class="no-data-text">No data available</div>
+        <!-- <ion-note slot="start" color="dark">88</ion-note> -->
+    </div>
+</ion-row>

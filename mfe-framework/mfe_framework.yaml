@@ -1,0 +1,69 @@
+# Note : SOCKET_SCHEDULER_EXP_TIME is in minutes [ 60 to 4320 (3 days) | recommended : 360 ]
+# Note : In EL_URL replace modelName value with '_vaxModelNamevax_' for dynamizing the url in UI
+# Note : In FORECAST_GRAFANA_URL replace data Id value with '_vax_var-PM_name_vax_' for dynamizing the url in UI
+apiVersion: v1
+kind: Template
+metadata:
+  name: mfe-framework
+parameters:
+- description: userinterface
+  displayName: userinterface
+  name: DOCKER_FONTEND_IMAGE_NAME
+  value:
+
+- description: NFS SERVER
+  displayName: userinterface
+  name: NFS_SERVER
+  value: 
+
+objects:       
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: mfe-framework
+  spec:
+    selector:
+      matchLabels:
+        app: mfe-framework
+    replicas: 1
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: mfe-framework
+      spec:
+        containers: 
+          - image: ${DOCKER_FONTEND_IMAGE_NAME}
+            name: angular
+            imagePullPolicy: Always
+            ports:
+            - containerPort: 80
+            volumeMounts:
+            - name: mfe-config
+              mountPath: /usr/share/nginx/html/assets/mfe-config
+        volumes:
+          - name: mfe-config
+            nfs:
+              server: ${NFS_SERVER}
+              path: /mnt/k8sMount/userinterface/mfe-config
+           
+
+
+  status: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: mfe-framework
+    creationTimestamp: null
+  spec:
+    selector:
+      app: mfe-framework
+    type: NodePort
+    ports:
+    - nodePort: 30290
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  status:
+    loadBalancer: {} 
+  

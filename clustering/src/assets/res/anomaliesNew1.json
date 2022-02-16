@@ -1,0 +1,42 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "@timestamp": "2021-08-26T12:06:32Z",
+      "Payload Missing Indication": 0,
+      "Port Loss of Light:Type=Client": 1,
+      "Port Loss of Light:Type=Edge": 0,
+      "Port Loss of Light:Type=SubportEdge": 1,
+      "Post Block Automatic Power Reduction": 0,
+      "Post Block Span Adjustment in Progress": 0,
+      "Power Input Fail:Type=BDL1-3R31": 0,
+      "Power Out of Specification - Low:Type=Client": 0,
+      "Pre Block Span Adjustment in Progress": 0,
+      "clusters": 0,
+      "dataSetName": "log_alarm_data",
+      "modelName": "modelName",
+      "modelConfigName": "modelConfigName",
+      "measurement_name": "kafka_consumer",
+      "clusterId": 1,
+      "host": "telegraf-alarm-classificationdb-0"
+    },
+    {
+      "@timestamp": "2021-08-26T12:06:33Z",
+      "Payload Missing Indication": 0,
+      "Port Loss of Light:Type=Client": 1,
+      "Port Loss of Light:Type=Edge": 0,
+      "Port Loss of Light:Type=SubportEdge": 1,
+      "Post Block Automatic Power Reduction": 0,
+      "Post Block Span Adjustment in Progress": 0,
+      "Power Input Fail:Type=BDL1-3R31": 0,
+      "Power Out of Specification - Low:Type=Client": 0,
+      "Pre Block Span Adjustment in Progress": 0,
+      "clusters": 0,
+      "dataSetName": "log_alarm_data",
+      "modelName": "modelName",
+      "modelConfigName": "modelConfigName",
+      "measurement_name": "kafka_consumer",
+      "host": "telegraf-alarm-classificationdb-0"
+    }
+  ]
+}

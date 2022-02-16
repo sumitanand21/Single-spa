@@ -1,0 +1,51 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": "5fc4aa4748e74e0071b6b2a8",
+      "forecast": {
+        "scalar": [
+          "None",
+          "standard",
+          "minmax",
+          "normalize"
+        ],
+        "encoder": [
+          "None",
+          "one-hot",
+          "label"
+        ],
+        "optimizer": [
+          "adam",
+          "sgd",
+          "adadelta",
+          "rms_prop",
+          "adagrad"
+        ],
+        "metrics": [
+          "accuracy",
+          "r2_score"
+        ],
+        "loss": [
+          "mean_squared_error",
+          "mean_absolute_error",
+          "mean_absolute_percentage_error",
+          "mean_squared_logarithmic_error",
+          "mae"
+        ],
+        "inneractivation": [
+          "tanh",
+          "sigmoid",
+          "relu",
+          "hard_sigmoid"
+        ],
+        "activation": [
+          "tanh",
+          "sigmoid",
+          "relu",
+          "hard_sigmoid"
+        ]
+      }
+    }
+  ]
+}

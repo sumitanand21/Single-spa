@@ -1,0 +1,49 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            {
+                "_id": "615c1625d0b25ca80dd64146",
+                "dashBoardName": "alarm_storm_dashboard",
+                "dataSetName": "alarm_storm_data",
+                "dashBoardType": "Static Dashboard",
+                "dashBoardUrl": "NA",
+                "jobType": "ASCTRAINING"
+            },
+            {
+                "_id": "617b00b14d278030554367d3",
+                "dashBoardName": "Correlation Analysis",
+                "dataSetName": "alarm_data_vax",
+                "dashBoardType": "Iframe",
+                "dashBoardUrl": "https://167.254.204.64:32101/app/dashboards#/view/a63601a0-67b9-11eb-933b-df15118cab21?embed=true&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1y,to:now))&_a=(description:'',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:''",
+                "jobType": "CORRELATION"
+            },
+            {
+                "_id": "617b76517c0a36f39f434c68",
+                "dashBoardName": "Iframe",
+                "dataSetName": "alarm_data_vax",
+                "dashBoardType": "Iframe",
+                "dashBoardUrl": "http://rtx-swtl-jira.fnc.net.local/secure/Dashboard.jspa?selectPageId=19226",
+                "jobType": "CORRELATION"
+            },
+            {
+                "_id": "617bc8a03eb7e5baaed1527b",
+                "dashBoardName": "Iframe2",
+                "dataSetName": "alarm_data_vax",
+                "dashBoardType": "Iframe",
+                "dashBoardUrl": "https://167.254.204.64:32101",
+                "jobType": "CORRELATION"
+            },
+            {
+                "_id": "617bce643eb7e5baaed1527c",
+                "dashBoardName": "Iframe5",
+                "dataSetName": "alarm_data_vax",
+                "dashBoardType": "Iframe",
+                "dashBoardUrl": "https://167.254.204.64:32101/app/dashboards#/view/a63601a0-67b9-11eb-933b-df15118cab21?embed=true&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1y,to:now))&_a=(description:%27%27,filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:%27%27),timeRestore:!f,title:alarm_dashboard,viewMode:view)%22",
+                "jobType": "CLASSIFICATION"
+            }
+        ],
+        "responseType": "",
+        "status_code": 200
+    }
+}

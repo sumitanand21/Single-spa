@@ -1,0 +1,729 @@
+// @import '../../../../../app/scss/variables';
+@import '../../../app/scss/variables';
+.main_route_css{
+    background-color: #fff;
+}
+.container-fluid{
+    padding: 0;
+}
+.main_border_css{
+    /* border-bottom: 1px solid #CBCBCB; */
+    padding: 0px 15px;
+}
+.tab-selector-bar{
+    /* position: fixed; */
+    width: 100%;
+    /* height: auto; */
+    /* opacity: 1;
+    z-index: 9; */
+    overflow: hidden;
+    background: #F1F0EF 0% 0% no-repeat padding-box;
+}
+.tab-css{
+    margin-top: 0.5%;
+    margin: 0px 10px 0px 0px;
+    width: auto;
+    font-size: 18px;
+    height: 44px;
+    line-height: 1.5;
+    color: black;
+    background-color: #F1F0EF;
+    background-clip: padding-box;
+    border: 0px solid #ced4da;
+    font-family: Segoe UI Regular;
+    outline: none;
+}
+.colspan_css{
+     margin-top: 5%;
+}
+.start_btn_css{
+     padding-top: 130px;
+     display: flex;
+     padding-left: 40px;
+}
+.Search_input_css{
+     height: 35px;
+     width: 150%;
+}
+.table td, .table th{
+     font-size: 14px;
+}
+.angular_data_tables{
+    width: 95%;
+    margin: 1% 0% 0% 3%;
+}
+.inner-addon {
+    position: relative;
+}
+.inner-addon .fa-search {
+    position: absolute;
+    padding: 8px;
+    pointer-events: none;
+}
+
+.left-addon .fa-search  {
+     left:  0px;
+}
+.left-addon input  { 
+    padding-left:  30px; 
+}
+.fa-fa-css-icon{
+    margin-left: 2%;
+    width: 20%;
+}
+.check_pointer{
+    cursor: pointer;
+    margin-left: 14px;
+    padding-left: 5px;
+}
+thead{
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid darkgray;
+}
+.sorting_disabled{
+    font-size: 14px;
+    padding-left: 5px;
+}
+.name_table_css{
+    padding: 5px 5px 0px 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.form-group {
+    display: block;
+    margin-bottom: 2px;
+    padding-right: 5px;
+}
+
+.form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.form-group label {
+    position: relative;
+    cursor: pointer;
+}
+
+.form-group label:before {
+    content:'';
+    -webkit-appearance: none;
+    border-radius: 3px;
+    background-color: transparent;
+    border: 2px solid #3B86FF;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 7px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.form-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 9px;
+    left: 6px;
+    width: 6px;
+    height: 9px;
+    border: 2px solid #3B86FF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+  
+.all_check_css{
+    margin: 6% 0% 0% 12%;
+}
+.check_width{
+    width: 1px;
+}
+.highlight_css_row{
+    color:#3B86FF;
+    cursor: pointer;
+}
+
+.display_flex_css{
+    padding: 10px 30px 0px 30px;
+    display: flex;
+}
+article{
+    border-bottom: 1px solid #dee2e6;
+}
+.Css_butn{
+    float: right;
+}
+.editname_css{
+    margin : 0% 0% 0% 30%;
+}
+.edittime_css{
+    margin : 0% 0% 0% 17%;
+}
+.edit_forecast_css{
+    width: 100%;
+    margin-left: 23%;
+}
+.edit_samp_css{
+    width: 40%;
+    margin-left: 9%;
+}
+.date_label_css{
+    /* padding: 10px 0px; */
+}
+.data_range{
+    display: flex;
+    margin: 0% 0% 0% 20%;
+}
+.min_time,.max_time{
+    display: flex;
+    padding-top: 10px;
+}
+.min_css,.max_css{
+    width: 60px;
+    margin: -5px 10px 0px 10px;
+}
+.modal-content {
+    width: 190% !important;
+    margin-left: -45% !important;
+    margin-top: 25% !important;
+}
+.frwrd_css_time{
+    display: flex;
+    padding: 1% 0% 0% 6%;
+}
+.frwrd_pred{
+    width: 60px;
+}
+.time_pred_css{
+    display: flex;
+}
+.radio_css{
+    display: flex;
+}
+
+.radiomark {
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    height: 16px;
+    width: 16px;
+    background-color: #FFFFFF;
+    border: 3px solid $mtsclr-success-btn;
+    border-radius: 50%;
+}
+  
+  /* On mouse-over, add a grey background color */
+.container:hover input ~ .radiomark {
+    background-color: #ccc;
+}
+  
+  /* When the radio button is checked, add a blue background */
+.container input:checked ~ .radiomark {
+    background-color: #FFFFFF;
+}
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+.radiomark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+  /* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .radiomark:after {
+    display: block;
+}
+  
+  /* Style the indicator (dot/circle) */
+.container .radiomark:after {
+    top: 2px;
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $mtsclr-success-btn;
+}
+
+.container {
+    display: inline;
+    position: relative;
+    padding-left: 30px;
+    padding-right: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+  
+  /* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.radio_css{
+    margin: 3% 0% 0% 0%;
+}
+.edit_forecast_css, .edit_samp_css{
+    border: transparent !important;
+}
+
+.update_btn:hover{
+    background: $mtsclr-success-btn;
+}
+.update_btn{
+    color: #FFFFFF;
+    width: 80px;
+    background: $mtsclr-success-btn 0% 0% no-repeat padding-box;
+}
+.down_Button{
+    padding: 10px;
+}
+.cancel_btn{
+    border-radius: 4px;
+    margin-right: 1%;
+    border: 1px solid #ced4da;
+}
+.model_param_css{
+    padding: 0px 0px 2px 10px;
+    background-position: right 10px center;
+    width: 30%;
+    margin: 0% 0% 0% 14%;
+}
+.btn-danger.disabled, .btn-danger:disabled,.btn-primary.disabled, .btn-primary:disabled{
+    background: transparent;
+    border: 1px solid darkgray;
+    color: darkgray;
+}
+.cnfr_css_keep{
+    border: 1px solid darkgrey;
+}
+
+
+.check_box_css{
+    font-size: 14px;
+    color: #232323;
+}
+.new {
+    display: inline-flex;
+}
+  .form-group {
+    display: block;
+    margin-bottom: 2px;
+    padding-right: 5px;
+  }
+  
+  .form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  
+  .form-group label {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .form-group label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #3b86ff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 7px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .form-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 9px;
+    left: 6px;
+    width: 6px;
+    height: 8px;
+    border: solid #3B86FF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .check_box_css{
+      font-size: 14px;
+      color: #232323;
+  }
+/* Mozila css Starts Here */
+@-moz-document url-prefix() {
+    .form-group input:checked + label:after {
+        top: 9px !important;
+    }
+}
+/* Media Queries for larger screens */
+@media (max-width: 1800px) and (min-width: 1500px){
+    .div_css_check {
+        margin: 0 100% 0 0 !important;
+    }
+    .start_btn_css{
+        padding-top: 150px 0px 0px 60px;
+    }
+    .colspan_css{
+        margin-top: 4%;
+    }
+    .radiomark{
+        top: 3px;
+        left: 8px;
+        height: 18px;
+        width: 18px;
+    }
+    .container .radiomark:after {
+        top: 3px;
+        left: 3px;
+        width: 6px;
+        height: 7px;
+    }
+}
+@media (min-width: 1801px){
+    .div_css_check {
+        margin: 0 100% 0 0 !important;
+    }
+}
+@media (max-width: 2133px) and (min-width: 1801px){
+    .start_btn_css{
+        padding: 135px 0px 0px 55px;
+    }
+    .colspan_css{
+        margin-top: 4%;
+    }
+    .left-addon .fa-search {
+        top: 2px;
+    }
+}
+@media (max-width: 3500px) and (min-width: 2134px){
+    .start_btn_css{
+        padding: 170px 0px 0px 35px;
+    }
+    .colspan_css{
+        margin-top: 4%;
+    }
+    .form-group input:checked + label:after{
+        top: 7px;
+        left: 5px;
+        width: 8px;
+        height: 9px;
+    }
+    .angular_data_tables {
+        width: 97%;
+        margin: 1% 0 0 1%;
+    }
+}
+@media (max-width: 5000px) and (min-width: 3502px){
+    .start_btn_css{
+        padding: 210px 0px 0px 40px;
+    }
+    .colspan_css{
+        margin-top: 3%;
+    }
+    .form-group input:checked + label:after{
+        top: 8px;
+        left: 6px;
+    }
+    .angular_data_tables {
+        width: 97%;
+        margin: 1% 0 0 1%;
+    }
+}
+@media (max-width: 7000px) and (min-width: 5001px){
+    .start_btn_css{
+        padding: 250px 0px 0px 50px;
+    }
+    .angular_data_tables {
+        width: 97%;
+        margin: 1% 0 0 1%;
+    }
+    .colspan_css{
+        margin-top: 2.5%;
+    }
+    .left-addon input  { 
+        height: 55px;
+    }
+    .form-group input:checked + label:after{
+        top: 9px;
+        left: 7px;
+        width: 10px;
+        height: 10px;
+    }
+    .left-addon .fa-search {
+        top: 5px;
+    }
+    .forecastBtn, .forecast_remove_btn{
+        width: 110px !important;
+        height: 45px !important;
+    }
+}
+.fa-question-circle-o{
+    color: gray;
+}
+.all_check_css{
+    padding-top: 5px;
+}
+.trash-icon{
+    width: 20px;
+}
+.progress-bar-loader {
+	border-radius: bar-radius;
+	overflow: hidden;
+    height: 0.2rem;
+    background-image: linear-gradient(to right, #968bef 0%, #968bef 50%, #968bef 50%,#968bef 100%);
+    background-repeat: repeat-x;
+    background-size: 400px 400px;
+    width: 200%;
+    /* left: 25%; */
+    position: absolute;
+    transform: translate3d(-50%,-50%,0); 
+}
+.progress-loader {
+    animation: loader 2s linear infinite;
+    background-color: blue;
+    color: #fff;
+    padding: bar-size;
+    width: 0;
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .75rem;
+}
+.user_name{
+    height: 32px;
+    font-size: 14px;
+}
+.forecast_remove_btn,.forecastBtn{
+    border-radius: 4px;
+    opacity: 1;
+    padding: 0;
+    width: 70px;
+    height: 32px;
+    font-size: 14px;
+    text-align: center;
+}
+.div_css_check{
+    margin: 0% 100% 0% 0%;
+}
+.new_form-group{
+    margin-bottom: 0px !important;
+}
+.name_css_flex{
+    margin-top: 2%;
+}
+.model_css_flex{
+    margin-bottom: 5%;
+}
+.nodata_avail{
+    text-align: center;
+    width: 100%;
+    margin-left: 200%;
+}
+
+
+.check_css_data{
+	padding: 0.2em 0em 0em 4px;
+}
+.table_td_css{
+	padding: 4px 4px 0;
+}
+.thead_css{
+    padding: 0em 0em 0.3em 4px;
+}
+
+
+.progress-bar-loader {
+	border-radius: bar-radius;
+	overflow: hidden;
+    height: 0.2rem;
+    background-image: linear-gradient(to right, #968bef 0%, #968bef 50%, #968bef 50%,#968bef 100%);
+    background-repeat: repeat-x;
+    background-size: 400px 400px;
+    width: 200%;
+    /* left: 25%; */
+    position: absolute;
+    transform: translate3d(-50%,-50%,0); 
+}
+.progress-loader {
+    animation: loader 2s linear infinite;
+    background-color: blue;
+    color: #fff;
+    padding: bar-size;
+    width: 0;
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .75rem;
+}
+
+.panel-in-fullscreen .sidemenu {
+    display: none !important;
+}
+sidemenu {
+    display: none !important;
+}
+
+/**********************************header css by Sumit********************/
+
+.active-tab{
+    border-bottom: 1px solid $mtsclr-success-btn;
+    color:$mtsclr-success-btn;
+    font: normal normal bold 18px/20px Segoe UI;
+}
+
+.disp-model-btn{
+    background-color: transparent;
+    padding: 0px 15px;
+    font-size: 14px;
+    /* height: 39px; */
+    /* width: 30%; */
+  border-radius:4px;
+  border: 1.5px solid $mtsclr-border;
+  color:#707070;
+  margin-top: 7px;
+}
+
+.model-btn{
+    background-color: transparent;
+    /* height: 39px; */
+    /* width: 30%; */
+  border-radius:4px;
+  border: 1.5px solid $mtsclr-border;
+  color:#707070;
+}
+
+.no-padd{
+    padding:0;
+}
+.no-padd-r{
+    padding: 0;
+    border-bottom: 1px solid $mtsclr-border;
+}
+
+.d-flex{
+    display: flex;
+    align-items: center;
+}
+
+.move-r{
+float:right;
+padding: 0 15px;
+}
+
+.min-height-48{
+    min-height: 44px;
+}
+
+.breadcrumb-wrap{
+flex: 1 1 auto;
+overflow: hidden;
+min-width: 0;
+}
+
+ul.breadcrumb-mod {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin-bottom: 0;
+
+        width: 100%;
+ 
+  }
+  ul.breadcrumb-mod li {
+    display: inline;
+    min-width: fit-content;
+  }
+  ul.breadcrumb-mod li+li:before {
+    color: $mtsclr-text;
+    /* content: "/\00a0"; */
+    content: ">";
+    font: normal normal normal 16px/21px Segoe UI;
+    vertical-align: middle;
+  }
+  ul.breadcrumb-mod li button {
+    color: $mtsclr-text;
+    text-decoration: none;
+  }
+  ul.breadcrumb-mod li button:disabled {
+    opacity: 1;
+  }
+  ul.breadcrumb-mod li button:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }
+  
+  ul.breadcrumb-mod li:last-child {
+    min-width: 0 !important;
+        display: flex;
+        align-items: center;
+    button {
+        text-decoration: none;
+        font: normal normal bold 16px/21px Segoe UI;
+        color: $mtsclr-active;
+   
+    
+   
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        
+     }
+  }
+  
+
+  
+  .breadcrumb-btn{
+  outline:none;
+  background-color:transparent;
+  border:none;
+  font: normal normal normal 16px/21px Segoe UI;
+  word-break: break-all;
+  }
+
+  .breadcrumb-btn:focus{
+    outline:none !important;
+    box-shadow: none;
+    }
+
+    .height-100{
+        height:100%;
+    }
+
+/* Media Queries starts here */
+
+
+ /* Mozila Css Starts Here */
+ @-moz-document url-prefix() {
+    @media (min-width: 1598px) and (max-width: 1928px){
+        .tab-css,.breadcrumb-btn{
+            font: normal normal normal 18px Segoe ui regular !important;
+        }
+        ul.breadcrumb-mod li:last-child button {
+            font: normal normal bold 18px Segoe ui regular !important;
+        }
+    }
+}
+.main_pad_css{
+    padding: 0px;
+}
+
+.suneel_css{
+    height: 44px;
+}

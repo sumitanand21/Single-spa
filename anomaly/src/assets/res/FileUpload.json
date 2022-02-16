@@ -1,0 +1,89 @@
+{
+    "status": "success",
+    "data": {
+        "message": "file data already exists",
+        "dbType": "ElasticSearch",
+        "hostName": "localhost",
+        "portNumber": 9200,
+        "steps": 2,
+        "stepDetails": {
+            "step1": {
+                "stepName": "databaseName",
+                "databaseName": [
+                    "admin",
+                    "config",
+                    "data_management",
+                    "feature_datasets",
+                    "local",
+                    "tool"
+                ]
+            },
+            "step2": {
+                "stepName": "collectionName",
+                "collectionName": [
+                    {
+                        "database": "admin",
+                        "collections": [
+                            "system.version"
+                        ]
+                    },
+                    {
+                        "database": "config",
+                        "collections": [
+                            "system.sessions"
+                        ]
+                    },
+                    {
+                        "database": "data_management",
+                        "collections": [
+                            "configurations_dbtype",
+                            "django_admin_log",
+                            "auth_group",
+                            "django_migrations",
+                            "auth_user_user_permissions",
+                            "__schema__",
+                            "django_content_type",
+                            "auth_permission",
+                            "datasource_jobtype",
+                            "datasource_datasources",
+                            "auth_user_groups",
+                            "auth_user",
+                            "auth_group_permissions",
+                            "configurations_configuration"
+                        ]
+                    },
+                    {
+                        "database": "feature_datasets",
+                        "collections": [
+                            "feature_groups",
+                            "dataset_mappings"
+                        ]
+                    },
+                    {
+                        "database": "local",
+                        "collections": [
+                            "startup_log"
+                        ]
+                    },
+                    {
+                        "database": "tool",
+                        "collections": [
+                            "auth_user",
+                            "django_admin_log",
+                            "auth_group",
+                            "django_session",
+                            "__schema__",
+                            "auth_user_user_permissions",
+                            "auth_user_groups",
+                            "django_content_type",
+                            "auth_group_permissions",
+                            "django_migrations",
+                            "auth_permission"
+                        ]
+                    }
+                ]
+            }
+        },
+        "status_code": 200
+    }
+}

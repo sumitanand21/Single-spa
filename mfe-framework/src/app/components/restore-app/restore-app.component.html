@@ -1,0 +1,30 @@
+<h3 class="page-title">Container Storage</h3>
+<div class="container body_css">
+    <!-- <div class="tile1_css"  *ngFor="let dataList of listData">
+        <div (click)="loadApp(dataList)"class="tile_css1">
+            {{dataList.name}}
+        </div>
+        <div class="tile_css_sub">
+            <div class="l1 li_sub"><button class="li_btn_css btn btn-primary" (click)="upsertConfiguration('update',dataList)">Edit</button></div>
+            <div class="l2"><button class="li_btn_css btn btn-primary">L2</button></div>
+        </div>
+    </div> -->
+
+
+
+<mat-card class="example-card" *ngFor="let dataList of listData">
+	<mat-card-header  class="card-header">
+		<mat-card-title class="title">{{dataList.name}}</mat-card-title>
+		<mat-card-subtitle>{{dataList.namespace}}</mat-card-subtitle>
+	</mat-card-header>
+    <mat-card-actions class="row">
+        <mat-icon class="col-6 f-right" (click)="restore(dataList)"
+        matTooltip="Restore App to Container"
+        matTooltipPosition="below"
+        matTooltipClass="example-tooltip-red"
+         aria-hidden="false" aria-label="Example home icon">refresh</mat-icon>
+        
+      </mat-card-actions>
+</mat-card>
+
+</div>

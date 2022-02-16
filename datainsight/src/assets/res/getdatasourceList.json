@@ -1,0 +1,4 @@
+{
+  "status": "success",
+  "data": {"data": [{"dataSetName": "pmdata", "jobType": ["FORECASTEXECUTION"], "dataSourceType": ["stored_data", "stream_data"], "dbType": "MongoDB"}, {"dataSetName": "log_alarm_data", "jobType": ["ANOMALY DETECTION", "CLASSIFICATION", "SUMMARY"], "dataSourceType": ["stored_data", "stream_data"], "dbType": "ElasticSearch"}, {"dataSetName": "alarm_data_vax", "jobType": ["CORRELATION", "CLASSIFICATION", "SUMMARY"], "dataSourceType": ["stored_data"], "dbType": "ElasticSearch"}, {"dataSetName": "spanloss_data", "jobType": ["FORECASTEXECUTION"], "dataSourceType": ["stored_data"], "dbType": "MongoDB"}, {"dataSetName": "sample_alarm", "jobType": ["CORRELATION"], "dataSourceType": ["stored_data"], "dbType": "ElasticSearch"}, {"dataSetName": "corr_alarm_storm_data", "jobType": ["CORRELATION"], "dataSourceType": ["stored_data"], "dbType": "ElasticSearch"}], "responseType": "", "status_code": 200}
+}

@@ -1,0 +1,17 @@
+.mapp-group {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdmcss-inner-nav{
+    height:100%;
+    flex: 0 1 auto;
+}
+
+.pdmcss-mfe-container{
+    height:100%;
+    flex: 1 1 auto;
+}

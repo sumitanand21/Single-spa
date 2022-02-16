@@ -1,0 +1,100 @@
+{
+    "status": "success",
+    "data": {
+        "modelConfigName" : "Ae_loisseas_hhgvh",
+        "status" : "Stopped",
+        "modelType": "Model 1",
+        "dataSet": "Config ABCd",
+    "abnormalFeature": {
+    "node1alm1": true,
+    "node1alm2": false,
+    "attribute1": "Value DFG",
+    "attribute2": "Value DFG",
+    "attribute3": "Value DFG",
+    "attribute4": "Value DFG"
+    },
+    "anomalyDataDetails" : [
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    },
+    {
+    "key": "Node ID",
+    "value": true
+    }
+    ] 
+        }
+}
+ 

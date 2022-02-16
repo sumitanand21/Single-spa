@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "data": {
+    "uid": "5ff768c911580a5de209896d",
+    "dataId": "1MJF901@1-20-17@OPTMAX@PM_NEAR_END_Tx",
+    "modelConfigName": "OPR",
+    "timeseriesType": null,
+    "lossfunction": null,
+    "sampleTime": 5,
+    "defaultDataRange": "11,20",
+    "numberOfForwardSteps": 0,
+    "cpuUsage": null,
+    "memoryUsage": null,
+    "gpuUsage": null,
+    "gpuMemoryUsage": null,
+    "dataSetName": "pmdata",
+    "speed": null,
+    "numberOfJobRunning": null,
+    "timeOfRunning": null,
+    "numberofRecordesProcessed": null,
+    "jobType": "EXECUTION",
+    "modelType": "FORECAST",
+    "lossValue": null,
+    "jobStatus": "SCHEDULED"
+  },
+  "orderid": "1",
+  "grafanaUrl": "https://167.254.204.64:32300/d/CijHdYGMk/pm_forcast_1"
+}

@@ -1,0 +1,90 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "modelConfigName": "model1",
+      "dataSetName": "alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1610961834,
+        "machineIdentifier": 5806407,
+        "processIdentifier": 1,
+        "counter": 7379032,
+        "time": 1610961834000,
+        "date": "2021-01-18T09:23:54.000+0000",
+        "timeSecond": 1610961834
+      },
+      "modelType": "MODELII",
+      "schedule_name": "training1",
+      "schedule_id": "600553aa5899470001709858"
+    },
+    {
+      "modelConfigName": "model1",
+      "dataSetName": "alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1611039169,
+        "machineIdentifier": 5806407,
+        "processIdentifier": 1,
+        "counter": 7379033,
+        "time": 1611039169000,
+        "date": "2021-01-19T06:52:49.000+0000",
+        "timeSecond": 1611039169
+      },
+      "modelType": "MODELII",
+      "schedule_name": "training2",
+      "schedule_id": "600681c15899470001709859"
+    },
+    {
+      "modelConfigName": "model1",
+      "dataSetName": "alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1611056492,
+        "machineIdentifier": 5806407,
+        "processIdentifier": 1,
+        "counter": 7379034,
+        "time": 1611056492000,
+        "date": "2021-01-19T11:41:32.000+0000",
+        "timeSecond": 1611056492
+      },
+      "modelType": "MODELII",
+      "schedule_name": "training11",
+      "schedule_id": "6006c56c589947000170985a"
+    },
+    {
+      "modelConfigName": "model1",
+      "dataSetName": "alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1611063180,
+        "machineIdentifier": 5806407,
+        "processIdentifier": 1,
+        "counter": 7379035,
+        "time": 1611063180000,
+        "date": "2021-01-19T13:33:00.000+0000",
+        "timeSecond": 1611063180
+      },
+      "modelType": "MODELII",
+      "schedule_name": "training8",
+      "schedule_id": "6006df8c589947000170985b"
+    },
+    {
+      "modelConfigName": "am1",
+      "dataSetName": "alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1611077805,
+        "machineIdentifier": 5806407,
+        "processIdentifier": 1,
+        "counter": 7379036,
+        "time": 1611077805000,
+        "date": "2021-01-19T17:36:45.000+0000",
+        "timeSecond": 1611077805
+      },
+      "modelType": "MODELI",
+      "schedule_name": "ae_train1",
+      "schedule_id": "600718ad589947000170985c"
+    }
+  ]
+}

@@ -1,0 +1,447 @@
+{
+    "status": "success",
+    "data": {"group_details": {"Values": [
+    {
+      "key1": "RICP1@RTH",
+      "key2": "HOUP2@LOA",
+      "value": -0.011
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "RICP1@RTH",
+      "value": -0.011
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "STLP2@LOS",
+      "value": -0.009
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "HOUP2@LOA",
+      "value": -0.009
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "STLP2@LOS",
+      "value": -0.009
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "HOUP4@BER",
+      "value": -0.009
+    },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "HOUP4@BER",
+      "value": -0.007
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "RICP1@RTH",
+      "value": -0.007
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "STLP3@LOS",
+      "value": -0.006
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "HOUP3@LOF",
+      "value": -0.006
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "RICP2@BER",
+      "value": -0.006
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "RICP1@LOS",
+      "value": -0.006
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "RICP2@BER",
+      "value": -0.005
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "HOUP4@BER",
+      "value": -0.005
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "STLP3@LOS",
+      "value": -0.005
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "RICP2@BER",
+      "value": -0.005
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "RICP2@BER",
+      "value": -0.005
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "HOUP2@LOA",
+      "value": -0.005
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "HOUP3@LOF",
+      "value": -0.005
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "RICP1@LOS",
+      "value": -0.005
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "RICP1@LOS",
+      "value": -0.004
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "STLP3@LOS",
+      "value": -0.004
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "RICP2@BER",
+      "value": -0.003
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "STLP2@LOS",
+      "value": -0.003
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "STLP1@LOS",
+      "value": -0.003
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "HOUP4@BER",
+      "value": -0.003
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "HOUP3@POSH",
+      "value": -0.003
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "HOUP2@LOA",
+      "value": -0.003
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "STLP2@LOS",
+      "value": -0.002
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "HOUP3@POSH",
+      "value": -0.002
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "HOUP2@LOA",
+      "value": -0.001
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "HOUP4@BER",
+      "value": -0.001
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "HOUP4@BER",
+      "value": -0.001
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "HOUP3@LOF",
+      "value": -0.001
+    },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "STLP2@LOS",
+      "value": -0.001
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "RICP1@RTH",
+      "value": -0.001
+    },
+    { "key1": "HOUP3@LOF", "key2": "STLP1@LOS", "value": 0 },
+    { "key1": "STLP1@LOS", "key2": "HOUP3@LOF", "value": 0 },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "RICP2@BER",
+      "value": 0.001
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "RICP1@RTH",
+      "value": 0.001
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "STLP1@LOS",
+      "value": 0.001
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "RICP1@LOS",
+      "value": 0.001
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "STLP1@LOS",
+      "value": 0.002
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "HOUP3@POSH",
+      "value": 0.002
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "STLP3@LOS",
+      "value": 0.002
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "HOUP3@POSH",
+      "value": 0.002
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "HOUP3@POSH",
+      "value": 0.003
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "RICP2@BER",
+      "value": 0.003
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "HOUP2@LOA",
+      "value": 0.003
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "HOUP3@LOF",
+      "value": 0.003
+    },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "RICP1@LOS",
+      "value": 0.003
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "RICP1@RTH",
+      "value": 0.003
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "HOUP2@LOA",
+      "value": 0.005
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "STLP3@LOS",
+      "value": 0.005
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "HOUP4@BER",
+      "value": 0.005
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "RICP1@LOS",
+      "value": 0.005
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "HOUP4@BER",
+      "value": 0.005
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "HOUP3@POSH",
+      "value": 0.005
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "RICP1@LOS",
+      "value": 0.006
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "HOUP2@LOA",
+      "value": 0.006
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "RICP2@BER",
+      "value": 0.006
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "STLP1@LOS",
+      "value": 0.006
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "RICP1@RTH",
+      "value": 0.006
+    },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "STLP1@LOS",
+      "value": 0.006
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "HOUP3@LOF",
+      "value": 0.006
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "HOUP3@POSH",
+      "value": 0.006
+    },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "HOUP3@POSH",
+      "value": 0.007
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "RICP1@RTH",
+      "value": 0.007
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "HOUP2@LOA",
+      "value": 0.008
+    },
+    {
+      "key1": "HOUP2@LOA",
+      "key2": "STLP1@LOS",
+      "value": 0.008
+    },
+    {
+      "key1": "RICP2@BER",
+      "key2": "HOUP3@LOF",
+      "value": 0.008
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "RICP2@BER",
+      "value": 0.008
+    },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "HOUP3@LOF",
+      "value": 0.008
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "RICP1@RTH",
+      "value": 0.008
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "HOUP3@POSH",
+      "value": 0.009
+    },
+    {
+      "key1": "HOUP3@POSH",
+      "key2": "RICP1@LOS",
+      "value": 0.009
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "RICP1@RTH",
+      "value": 0.009
+    },
+    {
+      "key1": "RICP1@RTH",
+      "key2": "STLP3@LOS",
+      "value": 0.009
+    },
+    {
+      "key1": "HOUP4@BER",
+      "key2": "STLP3@LOS",
+      "value": 0.01
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "HOUP4@BER",
+      "value": 0.01
+    },
+    {
+      "key1": "HOUP3@LOF",
+      "key2": "STLP2@LOS",
+      "value": 0.01
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "HOUP3@LOF",
+      "value": 0.01
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "RICP1@LOS",
+      "value": 0.012
+    },
+    {
+      "key1": "RICP1@LOS",
+      "key2": "STLP2@LOS",
+      "value": 0.012
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "STLP3@LOS",
+      "value": 0.084
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "STLP2@LOS",
+      "value": 0.084
+    },
+    {
+      "key1": "STLP3@LOS",
+      "key2": "STLP1@LOS",
+      "value": 0.09
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "STLP3@LOS",
+      "value": 0.09
+    },
+    {
+      "key1": "STLP1@LOS",
+      "key2": "STLP2@LOS",
+      "value": 0.095
+    },
+    {
+      "key1": "STLP2@LOS",
+      "key2": "STLP1@LOS",
+      "value": 0.095
+    }
+  ]}}
+}

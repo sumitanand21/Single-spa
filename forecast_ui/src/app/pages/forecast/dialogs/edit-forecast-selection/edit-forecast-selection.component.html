@@ -1,0 +1,83 @@
+<ion-row class="modal-header">
+    <ion-text class="modal-title new_sch">Edit </ion-text>
+    <ion-icon aria-hidden="false" class="close-ion-icon" mat-dialog-close aria-label="Close" id="editModalClose"
+        (click)="modalEditRef.hide()" [src]="forecastService.createSvgUrl('close.svg')"></ion-icon>
+</ion-row>
+<ion-row class="modal_article_css">
+
+    <ion-col size="12" class="display_flex_css name_css_flex">
+        <ion-label class="date_label_css">Name: </ion-label>
+        <input autocomplete="off" type="text" class="cust-form-control-forecast form-control edit_forecast_css name_in_css"
+            [(ngModel)]="editforecastName" disabled>
+    </ion-col>
+
+    <ion-col size="12" class="display_flex_css sample_time_css">
+        <ion-label class="date_label_css">Data Frequency: </ion-label>
+        <input autocomplete="off" type="text" class="cust-form-control-forecast form-control edit_samp_css name_in_css"
+            [(ngModel)]="editDataFrequency" [appAlphaNumeric]="'num'">
+    </ion-col>
+
+    <ion-col size="12" class="display_flex_css data_range_css">
+        <ion-label class="date_label_css">Data Range: </ion-label>
+        <ion-row class="data_range">
+            <ion-col class="min_time no-padd">
+                <ion-label class="min_label">Min</ion-label>
+                <input autocomplete="off" type="text" [appAlphaNumeric]="'num'" class="cust-form-control-forecast form-control min_css"
+                    [(ngModel)]="mintime">
+            </ion-col>
+            <ion-col class="max_time no-padd">
+                <ion-label class="max_label">Max</ion-label>
+                <input autocomplete="off" type="text" [appAlphaNumeric]="'num'" class="cust-form-control-forecast form-control max_css"
+                    [(ngModel)]="maxtime">
+            </ion-col>
+        </ion-row>
+    </ion-col>
+
+    <ion-col size="12" class="display_flex_css frwrd_prediction_css">
+        <ion-label class="date_label_css">Time for Forward Prediction: </ion-label>
+        <ion-row class="time_pred_css">
+
+            <ion-label class="frwrd_css_time">
+                <input autocomplete="off" type="number" class="cust-form-control-forecast form-control frwrd_pred" [(ngModel)]="frwrdPredict"
+                    oninput="validity.valid||(value='');" min="1">
+            </ion-label>
+
+            <ion-radio-group class="cust-radio-group" name="time-radio" [(ngModel)]="edictRadio">
+                <ion-col class="cust-radio-column">
+                    <ion-radio class="cust-radio-btn" value="SECONDS"></ion-radio>
+                    <ion-label class="cust-radio-label">Seconds</ion-label>
+                </ion-col>
+                <ion-col class="cust-radio-column">
+                    <ion-radio class="cust-radio-btn" value="MINUTES"></ion-radio>
+                    <ion-label class="cust-radio-label">Minutes</ion-label>
+                </ion-col>
+                <ion-col class="cust-radio-column">
+                    <ion-radio class="cust-radio-btn" value="HOURS"></ion-radio>
+                    <ion-label class="cust-radio-label">Hours</ion-label>
+                </ion-col>
+                <ion-col class="cust-radio-column">
+                    <ion-radio class="cust-radio-btn" value="DAYS"></ion-radio>
+                    <ion-label class="cust-radio-label">Days</ion-label>
+                </ion-col>
+            </ion-radio-group>
+           
+        </ion-row>
+    </ion-col>
+
+    <ion-col size="12" class="display_flex_css  model_css_flex">
+        <ion-label class="date_label_css">Model Parameter:</ion-label>
+        <mat-select disableOptionCentering [(ngModel)]="editForecastparam"
+            class="cust-form-control-forecast form-control s1-dropdown drop-mat drop_css_one model_param_css cust-mat-select-forecast" (ngModelChange)="checkmodelparam()">
+            <mat-option *ngFor="let configs of ModelConfigArr" [value]="configs">
+                {{configs}}
+            </mat-option>
+        </mat-select>
+    </ion-col>
+
+</ion-row>
+<ion-col class="modal-footer">
+    <ion-button type="button" class="shadowbtn btn Css_butn cancel_btn ion-noncap-button cancel-button"
+        aria-label="Close" mat-dialog-close (click)="modalEditRef.hide();closeforecastEdit();">Cancel</ion-button>
+    <ion-button type="button" class="shadowbtn btn Css_butn update_btn ion-noncap-button save-button"
+        (click)="saveforecastAPI()">Save</ion-button>
+</ion-col>

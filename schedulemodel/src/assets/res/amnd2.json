@@ -1,0 +1,26 @@
+{
+  "status": "success",
+  "data": {
+    "uid": "618150248c81bc26fc9acb3d",
+    "modelId": "61814ef58c81bc26fc9acb3c",
+    "scheduleName": "AT2_TRAINING",
+    "jobStatus": "ABORTED",
+    "jobType": "ANOMALYEXECUTION2",
+    "dataSetName": "log_alarm_data",
+    "modelName": "AT2_TRAINING_2020-11-02T14:45:01Z_2021-11-02T14:45:01Z_model.sav",
+    "accuracy": "3.063248217763822e-07",
+    "numberofNormalData": "4186",
+    "numberOfAbnormalData": "6",
+    "timeUsed": "19 minutes, 46 seconds",
+    "speed": "0.0002324973117498329",
+    "numberOfRecordsprocessed": "4192",
+    "numberofJobsRunning": "1",
+    "threshold": "0.005",
+    "lossFunction": "Mean Squared Error",
+    "modelConfigName": "log_alarm_data2",
+    "cpuUsage": "0.03",
+    "cpuMemoryUsage": "0.09086990356445312",
+    "gpuUsage": "0.03",
+    "gpuMemoryUsage": "0.0002"
+  }
+}

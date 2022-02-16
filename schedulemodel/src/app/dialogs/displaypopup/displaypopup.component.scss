@@ -1,0 +1,91 @@
+@import '../../scss/variables';
+.disp-header{
+    height: 50px;
+    padding: 12px;
+    border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-title{
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .disp-text{
+        padding: 12px;
+        height:120px;
+        font: normal normal normal 16px Segoe UI;
+        display:flex;
+        align-items: flex-start;
+	border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-footer{
+    padding: 12px;
+    height:50px;
+    justify-content: flex-end;
+  }
+
+  .d-flex{
+      display:flex;
+      align-items: center;
+  }
+
+  .action-disp{
+    padding: 0px;
+    border:1.5px solid #3B73B7;
+    min-width: 60px;
+    padding: 0 7px;
+}
+
+.mar-l-15{
+    margin-left:15px;
+        }
+
+        .cancel-disp{
+            width: 61px;
+            border:1.5px solid var(--mtsclr-border);
+            color:#707070;
+            padding: 0px;
+        }
+
+        .disp-close{
+            float:right;
+            background-color: transparent;
+            border: none;
+            outline:none;
+            color: #707070;;
+            padding:0;
+            font-size: 26px;
+            cursor: pointer;
+            margin-top: -8px;
+}
+
+.width-50{
+    width:50%;
+}
+.save-mod{
+  border:1.5px solid var(--mtsclr-success-btn);
+  background-color: var(--mtsclr-success-btn);
+  width: 75px;
+  padding: 0px;
+}
+
+.btn-danger{
+  background-color: $mtsclr-danger-btn;
+  border:1px solid $mtsclr-danger-btn;
+  --background: $mtsclr-danger-btn;
+  color: #ffffff;
+}
+
+.btn-danger:not(:disabled):not(.disabled):active {
+  background-color: $mtsclr-danger-btn;
+  border:1px solid $mtsclr-danger-btn;
+  --background: $mtsclr-danger-btn;
+  color: #ffffff;
+}
+
+@media (min-width: 1598px) and (max-width: 1928px){
+  .disp-text{
+    font: normal normal normal 18px Segoe UI;
+  }
+}

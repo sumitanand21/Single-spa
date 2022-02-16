@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": "5fbe1343cf20c248346b4cfa",
+      "anomalyI": {
+        "encoders": ["None", "Label", "One-hot"],
+        "scalers": ["None", "Standard", "Minmax", "Normalizer"],
+        "optimizers": ["sgd", "adam", "adadeita", "adagrad"],
+        "activations": ["relu", "sigmoid", "tanh", "linear", "hard_sigmoid"],
+        "decoder_Activations": [
+          "relu",
+          "sigmoid",
+          "tanh",
+          "linear",
+          "hard_sigmoid"
+        ],
+        "metrics": ["Accuracy", "F1"],
+        "losses": ["None", "mse", "mae"]
+      },
+      "anomalyII": {
+        "encoders": ["None", "Label", "One-hot"],
+        "scalers": ["None", "Standard", "Minmax", "Normalizer"],
+        "losses": ["None"]
+      }
+    }
+  ]
+}

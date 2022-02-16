@@ -1,0 +1,48 @@
+{
+    "status": "success",
+    "data":{
+    "responseType": null,
+    "reponseMessage": null,
+    "forecastModelConfig": {
+      "id": "5f9a6caef489932902b53df7",
+      "inputShape": "10, 1",
+      "outputShape": "1",
+      "blockUnits": "20",
+      "batchSize": "1",
+      "epochs": "200",
+      "layers": "3",
+      "dropout": "0.1",
+      "activation": [
+        "tanh"
+      ],
+      "innerActivation": [
+        "hard_sigmoid"
+      ],
+      "loss": [
+        "mae"
+      ],
+      "metrics": [
+        "r2_score"
+      ],
+      "optimizer": [
+        "adam"
+      ],
+      "stateful": "True",
+      "l1L2": "1, 1",
+      "nlags": "10",
+      "nleads": "0",
+      "exclude": "None",
+      "groupBy": "None",
+      "timeStep": "1",
+      "encoderType": [
+        "None"
+      ],
+      "scalerType": [
+        "minmax"
+      ],
+      "modelConfig": "OPRMAX",
+      "testSize": "0.7",
+      "jobType": "FORECAST"
+    }
+  }
+}

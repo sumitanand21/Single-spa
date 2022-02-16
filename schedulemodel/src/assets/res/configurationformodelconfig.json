@@ -1,0 +1,99 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "id": "615bfe2bd360806e0ed8f5da",
+            "enoders": [
+                "None",
+                "Label",
+                "One-hot"
+            ],
+            "scalers": [
+                "None",
+                "StandardScaler",
+                "MinMaxScaler",
+                "Normalizer"
+            ],
+            "optimizers": [
+                "sgd",
+                "adam",
+                "adadeita",
+                "adagrad"
+            ],
+            "activations": [
+                "relu",
+                "sigmoid",
+                "tanh",
+                "linear",
+                "hard_sigmoid",
+                "softmax"
+            ],
+            "decoder_activations": [
+                "relu",
+                "sigmoid",
+                "tanh",
+                "linear",
+                "hard_sigmoid",
+                "softmax"
+            ],
+            "metrics": [
+                "Accuracy",
+                "F1"
+            ],
+            "losses": [
+                "None",
+                "mse",
+                "mae"
+            ],
+            "mappings": {
+                "ANOMALYTRAINING1": [
+                    "dataSetName",
+                    "xfeatureList",
+                    "nodes",
+                    "uniqueFeature",
+                    "stringFeatures",
+                    "encoder",
+                    "scaler",
+                    "trainingFilter",
+                    "epochs",
+                    "dropout",
+                    "activation",
+                    "optimizer",
+                    "l1L2",
+                    "decoder_activation",
+                    "loss",
+                    "metrics",
+                    "batchSize",
+                    "modelConfigName",
+                    "jobType",
+                    "modelConfigCount"
+                ],
+                "ANOMALYTRAINING2": [
+                    "xfeatureList",
+                    "uniqueFeature",
+                    "stringFeatures",
+                    "encoder",
+                    "scaler",
+                    "trainingFilter",
+                    "p_components",
+                    "modelConfigName",
+                    "jobType",
+                    "dataSetName",
+                    "modelConfigCount"
+                ],
+                "ASCTRAINING": [
+                    "xfeatureList",
+                    "dataSetName",
+                    "modelConfigName",
+                    "uniqueFeature",
+                    "stringFeatures",
+                    "krange",
+                    "desiredVariance",
+                    "jobType",
+                    "encoder",
+                    "scaler"
+                ]
+            }
+        }
+    ]
+}

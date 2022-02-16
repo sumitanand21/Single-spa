@@ -1,0 +1,35 @@
+<header>
+  <div class="Header_main">
+  <div class="nav">
+      <input autocomplete="off" type="checkbox" id="nav-check">
+      
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+      
+      <div class="nav-links">
+        <feature-toggle-provider [features]="featureToggleData">
+          <a label="Summary" *featureToggle="'SUMMARY'" [routerLink]="'/' + prefixUrl + '/summary'" routerLinkActive="active" class="sub-header summary-header">Summary</a> 
+          <a label="Anomaly" *featureToggle="'ANOMALY'" [routerLink]="'/' + prefixUrl + '/anomaly'" routerLinkActive="active" class="sub-header anomaly-header">Anomaly Detection</a>  
+          <a label="Classification" *featureToggle="'CLASSIFICATION'" [routerLink]="'/' + prefixUrl + '/classification'" routerLinkActive="active" class="sub-header classification-header">Classification</a>
+          <a label="Correlation" *featureToggle="'CORRELATION'" [routerLink]="'/' + prefixUrl + '/correlation'" routerLinkActive="active" class="sub-header correlation-header">Correlation</a>
+          <a label="ForeCast" [routerLink]="'/' + prefixUrl + '/forecast'" *featureToggle="'FORECAST'" routerLinkActive="active" class="sub-header forecast-header">Forecast</a>
+          <a label="DataManagement" [routerLink]="'/' + prefixUrl + '/datamanagement'" *featureToggle="'DATAMANAGEMENT'" routerLinkActive="active" class="sub-header datainsights-header">Data Insights</a>
+          <a *featureToggle="'nSUMMARY'"  class="sub-header summary-header"></a> 
+          <a  *featureToggle="'nANOMALY'" class="sub-header anomaly-header"> </a>  
+          <a  *featureToggle="'nCLASSIFICATION'"  class="sub-header classification-header"></a>
+          <a *featureToggle="'nCORRELATION'"  class="sub-header correlation-header"></a>
+          <a   *featureToggle="'nFORECAST'"  class="sub-header forecast-header"></a>
+          <a   *featureToggle="'nDATAMANAGEMENT'"  class="sub-header datainsights-header"></a>
+        </feature-toggle-provider>
+         
+       </div>
+    </div>
+
+  </div>
+</header>
+    

@@ -1,0 +1,41 @@
+.mfe-home-body_css {
+    background-color: #f1f0ef;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+       .mfe-home-body_wrap{
+         background-color: #f1f0ef;
+        //  display: flex;
+         flex:1 1 auto;  
+        //  flex-wrap: wrap;
+
+         display: grid;
+         grid-template-rows: repeat(auto-fill, minmax(140px, 140px));
+         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+         grid-gap: 20px;
+         padding: 20px;
+       }
+
+    .mfe-home-project-card {
+        cursor: pointer;
+        background-color: #ffffff;
+        // width: 110px;
+        border: 1px solid #cbcbcb;
+        // margin: 20px;
+        border-radius: 10px;
+        // height: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: unset;
+
+        .mfe-home-title {
+            text-align: center;
+        }
+
+        .mfe-home-subtitle {
+            text-align: center;
+        }
+    }
+}

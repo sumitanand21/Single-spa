@@ -1,0 +1,38 @@
+.parent-content{
+    height:100%;
+    width:100%;
+    padding: unset;
+}
+
+.wrap-cont{
+    height:0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.corr-header{
+    width:100%;
+    display: block;
+}
+
+.heat-map{
+    width:100%;
+    padding: 10px 0px 10px 125px;
+    height:100%;
+}
+
+.graph-height{
+    height: 100%;
+    max-height: 919px;
+    min-height: 606px;
+    width: 88%;
+}
+
+.no-data{
+    display: flex;
+    justify-content: center;
+    color: var(--mtsclr-text);
+    font: normal normal normal 14px/20px Segoe UI;
+    height: 100%;
+    align-items: center;
+}

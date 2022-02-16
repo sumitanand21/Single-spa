@@ -1,0 +1,19 @@
+{
+    "status": "success",
+    "data": {
+        "time_columns": [
+            {
+                "time_column": "HOUP2@LOA",
+                "start_date": "2019-02-06T00:00:00.069Z"
+            },
+            {
+                "time_column": "RICP2@BER",
+                "start_date": "2019-02-06T00:00:00.069Z"
+            },
+            {
+                "time_column": "STLP1@LOS",
+                "start_date": "2019-02-06T00:00:00.069Z"
+            }
+        ]
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            "alarm_data", "profile_data"
+        ]
+    }
+}

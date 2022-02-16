@@ -1,0 +1,9 @@
+{
+    "status": "success",
+    "data": [
+        "None",
+        "Standard",
+        "Minmax",
+        "Normalizer"
+    ]
+}

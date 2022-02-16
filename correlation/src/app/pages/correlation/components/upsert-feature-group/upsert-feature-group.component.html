@@ -1,0 +1,11 @@
+<div class="upsert-feature">
+    <div *ngIf="dataSetLoader || featureGroupLoader || timeFilterLoader" class="spinner-div col-12">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+<div class="upsert-feature" [ngClass]="{'no-disp' : dataSetLoader || featureGroupLoader || timeFilterLoader}">
+    <!-- <div class="upsert-feature" *ngIf="!dataSetLoader && !featureGroupLoader && !timeFilterLoader"> -->
+<app-feature-group [featureLoader]="featuresLoader" [dataSet]="dataSet" [featureGrp]="featureGrp" [timeFtr]="timeFtr" [timeFtrDate]="timeFtrDate" [featureList]="featureVal"  
+(emitOut)="providerOutput($event)"></app-feature-group>
+</div>
+</div>

@@ -1,0 +1,12 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            "elasticsearch_configuration",
+            "mongodb_configuration",
+            "M_config"
+        ],
+        "responseType": "",
+        "status_code": 200
+    }
+}

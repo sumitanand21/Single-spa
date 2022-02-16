@@ -1,0 +1,23 @@
+{
+    "jobType": "ASCTRAINING",
+    "modelConfig": {
+        "anomalyI": null,
+        "anomalyII": null,
+        "asc": {
+            "id": "",
+            "modelConfigName": "test 1",
+            "jobType": "ASCTRAINING",
+            "encoder": "None",
+            "scaler": "None",
+            "dataSetName": "alarm_data",
+            "trainingFilter": [],
+            "xfeatureList": [
+                "@timestamp"
+            ],
+            "uniqueFeature": "@timestamp",
+            "stringFeatures": [],
+            "metrics": [],
+            "p_components": ""
+        }
+    }
+}

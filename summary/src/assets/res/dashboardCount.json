@@ -1,0 +1,8 @@
+{
+  "status": "success",
+  "data": {
+    "noOfAlarmStormsOverTime": "0",
+    "noOfClustersOverTime": "1",
+    "noOfAlarmsOverTime": "2"
+}
+}

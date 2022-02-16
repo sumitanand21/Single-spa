@@ -1,0 +1,20 @@
+{
+    "status": "success",
+    "data": {
+        "id": "ddddddddddd",
+        "data": {
+            "modelType": "MODELI",
+            "dataSet": "All Data Sets",
+            "modelConfig": "OPR_Pattern1",
+            "afterOcc": null,
+            "dataRangeValue": "48",
+            "dataRangeType": "Hours"
+        },
+        "job_type": "ANOMALY",
+        "recur_on": "INSTANTLY",
+        "schedule_day": "",
+        "schedule_from": "2020-12-01 4:11:00 UTC",
+        "schedule_name": "Test sc",
+        "schedule_to": "2020-12-23 4:11:00 UTC"
+    }
+}

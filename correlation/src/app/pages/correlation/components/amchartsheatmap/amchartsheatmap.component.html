@@ -1,0 +1,87 @@
+<ion-row class="main_graph_div">
+    <ion-row class="d-flex paginate-align">
+        <ion-row class="d-flex">
+            <ion-row class="d-flex process_rows_css">
+                <ion-label class="mar-r-8 paginate-text">Features per page:</ion-label>
+                <mat-select disableOptionCentering class="select-page" [(ngModel)]="numberOfFeaturesPerPage"
+                    (selectionChange)="setNewPageSize(numberOfFeaturesPerPage)">
+                    <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                </mat-select>
+            </ion-row>
+            <ion-row class="pagination-previous" [class.disabled]="inputCurrentpage <= 1">
+                <button type="button" class="pagination-btn" (click)="changePage(inputCurrentpage - 1)"
+                    [disabled]="inputCurrentpage <= 1">
+                </button>
+            </ion-row>
+
+            <ion-row class="d-flex process_matselect">
+                <ion-label class="paginate-text"> Page</ion-label>
+                <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage"
+                    (change)="changepageinp(inputCurrentpage)">
+
+                <ion-label class="paginate-text"> of {{totalPages}}</ion-label>
+            </ion-row>
+            <ion-row class="pagination-next" [class.disabled]="inputCurrentpage >= totalPages">
+                <button type="button" class="pagination-btn" (click)="changePage(inputCurrentpage + 1)"
+                    [disabled]="inputCurrentpage >= totalPages"> > </button>
+            </ion-row>
+        </ion-row>
+
+        <ion-row class="filter-div">
+
+            <ion-row class="wrap-mat xfetaure-div">
+                <ion-label class="feature-label">X Axis Features</ion-label>
+                <mat-select panelClass="axis-features"  #mdx disableOptionCentering name="XAxisfeature" (closed)="onDropDownClose('X')" [(ngModel)]="xAxisFilter" placeholder="Select" class="form-control drop-mat mat_width_css x_axis_css" multiple required>
+                    <mat-select-trigger class="d-flex">
+                      <span [ngClass]="{'textselect': xAxisFilter.length > 1}">{{xAxisFilter ? xAxisFilter[0] : ''}}</span>
+                      <span *ngIf="xAxisFilter.length > 1" class="example-additional-selection">
+                        (+{{xAxisFilter.length - 1}} {{xAxisFilter.length === 2 ? 'other' : 'others'}})
+                      </span>
+                    </mat-select-trigger>
+                    <ion-col class="paginate_css">
+                            <ion-icon class="ion_icon_search"[src]="correlationService.createSvgUrl('search.svg')"></ion-icon>
+                            <input autocomplete="off" maxlength="150" matInput class="css_search" type="text" placeholder="Search" [(ngModel)]="searchXFeature">
+                    </ion-col>
+                    <mat-option *ngFor="let xFeature of featuresx | filterBy: searchXFeature" [title]="xFeature" [value]="xFeature">
+                        {{xFeature}}</mat-option>
+                        <ion-col *ngIf="(featuresx | filterBy: searchXFeature).length == 0" class="no-rec">No feature available</ion-col>
+                        <ion-col class="mat-drop-footer">
+                            <ion-button type="button" color="light" class="shadowbtn btn-default cancel-mod" (click)="onDropDownClose('X','clear');mdx.close()">Clear All</ion-button>
+                            <ion-button type="button" class="shadowbtn btn-primary run-cor-btn" (click)="onDropDownClose('X','apply');mdx.close()">Apply</ion-button>
+                        </ion-col>
+    
+                  </mat-select>
+            </ion-row>
+
+        <ion-row class="wrap-mat">
+            <ion-label class="feature-label">Y Axis Features</ion-label>
+            <mat-select panelClass="axis-features"  #mdy disableOptionCentering name="YAxisfeature" (closed)="onDropDownClose('Y')" [(ngModel)]="yAxisFilter" placeholder="Select" class="form-control drop-mat mat_width_css y_axis_css" multiple required>
+                <mat-select-trigger class="d-flex">
+                  <span [ngClass]="{'textselect': yAxisFilter.length > 1}">{{yAxisFilter ? yAxisFilter[0] : ''}}</span>
+                  <span *ngIf="yAxisFilter.length > 1" class="example-additional-selection">
+                    (+{{yAxisFilter.length - 1}} {{yAxisFilter.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <ion-col class="paginate_css">
+                    <span>
+                        <ion-icon class="ion_icon_search"[src]="correlationService.createSvgUrl('search.svg')"></ion-icon>
+                        <input autocomplete="off" maxlength="150" matInput class="css_search" type="text" placeholder="Search" [(ngModel)]="searchYFeature">
+                    </span>
+                </ion-col>
+                <mat-option *ngFor="let yFeature of featuresy | filterBy: searchYFeature" [title]="yFeature" [value]="yFeature">
+                    {{yFeature}}</mat-option>
+                    <ion-col *ngIf="(featuresy | filterBy: searchYFeature).length == 0" class="no-rec">No feature available</ion-col>
+                    <ion-col class="mat-drop-footer">
+                        <ion-button type="button" color="light" class="shadowbtn btn-default cancel-mod" (click)="onDropDownClose('Y','clear');mdy.close()">Clear All</ion-button>
+                        <ion-button type="button" class="shadowbtn btn-primary run-cor-btn" (click)="onDropDownClose('Y','apply');mdy.close()">Apply</ion-button>
+                    </ion-col>
+
+              </mat-select>
+        </ion-row>
+
+    </ion-row>
+
+    </ion-row>
+<ion-row class="chart-padding" id="chartdiv"></ion-row>
+<!-- <ion-col class="amchart_hide_logo"></ion-col> -->
+</ion-row>

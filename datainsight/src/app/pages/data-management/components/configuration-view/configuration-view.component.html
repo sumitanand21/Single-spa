@@ -1,0 +1,217 @@
+<!-- Main Division Starts Here -->
+<ion-col class="main_div no-padd">
+    <ion-row *ngIf="tableLoader" class="spinner-div col-12">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-row>
+
+    <!-- Right Division Starts Here -->
+    <ion-row *ngIf="!tableLoader" class="rightside_div col-12 col-xs-12 col-sm-12 col-md-12">
+        <ion-col class="right-inner-div no-padd">
+            <ion-col class="col-6 right_view_leftcss f-max df-col">
+                <ion-row class="task_view_div">
+                    <ion-col>
+                        <ion-text class="task_css_view">
+                            Configuration
+                        </ion-text>
+                    </ion-col>
+                    <span>
+                        <ion-button 
+                            (click)="upsertConfiguration('add')">Add New</ion-button>
+
+                    </span>
+                </ion-row>
+                <ion-row class="row no-mar page_css_view no-padd">
+                    <ion-col class="d-flex load_mat_css paginate_css">
+                        <!-- <i class="fa fa-search search_fafa" aria-hidden="true"></i>  -->
+                        <input autocomplete="off" maxlength="150" matInput class="form-control css_search" type="text"
+                            [(ngModel)]="searchFilter" placeholder="Search with Configuration Name..."
+                            (ngModelChange)="onsearchChange(searchFilter)">
+                        <ion-icon class="ion_icon_search_val" [src]="global.createSvgUrl('search.svg')"></ion-icon>
+                        <!-- <ion-searchbar autocomplete="off" maxlength="150" showClearButton="never" matInput type="text" [(ngModel)]="searchFilter" placeholder="Search with data id..." (ngModelChange)="onsearchChange(searchFilter)"></ion-searchbar> -->
+                    </ion-col>
+
+                    <!-- <div class="d-flex paginate-align"> -->
+                    <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex"
+                        (pageChange)="changepage($event)">
+
+                        <ion-row class="d-flex process_rows_css">
+                            <span class="mar-r-8 paginate-text">Rows:</span>
+                            <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                (selectionChange)="setNewPageSize(itemPerPage)">
+                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                            </mat-select>
+                        </ion-row>
+
+                        <!-- <ion-item class="pagination-previous" [class.disabled]="pT.isFirstPage()" lines="none"> -->
+                        <button color="dark" expand="full" fill="clear" (click)="pT.previous()"
+                            [disabled]="pT.isFirstPage()">
+                            < </button>
+                                <!-- </ion-item> -->
+
+                                <!-- <div class="d-flex process_matselect">  -->
+                                <ion-text class="paginate-text"> Page</ion-text>
+                                <input autocomplete="off" style="margin-bottom: 4px;" matInput class="currpage-input"
+                                    type="text" [(ngModel)]="inputCurrentpage"
+                                    (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+                                <ion-text class="paginate-text"> of {{pT.getLastPage()}}</ion-text>
+                                <!-- </div> -->
+
+                                <!-- <div class="pagination-next" [class.disabled]="pT.isLastPage()"> -->
+                                <button color="dark" expand="full" fill="clear" (click)="pT.next()"
+                                    [disabled]="pT.isLastPage()"> > </button>
+                                <!-- </div> -->
+                    </pagination-template>
+
+                    <!-- </div> -->
+                </ion-row>
+                <div class="f-max out-table mod-table-scroll">
+                    <table class="df-col task_table">
+                        <thead class="sticky-head">
+                            <tr class="row no-mar head-tr">
+                                <th class="col-4 wrap-text">
+                                    Configuration Name
+                                    <ion-col class="select-cur" (click)="sort('configurationName')">
+                                        <ion-icon   *ngIf="!(key == 'configurationName' && reverse)"
+                                            aria-hidden="false" class="arrow_mat align-middle mat-top-bottom"
+                                            aria-label="down icon"
+                                            [src]="dataManagementService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'configurationName' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="dataManagementService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                                <th class="col-4 wrap-text">
+                                    DB Type
+                                    <ion-col class="select-cur" (click)="sort('dbType')">
+                                        <ion-icon   *ngIf="!(key == 'dbType' && reverse)"
+                                            aria-hidden="false" class="arrow_mat align-middle mat-top-bottom"
+                                            aria-label="down icon"
+                                            [src]="dataManagementService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'dbType' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="dataManagementService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                                <th class="col-4 wrap-text">
+                                    Description
+                                    <ion-col class="select-cur" (click)="sort('description')">
+                                        <ion-icon   *ngIf="!(key == 'description' && reverse)"
+                                            aria-hidden="false" class="arrow_mat align-middle mat-top-bottom"
+                                            aria-label="down icon"
+                                            [src]="dataManagementService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'description' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="dataManagementService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let configObj of congigurationTableData | orderBy: key : reverse | searchFilter: {'configurationName': searchFilter} | paginate: config; let i = index"
+                                class="row no-mar body-tr selectTask"
+                                [class.active]="selectedConfiguration && selectedConfiguration.configurationName === configObj.configurationName"
+                                (click)="getConfigDetailsOnRow(configObj,i)" id="trdata{{i}}">
+                                <td class="wrap-text col-4">{{configObj.configurationName}}</td>
+                                <td class="wrap-text col-4">{{configObj.dbType}}</td>
+                                <td class="wrap-text col-4">{{configObj.description}}</td>
+
+                            </tr>
+                            <tr class="row no-mar border_bot_css"
+                                *ngIf="(congigurationTableData | searchFilter: {'configurationName': searchFilter}).length == 0">
+                                <td class="col-12 wrap-text no_rec_css">No records found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ion-col>
+            <ion-col class="col-6 right_most_css f-max df-col">
+                <ion-row class="det-wrap cont-scrl f-max">
+                    <ion-row class="no-config" *ngIf="!selectedConfiguration || !ConfigDetails || detailsLoader">
+                        <ion-label *ngIf="!selectedConfiguration">Select at least one configuration to show the details</ion-label>
+                        <ion-label *ngIf="selectedConfiguration">No configuration details available</ion-label>
+                    </ion-row>
+                    <ion-row *ngIf="detailsLoader" class="spinner-div col-12">
+                        <mat-progress-spinner color="slategrey" mode="indeterminate">
+                        </mat-progress-spinner>
+                    </ion-row>
+                    <ion-col class="sub-cont-scrl df-col " *ngIf="selectedConfiguration && ConfigDetails && !detailsLoader">
+                        <ion-row class="row no-mar action-div">
+                            <ion-col size="8" class="right_div_head">
+                                <ion-text class="headerFont scheduleName"
+                                    title="{{selectedConfiguration.configurationName}}">{{selectedConfiguration.configurationName}}</ion-text>
+                            </ion-col>
+                            <ion-col size="4" class="delete-btn-wrap">
+                                   
+                                    <ion-button type="button" class="pause_css_btn"  (click)="upsertConfiguration('update')" color="primary">Edit</ion-button>
+                                    <ion-button type="button" class="delete_css" (click)="deleteConfiguration('DELETE')" color="danger">Delete</ion-button>
+                            
+
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="Schedule_view_css f-max">
+                            <ion-col class="sub_border_css">
+                                <ion-row class="row no-mar css_sub_border">
+                                    <ion-row class="col-12 div_seperation">
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">Configuration Name:</ion-row>
+                                            <ion-row class="next_run_value">{{ConfigDetails.configurationName}}</ion-row>
+                                        </ion-col>
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">Description:</ion-row>
+                                            <ion-row class="next_run_value">{{ConfigDetails.description}}</ion-row>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="col-12 div_seperation">
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">DB Type:</ion-row>
+                                            <ion-row class="next_run_value">{{ConfigDetails.dbType}}</ion-row>
+                                        </ion-col>
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">URL:</ion-row>
+                                            <ion-row class="next_run_value">{{ConfigDetails.url}}</ion-row>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="col-12 div_seperation">
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">Host Name:</ion-row>
+                                            <ion-row class="next_run_value">{{ConfigDetails.hostName}}</ion-row>
+                                        </ion-col>
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">Port Number:</ion-row>
+                                            <ion-row class="next_run_value">{{ConfigDetails.portNumber}}</ion-row>
+                                        </ion-col>
+                                    </ion-row>
+                                    <br>
+                                    <ion-row class="deatils_css col-6 div_seperation" *ngIf="DetailsViewData.length != 0">
+                                        <ion-row class="next_run_title css_detail">Details:</ion-row>
+                                    </ion-row>
+                                    <br>
+                                    <ion-row *ngFor="let detailsViewdata of DetailsViewData" class="col-12 div_seperation">
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">Key</ion-row>
+                                            <ion-row class="next_run_value">{{detailsViewdata.key}}</ion-row>
+                                        </ion-col>
+                                        <ion-col class="col-6 grid_css_view">
+                                            <ion-row class="next_run_title">Value</ion-row>
+                                            <ion-row class="next_run_value">{{detailsViewdata.value}}</ion-row>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-row>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-col>
+    </ion-row>
+    <!-- Right Division Ends Here -->
+
+</ion-col>
+<!-- Main Division Ends Here -->

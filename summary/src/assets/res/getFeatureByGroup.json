@@ -1,0 +1,22 @@
+{
+    "status": "success",
+    "data": {
+    "_id": {
+        "$oid": "5fd32cfd13d4c4e149543394"
+    },
+    "db_name": "alarm_data",
+    "group_name": "group1",
+    "columns_mapping": {
+        "HOUP2@LOA": "bool",
+        "HOUP3@LOF": "bool",
+        "HOUP3@POSH": "bool",
+        "HOUP4@BER": "bool",
+        "RICP1@LOS": "bool",
+        "RICP1@RTH": "bool",
+        "RICP2@BER": "bool",
+        "STLP1@LOS": "bool",
+        "STLP2@LOS": "bool",
+        "STLP3@LOS": "bool"
+    }
+}
+}

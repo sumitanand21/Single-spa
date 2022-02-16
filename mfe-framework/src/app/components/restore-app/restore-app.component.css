@@ -1,0 +1,80 @@
+.sub_div{
+    display: flex;
+    height: 50px;
+    border-bottom: 1px solid;
+    padding: 10px 0px;
+}
+.tile_css1,.tile_css2{
+    height: 100px;
+    width: 100px;
+    border: 1px solid;
+    border-radius: 4px;
+    margin: 10px 10px 0px 10px;
+}
+.body_css{
+    background-color: #b1bac3;
+    display: flex;
+}
+.tile_css_sub{
+    border: 1px solid;
+    width: 100px;
+    display: flex;
+    margin: 0px 10px 0px 10px;
+}
+.l1,.l2{
+    /* padding: 0px 20px; */
+}
+.li_btn_css{
+    width: 50px;
+}
+.li_sub{
+    border-right: 1px solid;
+}
+.new_task_btn{
+    color: #ffffff;
+    border-radius: 4px;
+    background-color: #3b73b7;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: #cbcbcb;
+}
+
+
+p {
+    font-family: Lato;
+  }
+  
+  .example-card {
+    background-color: dimgrey;
+    width: 110px;
+    border: 1px solid #5d4545;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 0px 0px #565454;
+}
+
+  
+  .example-header-image {
+    background-size: cover;
+  }
+  .card-header {
+      height: 70px;
+  }
+  .f-left{
+    margin-left: 10px;
+      float: left;
+      cursor: pointer;
+      color: black !important;
+  }
+  .f-right{
+    margin-right: 10px;
+    float: right;
+    cursor: pointer;
+    color: black !important;
+}
+.title {
+    word-break: break-word;
+}
+.page-title {
+    margin: 20px;
+}

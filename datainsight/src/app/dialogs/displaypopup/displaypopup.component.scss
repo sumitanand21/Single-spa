@@ -1,0 +1,98 @@
+.disp-header{
+    height: 50px;
+    padding: 12px;
+    border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-title{
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .disp-text{
+        padding: 12px;
+        height:120px;
+        font: normal normal normal 16px Segoe UI;
+        display:flex;
+        align-items: flex-start;
+	border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-footer{
+    padding: 12px;
+    height:50px;
+    justify-content: flex-end;
+  }
+
+  .d-flex{
+      display:flex;
+      align-items: center;
+  }
+
+  .action-disp{
+    padding: 0px;
+    border:1.5px solid #3B73B7;
+    min-width: 60px;
+    padding: 0 7px;
+}
+
+.mar-l-15{
+    margin-left:15px;
+        }
+
+        .cancel-disp{
+            // width: 61px;
+            border:1.5px solid var(--mtsclr-border);
+            color:#707070;
+            padding: 0px;
+        }
+
+        .disp-close{
+            float:right;
+            background-color: transparent;
+            border: none;
+            outline:none;
+            color: #707070;;
+            padding:0;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: -8px;
+}
+
+.width-50{
+    width:50%;
+}
+.save-mod{
+  border:1.5px solid var(--mtsclr-success-btn);
+  background-color: var(--mtsclr-success-btn);
+  // width: 75px;
+  --background: var(--mtsclr-success-btn);
+  padding: 0px;
+  color: #FFFF;
+}
+
+.danger-mod{
+  border:1.5px solid var(--mtsclr-danger-btn);
+  background-color: var(--mtsclr-danger-btn);
+  --background: var(--mtsclr-danger-btn);
+  padding: 0px;
+  color: #FFFF;
+}
+
+/* Media Query starts here */
+@media (min-width: 1598px) and (max-width: 1928px){
+  .disp-text{
+    font: normal normal normal 18px Segoe UI;
+  }
+  .btn{
+    // font-size: 18px;
+  }
+}
+ion-button{
+  text-transform: capitalize;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: normal;
+}

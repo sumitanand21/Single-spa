@@ -1,0 +1,76 @@
+{
+  "responseType": "CONF",
+  "reponseMessage": "string",
+  "anomalyI": {
+    "id": "string",
+    "dataSetName": "string",
+    "nodes": [
+      "string"
+    ],
+    "uniqueFeature": "string",
+    "stringFeatures": [
+      "string"
+    ],
+    "encoder": "string",
+    "scaler": "string",
+    "trainingFilter": [
+      "string"
+    ],
+    "epochs": "string",
+    "dropout": "string",
+    "activation": "string",
+    "optimizer": "string",
+    "l1L2": [
+      "string"
+    ],
+    "decoder_activation": "string",
+    "loss": "string",
+    "metrics": [
+      "string"
+    ],
+    "batchSize": "string",
+    "modelConfigName": "string",
+    "jobType": "ANOMALYTRAINING1",
+    "xfeatureList": [
+      "string"
+    ]
+  },
+  "anomalyII": {
+    "id": "string",
+    "uniqueFeature": "string",
+    "stringFeatures": [
+      "string"
+    ],
+    "encoder": "string",
+    "scaler": "string",
+    "trainingFilter": [
+      "string"
+    ],
+    "p_components": "string",
+    "modelConfigName": "string",
+    "jobType": "ANOMALYTRAINING1",
+    "dataSetName": "string",
+    "xfeatureList": [
+      "string"
+    ]
+  },
+  "asc": {
+    "id": "string",
+    "dataSetName": "string",
+    "modelConfigName": "string",
+    "uniqueFeature": "string",
+    "stringFeature": [
+      "string"
+    ],
+    "desiredVariance": "string",
+    "jobType": "ANOMALYTRAINING1",
+    "encoder": "string",
+    "scaler": "string",
+    "xfeatureList": [
+      "string"
+    ],
+    "krange": [
+      "string"
+    ]
+  }
+}

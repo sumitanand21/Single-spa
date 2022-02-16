@@ -1,0 +1,109 @@
+<ion-row class="df-col">
+    <ion-row class="disp_css full-width">
+        <ion-row class="model-head">
+            <ion-row>
+                <span class="head-rec">{{data.name}}</span>
+                <span class="num-rec">Number of Records: </span><span class="rec-count">{{featureDeatils.length}}</span>
+            </ion-row>
+            <button mat-dialog-close type="button" class="disp-close" aria-label="Close" id="ModalClose">
+                &times;
+            </button>
+        </ion-row>
+
+        <ion-row class="page_css_view">
+            <ion-row class="paginate_css">
+               
+                    <!-- <i class="fa fa-search search_fafa" aria-hidden="true"></i> -->
+                    <ion-icon class="search_mat" [src]="clusteringService.createSvgUrl('search.svg')"></ion-icon>
+                    <input autocomplete="off" maxlength="150" matInput class="form-control css_search" type="text"
+                        [(ngModel)]="searchFilter" placeholder="Search" (ngModelChange)="onsearchChange(searchFilter)">
+              
+            </ion-row>
+            <ion-col class="d-flex paginate-align">
+                <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex"
+                    (pageChange)="changepage($event)">
+                    <ion-row class="d-flex process_rows_css">
+                        <span class="mar-r-8 paginate-text">Rows:</span>
+                        <mat-select disableOptionCentering class="select-page cust-mat-select" [(ngModel)]="itemPerPage"
+                            (selectionChange)="setNewPageSize(itemPerPage)">
+                            <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                        </mat-select>
+                    </ion-row>
+                    <ion-row class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                        <button type="button" class="pagination-btn" (click)="pT.previous()"
+                            [disabled]="pT.isFirstPage()">
+                            < </button>
+                    </ion-row>
+
+                    <ion-row class="d-flex process_matselect">
+                        <span class="paginate-text"> Page</span>
+                        <input autocomplete="off" matInput [appAlphaNumeric]="'num'" class="currpage-input" type="text"
+                            [(ngModel)]="inputCurrentpage" (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+
+                        <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                    </ion-row>
+                    <ion-row class="pagination-next" [class.disabled]="pT.isLastPage()">
+                        <button type="button" class="pagination-btn" (click)="pT.next()" [disabled]="pT.isLastPage()"> >
+                        </button>
+                    </ion-row>
+                </pagination-template>
+            </ion-col>
+        </ion-row>
+    </ion-row>
+    <ion-row class="col-12 model-body f-max df-col">
+        <ion-row class="prev-table-wrap f-max">
+            <ion-row *ngIf="previewLoader" class="spinner-div">
+                <mat-progress-spinner color="slategrey" mode="indeterminate">
+                </mat-progress-spinner>
+            </ion-row>
+            <ion-row *ngIf="!previewLoader" class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th *ngIf="featureName.length === 0">
+                                <span class="feature-thead">
+                                    {{data.action === 'alarm' ? 'Alarm Details': 'Sequence Details'}}
+                                </span>
+                            </th>
+                            <th *ngFor="let featureObj of featureName">
+                                <span class="feature-thead">
+                                    <span>
+                                        {{featureObj.featureName}}
+                                    </span>
+                                    <ion-col class="select-cur" (click)="sort(featureObj.featureName)">
+                                        <ion-icon *ngIf="!(key == featureObj.featureName && reverse)"
+                                            aria-hidden="false" class="arrow_mat align-middle mat-top-bottom"
+                                            aria-label="down icon"
+                                            [src]="clusteringService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == featureObj.featureName && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="clusteringService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let featureDetObj of featureDeatils | orderBy: key : reverse | filter :searchFilter | paginate: config">
+                            <td *ngFor="let featureObj of featureName">
+                                {{featureDetObj[featureObj.fetureKey]}}
+                            </td>
+                        </tr>
+                        <tr *ngIf="(featureDeatils | filter :searchFilter).length === 0">
+                            <td class="no-rec" [attr.colspan]="featureName.length">
+                                No records found
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ion-row>
+        </ion-row>
+    </ion-row>
+    <ion-row class="model-foot full-width">
+        <ion-button type="button" class="shadowbtn done-btn" mat-dialog-close>Done</ion-button>
+    </ion-row>
+</ion-row>
+

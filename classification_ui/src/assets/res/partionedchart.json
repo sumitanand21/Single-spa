@@ -1,0 +1,13 @@
+{
+    "status" : "success",
+    "data": {
+      "column_name": "Age",
+      "correlated_features": [
+        {
+          "key1": "@timePassengerId",
+          "value": 0.034212112,
+          "key2": "positive"
+        }      ]
+    }
+  }
+

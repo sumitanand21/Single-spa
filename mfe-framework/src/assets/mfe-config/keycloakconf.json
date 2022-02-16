@@ -1,0 +1,9 @@
+{
+    "url": "http://keycloak-keycloak.router.default.svc.cluster.local.167.254.204.64.nip.io/auth",
+    "realm": "angular-web",
+    "clientId": "angular-web-client",
+    "onLoad": "login-required",
+    "checkLoginIframe": true,
+    "checkLoginIframeInterval": 25,
+    "loadUserProfileAtStartUp": true
+}

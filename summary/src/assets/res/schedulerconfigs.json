@@ -1,0 +1,19 @@
+{
+  "id": "6047bf54eef3522b33065ee7",
+  "scheduler_producer_topic": "SCHEDULER",
+  "scheduler_consumer_topic": "SCHEDULER-CONSUMER",
+  "scheduler_api_fields": [
+    "data.modelType",
+    "data.dataRange",
+    "schedule_status",
+    "data.modelConfigName",
+    "data.frequency",
+    "schedule_id",
+    "schedule_name",
+    "data.dataSetName"
+  ],
+  "job_types": [
+    "EXECUTION",
+    "TRAINING"
+  ]
+}

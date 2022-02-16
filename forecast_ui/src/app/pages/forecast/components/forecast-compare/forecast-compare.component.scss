@@ -1,0 +1,275 @@
+.parent-content{
+    height:100%;
+    width:100%;
+    padding: 16px 40px 16px 40px;
+    /* display: flex; */
+    overflow-x: hidden;
+    overflow-y: auto;
+    // /* flex-direction: column; */
+}
+
+.wrap-cont{
+    height:0;
+    margin: 0;
+}
+
+.view-btn span {
+    line-height: 0px;
+}
+.btn-head{
+    padding: 0px 0px 20px 0px;
+}
+
+.view-btn{
+    border: 1px solid var(--mtsclr-view-btn-border);
+    background-color: transparent;
+    color: var(--mtsclr-label);
+    height: 35px;
+    //padding: 0 22px 0 12px;
+    font: normal normal bold 14px/20px Source Sans Pro;
+    --border-radius:unset;
+    --box-shadow: unset;
+    margin-inline: 0px;
+}
+
+.btn-icon{
+    margin-right: 10px;
+    display: flex;
+}
+.active-btn{
+    color:var(--mtsclr-active);
+    border: 0.5px solid var(--mtsclr-border);
+    outline: 0.5px var(--mtsclr-border);
+}
+.view-text{
+    margin-right: 18px;
+    text-align: left;
+    font: normal normal 600 14px/20px Segoe UI;
+    letter-spacing: 0px;
+    color: var(--mtsclr-label);
+}
+.compareSet{
+    /* max-height : 300px; */
+    padding-right:10px;
+}
+
+.compare-head{
+    height:48px;
+    padding: 10px 0px 10px 10px;
+    background-color: var(--mtsclr-background);
+    color: var(--mtsclr-label);
+}
+
+
+.mar-b-60{
+    margin-bottom: 60px;
+}
+
+.mar-b-30{
+    margin-bottom: 30px;
+}
+
+.d-flex{
+    display: flex;
+    align-items: center;
+}
+
+.no-padd{
+    padding:0;
+}
+
+.no-mar{
+    margin:0;
+}
+
+.btn-close{
+float:right;
+background-color: transparent;
+border: none;
+outline:none;
+color:var(--mtsclr-label);
+padding:0;
+font-size: 16px;
+cursor: pointer;
+}
+
+.btn-close:focus{
+    outline:none !important;
+    box-shadow: none;
+    }
+
+.outer-row{
+    width: 100%;
+    margin: 0;
+    /* height:100%; */
+}
+
+.out-main-row{
+    width: 100%;
+    margin: 0;
+    height:100%;
+}
+
+.d-flex-end{
+    display:flex;
+    justify-content: flex-end;
+}
+
+.compare-main{
+    margin: unset;
+    border: 1.5px solid var(--mtsclr-border);
+    height:100%;
+    box-shadow: 0 8px 6px -6px var(--mtsclr-border);
+}
+
+.comp-name{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.compare-tab{
+    height:100%;
+    width:100%; 
+}
+
+
+.detail-tab{
+    height: 100%;
+    width: 100%;
+    /* overflow-y: auto;
+    max-height: 224px; */
+    overflow: hidden;
+    padding-top: 12px;
+
+}
+
+.detail-tab-body{
+    margin:0;
+    padding-bottom:12px;
+}
+
+
+.graph-tab{
+    height: 100%;
+    width: 100%;
+    /* overflow-y: auto;
+    max-height: 224px; */
+    overflow: hidden;
+}
+
+
+.graph-frame{
+    /* height: 120px;
+    width: 100%;
+    background-color: #D8D8D8;
+    border: none; */
+
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    transform: scale(0.5);
+    -moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+
+    height: 450px;
+    width: 200%;
+    background-color: #d8d8d8;
+    border: none;
+}
+
+.outer-graph-frame{
+    height: 226px;
+    width: 100%;
+}
+
+.graph-row{
+width: 100%;
+margin:0;
+padding-bottom: 50px;
+}
+
+.body-label{
+    text-align: left;
+    font: normal normal 600 14px/13px Segoe UI;
+    letter-spacing: 0px;
+    color: var(--mtsclr-label);
+    opacity: 1;
+}
+
+.data-label{
+    text-align: left;
+    font: normal normal normal 14px/13px Segoe UI;
+    letter-spacing: 0px;
+    opacity: 1;
+    color: var(--mtsclr-text);
+}
+
+.mar-b-12{
+    margin-bottom: 12px;
+}
+
+.line-h{
+    // border-top: 2px solid #ffffff;
+    // position: absolute;
+    // width: 15px;
+    // margin-top: 12px;
+    // margin-left: -1px;
+    border-top: 2px solid #ffffff;
+    position: absolute;
+    width: 14px;
+    z-index: 1;
+    margin-top: 7px;
+    margin-left: 1px;
+}
+
+.line-v{
+    height: 14px;
+    position: absolute;
+    margin-top: 6px;
+    border-left: 2px solid #ffffff;
+    margin-left: 7px;  
+}
+.box-body {
+    margin: 15px 0px 0px 0px;
+    padding-left: 13px;
+}
+
+.ion-white-button{
+    --background: #ffff !important;
+}
+
+.row-padding {
+    margin-bottom:5px;
+}
+
+.clear-button {
+    position:relative; 
+    bottom: 8px;
+    --box-shadow:none;
+    --background: none;
+    background-color: transparent !important;
+    outline:none;
+    border:none;
+}
+
+.ion-text-font {
+    letter-spacing: normal;
+    font: normal normal 600 14px/20px Segoe UI;
+    text-transform: capitalize;
+}
+
+.specs-progress-bar{
+    // background: #86e091;
+    // opacity: 0.4;
+
+    --buffer-background: #cbe6e0;
+    --progress-background: #80bb7d;
+    --background: #cbe6e0;
+  }
+
+  ion-grid{
+      padding: unset;
+  }

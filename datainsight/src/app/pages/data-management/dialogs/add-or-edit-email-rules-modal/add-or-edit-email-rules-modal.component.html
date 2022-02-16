@@ -1,0 +1,37 @@
+<ion-row class="modal-header">
+    <ion-text *ngIf="!isEdit" class="modal-title new_sch">Add New Group</ion-text>
+    <ion-text *ngIf="isEdit" class="modal-title new_sch">Edit Group</ion-text>
+    <ion-icon aria-hidden="false" class="close-ion-icon" mat-dialog-close aria-label="Close" id="editModalClose"
+        (click)="dialogRef.close()" [src]="dataManagementService.createSvgUrl('close.svg')"></ion-icon>
+</ion-row>
+<ion-row class="modal_article_css">
+    <ion-col size="12" class="display_flex_css name_css_flex">
+        <ion-label class="date_label_css">Group Name: </ion-label>
+        <input autocomplete="off" type="text" placeholder="Group Name"
+            class="cust-form-control-forecast form-control edit_forecast_css name_in_css" [(ngModel)]="data.groupName">
+    </ion-col>
+
+    <ion-col size="12" class="display_flex_css sample_time_css">
+        <ion-label class="date_label_css">Email Ids:</ion-label>
+        <input placeholder="Email Id" autocomplete="off" type="email"
+            class="cust-form-control-forecast form-control edit_samp_css name_in_css" [(ngModel)]="data.emailId">
+    </ion-col>
+
+    <ion-col size="12" class="display_flex_css sample_time_css">
+        <ion-label class="date_label_css">Job Type:</ion-label>
+        <mat-select placeholder="Select" disableOptionCentering [(ngModel)]="data.jobType"
+            class="cust-form-control-forecast form-control s1-dropdown drop-mat drop_css_one model_param_css cust-mat-select-forecast">
+            <mat-option *ngFor="let jobs of jobTypesDropdown" [value]="jobs">
+                {{jobs}}
+            </mat-option>
+        </mat-select>
+    </ion-col>
+</ion-row>
+<ion-col class="modal-footer">
+    <ion-button type="button" class="shadowbtn btn Css_butn cancel_btn ion-noncap-button cancel-button"
+        aria-label="Close" mat-dialog-close (click)="dialogRef.close()">Cancel</ion-button>
+    <ion-button [disabled]="disableSubmitButton" *ngIf="!isEdit" (click)="saveData()" type="button"
+        class="shadowbtn btn Css_butn update_btn ion-noncap-button save-button">Save</ion-button>
+    <ion-button [disabled]="disableSubmitButton" *ngIf="isEdit" (click)="saveEditedData()" type="button"
+        class="shadowbtn btn Css_butn update_btn ion-noncap-button save-button">Save</ion-button>
+</ion-col>

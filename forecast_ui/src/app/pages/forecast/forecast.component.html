@@ -1,0 +1,35 @@
+<div class="container-fluid tab-selector-bar df-col">
+
+  <ion-header no-border class="col-md-12 min-height-44 f-min main_border_css ion-no-border" id="colspan_css_scroll" *ngIf="forecastService.ForeCastSelection || forecastService.ForeCastProcessing"> 
+    <input autocomplete="off" type="button" value="Forecast Selection" class="tab-css" [ngClass]="{'active-forecast' : forecastService.ForeCastSelection }" id="selection-btn" (click)="forecastNavigation('/forecast/forecastselect')">
+    <input autocomplete="off" type="button" value="Forecast Processing" class="tab-css" [ngClass]="{'active-forecast' : forecastService.ForeCastProcessing }" id="forecast-btn"  (click)="forecastNavigation('/forecast/forecastprocess')"> 
+    <ion-button type="button" class="shadowbtn disp-model-btn btn btn-default move-r ion-noncap-button header-button2" (click)="forecastNavigation('/forecast/_page_/modelconfig', 1)">Model Configuration</ion-button>
+  </ion-header>
+
+     <ion-col class="col-md-12 min-height-44 d-flex no-padd f-min" id="colspan_css_scroll" *ngIf="!forecastService.ForeCastSelection && !forecastService.ForeCastProcessing"> 
+      <ion-col class="d-flex col-12 no-padd">  
+        <ion-col class="col-8 d-flex rem_sub_pad" >
+          <ul class="breadcrumb-mod">
+            <li>
+              <button *ngIf="forecastService.activatedPath.includes('forecastselect')" type="button" class="breadcrumb-btn btn btn-default" (click)="forecastNavigation('/forecast/forecastselect')">Forecast Selection</button>
+              <button *ngIf="forecastService.activatedPath.includes('forecastprocess')" type="button" class="breadcrumb-btn btn btn-default" (click)="forecastNavigation('/forecast/forecastprocess')">Forecast Processing</button>
+            </li>
+            <li *ngIf="forecastService.ForecastModel"><button type="button" class="breadcrumb-btn btn btn-default" (click)="forecastNavigation('modelconfig', 3)">Model Configuration</button></li>
+            <li *ngIf="forecastService.ForeCastUpdateModel"><button  disabled type="button" class="breadcrumb-btn btn btn-default" >{{forecastService.ForecastmodelName ? forecastService.ForecastmodelName : 'New Model Configuration'}}</button></li>
+              <li *ngIf="forecastService.ForecastCompare"><button  type="button" class="breadcrumb-btn btn btn-default"  (click)="forecastNavigation('/forecast/forecastprocess/forecastcompare')">Forecast Compare</button></li>
+          </ul>
+        </ion-col>
+         <ion-col class="col-4 rem_pad">
+          <ion-button *ngIf="forecastService.ForecastCompare" type="button" class="shadowbtn model-btn btn btn-default move-r ion-noncap-button header-button3" (click)="forecastNavigation('/forecast/forecastprocess')">Back</ion-button>
+          <ion-button *ngIf="forecastService.ForecastModel && !forecastService.ForeCastUpdateModel" type="button" class="header-button shadowbtn model-btn btn btn-default move-r ion-noncap-button" (click)="forecastNavigation('updateconfig',2)">Add New Model</ion-button>
+         </ion-col>
+      </ion-col>
+    </ion-col>
+
+   <div class="main_route_css f-max">
+     <div class="height-100">
+       <router-outlet></router-outlet>
+       </div>
+   </div>
+     
+</div>

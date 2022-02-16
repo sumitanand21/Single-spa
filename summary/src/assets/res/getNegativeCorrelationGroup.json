@@ -1,0 +1,1475 @@
+{"status": "success",
+"data":
+{
+    "negative_groups": [
+        {
+            "GroupName": "group1",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "GZR0OTT0100010407BBW@IFA1-1-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.757,
+            "Minimum": -0.757,
+            "MeanCorrelation": -0.757,
+            "Median": -0.757,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group2",
+            "TotalGroupMembers": 14,
+            "GroupMembers": [
+                {
+                    "FeatureName": "GZR0OTT0100010407BBW@IFA1-2-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "GZR0OTT0100010407BBW@IFA1-5-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-7-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-1-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-16-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-4-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.808,
+            "Minimum": -0.522,
+            "MeanCorrelation": -0.634,
+            "Median": -0.628,
+            "StandardDeviation": 0.082
+        },
+        {
+            "GroupName": "group3",
+            "TotalGroupMembers": 7,
+            "GroupMembers": [
+                {
+                    "FeatureName": "GZR0OTT0100010407BBW@IFA1-3-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-6-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-18-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -1.0,
+            "Minimum": -0.504,
+            "MeanCorrelation": -0.69,
+            "Median": -0.566,
+            "StandardDeviation": 0.23
+        },
+        {
+            "GroupName": "group4",
+            "TotalGroupMembers": 4,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-1-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-3-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.67,
+            "Minimum": -0.518,
+            "MeanCorrelation": -0.607,
+            "Median": -0.634,
+            "StandardDeviation": 0.071
+        },
+        {
+            "GroupName": "group5",
+            "TotalGroupMembers": 8,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-10-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-14-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "INXHT0R01008514090QR@IFA1-2-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "INXHT0R01008514090QR@IFA1-3-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "LASRAQCO-0006@IFA1-2-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "YKG0YHV0H001204019I1@IFA1-1-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.729,
+            "Minimum": -0.508,
+            "MeanCorrelation": -0.579,
+            "Median": -0.549,
+            "StandardDeviation": 0.071
+        },
+        {
+            "GroupName": "group6",
+            "TotalGroupMembers": 9,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-10-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-14-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-9-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-10-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-3-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-2-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.699,
+            "Minimum": -0.51,
+            "MeanCorrelation": -0.596,
+            "Median": -0.585,
+            "StandardDeviation": 0.064
+        },
+        {
+            "GroupName": "group7",
+            "TotalGroupMembers": 9,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-11-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-5-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-1-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-2-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-18-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-8-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -1.0,
+            "Minimum": -0.502,
+            "MeanCorrelation": -0.711,
+            "Median": -0.668,
+            "StandardDeviation": 0.17
+        },
+        {
+            "GroupName": "group8",
+            "TotalGroupMembers": 6,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-11-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-6-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@2-19-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-6-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.759,
+            "Minimum": -0.557,
+            "MeanCorrelation": -0.627,
+            "Median": -0.613,
+            "StandardDeviation": 0.076
+        },
+        {
+            "GroupName": "group9",
+            "TotalGroupMembers": 6,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-12-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-4-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-5-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "LARRGMIG-0042@IFA1-2-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -1.0,
+            "Minimum": -1.0,
+            "MeanCorrelation": -1.0,
+            "Median": -1.0,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group10",
+            "TotalGroupMembers": 5,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-13-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-3-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-7-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.903,
+            "Minimum": -0.519,
+            "MeanCorrelation": -0.632,
+            "Median": -0.554,
+            "StandardDeviation": 0.168
+        },
+        {
+            "GroupName": "group11",
+            "TotalGroupMembers": 9,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-14-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-9-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-18-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-8-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.799,
+            "Minimum": -0.548,
+            "MeanCorrelation": -0.62,
+            "Median": -0.581,
+            "StandardDeviation": 0.084
+        },
+        {
+            "GroupName": "group12",
+            "TotalGroupMembers": 4,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-2-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-6-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-7-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-6-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.685,
+            "Minimum": -0.623,
+            "MeanCorrelation": -0.655,
+            "Median": -0.658,
+            "StandardDeviation": 0.028
+        },
+        {
+            "GroupName": "group13",
+            "TotalGroupMembers": 9,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-3-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-5-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-9-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-10-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-2-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.699,
+            "Minimum": -0.554,
+            "MeanCorrelation": -0.595,
+            "Median": -0.582,
+            "StandardDeviation": 0.046
+        },
+        {
+            "GroupName": "group14",
+            "TotalGroupMembers": 4,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-4-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-22-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.795,
+            "Minimum": -0.534,
+            "MeanCorrelation": -0.627,
+            "Median": -0.551,
+            "StandardDeviation": 0.13
+        },
+        {
+            "GroupName": "group15",
+            "TotalGroupMembers": 6,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-7-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-22-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.765,
+            "Minimum": -0.516,
+            "MeanCorrelation": -0.636,
+            "Median": -0.584,
+            "StandardDeviation": 0.102
+        },
+        {
+            "GroupName": "group16",
+            "TotalGroupMembers": 6,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-8-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-14-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-6-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.699,
+            "Minimum": -0.503,
+            "MeanCorrelation": -0.59,
+            "Median": -0.566,
+            "StandardDeviation": 0.081
+        },
+        {
+            "GroupName": "group17",
+            "TotalGroupMembers": 6,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-8-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-1-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-10@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-2-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.789,
+            "Minimum": -0.505,
+            "MeanCorrelation": -0.657,
+            "Median": -0.685,
+            "StandardDeviation": 0.119
+        },
+        {
+            "GroupName": "group18",
+            "TotalGroupMembers": 4,
+            "GroupMembers": [
+                {
+                    "FeatureName": "ILU0XBI8000521705XTV@IFA1-9-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "LARRGMIG-0042@IFA1-2-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -1.0,
+            "Minimum": -1.0,
+            "MeanCorrelation": -1.0,
+            "Median": -1.0,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group19",
+            "TotalGroupMembers": 14,
+            "GroupMembers": [
+                {
+                    "FeatureName": "INXHT0R01008514090QR@IFA1-1-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "INXHT0R01008514090QR@IFA1-3-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-10-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-22-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@WS2A-4-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.7,
+            "Minimum": -0.51,
+            "MeanCorrelation": -0.634,
+            "Median": -0.64,
+            "StandardDeviation": 0.063
+        },
+        {
+            "GroupName": "group20",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-3-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.553,
+            "Minimum": -0.527,
+            "MeanCorrelation": -0.54,
+            "Median": -0.54,
+            "StandardDeviation": 0.015
+        },
+        {
+            "GroupName": "group21",
+            "TotalGroupMembers": 4,
+            "GroupMembers": [
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-4-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.601,
+            "Minimum": -0.505,
+            "MeanCorrelation": -0.543,
+            "Median": -0.525,
+            "StandardDeviation": 0.045
+        },
+        {
+            "GroupName": "group22",
+            "TotalGroupMembers": 5,
+            "GroupMembers": [
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-4-2@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-14-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.644,
+            "Minimum": -0.528,
+            "MeanCorrelation": -0.562,
+            "Median": -0.539,
+            "StandardDeviation": 0.051
+        },
+        {
+            "GroupName": "group23",
+            "TotalGroupMembers": 12,
+            "GroupMembers": [
+                {
+                    "FeatureName": "JGR07PD0500020102KK2@IFA1-9-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@2-20-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-1-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-6-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-4-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.67,
+            "Minimum": -0.502,
+            "MeanCorrelation": -0.589,
+            "Median": -0.601,
+            "StandardDeviation": 0.052
+        },
+        {
+            "GroupName": "group24",
+            "TotalGroupMembers": 2,
+            "GroupMembers": [
+                {
+                    "FeatureName": "LARRGMIG-0042@IFA1-1-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.51,
+            "Minimum": -0.51,
+            "MeanCorrelation": -0.51,
+            "Median": -0.51,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group25",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "LASRAQCO-0006@IFA1-1-1@OPR@PM_NEAR_END_NA",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -1.0,
+            "Minimum": -1.0,
+            "MeanCorrelation": -1.0,
+            "Median": -1.0,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group26",
+            "TotalGroupMembers": 6,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@2-19-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-14-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-6-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.699,
+            "Minimum": -0.503,
+            "MeanCorrelation": -0.59,
+            "Median": -0.566,
+            "StandardDeviation": 0.081
+        },
+        {
+            "GroupName": "group27",
+            "TotalGroupMembers": 9,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@2-20-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-16-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.699,
+            "Minimum": -0.516,
+            "MeanCorrelation": -0.584,
+            "Median": -0.577,
+            "StandardDeviation": 0.057
+        },
+        {
+            "GroupName": "group28",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-10-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-10-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.546,
+            "Minimum": -0.544,
+            "MeanCorrelation": -0.545,
+            "Median": -0.545,
+            "StandardDeviation": 0.001
+        },
+        {
+            "GroupName": "group29",
+            "TotalGroupMembers": 4,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.56,
+            "Minimum": -0.518,
+            "MeanCorrelation": -0.536,
+            "Median": -0.529,
+            "StandardDeviation": 0.019
+        },
+        {
+            "GroupName": "group30",
+            "TotalGroupMembers": 2,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-11-9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.691,
+            "Minimum": -0.691,
+            "MeanCorrelation": -0.691,
+            "Median": -0.691,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group31",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-22-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.651,
+            "Minimum": -0.513,
+            "MeanCorrelation": -0.582,
+            "Median": -0.582,
+            "StandardDeviation": 0.08
+        },
+        {
+            "GroupName": "group32",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.887,
+            "Minimum": -0.516,
+            "MeanCorrelation": -0.701,
+            "Median": -0.701,
+            "StandardDeviation": 0.214
+        },
+        {
+            "GroupName": "group33",
+            "TotalGroupMembers": 11,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-18-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-8-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.676,
+            "Minimum": -0.535,
+            "MeanCorrelation": -0.586,
+            "Median": -0.587,
+            "StandardDeviation": 0.047
+        },
+        {
+            "GroupName": "group34",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-12-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.532,
+            "Minimum": -0.515,
+            "MeanCorrelation": -0.523,
+            "Median": -0.523,
+            "StandardDeviation": 0.01
+        },
+        {
+            "GroupName": "group35",
+            "TotalGroupMembers": 2,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-13-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.759,
+            "Minimum": -0.759,
+            "MeanCorrelation": -0.759,
+            "Median": -0.759,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group36",
+            "TotalGroupMembers": 5,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-15-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-16-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-8-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.885,
+            "Minimum": -0.55,
+            "MeanCorrelation": -0.647,
+            "Median": -0.577,
+            "StandardDeviation": 0.147
+        },
+        {
+            "GroupName": "group37",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -1.0,
+            "Minimum": -1.0,
+            "MeanCorrelation": -1.0,
+            "Median": -1.0,
+            "StandardDeviation": 0.0
+        },
+        {
+            "GroupName": "group38",
+            "TotalGroupMembers": 5,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-4@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-8@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.646,
+            "Minimum": -0.506,
+            "MeanCorrelation": -0.567,
+            "Median": -0.557,
+            "StandardDeviation": 0.055
+        },
+        {
+            "GroupName": "group39",
+            "TotalGroupMembers": 4,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-6@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-5-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.616,
+            "Minimum": -0.55,
+            "MeanCorrelation": -0.576,
+            "Median": -0.563,
+            "StandardDeviation": 0.031
+        },
+        {
+            "GroupName": "group40",
+            "TotalGroupMembers": 5,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-21-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-22-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-2-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@WS1A-4-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.613,
+            "Minimum": -0.541,
+            "MeanCorrelation": -0.577,
+            "Median": -0.578,
+            "StandardDeviation": 0.033
+        },
+        {
+            "GroupName": "group41",
+            "TotalGroupMembers": 6,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-5-C1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-1-7@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-2@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@4-3-3@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@WS2A-4-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.603,
+            "Minimum": -0.517,
+            "MeanCorrelation": -0.55,
+            "Median": -0.548,
+            "StandardDeviation": 0.031
+        },
+        {
+            "GroupName": "group42",
+            "TotalGroupMembers": 3,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-10@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-7-9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-8-E1@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -1.0,
+            "Minimum": -0.725,
+            "MeanCorrelation": -0.862,
+            "Median": -0.862,
+            "StandardDeviation": 0.159
+        },
+        {
+            "GroupName": "group43",
+            "TotalGroupMembers": 2,
+            "GroupMembers": [
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-5@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                },
+                {
+                    "FeatureName": "RYBR4WQ010001021L9GG@3-9-E9@OPR@PM_NEAR_END_Rx",
+                    "SequenceOrder": 0
+                }
+            ],
+            "Maximum": -0.708,
+            "Minimum": -0.708,
+            "MeanCorrelation": -0.708,
+            "Median": -0.708,
+            "StandardDeviation": 0.0
+        }
+    ],
+    "histogram_values": [
+        {
+            "MeanCorrelation": -0.5555555556,
+            "NumberOfGroups": 7
+        },
+        {
+            "MeanCorrelation": -0.6111111111,
+            "NumberOfGroups": 14
+        },
+        {
+            "MeanCorrelation": -0.6666666667,
+            "NumberOfGroups": 10
+        },
+        {
+            "MeanCorrelation": -0.7222222222,
+            "NumberOfGroups": 5
+        },
+        {
+            "MeanCorrelation": -0.7777777778,
+            "NumberOfGroups": 2
+        },
+        {
+            "MeanCorrelation": -0.8888888889,
+            "NumberOfGroups": 1
+        },
+        {
+            "MeanCorrelation": -1.0,
+            "NumberOfGroups": 4
+        }
+    ],
+    "status": 200
+}
+}

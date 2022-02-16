@@ -1,0 +1,16 @@
+<ion-col class="disp-header d-flex">
+    <ion-col class="width-50">
+        <h4 id="dispHeader" class="disp-title">{{headerText}}</h4>
+    </ion-col>
+    <ion-col class="width-50">
+        <ion-icon mat-dialog-close  type="button" class="disp-close" aria-label="Close" id="dispModalClose" 
+        [src]="global.createSvgUrl('close.svg')"></ion-icon>
+    </ion-col>
+    </ion-col>
+        <ion-col class="disp-text">                
+                <span>{{textmsg}}</span>
+        </ion-col>
+        <ion-col class="d-flex disp-footer">
+            <ion-button *ngIf="dispCancel" color="light" type="button" id="canceldispBtn" class="shadowbtn btn btn-default cancel-disp" aria-label="Close" mat-dialog-close>Cancel</ion-button>
+            <ion-button type="button" id="actiondispBtn" class="shadowbtn btn save-mod action-disp mar-l-15" [ngClass]="(buttonText =='Delete') ? 'btn-danger':'btn-primary'" aria-label="Close" (click)="returnvalue()">{{buttonText}}</ion-button>
+        </ion-col>

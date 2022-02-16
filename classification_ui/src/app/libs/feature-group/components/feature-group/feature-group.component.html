@@ -1,0 +1,275 @@
+<ion-row class="body" size="12">
+    <ion-content>
+        <ion-col class="side-content-padding" size="3.3">
+            <ion-col class="mar-b-header ion-no-padding">
+                <ion-row class="action-label data-set mar-b-label">Data Set:</ion-row>
+                <ion-row class="wrap-mat">
+                    <mat-select disableOptionCentering class="form-control drop-mat mat_width_css"
+                        [(ngModel)]="selectedDataSet" (selectionChange)="OnDDChangeAction('dataSet')">
+                        <mat-option hidden disabled value="">Select</mat-option>
+                        <mat-option *ngFor="let dataSetObj of dataSetDD" [value]="dataSetObj">{{dataSetObj}}
+                        </mat-option>
+                    </mat-select>
+                </ion-row>
+            </ion-col>
+            <ion-col class="mar-b-header">
+                <ion-row class="dc-flex mar-b-label">
+                    <ion-checkbox color="primary" autocomplete="off" type="checkbox" [(ngModel)]="enableFeatureGroup"
+                        [disabled]="disableGroupCheck()" (ionchange)="OnFeatureGrpCheckBox(enableFeatureGroup)"
+                        id="featuregroup" name="featuregroup"></ion-checkbox>
+                    <ion-label class="action-label-feature-group">Feature Group:</ion-label>
+                </ion-row>
+                <ion-row class="wrap-mat">
+                    <mat-select disableOptionCentering [disabled]="!enableFeatureGroup"
+                        class="form-control drop-mat mat_width_css" [(ngModel)]="selectedFeaturegroup"
+                        (selectionChange)="OnDDChangeAction('featureGrp')">
+                        <mat-option hidden disabled value="">Select</mat-option>
+                        <mat-option [title]="featureGroupObj" *ngFor="let featureGroupObj of featureGroup"
+                            [value]="featureGroupObj">
+                            {{featureGroupObj}}</mat-option>
+                    </mat-select>
+                </ion-row>
+                <ion-col class="group-action ion-no-padding">
+                    <ion-row class="save-link"
+                        [ngClass]="{'disable-control': !selectedFeaturegroup || (selectorType == 'profiler' && !selectedFeatureId)}"
+                        (click)="groupUpdate()">Save Selections</ion-row>
+                    <ion-row *ngIf="selectedFeaturegroup" class="trash_icon" (click)="deleteFeatureGroup()">
+                        <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
+                        <ion-icon [src]="classificationService.createSvgUrl('trash-outline.svg')"></ion-icon>
+                    </ion-row>
+                </ion-col>
+            </ion-col>
+
+            <ion-grid class="mar-b-header bdr-seperator unset-padding">
+                <ion-col *ngIf="selectorType == 'profiler'">
+                    <ion-row class="dc-flex mar-b-label">
+                        <ion-row class="action-label">
+                            Label:
+                        </ion-row>
+                    </ion-row>
+                    <ion-row class="wrap-mat">
+                        <mat-select disableOptionCentering [disabled]="disableLabelCheck()"
+                            class="form-control drop-mat mat_width_css" [(ngModel)]="selectedLabel">
+                            <mat-option hidden disabled value="">Select</mat-option>
+                            <mat-option *ngFor="let labelObj of labelDD" [value]="labelObj">
+                                {{labelObj}}</mat-option>
+                        </mat-select>
+                    </ion-row>
+                </ion-col>
+
+                <ion-row class="mar-b-label">
+                    <span class="center-align">
+                        <ion-checkbox class="time-feature-filter" color="primary" autocomplete="off" type="checkbox"
+                            [(ngModel)]="enableTimeFilter" slot="start" [disabled]="disableTimeFilterFeature()"
+                            (ionChange)="OnTimeFilterCheckBox(enableTimeFilter)" id="timefilter" name="timefilter">
+                        </ion-checkbox>
+                        <ion-label *ngIf="selectorType != 'profiler'" class="action-label-feature-group">Time Filter
+                            Feature:</ion-label>
+                        <ion-label *ngIf="selectorType === 'profiler'" class="action-label-feature-group">
+                            Date Time :
+                        </ion-label>
+                    </span>
+                </ion-row>
+
+                <ion-row class="wrap-mat">
+                    <mat-select disableOptionCentering [disabled]="!enableTimeFilter"
+                        class="form-control drop-mat mat_width_css" [(ngModel)]="selectedTimeFilterFeature">
+                        <mat-option hidden disabled value="">Select</mat-option>
+                        <mat-option *ngFor="let timeFilterFeatureObj of timeFilterFeature"
+                            [value]="timeFilterFeatureObj.time_column">
+                            {{timeFilterFeatureObj.time_column}}</mat-option>
+                    </mat-select>
+                </ion-row>
+            </ion-grid>
+
+            <form #dateRange="ngForm">
+                <ion-col class="mar-b-header" *ngIf="enableTimeFilter && selectedTimeFilterFeature">
+                    <ion-row class="action-label data-set mar-b-label">Data Range:</ion-row>
+                    <ion-row class="date_time">
+                        <ion-col size="7" class="main-date-div">
+                            <input autocomplete="off" matInput class="inputfeild form-control" name="dateFrom"
+                                [(ngModel)]="timeFilterVal.fromDate" placeholder="Select Date"
+                                (dateChange)="onFromDateChange()" [matDatepicker]="pickerFrom" readonly required />
+                            <mat-datepicker-toggle class="dat-pixk" matSuffix [for]="pickerFrom">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerFrom></mat-datepicker>
+                        </ion-col>
+                        <ion-col size="2" class="input-time-div">
+                            <input autocomplete="off" matInput class="input-feild-time form-control" placeholder="00"
+                                [(ngModel)]="timeFilterVal.fromTimeHr" type="text" name="timeHrFrom"
+                                [appAlphaNumeric]="'num'" maxlength="2" required>
+                            <p class="time-stamp">
+                                (HH)
+                            </p>
+                        </ion-col>
+                        <ion-col size="2" class="input-time-div">
+                            <input autocomplete="off" matInput class="input-feild-time form-control" placeholder="00"
+                                [(ngModel)]="timeFilterVal.fromTimeMin" type="text" name="timeMinFrom"
+                                [appAlphaNumeric]="'num'" maxlength="2" required>
+                            <p class="time-stamp">
+                                (MM)
+                            </p>
+                        </ion-col>
+                    </ion-row>
+                    <p class="fil-bold">To</p>
+                    <ion-row class="date_time">
+                        <ion-col size="7" class="main-date-div">
+                            <input autocomplete="off" matInput class="inputfeild form-control" name="dateTo"
+                                [min]="minToDate" [(ngModel)]="timeFilterVal.toDate" placeholder="Select Date"
+                                [matDatepicker]="pickerTo" readonly required />
+                            <mat-datepicker-toggle class="dat-pixk" matSuffix [for]="pickerTo">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerTo></mat-datepicker>
+                        </ion-col>
+                        <ion-col size="2" class="input-time-div">
+                            <input autocomplete="off" matInput class="input-feild-time form-control" placeholder="00"
+                                [(ngModel)]="timeFilterVal.toTimeHr" type="text" name="timeHrTo"
+                                [appAlphaNumeric]="'num'" maxlength="2" required>
+                            <p class="time-stamp">
+                                (HH)
+                            </p>
+                        </ion-col>
+                        <ion-col size="2" class="input-time-div">
+                            <input autocomplete="off" matInput class="input-feild-time form-control" placeholder="00"
+                                [(ngModel)]="timeFilterVal.toTimeMin" type="text" name="timeMinTo"
+                                [appAlphaNumeric]="'num'" maxlength="2" required>
+                            <p class="time-stamp">
+                                (MM)
+                            </p>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </form>
+
+            <ion-col class="run-btn">
+                <ion-button type="button" class="shadowbtn btn-primary run-cor-btn run-cor-width" (click)="onRunCorr()">
+                    {{selectorType == 'profiler' ? 'Run Profiling' : 'Run Correlation'}}</ion-button>
+            </ion-col>
+        </ion-col>
+    </ion-content>
+
+    <ion-col class="ion-no-padding" size="8.7" size-lg="9.2" size-xl="9.4">
+        <ion-col class="feature-body df-col ion-no-padding">
+            <ion-row class="dc-flex body-head">
+                <ion-col size="2" class="feature-head-text ion-no-padding">All Features <span
+                        class="feature-count-text">({{featureDetails.length}})</span></ion-col>
+                <ion-col class="ion-text-start ion-no-padding">
+                    <ion-row class="selected-feature-padding">
+                        <span class="checkbox-style">
+                            <ion-checkbox autocomplete="off" type="checkbox" [(ngModel)]="showSelected" slot="start"
+                                (ionChange)="onsearchChange(showSelected)" id="showSelectedId" name="showSelectedName">
+                            </ion-checkbox>
+                        </span>
+                        <ion-text class="select-text">
+                            Show Selected Features <span class="select-count-text">({{showSelectedFeature()}})</span>
+                        </ion-text>
+                    </ion-row>
+                </ion-col>
+                <ion-col class="ion-text-end ion-no-padding">
+                    <ion-button type="button" class="shadowbtn btn btn-primary cancel-mod"
+                        [disabled]="!selectedFeature.length" (click)="groupCreate()">Save as new
+                        group</ion-button>
+                </ion-col>
+            </ion-row>
+
+            <ion-col class="body-tab f-max df-col ion-no-padding">
+                <ion-col size="12" *ngIf="featureLoader" class="spinner-div ion-no-padding">
+                    <mat-progress-spinner color="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-col>
+
+                <ion-row *ngIf="!featureLoader">
+                    <ion-col class="page_css_view ion-no-padding">
+                        <ion-col class="paginate_css ion-no-padding">
+                            <span>
+                                <!-- <i class="fa fa-search search_fafa" aria-hidden="true">
+                                </i> -->
+                                <!-- <mat-icon aria-hidden="false" class="search_mat" aria-label="search icon">search</mat-icon> -->
+                                <ion-icon class="ion_icon_search" [src]="classificationService.createSvgUrl('search.svg')">
+                                </ion-icon>
+                                <input autocomplete="off" maxlength="150" matInput class="form-control css_search"
+                                    type="text" [(ngModel)]="searchFilter" placeholder="Search"
+                                    (ngModelChange)="onsearchChange(searchFilter)">
+                            </span>
+                        </ion-col>
+                        <ion-col class="dc-flex paginate-align ion-no-padding">
+                            <pagination-template #pT="paginationApi" [id]="config.id" class="dc-flex"
+                                (pageChange)="changepage($event)">
+                                <ion-row class="dc-flex process_rows_css">
+                                    <span class="mar-r-8 paginate-text">Rows:</span>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                        (selectionChange)="setNewPageSize(itemPerPage)">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}
+                                        </mat-option>
+                                    </mat-select>
+                                </ion-row>
+                                <ion-row class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                        [disabled]="pT.isFirstPage()">
+                                        < </button>
+                                </ion-row>
+
+                                <ion-row class="dc-flex process_matselect">
+                                    <span class="paginate-text"> Page</span>
+                                    <input autocomplete="off" matInput class="currpage-input" type="text"
+                                        [(ngModel)]="inputCurrentpage"
+                                        (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+
+                                    <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                                </ion-row>
+                                <ion-row class="pagination-next" [class.disabled]="pT.isLastPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.next()"
+                                        [disabled]="pT.isLastPage()"> > </button>
+                                </ion-row>
+                            </pagination-template>
+                        </ion-col>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row *ngIf="!featureLoader" class="f-max out-table mod-table-scroll">
+                    <table class="df-col">
+                        <thead class="sticky-head">
+                            <tr class="row no-mar head-tr">
+                                <th class="dc-flex feature-width">
+                                    <span class="check-main">
+                                        <ion-checkbox color="primary" autocomplete="off" type="checkbox"
+                                            [(ngModel)]="checkAllFeature" slot="start"
+                                            (ionChange)="selectAllFeature(checkAllFeature)" id="selectAll"
+                                            name="selectAll"></ion-checkbox>
+                                    </span>
+                                    <ion-label class="wrap-text text-margin theader">Feature</ion-label>
+                                </th>
+                                <th class="type-width">
+                                    <ion-label class="wrap-text theader">Property Type</ion-label>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row no-mar body-tr"
+                                *ngFor="let featureDet of featureDetails | filterBy : {$or: [{ 'name': searchFilter }, { 'type': searchFilter }], 'checkSelect' : showSelected ? showSelected : ''} | paginate: config">
+                                <td class="dc-flex feature-width">
+                                    <span class="check-main">
+                                        <ion-checkbox class="td-checkbox" color="primary" autocomplete="off"
+                                            type="checkbox" [(ngModel)]="featureDet.checkSelect" slot="start"
+                                            (ionChange)="onSelectFeature(featureDet)" id="{{featureDet.name}}"
+                                            name="{{featureDet.name}}"></ion-checkbox>
+                                    </span>
+                                    <ion-label class="wrap-text">{{featureDet.name}}</ion-label>
+                                </td>
+                                <td class="type-width">
+                                    <ion-label class="wrap-text">{{featureDet.type}}</ion-label>
+                                </td>
+
+                            </tr>
+                            <tr class="row no-mar no-rec body-tr"
+                                *ngIf="(featureDetails | filterBy : {$or: [{ 'name': searchFilter }, { 'type': searchFilter }], 'checkSelect' : showSelected ? showSelected : ''}).length == 0">
+                                <td class="col-12 wrap-text no_rec_css">Feature not available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ion-row>
+            </ion-col>
+        </ion-col>
+    </ion-col>
+</ion-row>

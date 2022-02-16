@@ -1,0 +1,148 @@
+<ion-content>
+    <ion-row class="background-color left-padding time-header">
+        <ion-col class="drop-wid-range ion-text-end date-range-padding-right" size="12">
+            <ion-label class="s1-label-model"> Data Range: </ion-label>
+            <span class="correlation-value time-css">{{correlationFromTimePeriod}} To {{correlationToTimePeriod}}
+            </span>
+            <span class="menu-div">
+                <ion-icon class="edit_mat edit_icon" aria-hidden="false" [matMenuTriggerFor]="editmenu"
+                    #clickMenuTrigger="matMenuTrigger" (click)="openTimeEditMenu()"
+                    [src]="summaryService.createSvgUrl('pencil.svg')"></ion-icon>
+                <mat-menu class="date-range-menu" #editmenu="matMenu" class="edit_menu" xPosition="before"
+                    hasBackdrop="false">
+                    <ion-row class="menu-main" (click)="$event.stopPropagation();"
+                        (keydown.tab)="$event.stopPropagation()">
+
+                        <form #menuDateRange="ngForm">
+                            <fieldset>
+                                <ion-row class="menu_edit_item">
+                                    <ion-col class="menu_label" size="2">Date Time:</ion-col>
+                                    <ion-col size="10">
+                                        <ion-row class="date_time">
+                                            <ion-col class="date-label" size="2">From:</ion-col>
+                                            <ion-col class="main-date-div" size="4">
+                                                <input autocomplete="off" matInput class="inputfeild form-control"
+                                                    [(ngModel)]="timeFilterDetails.fromDate" name="fromDate"
+                                                    placeholder="Select Date" (dateChange)="onFromDateChange()"
+                                                    [matDatepicker]="pickerFrom" readonly required />
+                                                <mat-datepicker-toggle class="dat-pixk" matSuffix [for]="pickerFrom">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #pickerFrom></mat-datepicker>
+                                            </ion-col>
+                                            <ion-col class="input-time-div" size="1">
+                                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                                    [(ngModel)]="timeFilterDetails.fromTimeHr" name="fromTimeHr"
+                                                    [appAlphaNumeric]="'num'" maxlength="2" placeholder="00" type="text"
+                                                    name="timeHrFrom" [appAlphaNumeric]="'num'" required>
+                                            </ion-col>
+                                            <ion-col class="input-time-div" size="1">
+                                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                                    [(ngModel)]="timeFilterDetails.fromTimeMin" name="fromTimeMin"
+                                                    [appAlphaNumeric]="'num'" maxlength="2" placeholder="00" type="text"
+                                                    name="timeMinFrom" [appAlphaNumeric]="'num'" required>
+                                            </ion-col>
+                                            <ion-col class="time-stamp" size="2">
+                                                (HH-MM)
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row class="date_time">
+                                            <ion-col class="date-label" size="2">To:</ion-col>
+                                            <ion-col class="main-date-div" size="4">
+                                                <input autocomplete="off" matInput class="inputfeild form-control"
+                                                    [(ngModel)]="timeFilterDetails.toDate" name="toDate"
+                                                    placeholder="Select Date" [matDatepicker]="pickerTo"
+                                                    [min]="timeFilterDetails.minToDate" readonly required />
+                                                <mat-datepicker-toggle class="dat-pixk" matSuffix [for]="pickerTo">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #pickerTo></mat-datepicker>
+                                            </ion-col>
+                                            <ion-col class="input-time-div" size="1">
+                                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                                    [(ngModel)]="timeFilterDetails.toTimeHr" name="toTimeHr"
+                                                    [appAlphaNumeric]="'num'" maxlength="2" placeholder="00" type="text"
+                                                    name="timeHrTo" [appAlphaNumeric]="'num'" required>
+                                            </ion-col>
+                                            <ion-col class="input-time-div" size="1">
+                                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                                    [(ngModel)]="timeFilterDetails.toTimeMin" name="toTimeMin"
+                                                    [appAlphaNumeric]="'num'" maxlength="2" placeholder="00" type="text"
+                                                    name="timeMinTo" [appAlphaNumeric]="'num'" required>
+                                            </ion-col>
+                                            <ion-col class="time-stamp" size="2">
+                                                (HH-MM)
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                            </fieldset>
+                        </form>
+                        <ion-col class="menu-action">
+                            <ion-button color="light" type="button" class="shadowbtn btn btn-default cancel-mod"
+                                (click)="someMethod()">
+                                Cancel</ion-button>
+                            <ion-button type="button" class="shadowbtn btn-primary run-cor-btn" (click)="setDateDetails()">Apply</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </mat-menu>
+            </span>
+        </ion-col>
+    </ion-row>
+    <ion-row class="background-color left-padding">
+        <ion-col class="ion-no-padding">
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle class="ion-text-center">No. of alarm storms over a period of time
+                    </ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content class="ion-text-center">
+                    {{countObj.noOfAlarmStormsOverTime}}
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle class="ion-text-center">No. of alarms over a period of time
+                    </ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content class="ion-text-center">
+                    {{countObj.noOfAlarmsOverTime}}
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle class="ion-text-center">No. of clusters over a period of time
+                    </ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content class="ion-text-center">
+                    {{countObj.noOfClustersOverTime}}
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row class="graph-height background-color left-padding">
+        <ion-col class="ion-no-padding">
+            <ion-card class="graph-card-height">
+                <app-datelinechart [chartId]="'dateID1'" [chartData]="chartData1"></app-datelinechart>
+            </ion-card>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+            <ion-card class="graph-card-height">
+                <app-histogram [chartData]="histogramDetails"></app-histogram>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col class="background-color rca-padding">
+            <ion-col class="ion-no-padding">
+                <app-rca [rcaObj]="rcaObj"></app-rca>
+                <!-- <app-anomaly-view></app-anomaly-view> -->
+            </ion-col>
+        </ion-col>
+    </ion-row>
+</ion-content>

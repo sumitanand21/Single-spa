@@ -1,0 +1,99 @@
+.disp-header{
+    height: 50px;
+    padding: 12px;
+    border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-title{
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .disp-text{
+        padding: 20px 12px 12px 12px;
+        height:100px;
+        display:flex;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-footer{
+    padding: 12px;
+    height:50px;
+    justify-content: flex-end;
+  }
+
+  .d-flex{
+      display:flex;
+      align-items: center;
+  }
+
+  .action-disp{
+    padding: 0px;
+    border:1.5px solid var(--mtsclr-correlate-btn);
+    background-color:var(--mtsclr-correlate-btn);
+    min-width: 60px;
+    padding: 0 7px;
+}
+
+.mar-l-15{
+    margin-left:15px;
+        }
+
+        .cancel-disp{
+            // width: 61px;
+            border:1.5px solid var(--mtsclr-border);
+            color:#707070;
+            padding: 0px;
+        }
+
+        .disp-close{
+            float:right;
+            background-color: transparent;
+            border: none;
+            outline:none;
+            color: #707070;;
+            padding:0;
+            font-size: 26px;
+            cursor: pointer;
+            // margin-top: -8px;
+}
+
+.width-50{
+    width:50%;
+}
+
+.label-text{
+font: normal normal 600 14px/13px Segoe UI;
+color: var(--mtsclr-label);
+margin-right: 10px;
+}
+
+.base-flex{
+  display: flex;
+  align-items: baseline;
+}
+
+.input-feild-name{
+  border: 1px solid var(--mtsclr-feild-border);
+      border-radius: 4px;
+      padding: 6px 6px 6px 6px;
+      color: var(--mtsclr-text);
+      font: normal normal normal 14px Segoe UI;
+      width: 214px;
+    }
+
+    .message-text{
+      font: normal normal normal 14px/20px Segoe UI;
+color: #000000;
+    }
+
+    .grp-name{
+      font: normal normal bold 14px/20px Segoe UI;
+color: #000000;
+    }
+
+    .err-msg{
+      font: normal normal normal 12px/20px Segoe UI;
+      color: var(--mtsclr-danger-btn);
+    }

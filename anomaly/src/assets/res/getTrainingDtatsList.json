@@ -1,0 +1,36 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "uid": "6023b745a900c37f40925bb3",
+            "scheduleId": "6023b6ae3ce3e60001f40e39",
+            "scheduleName": "TestSc",
+            "jobStatus": "RUNNING",
+            "jobType": "TRAINING",
+            "modelConfigName": "model1",
+            "modelType": "MODELI",
+            "dataSetName": "alarm_data",
+            "dataRange": "2021-02-10T09:35Z To 2021-02-10T10:35Z( 1hours )",
+            "progress": null,
+            "startTime": "2021-02-10T10:35Z",
+            "timeUsed": null,
+            "numberOfComponents": null,
+            "cpuUsage": null,
+            "cpuMemoryUsage": null,
+            "gpuUsage": null,
+            "gpuMemoryUsage": null,
+            "accuracy": null,
+            "lossFunction": null,
+            "loss": null,
+            "numberofObservation": null,
+            "featureImportance": null,
+            "fromTime": "2021-02-10T09:35Z",
+            "toTime": "2021-02-10T10:35Z",
+            "modelName": null,
+            "scalerName": null,
+            "encoderName": null,
+            "validationLoss": null,
+            "validatonAcurracy": null
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            {
+                "_id": "601bc4825b35a99599bd473e",
+                "uid": "",
+                "dataSetName": "forecast",
+                "dbType": "MongoDB",
+                "dataSourceType": "stream_data",
+                "jobType": "DATAMANAGEMENT",
+                "modelType": "GRPC",
+                "jobStatus": "running",
+                "scheduleJobType": "FORECAST"
+            },
+            {
+                "_id": "601bc4825b35a99599bd473e",
+                "uid": "",
+                "dataSetName": "forecast",
+                "dbType": "MongoDB",
+                "dataSourceType": "stream_data",
+                "jobType": "DATAMANAGEMENT",
+                "modelType": "GRPC",
+                "jobStatus": "stopped",
+                "scheduleJobType": "CORRELATION"
+            }
+        ],
+        "responseType": "",
+        "status_code": 200
+    }
+}

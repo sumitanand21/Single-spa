@@ -1,0 +1,59 @@
+{
+    "status" : "success",
+    "data": {
+      "column_name": "Age",
+      "correlated_features": [
+        {
+          "key1": "XYZPassengerId",
+          "value": 0.9,
+          "key2": "positive"
+        },
+        {
+          "key1": "XYZName",
+          "value": 0.482520185,
+          "key2": "positive"
+        },
+        {
+          "key1": "XYZSex",
+          "value": 0.811625352,
+          "key2": "positive"
+        },
+        {
+          "key1": "XYZFare",
+          "value": 0.0966884222,
+          "key2": "positive"
+        },
+        {
+          "key1": "XYZPclass",
+          "value": -0.3398983284,
+          "key2": "negative"
+        },
+        {
+          "key1": "XYZSibSp",
+          "value": -0.2332963313,
+          "key2": "negative"
+        },
+        {
+          "key1": "XYZParch",
+          "value": -0.172481954,
+          "key2": "negative"
+        },
+        {
+          "key1": "XYZTicket",
+          "value": -0.703818335,
+          "key2": "negative"
+        },
+        {
+          "key1": "XYZSurvived",
+          "value": -0.649104199,
+          "key2": "negative"
+        },
+        {
+          "key1": "XYZEmbarked",
+          "value": -0.0187543168,
+          "key2": "negative"
+        }
+      ]
+    }
+  }
+

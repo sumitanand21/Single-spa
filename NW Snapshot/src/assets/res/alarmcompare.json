@@ -1,0 +1,66 @@
+{
+    "jobType": "COMPARISIONCLASSIFICATION",
+    "status": "COMPLETED",
+    "anomalyAnalysis": {
+        "preEventCount": 6214,
+        "postEventCount": 6214,
+        "anomalousCount": 0,
+        "anomalousEvents": [
+            {
+                "@timestamp": "2021-08-14T06:00:00.000Z",
+                "OSPF_ADJACENCY_CHG": 28,
+                "BGP_NEIGHBORSHIP_CHG": 13,
+                "NTP_SERVER_CHANGE": 4,
+                "r11_primary_lsp": 15,
+                "r11_protected_lsp": 15,
+                "Reasons": "r11_primary_lsp, r11_protected_lsp"
+            },
+            {
+                "@timestamp": "2021-08-14T06:15:00.000Z",
+                "OSPF_ADJACENCY_CHG": 32,
+                "BGP_NEIGHBORSHIP_CHG": 11,
+                "NTP_SERVER_CHANGE": 2,
+                "r11_primary_lsp": 15,
+                "r11_protected_lsp": 15,
+                "Reasons": "r11_primary_lsp"
+            },
+            {
+                "@timestamp": "2021-08-14T06:30:00.000Z",
+                "OSPF_ADJACENCY_CHG": 23,
+                "BGP_NEIGHBORSHIP_CHG": 17,
+                "NTP_SERVER_CHANGE": 5,
+                "r11_primary_lsp": 15,
+                "r11_protected_lsp": 15,
+                "Reasons": "r11_primary_lsp"
+            },
+            {
+                "@timestamp": "2021-08-14T06:45:00.000Z",
+                "OSPF_ADJACENCY_CHG": 35,
+                "BGP_NEIGHBORSHIP_CHG": 12,
+                "NTP_SERVER_CHANGE": 1,
+                "r11_primary_lsp": 15,
+                "r11_protected_lsp": 15,
+                "Reasons": "r11_primary_lsp"
+            }
+        ]
+    },
+    "correlation": {
+        "preEventCount": 6214,
+        "postEventCount": 6214,
+        "anomalousCount": 0,
+        "correlationAnalysis": [
+            {
+                "key1": "r11_OSPF_ADJ_DOWN",
+                "key2": "R11_ALARM3",
+                "BeforeE": -0.013,
+                "AfterE": -0.253
+            },
+            {
+                "key1": "R11_ALARM3",
+                "key2": "r11_protected_lsp",
+                "BeforeE": -0.065,
+                "AfterE": -0.253
+            }
+        ]
+    }
+}

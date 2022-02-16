@@ -1,0 +1,145 @@
+.disp-header{
+    height: 50px;
+    padding: 12px;
+    border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-title{
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .disp-text{
+        padding: 12px;
+        height:120px;
+        font: normal normal normal 16px Segoe UI;
+        display:flex;
+        align-items: flex-start;
+	border-bottom: 1px solid var(--mtsclr-border);
+  }
+
+  .disp-footer{
+    padding: 12px;
+    height:50px;
+    justify-content: flex-end;
+  }
+
+  .d-flex{
+      display:flex;
+      align-items: center;
+  }
+
+  .action-disp{
+    padding: 0px;
+    border:1.5px solid #3B73B7;
+    min-width: 60px;
+    padding: 0 7px;
+}
+
+.mar-l-15{
+    margin-left:15px !important;
+        }
+
+        .cancel-disp{
+            width: 61px;
+            border:1.5px solid var(--mtsclr-border);
+            color:#707070;
+            padding: 0px;
+        }
+
+        .disp-close{
+            float:right;
+            background-color: transparent;
+            border: none;
+            outline:none;
+            color: #707070;;
+            padding:0;
+            font-size: 26px;
+            cursor: pointer;
+            margin-top: -8px;
+}
+
+.width-50{
+    width:50%;
+}
+.save-mod{
+  border:1.5px solid var(--mtsclr-success-btn);
+  background-color: var(--mtsclr-success-btn);
+  width: 75px;
+  padding: 0px;
+}
+
+/* Media Query starts here */
+@media (min-width: 1598px) and (max-width: 1928px){
+  .disp-text{
+    font: normal normal normal 18px Segoe UI;
+  }
+  .btn{
+    font-size: 18px;
+  }
+}
+
+.close-ion-icon{
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--mtsclr-icon);
+}
+
+.modal-header{
+display: flex;
+align-items: center;
+}
+
+.new_sch{
+  color: #2B2B2B;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+button:focus {
+  /* outline: 5px auto transparent !important; */
+  outline:none;
+  border:none;
+  box-shadow: unset !important;
+}
+.shadowbtn:active {
+  /* outline: 5px auto transparent !important; */
+  outline:none;
+  border:none;
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12) !important;
+}
+
+.disp-pop-ion-button {
+  text-transform: none;
+  margin: 0;
+  height: 30px !important;
+  font-size:15px;
+  --box-shadow:none;
+  padding: 0px;
+  border-radius:4px;
+  float:right;
+  min-width: 60px;
+}
+
+.cancel-button {
+  --background: #ffff;
+  border: 1.5px solid var(--mtsclr-cancel-btn);
+  color: var(--mtsclr-label);
+  width: 61px;
+}
+
+.stop-button {
+  --background: var(--mtsclr-danger-btn);
+  border:1.5px solid var(--mtsclr-danger-btn);
+  background-color: var(--mtsclr-danger-btn);
+  color:#ffffff;
+  width: 75px;
+}
+
+.update-button {
+  --background: var(--mtsclr-success-btn);
+  border:1.5px solid var(--mtsclr-success-btn);
+  background-color: var(--mtsclr-success-btn);
+  color:#ffffff;
+  width: 75px;
+}

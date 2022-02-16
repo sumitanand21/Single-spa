@@ -1,0 +1,47 @@
+{
+    "status": "success",
+    "data": {
+        "data": {
+            "step1": {
+                "stepName": "databaseName",
+                "databaseName": [
+                    "anomaly_profiler_2020.10.27",
+                    "pmdata2",
+                    "pmdata6",
+                    "pm_data",
+                    "sample_pmdata1",
+                    "mall_customers",
+                    "pmdata3",
+                    "train",
+                    "varizon",
+                    "site_user",
+                    "pmdata",
+                    ".kibana_task_manager_1",
+                    "demo",
+                    "farm_animal",
+                    "pmdata5",
+                    "x_train_lte_data_dp_fromltepod",
+                    "sample_pmdata2",
+                    "pmdata1",
+                    ".apm-custom-link",
+                    "columns_info",
+                    "pmdata11",
+                    ".kibana_1",
+                    "pmdata9",
+                    "pmdata12",
+                    "bank",
+                    "pmdata8",
+                    "titanic",
+                    "blog_post",
+                    ".apm-agent-configuration",
+                    "pmdata7",
+                    "pmdata_test",
+                    "sample_data",
+                    "pmdata10",
+                    "fiberlight_ts_rec"
+                ]
+            }
+        },
+        "status_code": 200
+    }
+}

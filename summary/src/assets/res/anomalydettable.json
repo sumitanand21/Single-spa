@@ -1,0 +1,37 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "uid": "600c50133e8b0501f7def11a",
+      "scheduleName": "m1t1",
+      "modelName": "m1t1_2021-01-11T04:35Z_2021-01-23T16:35Z_MinMaxScaler_Anomalymodel1-model.hdf5",
+      "modelConfigName": "model1",
+      "dataRange": "2021-01-11T04:35Z-2021-01-23T16:35Z",
+      "accuracy": [
+        0.13095073,
+        0.16461031,
+        0.22821416,
+        0.23220673,
+        0.2064491,
+        0.26508996,
+        0.30509883,
+        0.32450718,
+        0.32270497,
+        0.33853662,
+        0.3371503,
+        0.33728895,
+        0.34261236,
+        0.30798236,
+        0.29630965,
+        0.27473867,
+        0.2729642,
+        0.280478,
+        0.27554274,
+        0.2841933
+      ],"jobStatus": "COMPLETED",
+      "jobType": "TRAINING",
+      "modelType": "MODELI",
+      "dataSetName": "alarm_data"
+    }
+  ]
+}

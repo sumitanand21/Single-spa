@@ -1,0 +1,12 @@
+{
+    "data": {
+        "auth": "false",
+        "email_interval": 120,
+        "max_events": 1,
+        "password": "",
+        "smtp_port": "25",
+        "smtp_server": "smtp.fnc.fujitsu.com",
+        "username": ""
+    },
+    "status": "success"
+}

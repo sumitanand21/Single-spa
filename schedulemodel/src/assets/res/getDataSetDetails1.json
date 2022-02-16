@@ -1,0 +1,93 @@
+{
+    "status": "success",
+    "data": {
+        "data": {
+            "connectionDetails": {
+                "message": "file data already exists",
+                "dbType": "ElasticSearch",
+                "hostName": "localhost",
+                "portNumber": 9200,
+                "steps": 2
+            },
+            "dataSetName": "titanic",
+            "dataSourceType": [
+                "stored_data",
+                "stream_data"
+            ],
+            "jobType": [
+                "CORRELATION",
+                "ANOMALY DETECTION",
+                "FORECAST"
+
+            ],
+            "fileName": "",
+            "configurationName": "config1",
+            "dbType": "ElasticSearch",
+            "configuration": [
+                {
+                    "key": "databaseName",
+                    "value": "admin",
+                    "type": "step1"
+                },
+                {
+                    "key": "Collection",
+                    "value": "system.version",
+                    "type": "step2"
+                }
+            ],
+            "featureMapping": [
+                {
+                    "feature": "Age1",
+                    "propertyType": "float"
+                },
+                {
+                    "feature": "Cabin",
+                    "propertyType": "text"
+                },
+                {
+                    "feature": "Embarked",
+                    "propertyType": "text"
+                },
+                {
+                    "feature": "Fare",
+                    "propertyType": "float"
+                },
+                {
+                    "feature": "Name",
+                    "propertyType": "text"
+                },
+                {
+                    "feature": "Parch",
+                    "propertyType": "long"
+                },
+                {
+                    "feature": "PassengerId",
+                    "propertyType": "long"
+                },
+                {
+                    "feature": "Pclass",
+                    "propertyType": "long"
+                },
+                {
+                    "feature": "Sex",
+                    "propertyType": "text"
+                },
+                {
+                    "feature": "SibSp",
+                    "propertyType": "long"
+                },
+                {
+                    "feature": "Survived",
+                    "propertyType": "long"
+                },
+                {
+                    "feature": "Ticket",
+                    "propertyType": "text"
+                }
+            ],
+            "timeFilterFeature": [
+                "Age1"
+            ]
+        }
+    }
+}

@@ -1,0 +1,102 @@
+<div class="gen-tab-wrap">
+    
+    <!-- Left Side Panel Starts Here -->
+    <div   class="flex-max dflex-col no-pad">
+        <div class="no-mar">
+            <div class="page-scrh-wrap" *ngIf="enableSearch || enablePagination">
+                <div class="search-wrap" *ngIf="enableSearch" [ngClass]="{'gen-tab-full-width': !enablePagination}">
+                    <span>
+                        <mat-icon aria-hidden="false" class="search_mat" aria-label="search icon">search</mat-icon>
+                        <input autocomplete="off" maxlength="150" matInput class="form-control search-inp" type="text"
+                            [(ngModel)]="searchFilter" placeholder="Search with Dataset Name"
+                            (ngModelChange)="onsearchChange(config.id)">
+                    </span>
+                </div>
+                <div class="disp-flex paginate-wrap" *ngIf="enablePagination" [ngClass]="{'gen-tab-full-width': !enableSearch}">
+                    <pagination-template #pT="paginationApi" [id]="config.id" class="disp-flex"
+                        (pageChange)="changepage($event,config.id)">
+                        <div class="disp-flex process_rows_css">
+                            <span class="mar-r-8 paginate-text">Rows:</span>
+                            <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                (selectionChange)="setNewPageSize(itemPerPage,config.id)">
+                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                            </mat-select>
+                        </div>
+                        <div class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                            <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                [disabled]="pT.isFirstPage()">
+                                < </button>
+                        </div>
+
+                        <div class="disp-flex process_matselect">
+                            <span class="paginate-text"> Page</span>
+                            <input autocomplete="off" matInput [appAlphaNumeric]="'num'" class="currpage-input" type="text"
+                                [(ngModel)]="inputCurrentpage"
+                                (change)="changepageinp(inputCurrentpage,pT.getLastPage(),config.id)">
+
+                            <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                        </div>
+                        <div class="pagination-next" [class.disabled]="pT.isLastPage()">
+                            <button type="button" class="pagination-btn" (click)="pT.next()"
+                                [disabled]="pT.isLastPage()"> > </button>
+                        </div>
+                    </pagination-template>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="flex-max mod-table-wrap">
+            <table class="gen-mod-table">
+                <thead class="sticky-head gen-tab-head">
+                    <tr class="no-mar gen-tab-head-tr">
+                        <th class="gen-tab-head-th" *ngFor="let datafeild of dataStructure" [ngStyle]="datafeild.styleHeadObj? datafeild.styleHeadObj : ''">
+                            <!-- {{datafeild.displayName}}
+                            <div *ngIf="datafeild.enableSort" class="select-cur" (click)="sortTask(datafeild.feildname)">
+                                <mat-icon *ngIf="!(sortKey == datafeild.feildname && reverseSort)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                                <mat-icon *ngIf="sortKey == datafeild.feildname && reverseSort" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon>
+                            </div> -->
+
+                            <div class="disp-flex">
+                                <ion-checkbox class="gen-tab-checkbox" *ngIf="datafeild.type === 'checkbox'" [(ngModel)]="datafeild.headerModel"   name="datafeild.name"
+                                (ngModelChange)="selectAll(datafeild)"></ion-checkbox>
+                                <div *ngIf="datafeild.type === 'text'">{{datafeild.displayName}}</div>
+                                <div *ngIf="datafeild.enableSort" class="select-cur" (click)="sortTask(datafeild.feildname)">
+                                    <mat-icon *ngIf="!(sortKey == datafeild.feildname && reverseSort)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                                    <mat-icon *ngIf="sortKey == datafeild.feildname && reverseSort" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon>
+                                </div>
+                                
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="gen-tab-body">
+                    <tr *ngFor="let dataSource of datasourceTable | orderBy: sortKey : reverseSort | searchFilter: searchFilterObj | filterBy : defaultngxFilterObj | exactFilter : exactFilterObj | paginate: config as result; let i = index"
+                     class="no-mar gen-tab-body-tr selectTask" [class.active]="selectedRow === dataSource[uniqueFeild]"
+                    (click)="getrowClicked(dataSource,i)" id="trdata{{i}}">
+                        <td class="gen-tab-body-td gen-wrap-text" *ngFor="let datafeild of dataStructure" [attr.data-title]="datafeild.displayName" 
+                        [ngStyle]="datafeild.styleBodyObj? datafeild.styleBodyObj : ''">
+                            <ion-checkbox class="gen-tab-checkbox" *ngIf="datafeild.type === 'checkbox'" [(ngModel)]="dataSource[datafeild.bodyModel]"   name="checkboxdata"
+                            (ngModelChange)="onIndividualSelect(dataSource[datafeild.bodyModel], datafeild, dataSource, i)" (click)="$event.stopPropagation();"></ion-checkbox>
+                            
+                            <div *ngIf="datafeild.type === 'text'" [ngClass]="{'gen-hyper': datafeild.hyperLink}" (click)="datafeild.hyperLink ? linkClicked(dataSource, i, datafeild, $event) : false">{{dataSource[datafeild.feildname]}}</div>
+                            <div *ngIf="datafeild.type === 'status'">
+                                <span *ngIf="dataSource[datafeild.bodyModel]" [ngClass]="{'bg-active': (dataSource[datafeild.bodyModel] === 'A' || dataSource[datafeild.bodyModel] === 'R' ),'bg-waiting': (dataSource[datafeild.bodyModel] === 'W' || dataSource[datafeild.bodyModel] === 'I' ||  dataSource[datafeild.bodyModel] === 'Q'),'bg-stop': dataSource[datafeild.bodyModel] == 'S'}" class="status">
+                                    {{dataSource[datafeild.feildname]}}
+                                </span>
+                            </div>
+
+                        </td>
+                        {{result | json}}
+                    </tr>
+                    <tr class="no-mar border_bot_css"
+                        *ngIf="(datasourceTable | searchFilter: searchFilterObj | filterBy : defaultngxFilterObj | exactFilter : exactFilterObj).length === 0">
+                        <td class="gen-wrap-text no_rec_css">No records found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Left Side Panel Ends Here -->
+</div>

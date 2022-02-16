@@ -1,0 +1,176 @@
+{
+    "status": "success",
+    "data": [
+        {
+          "id": "6128a0064ef7254cc0167627",
+          "jobType": "FORECASTEXECUTION",
+          "scaler": [
+            "standard",
+            "minmax",
+            "norm"
+          ],
+          "encoder": [
+            "None",
+            "one-hot encoder",
+            "label_encoder"
+          ],
+          "optimizer": [
+            "Adam",
+            "Adadelta",
+            "Adagrad",
+            "SGD"
+          ],
+          "metrics": [
+            "accuracy",
+            "r2_score"
+          ],
+          "loss": [
+            "mae",
+            "mse",
+            "huber",
+            "mean_squared_logarithmic_error",
+            "mean_absolute_percentage_error"
+          ],
+          "inneractivation": [
+            "None"
+          ],
+          "activation": [
+            "relu",
+            "leaky_relu",
+            "tanh",
+            "sigmoid",
+            "hard_sigmoid"
+          ],
+          "cnnActivation": [
+            "relu",
+            "leaky_relu",
+            "tanh",
+            "sigmoid",
+            "hard_sigmoid"
+          ],
+          "lstmActivation": [
+            "relu",
+            "leaky_relu",
+            "tanh",
+            "sigmoid",
+            "hard_sigmoid"
+          ],
+          "fcnActivation": [
+            "relu",
+            "leaky_relu",
+            "tanh",
+            "sigmoid",
+            "hard_sigmoid"
+          ],
+          "lstmType": [
+            "Vanilla",
+            "Encoder_Decoder",
+            "CNN",
+            "Conv"
+          ],
+          "lstmDetails": {
+            "Vanilla": [
+              "lstmType",
+              "nlags",
+              "nleads",
+              "blockUnits",
+              "batchSize",
+              "epochs",
+              "dropout",
+              "activation",
+              "layers",
+              "resetWeights",
+              "loss",
+              "metrics",
+              "optimizer",
+              "stateful",
+              "l1L2",
+              "scalerType",
+              "modelConfigName",
+              "testSize",
+              "jobType",
+              "modelType"
+            ],
+            "Encoder_Decoder": [
+              "lstmType",
+              "nlags",
+              "nleads",
+              "blockUnits",
+              "batchSize",
+              "epochs",
+              "dropout",
+              "activation",
+              "encLayers",
+              "decLayers",
+              "resetWeights",
+              "loss",
+              "metrics",
+              "optimizer",
+              "stateful",
+              "l1L2",
+              "scalerType",
+              "modelConfigName",
+              "testSize",
+              "jobType",
+              "modelType"
+            ],
+            "CNN": [
+              "lstmType",
+              "nlags",
+              "nleads",
+              "blockUnits",
+              "batchSize",
+              "epochs",
+              "dropout",
+              "cnnActivation",
+              "lstmActivation",
+              "cnnLayers",
+              "lstmLayers",
+              "filters",
+              "kernelSize",
+              "poolSize",
+              "resetWeights",
+              "loss",
+              "metrics",
+              "optimizer",
+              "stateful",
+              "l1L2",
+              "scalerType",
+              "modelConfigName",
+              "testSize",
+              "jobType",
+              "modelType"
+            ],
+            "Conv": [
+              "lstmType",
+              "nlags",
+              "nleads",
+              "blockUnits",
+              "batchSize",
+              "epochs",
+              "dropout",
+              "cnnActivation",
+              "lstmActivation",
+              "fcnActivation",
+              "cnnLayers",
+              "lstmLayers",
+              "fcnLayers",
+              "filters",
+              "kernelSize",
+              "poolSize",
+              "resetWeights",
+              "loss",
+              "metrics",
+              "optimizer",
+              "stateful",
+              "l1L2",
+              "scalerType",
+              "modelConfigName",
+              "testSize",
+              "jobType",
+              "modelType"
+            ]
+          }
+        }
+      ]
+}

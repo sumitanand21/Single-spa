@@ -1,0 +1,389 @@
+<ion-row class="parent-content">
+    <ion-row *ngIf="tableLoader" class="spinner-div">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-row>
+    <ion-row *ngIf="!tableLoader" class="row no-mar wrap-cont">
+        <ion-col size="4" class="border-r no-padd">
+
+            <!-- Table view Starts  -->
+            <ion-row class="df-col">
+
+                <ion-row class="row no-mar">
+                    <ion-row class="page_css_view">
+                        <ion-row class="paginate_css">
+                            <span>
+                                <ion-icon class="search_mat" aria-hidden="false" aria-label="search icon"
+                                    [src]="anomalyService.createSvgUrl('search-outline.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="form-control css_search" type="text"
+                                    [(ngModel)]="searchFilter" placeholder="Search" maxlength="150"
+                                    (ngModelChange)="onsearchChange(searchFilter)">
+                            </span>
+                        </ion-row>
+                        <ion-row class="d-flex paginate-align">
+                            <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex"
+                                (pageChange)="changepage($event)">
+                                <ion-row class="d-flex process_rows_css">
+                                    <span class="mar-r-8 paginate-text">Rows:</span>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                        (selectionChange)="setNewPageSize(itemPerPage)">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                                </ion-row>
+                                <ion-row class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                        [disabled]="pT.isFirstPage()">
+                                        < </button>
+                                </ion-row>
+
+                                <ion-row class="d-flex process_matselect">
+                                    <span class="paginate-text"> Page</span>
+                                    <input autocomplete="off" matInput class="currpage-input" type="text"
+                                        [(ngModel)]="inputCurrentpage" [appAlphaNumeric]="'num'"
+                                        (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+
+                                    <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                                </ion-row>
+                                <ion-row class="pagination-next" [class.disabled]="pT.isLastPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.next()"
+                                        [disabled]="pT.isLastPage()"> > </button>
+                                </ion-row>
+                            </pagination-template>
+
+                        </ion-row>
+                    </ion-row>
+
+                </ion-row>
+
+                <ion-row class="f-max out-table mod-table-scroll">
+                    <table class="df-col">
+                        <thead class="sticky-head">
+                            <tr class="row no-mar head-tr">
+                                <th class="col-6 wrap-text" title="Model Configuration Name">Model Config Name
+                                    <div class="select-cur" (click)="sort('modelConfigName')">
+                                        <ion-icon *ngIf="!(key == 'modelConfigName' && reverse)" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                            [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'modelConfigName' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </div>
+                                </th>
+                                <th class="col-6 wrap-text" title="Type">Type
+                                    <div class="select-cur" (click)="sort('jobType')">
+                                        <ion-icon *ngIf="!(key == 'jobType' && reverse)" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                            [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'jobType' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </div>
+                                </th>
+                                <!-- <th class="col-3 wrap-text" title="Number in Use">Count
+                                    <div class="select-cur" (click)="sort('modelConfigCount')">
+                                        <ion-icon *ngIf="!(key == 'modelConfigCount' && reverse)" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                            [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'modelConfigCount' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </div>
+                                </th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row no-mar pointer-rw body-tr"
+                                [ngClass]="{'table-b-r': (selModelObj && selModelObj.modelConfigName && model.modelConfigName == selModelObj.modelConfigName)}"
+                                *ngFor="let model of modelDetails | orderBy: key : reverse | filter:searchFilter | paginate: config; let i = index"
+                                (click)="getModelConfigDetails(model)">
+                                <td class="col-6  r-name wrap-text" title="{{model.modelConfigName}}">
+                                    {{model.modelConfigName}}</td>
+                                <td class="col-6  wrap-text" title="{{model.jobType}">{{model.jobType}}</td>
+                                <!-- <td class="col-3  wrap-text" title="{{model.modelConfigCount}}">{{model.modelConfigCount}}</td> -->
+                            </tr>
+                            <tr class="row no-mar body-tr"
+                                *ngIf="(modelDetails | filter:searchFilter | paginate: config).length == 0">
+                                <td class="col-12 wrap-text no_rec_css">No records found</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </ion-row>
+            </ion-row>
+
+            <!-- Table view Ends -->
+
+        </ion-col>
+        <ion-col size="8" class="padd-22 df-col cont-scrl">
+            <ion-col class="fmax sub-cont-scrl">
+
+                <ion-col class="row no-mar" *ngIf="checkifObjectExist(selectedModelObject) == false && !detailLoader">
+                    <ion-col size="12" class="mar-b-25">
+                        <ion-label *ngIf="checkifObjectExist(selModelObj) == true" class="head-label">No model
+                            configuration details available</ion-label>
+                        <ion-label *ngIf="checkifObjectExist(selModelObj) == false" class="head-label">Select at least
+                            one model configuration to show the details</ion-label>
+                    </ion-col>
+
+                </ion-col>
+
+                <ion-col *ngIf="detailLoader" class="spinner-div">
+                    <mat-progress-spinner color="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-col>
+
+                <ion-row class="row_ion_css" *ngIf="checkifObjectExist(selectedModelObject) == true && !detailLoader">
+                    <ion-col class="row no-mar">
+                        <span class="">
+                            <span class="head-label">{{selectedModelObject.modelConfigName}}</span>
+                        </span>
+
+                        <ion-col>
+                            <ion-button type="button" color="danger"
+                                class="shadowbtn btn btn-danger delete-mod mar-l-15 model_conf_btn"
+                                (click)="deleteModelConfig()">Delete</ion-button>
+                            <ion-button type="button" *ngIf="anomalyService.activatedPath.includes('alltask')"
+                                class="model_conf_btn shadowbtn btn btn-primary save-mod mar-l-15"
+                                (click)="navigateTo('/schedule/alltask/anomalymodelconfig/upsertmodelconfig',selectedModelObject)">
+                                Edit</ion-button>
+                            <ion-button type="button" *ngIf="anomalyService.activatedPath.includes('anomalydetection')"
+                                class="model_conf_btn shadowbtn btn btn-primary save-mod mar-l-15"
+                                (click)="navigateTo('/schedule/anomalydetection/anomalymodelconfig/upsertmodelconfig',selectedModelObject)">
+                                Edit</ion-button>
+                            <ion-button type="button" *ngIf="anomalyService.activatedPath.includes('anomalyview')"
+                                class="model_conf_btn shadowbtn btn btn-primary save-mod mar-l-15"
+                                (click)="navigateTo('/schedule/anomalyview/anomalymodelconfig/upsertmodelconfig',selectedModelObject)">
+                                Edit</ion-button>
+                        </ion-col>
+                    </ion-col>
+                    <ion-col class="row no-mar">
+                        <ion-col size="3" class="mar-b-25">
+                            <ion-label class="body-label">Name</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.modelConfigName}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25">
+                            <ion-label class="body-label">Job Type</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.jobType}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.encoder">
+                            <ion-label class="body-label">Encoder</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.encoder}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.scaler">
+                            <ion-label class="body-label">Scalar</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.scaler}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.optimizer">
+                            <ion-label class="body-label">Optimizer</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.optimizer}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.activation">
+                            <ion-label class="body-label">Activation</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.activation}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.decoder_activation">
+                            <ion-label class="body-label">Decoder_activation</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.decoder_activation}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.loss">
+                            <ion-label class="body-label">Loss</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.loss}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.epochs">
+                            <ion-label class="body-label">Epochs</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.epochs}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.p_components">
+                            <ion-label class="body-label">p_components</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.p_components}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.dropout">
+                            <ion-label class="body-label">Dropout</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.dropout}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.l1L2">
+                            <ion-label class="body-label">L1, L2</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.l1L2}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.batchSize">
+                            <ion-label class="body-label">Batch Size</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.batchSize}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.metrics">
+                            <ion-label class="body-label">Metrics</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.metrics}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.krange">
+                            <ion-label class="body-label">K Range</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.krange}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.desiredVariance">
+                            <ion-label class="body-label">Desired Variance</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.desiredVariance}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.nodes">
+                            <ion-label class="body-label">Node List</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.nodes}}</ion-col>
+                        </ion-col>
+
+
+
+                        <ion-col size="12" class="col-12-css">
+                            <ion-row class="data-set-border"></ion-row>
+                        </ion-col>
+
+                    </ion-col>
+
+                    <ion-col class="row no-mar data_search">
+                        <ion-col class="dataset_css_fix">
+                            <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.dataSetName">
+                                <ion-label class="body-label">Data Set</ion-label>
+                                <ion-col class="data-label">{{selectedModelObject.dataSetName}}</ion-col>
+                            </ion-col>
+
+                            <ion-col size="3" class="mar-b-25" *ngIf="selectedModelObject.uniqueFeature">
+                                <ion-label class="body-label">Unique Feature</ion-label>
+                                <ion-col class="data-label">{{selectedModelObject.uniqueFeature}}</ion-col>
+                            </ion-col>
+                        </ion-col>
+
+                        <ion-row size="12" class="mar-b-25">
+                            <ion-col class="outer-row">
+
+                                <mat-tab-group class="feature-tab" (selectedTabChange)="onFeatureTabChanged($event);"
+                                    mat-align-tabs="start">
+                                    <mat-tab label="Xfeature List({{selectedModelObject.xfeatureList.length}})">
+                                        <ion-row>
+                                            <ion-col size="12" class="no-padd searc_icon_css">
+                                                <span class="ion-search_css">
+                                                    <ion-icon class="search_mat" aria-hidden="false"
+                                                        aria-label="search icon"
+                                                        [src]="anomalyService.createSvgUrl('search-outline.svg')">
+                                                    </ion-icon>
+                                                    <input autocomplete="off" matInput
+                                                        class="input-feild-search form-control" placeholder="Search"
+                                                        maxlength="150" type="text" [(ngModel)]="xFeatureSearch">
+                                                </span>
+                                            </ion-col>
+
+                                            <ion-col size="12" class="feature-tab-list">
+                                                <ion-col class="row no-mar">
+
+                                                    <ion-col class="" size="6"
+                                                        *ngFor="let xfeature of selectedModelObject.xfeatureList | filter:xFeatureSearch">
+                                                        <ul class="tab-ul">
+                                                            <li class="tab-li">
+                                                                <span class="tab-data-label">{{xfeature.name}}</span>
+                                                            </li>
+                                                        </ul>
+
+                                                    </ion-col>
+
+                                                </ion-col>
+                                            </ion-col>
+                                        </ion-row>
+                                    </mat-tab>
+
+                                    <mat-tab label="Training Filters({{selectedModelObject.trainingFilter.length}})">
+                                        <ion-row>
+                                            <ion-col size="12" class="no-padd">
+                                                <span class="ion-search_css">
+                                                    <ion-icon class="search_mat" aria-hidden="false"
+                                                        aria-label="search icon"
+                                                        [src]="anomalyService.createSvgUrl('search-outline.svg')">
+                                                    </ion-icon>
+                                                    <input autocomplete="off" matInput
+                                                        class="input-feild-search form-control" placeholder="Search"
+                                                        maxlength="150" type="text" [(ngModel)]="trainFilterSearch">
+                                                </span>
+                                            </ion-col>
+                                            <ion-col size="12" class="feature-tab-list">
+                                                <ion-col class="row no-mar">
+
+                                                    <ion-col class="" size="6"
+                                                        *ngFor="let trainFilter of selectedModelObject.trainingFilter | filter:trainFilterSearch">
+                                                        <ul class="tab-ul">
+                                                            <li class="tab-li">
+                                                                <span class="tab-data-label">{{trainFilter.name}}</span>
+                                                            </li>
+                                                        </ul>
+
+                                                    </ion-col>
+
+                                                </ion-col>
+                                            </ion-col>
+                                        </ion-row>
+
+                                    </mat-tab>
+
+                                    <mat-tab label="String Features({{selectedModelObject.stringFeatures.length}})">
+                                        <ion-row>
+                                            <ion-col size="12" class="no-padd">
+                                                <span class="ion-search_css">
+                                                    <ion-icon class="search_mat" aria-hidden="false"
+                                                        aria-label="search icon"
+                                                        [src]="anomalyService.createSvgUrl('search-outline.svg')">
+                                                    </ion-icon>
+                                                    <input autocomplete="off" matInput
+                                                        class="input-feild-search form-control" placeholder="Search"
+                                                        maxlength="150" type="text" [(ngModel)]="strFeatureSearch">
+                                                </span>
+                                            </ion-col>
+                                            <ion-col class="feature-tab-list" size="12">
+                                                <ion-col class="row no-mar">
+
+                                                    <ion-col class="" size="6"
+                                                        *ngFor="let strfeature of selectedModelObject.stringFeatures | filter:strFeatureSearch">
+                                                        <ul class="tab-ul">
+                                                            <li class="tab-li">
+                                                                <span class="tab-data-label">{{strfeature.name}}</span>
+                                                            </li>
+                                                        </ul>
+
+                                                    </ion-col>
+
+                                                </ion-col>
+                                            </ion-col>
+                                        </ion-row>
+
+                                    </mat-tab>
+
+                                </mat-tab-group>
+
+
+
+
+                            </ion-col>
+                        </ion-row>
+
+
+                    </ion-col>
+
+                </ion-row>
+            </ion-col>
+        </ion-col>
+    </ion-row>
+
+</ion-row>

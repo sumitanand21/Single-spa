@@ -1,0 +1,24 @@
+<header>
+  <div class="Header_main">
+  <div class="nav">
+      <input autocomplete="off" type="checkbox" id="nav-check">
+      
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+      
+      <div class="nav-links">
+        <feature-toggle-provider [features]="featureToggleData">
+          <a label="Correlation" *featureToggle="'CORRELATION'" [routerLink]="'/' + prefixUrl + '/correlation'" routerLinkActive="active" class="sub-header correlation-header">Correlation</a>
+          <a *featureToggle="'nCORRELATION'"  class="sub-header correlation-header"></a>
+        </feature-toggle-provider>       
+       </div>
+    </div>
+
+  </div>
+</header>
+    

@@ -1,0 +1,160 @@
+<ion-row class="parent-content df-col">
+    <ion-row class="corr-header">
+        <app-correlation-header [activeView]="'CorrelatedGroups'" [disableAll]="setDisable" [allDetails]="allCorrelationDetails" (emitOut)="provideInputsToMap($event)"></app-correlation-header>
+    </ion-row>
+    <ion-col *ngIf="isLoading" class="spinner-div col-12 no-padd f-max">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-col>
+    <ion-row class="wrap-cont f-max" [ngClass]="{'hide_display':isLoading}">
+        <ion-row class="first_div_css" [ngClass]="{'hide_display': !showchart}">   
+            <ion-col *ngIf="isLoading" class="spinner-div col-12">
+                <mat-progress-spinner color="slategrey" mode="indeterminate">
+                </mat-progress-spinner>
+            </ion-col>
+            <ion-col *ngIf="(chartDetails.chartArr.length == 0 && chartType == 'bubble') || (histogramDetails.chartArr.length == 0 && chartType == 'histogram')" class="no-data">No Data Available</ion-col>
+            <app-bubblechart  *ngIf="chartType === 'bubble' && chartDetails.chartArr.length !== 0" [chartData]="chartDetails"></app-bubblechart>
+            <app-histogram  *ngIf="chartType === 'histogram' && histogramDetails.chartArr.length !== 0" [chartData]="histogramDetails"></app-histogram>
+        </ion-row>
+
+        <ion-row class="second_div_css" [ngClass]="showchart ? 'height_graph' : 'height_no_graph'">
+   
+            <ion-row class="group-tab">
+                <ion-row class="dc-flex sticky-head grp-tab">
+                    <ion-row class="title-head">All Group Statistics Tables:</ion-row>
+                    <ion-row class="page_css_view">
+                        <ion-row class="paginate_css">
+                            <span>
+                                <!-- <mat-icon aria-hidden="false" class="search_mat" aria-label="search icon">search</mat-icon> -->
+                                <ion-icon class="ion_icon_search" [src]="correlationService.createSvgUrl('search.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="form-control css_search" type="text" [(ngModel)]="searchFilter"
+                                    placeholder="Search" (ngModelChange)="onsearchChange(searchFilter)">
+                            </span>
+                        </ion-row>
+                        <ion-row class="dc-flex paginate-align">
+                            <pagination-template #pT="paginationApi" [id]="config.id" class="dc-flex"
+                                (pageChange)="changepage($event)">
+                                <ion-row class="dc-flex process_rows_css">
+                                    <span class="mar-r-8 paginate-text">Rows:</span>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                        (selectionChange)="setNewPageSize(itemPerPage)">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                                </ion-row>
+                                <ion-row class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                        [disabled]="pT.isFirstPage()">
+                                    </button>
+                                </ion-row>
+    
+                                <ion-row class="dc-flex process_matselect">
+                                    <span class="paginate-text"> Page</span>
+                                    <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage"
+                                        (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+    
+                                    <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                                </ion-row>
+                                <ion-row class="pagination-next" [class.disabled]="pT.isLastPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.next()"
+                                        [disabled]="pT.isLastPage()"> > </button>
+                                </ion-row>
+                            </pagination-template>
+    
+                        </ion-row>
+                    </ion-row>
+                    
+                </ion-row>
+                <ion-row class="">
+                    <table>
+                        <thead>
+                            <tr class="row no-mar head-tr table-head-row table-head-row">
+                                <th class="width-16">Group Name</th>
+                                <th class="width-14">
+                                    <ion-col class="dc-flex">
+                                        <ion-col class="grp-mem">Total Group Members</ion-col>
+                                        <ion-col class="select-cur" (click)="sort('TotalGroupMembers')">
+                                            <mat-icon *ngIf="!(key == 'TotalGroupMembers' && reverse)" aria-hidden="false" class="arrow_mat" aria-label="down icon">arrow_drop_down</mat-icon>
+                                            <mat-icon *ngIf="key == 'TotalGroupMembers' && reverse" aria-hidden="false" class="arrow_mat" aria-label="up icon">arrow_drop_up</mat-icon>
+                                        </ion-col>
+                                        
+                                    </ion-col>
+                                    
+                                </th>
+                                <th class="width-14">
+                                    <ion-col class="dc-flex">
+                                        <ion-col class="mean-corr">Mean Correlation</ion-col>
+                                        <ion-col class="select-cur" (click)="sort('MeanCorrelation')">
+                                            <mat-icon *ngIf="!(key == 'MeanCorrelation' && reverse)" aria-hidden="false" class="arrow_mat" aria-label="down icon">arrow_drop_down</mat-icon>
+                                            <mat-icon *ngIf="key == 'MeanCorrelation' && reverse" aria-hidden="false" class="arrow_mat" aria-label="up icon">arrow_drop_up</mat-icon>
+                                        </ion-col>
+                                        
+                                    </ion-col>
+                                    </th>
+                                <th class="width-14">
+                                    Median 
+                                    <span class="median-span select-cur" (click)="sort('Median')">
+                                        <mat-icon *ngIf="!(key == 'Median' && reverse)" aria-hidden="false" class="arrow_mat median-mat" aria-label="down icon">arrow_drop_down</mat-icon>
+                                        <mat-icon *ngIf="key == 'Median' && reverse" aria-hidden="false" class="arrow_mat median-mat" aria-label="up icon">arrow_drop_up</mat-icon>
+                                    </span>
+                                </th>
+                                <th class="width-14">Standard Deviation</th>
+                                <th class="width-14">Minimum</th>
+                                <th class="width-14">Maximum</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row no-mar body-tr select-cur" *ngFor="let group of groupsData | orderBy: key : reverse | filter : searchFilter | paginate: config; let i = index" [class.active]="group && selectedGroup && group.GroupName == selectedGroup.GroupName" (click)="setClickedRow(group)">
+                                <td class="width-16">{{group.GroupName}}</td>
+                                <td class="width-14">{{group.TotalGroupMembers}}</td>
+                                <td class="width-14">{{group.MeanCorrelation}}</td>
+                                <td class="width-14">{{group.Median}}</td>
+                                <td class="width-14">{{group.StandardDeviation}}</td>
+                                <td class="width-14">{{group.Minimum}}</td>
+                                <td class="width-14">{{group.Maximum}}</td>
+                            </tr>
+                            <tr class="row no-mar body-tr" *ngIf="(groupsData |filter : searchFilter).length == 0">
+                                <td class="col-12 no_rec_css">No records found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ion-row>
+            </ion-row>
+            <ion-row class="group-det-tab">
+            <ion-row class="group-det-fix df-col">
+            <ion-row class="group-det-head">
+                <ion-row class="grp-title-head wrap-text">{{selectedGroup ? selectedGroup.GroupName : 'Group'}} Members ({{groupMembers.length}})</ion-row>
+                <ion-row>
+                    <ion-button type="button" *ngIf="selectedGroup" class="shadowbtn btn-primary run-cor-btn" (click)="navigateTo()">View Correlation</ion-button>
+                </ion-row>
+            </ion-row>
+             
+
+            <ion-row class="scroll-div f-max">
+                <table class="member-table">
+                    <thead>
+                        <tr class="row no-mar head-tr sticky-head">
+                            <th class="feature-tab">Feature Name</th>
+                            <th class="sequence-tab">Sequence Order</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row no-mar body-tr" *ngFor="let member of groupMembers">
+                            <td class="feature-tab">{{member.FeatureName}}</td>
+                            <td class="seq-tab sequence-tab">{{member.SequenceOrder}}</td>
+                        </tr>
+                        <tr class="row no-mar body-tr" *ngIf="groupMembers.length == 0">
+                            <td class="col-12 no_rec_css">No records found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ion-row>
+
+            </ion-row>
+
+            </ion-row>
+        </ion-row>
+
+    </ion-row>
+</ion-row>

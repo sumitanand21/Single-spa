@@ -1,0 +1,47 @@
+<ion-row class="container-fluid tab-selector-bar df-col">
+
+  <!-- <ion-row class="min-height-48 f-min main_border_css" id="colspan_css_scroll" *ngIf="showTabView">
+    <input autocomplete="off" type="button" value="Classification" class="tab-css"
+      [ngClass]="{'active-tab' : nwSnapshotService.Classification }" id="classificationTab"
+      (click)="clusteringNavigation('/clustering/classification')" [disabled]="nwSnapshotService.disableheader">
+    <input autocomplete="off" type="button" value="Root Cause Analysis" class="tab-css"
+      [ngClass]="{'active-tab' : nwSnapshotService.RCA }" id="clusteringViewTab"
+      (click)="clusteringNavigation('/clustering/rca')" [disabled]="nwSnapshotService.disableheader">
+  </ion-row>
+
+  <ion-row class="col-md-12 min-height-48 d-flex no-padd f-min" id="colspan_css_scroll" *ngIf="!showTabView">
+    <ion-col class="d-flex col-12 no-padd-r suneel_css">
+      <ion-col class="d-flex no-padd breadcrumb-wrap">
+        <ul class="breadcrumb-mod">
+          <li>
+            <button type="button" class="breadcrumb-btn btn btn-default"
+              (click)="clusteringNavigation('/clustering/execution')">Execution and Modeling</button>
+          </li>
+
+          <li *ngIf="nwSnapshotService.ClusteringModelTraining"><button type="button"
+              class="breadcrumb-btn btn btn-default" (click)="clusteringNavigation('/clustering/execution', 4)">Model
+              Training</button></li>
+          <li *ngIf="nwSnapshotService.ClusteringModelTraining"><button type="button"
+              class="breadcrumb-btn btn btn-default"
+              (click)="clusteringNavigation('/clustering/execution', 4)">{{nwSnapshotService.ClusteringTaskName}}</button>
+          </li>
+          <li *ngIf="nwSnapshotService.ClusteringModelTraining"><button disabled type="button"
+              class="breadcrumb-btn btn btn-default">{{nwSnapshotService.ClusteringModelTrainingNameDisp ?
+              nwSnapshotService.ClusteringModelTrainingNameDisp : 'Training Progress'}}</button></li>
+
+        </ul>
+      </ion-col>
+      <ion-col class="">
+        <ion-button color="transaparent" *ngIf="nwSnapshotService.ClusteringModelTraining" type="button"
+          class="shadowbtn model-btn btn btn-default move-r" (click)="clusteringNavigation('/schedule/alltask', 4)">Back
+        </ion-button>
+      </ion-col>
+    </ion-col>
+  </ion-row> -->
+  <ion-row class="main_route_css f-max main_pad_css">
+    <ion-col class="height-100 main_pad_css">
+      <router-outlet></router-outlet>
+    </ion-col>
+  </ion-row>
+
+</ion-row>

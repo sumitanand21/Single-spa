@@ -1,0 +1,23 @@
+{
+    "status": "success",
+    "data": {
+        "id": "1234",
+        "dataSetName": "alarm_data",
+        "groupName": "group1",
+        "features": [
+            {
+                "HOUP2@LOA": "bool",
+                "HOUP3@LOF": "bool",
+                "HOUP3@POSH": "bool",
+                "HOUP4@BER": "bool",
+                "RICP1@LOS": "bool",
+                "RICP1@RTH": "bool",
+                "RICP2@BER": "bool",
+                "STLP1@LOS": "bool",
+                "STLP2@LOS": "bool"
+            }
+        ],
+        "jobType": "CLASSIFICATION",
+        "modelType": "PROFILER"
+    }
+}

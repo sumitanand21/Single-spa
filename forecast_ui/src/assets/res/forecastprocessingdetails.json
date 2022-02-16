@@ -1,0 +1,29 @@
+{
+  "status": "success",
+  "data": {
+    "uid": "5ff8c2085e594350b2e86538",
+    "dataId": "1MJF901@1-20-17@Spanloss@PM_NEAR_END_Tx",
+    "modelConfigName": "OPR",
+    "timeseriesType": "Online",
+    "lossFunction": "Mean Absolute Error",
+    "sampleTime": 5,
+    "defaultDataRange": "11,20",
+    "timeForForwardPrediction": 12,
+    "cpuUsage": "0.40",
+    "memoryUsage": "0.9943984375",
+    "gpuUsage": "0.444",
+    "gpuMemoryUsage": "0.2",
+    "dataSetName": "pmdata",
+    "speed": "0.14083525622950274records/sec",
+    "numberOfJobRunning": "1",
+    "timeOfRunning": "11:48:51.963660",
+    "numberofRecordsProcessed": "5990",
+    "jobType": "EXECUTION",
+    "modelType": "FORECAST",
+    "lossValue": "8.193717956542969",
+    "jobStatus": "Stopped"
+  },
+  "orderid": "1",
+  "grafanaUrl": "https://167.254.204.64:32300/d/CijHdYGMk/pm_forcast_1",
+  "grfnUrl" : "https://167.254.204.64:32300/d/CijHdYGMk/pm_forcast_1"
+}

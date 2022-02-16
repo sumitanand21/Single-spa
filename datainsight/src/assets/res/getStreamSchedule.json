@@ -1,0 +1,19 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+          {
+            "dataSetName": "alarmData",
+            "dataSourceType": "stream_data",
+            "jobType": "DATAMANAGEMENT",
+            "jobs": [
+              "forecast",
+              "anomaly"
+            ],
+            "jobStatus": "running"
+          }
+        ],
+        "responseType": "",
+        "status_code": 200
+      }
+}

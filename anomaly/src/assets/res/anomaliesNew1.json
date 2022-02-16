@@ -1,0 +1,47 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "@timestamp": "2021-01-24T13:57:26Z",
+      "measurement_name": "kafka_consumer",
+      "STLP3@LOS": 1,
+      "modelConfigName": "model2",
+      "RICP1@RTH": 1,
+      "dataSetName": "alarm_data",
+      "HOUP3@LOF": 0,
+      "RICP1@LOS": 1,
+      "jobType": "ANOMALYEXECUTION1",
+      "HOUP3@POSH": 1,
+      "HOUP4@BER": 0,
+      "loss": 0.20115474997114183,
+      "modelName": "am2_t1_2021-01-12T21:39Z_2021-01-29T13:38Z_Standard_model.sav",
+      "STLP2@LOS": 0,
+      "RICP2@BER": 0,
+      "time": "2021-01-24 13:57:26",
+      "STLP1@LOS": 1,
+      "HOUP2@LOA": 1,
+      "host": "telegraf-opticalam2anomalies-0"
+    },
+    {
+      "@timestamp": "2021-01-24T13:57:25Z",
+      "measurement_name": "kafka_consumer",
+      "STLP3@LOS": 1,
+      "modelConfigName": "model2",
+      "RICP1@RTH": 1,
+      "dataSetName": "alarm_data",
+      "HOUP3@LOF": 0,
+      "RICP1@LOS": 1,
+      "jobType": "ANOMALYEXECUTION1",
+      "HOUP3@POSH": 1,
+      "HOUP4@BER": 0,
+      "loss": 0.20115474997114183,
+      "modelName": "am2_t1_2021-01-12T21:38Z_2021-01-29T13:38Z_Standard_model.sav",
+      "STLP2@LOS": 0,
+      "RICP2@BER": 0,
+      "time": "2021-01-24 13:57:25",
+      "STLP1@LOS": 1,
+      "HOUP2@LOA": 1,
+      "host": "telegraf-opticalam2anomalies-0"
+    }
+  ]
+}

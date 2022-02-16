@@ -1,0 +1,223 @@
+<ion-col class="df-col main-border">
+
+    <!-- Pagination view with search Starts Here -->
+    <ion-row  *ngIf="!isLoading">
+        <ion-col class="no-padd bor-btm">   
+            <ion-row class="mar-tb-12">
+
+                <!-- Drop down menu -->
+
+                    <ion-col class="col-md-3 col-sm-4 col-xs-12 d-flex load_mat_css">
+                        <mat-select disableOptionCentering  class="form-control drop-mat mat_width_css forecast_css" placeholder="Select" [(ngModel)]="selectedDataId" (ngModelChange)="loadData()" >
+                            <!-- <mat-option value="" >All</mat-option> -->
+                            <mat-option *ngFor="let selData of selectionDataSet" [value]="selData" >{{selData}}</mat-option>
+                        </mat-select>
+                    </ion-col>
+                    <!-- <mat-select disableOptionCentering  class="form-control drop-mat mat_width_css" [(ngModel)]="selectedDataId" (ngModelChange)="loadData()" >
+                        <mat-option value="" >All</mat-option>
+                        <mat-option *ngFor="let selData of selectionDataSet" [value]="selData" >{{selData}}</mat-option>
+                    </mat-select> -->
+                    <!-- <ion-item lines="none"> 
+                        <ion-select style="border: 1px solid var(--mtsclr-feild-border);" disableOptionCentering  [(ngModel)]="selectedDataId" (ngModelChange)="loadData()" >
+                            <ion-select-option value="">All</ion-select-option> 
+                            <ion-select-option *ngFor="let selData of selectionDataSet" [value]="selData">{{selData}}</ion-select-option> 
+                        </ion-select> 
+                    </ion-item> -->
+
+                    <!-- <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+                        <ion-select  disableOptionCentering name="modelencoderType" [(ngModel)]="modelObject.encoderType" required>
+                          <ion-select-option disabled hidden value="">Select</ion-select-option>
+                          <ion-select-option *ngFor="let encoderTypeObj of EncoderTypeDD" [value]="encoderTypeObj">{{encoderTypeObj}}</ion-select-option>
+                        </ion-select>
+                    </div> -->
+
+
+
+                <!-- <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+                  <ion-select disableOptionCentering style="border: 1px solid var(--mtsclr-feild-border);" name="modelactivation" [(ngModel)]="modelObject.activation"
+                    required>
+                    <ion-select-option disabled hidden value="">Select</ion-select-option>
+                    <ion-select-option *ngFor="let actObj of activationDD" [value]="actObj">{{actObj}}</ion-select-option>
+                  </ion-select>
+                </div> -->
+
+                <!-- Forecast button -->
+                <!-- <ion-col>
+                    <ion-button class="move-r" (click)="scheduleSelection()" [disabled]="!atLeastOneChecked()">Forecast</ion-button>
+                </ion-col> -->
+                <ion-col  class="col-md-9 col-sm-8 col-xs-12 no-tb-pad every-width">
+                    <ion-label class="d-flex span_group_css">
+                        <ion-icon aria-hidden="false" class="refresh_mat" (click)="refreshData()" [src]="forecastService.createSvgUrl('refresh.svg')">refresh</ion-icon>
+                    </ion-label>
+                    <ion-button class="shadowbtn ion-mid-button ion-noncap-button" (click)="scheduleSelection()" [disabled]="!atLeastOneChecked()">Forecast</ion-button>
+                </ion-col>
+
+            </ion-row>
+        </ion-col>
+
+        <ion-col class="col-12 no-padd">   
+            <ion-row class="no-mar page_css_view">
+
+                <ion-col class="d-flex col-md-4 col-sm-4 col-xs-12 no-tb-pad ion_search">
+                    <!-- <i class="fa fa-search serach-icon" aria-hidden="true"></i>
+                    <mat-icon aria-hidden="false" class="search_mat" aria-label="search icon">search</mat-icon> -->
+                    <input autocomplete="off" maxlength="150" matInput  placeholder="Search with data id..." class="input-feild form-control" type="text" [(ngModel)]="searchFilter" (ngModelChange)="onsearchChange(searchFilter)"> 
+                    <ion-icon class="ion_icon_search"[src]="forecastService.createSvgUrl('search.svg')"></ion-icon>
+                    <!-- <ion-searchbar autocomplete="off" maxlength="150" showClearButton="never" matInput style="margin-top:10px" placeholder="Search with data id..." type="text" [(ngModel)]="searchFilter" (ngModelChange)="onsearchChange(searchFilter)"></ion-searchbar> -->
+                </ion-col>
+
+                <!-- Row and Page -->
+                <ion-col class="col-md-8 col-sm-8 col-xs-12 no-tb-pad">
+                    <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex page_select_css"(pageChange)="changepage($event)">
+                        <!-- Rows -->
+                        <ion-row class="d-flex process_rows_css">  
+                            <!-- <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage" (selectionChange)="setNewPageSize(itemPerPage)">
+                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                            </mat-select> -->
+                        <ion-text class="mar-r-8 ion-text-small">Rows:</ion-text> 
+                        <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage" (selectionChange)="setNewPageSize(itemPerPage)">
+                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                        </mat-select>
+                        <!-- <ion-item> 
+                            <ion-select disableOptionCentering [(ngModel)]="itemPerPage" (selectionChange)="setNewPageSize(itemPerPage)" >
+                                <ion-select-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</ion-select-option>
+                            </ion-select> 
+                        </ion-item> -->
+                        </ion-row>
+                        <!-- Pages -->
+                        <!-- <div class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                        <ion-button expand="full" fill="clear" (click)="pT.previous()" [disabled]="pT.isFirstPage()"> < </ion-button>
+                        </div>
+                        <div class="d-flex process_matselect"> 
+                            <span class="paginate-text"> Page</span>
+                                <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage" [appAlphaNumeric]="'num'" (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+                        
+                        <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                        </div>
+                        <div class="pagination-next" [class.disabled]="pT.isLastPage()">
+                            <ion-button expand="full" fill="clear" (click)="pT.next()" [disabled]="pT.isLastPage()"> > </ion-button> -->
+                        <!-- </div>  -->
+                        <ion-button color="dark" class="pagination-previous" expand="full" fill="clear" (click)="pT.previous()" [disabled]="pT.isFirstPage()"> < </ion-button>
+                        
+                        <ion-text class="ion-text-small"> Page</ion-text>
+                        <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage" [appAlphaNumeric]="'num'" (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+                        <ion-text class="ion-text-small"> of {{pT.getLastPage()}}</ion-text>
+
+                        <ion-button color="dark" class="pagination-next" expand="full" fill="clear" (click)="pT.next()" [disabled]="pT.isLastPage()"> > </ion-button>
+
+                    </pagination-template> 
+                </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+        <!-- Pagination view with search Ends Here -->
+
+        <ion-row *ngIf="isLoading || isRefresh" class="spinner-div" lines="none">
+            <mat-progress-spinner color="slategrey" mode="indeterminate">
+            </mat-progress-spinner>
+            <!-- <ion-spinner color="slategrey" name="bubbles" mode="indeterminate"></ion-spinner> -->
+        </ion-row>
+    <!-- Table view Starts Here -->
+
+    <ion-row *ngIf="!isLoading && !isRefresh" class="f-max out-table mod-table-scroll">
+
+        <!-- Table Begins -->
+        <ion-grid *ngIf="!isLoading && !isRefresh" class="fsel-grid">
+            <!-- <div class="scrollit_css"> -->
+                <ion-row class="head-tr sticky-head">
+
+                    <!-- CheckBox  -->
+                    <ion-col size="1" class="cust-thead-th checkbox_col_one">
+                        <ion-checkbox class="fsel-tab-checkbox"   [ngModel]="isAllChecked()" name="all"
+                        (ngModelChange)="checkAlls($event)"></ion-checkbox>
+                        <!-- <label class="check-outer check-bottom-border">
+                            <input autocomplete="off" type="checkbox" name="all" [checked]="isAllChecked()" (change)="checkAlls($event)"/>
+                            <span class="checkmark"></span>
+                        </label> -->
+                    </ion-col>
+
+                    <ion-col class="cust-thead-th" >
+                        <ion-label>Data ID</ion-label>
+                        <ion-label (click)="sort('dataId')" class="fse-sort-icon">
+                            <!-- <mat-icon *ngIf="!(key == 'dataId' && reverse)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                            <mat-icon *ngIf="key == 'dataId' && reverse" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon> -->
+                            <ion-icon *ngIf="!(key == 'dataId' && reverse)" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-down-outline.svg')" ></ion-icon>
+                            <ion-icon *ngIf="key == 'dataId' && reverse" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-up-outline.svg')"></ion-icon> 
+                        </ion-label>
+                        <!-- <span class="glyphicon sort-icon" *ngIf="key =='dataID'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>   -->
+                    </ion-col>
+
+                    <ion-col size="2" class="cust-thead-th">
+                        <ion-label>Data Frequency</ion-label>
+                        <ion-label (click)="sort('dataFrequency')" class="fse-sort-icon">
+                            <ion-icon *ngIf="!(key == 'dataFrequency' && reverse)" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-down-outline.svg')"></ion-icon>
+                            <ion-icon *ngIf="key == 'dataFrequency' && reverse" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-up-outline.svg')"></ion-icon>
+                        </ion-label>
+                        <!-- <span class="glyphicon sort-icon" *ngIf="key =='dataFrequency'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                    </ion-col>
+
+                    <ion-col size="2" class="cust-thead-th">
+                        <ion-label>Data Range</ion-label>
+                        <ion-label (click)="sort('defaultDataRange')" class="fse-sort-icon">
+                            <ion-icon *ngIf="!(key == 'defaultDataRange' && reverse)" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-down-outline.svg')"></ion-icon>
+                            <ion-icon *ngIf="key == 'defaultDataRange' && reverse" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-up-outline.svg')"></ion-icon>
+                        </ion-label>
+                        <!-- <span class="glyphicon sort-icon" *ngIf="key =='dataRange'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                    </ion-col>
+
+                    <ion-col size="2" class="cust-thead-th">
+                        <ion-label>Time For Forward Prediction</ion-label>
+                        <ion-label (click)="sort('timeForForwardPrediction')" class="fse-sort-icon">
+                            <ion-icon *ngIf="!(key == 'timeForForwardPrediction' && reverse)" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-down-outline.svg')"></ion-icon>
+                            <ion-icon *ngIf="key == 'timeForForwardPrediction' && reverse" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-up-outline.svg')"></ion-icon>
+                        </ion-label>
+                        <!-- <span class="glyphicon sort-icon" *ngIf="key =='frwrdPredict'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                    </ion-col>
+
+                    <ion-col size="2" class="cust-thead-th">
+                        <ion-label>Model Configuration</ion-label>
+                        <ion-label (click)="sort('modelConfigName')" class="fse-sort-icon">
+                            <ion-icon *ngIf="!(key == 'modelConfigName' && reverse)" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-down-outline.svg')"></ion-icon>
+                            <ion-icon *ngIf="key == 'modelConfigName' && reverse" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-up-outline.svg')"></ion-icon>
+                        </ion-label>
+                        <!-- <span class="glyphicon sort-icon" *ngIf="key =='modelConfig'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                    </ion-col>
+                </ion-row>
+
+                    <ion-row *ngFor="let forecast of tempforecast | orderBy: key : reverse | searchFilter: {'dataId': searchFilter}  | paginate: config; let i = index" role="row" class="row no-mar body-tr" [class.active]="i == selectedRow" (click)="setClickedRow(i)" id="trdata{{i}}">
+                        <ion-col size="1" class="cust-tbody-td checkbox_col_css">
+                            <ion-checkbox class="fsel-tab-checkbox"   [(ngModel)]="forecast.checkboxdata" id="{{forecast.dataId}}" name="checkboxdata"></ion-checkbox>
+                            <!-- <label class="check-outer">
+                                <input autocomplete="off" type="checkbox" [(ngModel)]="forecast.checkboxdata" id="{{forecast.dataId}}" name="checkboxdata"/>
+                                <span class="checkmark"></span>
+                            </label> -->
+                        </ion-col>
+
+                        <ion-col class="cust-tbody-td r-name wrap-text" (click)="opentEditpopup(forecast)" title="{{forecast.dataId}}">{{forecast.dataId}}</ion-col>
+                        <ion-col size="2" class="cust-tbody-td wrap-text">{{forecast.dataFrequency}}</ion-col>
+                        <ion-col size="2" class="cust-tbody-td wrap-text">{{forecast.defaultDataRange}}</ion-col>
+                        <ion-col size="2" class="cust-tbody-td wrap-text">{{forecast.timeForForwardPrediction}}</ion-col>
+                        <ion-col size="2" class="cust-tbody-td wrap-text">{{forecast.modelConfigName}}</ion-col>
+                        <!-- <td>
+                            <span *ngIf="game.status" [ngClass]="{'bg-green': game.status == 'Finish','bg-blue': game.status == 'running','bg-orange': game.status == 'waiting'}" class="status">
+                            {{game.status}}
+                            </span>
+                        </td> -->
+                    </ion-row>
+
+                    <ion-row class="row no-mar body-tr" *ngIf="(tempforecast | searchFilter: {'dataId': searchFilter}).length == 0">
+                        <ion-text class="col-12 cust-tbody-td wrap-text no_rec_css">No records found</ion-text>
+                    </ion-row>
+                <!-- <ng-container *ngIf="this.forecastData.length == 0">
+                    <div  class="nodata_avail">No Data Available..!</div>
+                </ng-container>
+                <ng-container *ngIf="this.forecastData.length > 0">
+                <pagination [totalItems]="this.tableData" *ngIf="this.tableData > 0" [maxSize]="10" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;">  
+                </pagination> -->
+                <!-- </ng-container> -->
+
+            <!-- </div> -->
+        </ion-grid>
+    </ion-row>
+    <!-- Table view Ends Here -->
+</ion-col>

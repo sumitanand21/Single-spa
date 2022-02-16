@@ -1,0 +1,232 @@
+.graph-height{
+    height: 400px;
+}
+
+.graph-card-height{
+    height: 355px;
+    padding: 10px;
+}
+
+.background-color{
+    background-color: var(--mtsclr-background);
+}
+
+ion-card{
+ion-card-subtitle{
+    font-weight: 500;
+    color: #707070;
+    font: normal normal normal 14px/13px Segoe UI;
+    padding:10px;
+}
+
+ion-card-content{
+    font-weight: bold;
+    padding:10px;
+}
+}
+
+.drop-mat{
+    /* border-radius: 4px 0px 0px 4px; */
+    border: 1px solid var(--mtsclr-feild-border);
+      }
+
+      .drop_css_one{
+        max-width: 205px;
+        padding: 3px 12px 3px 12px;
+        font-size: 14px;
+    }
+
+    .icon_fafa{
+        width: 16px;
+        height: 16px;
+        color: var(--mtsclr-icon);
+    }
+
+    .every_css{
+        margin: 0 7px 0 10px;
+        font-size: 14px;
+        color: var(--mtsclr-icon);
+    }
+
+
+    .drop_css_two{
+      width: 100%;
+        max-width: 82px;
+        padding: 3px 12px 3px 12px;
+        font-size: 14px;
+        margin-right: 21px;
+    }
+
+    button{
+        height: 32px;
+    }
+    .load-btn{
+      background-color: #3B73B7;
+      width: 74px;
+      padding: 0;
+      color:#ffffff;
+    }
+
+    .drop-wid{
+      width:40%;
+    }
+    .drop-wid-s1 {
+        width:65%;  
+    }
+    .drop-wid-range {
+      width:auto;  
+      max-width: 60%;
+      height: 100%;
+  }
+  .range-div{
+    margin-bottom: 5px;
+  }
+    .drop-wid-s2 {
+        width:40%;  
+    }
+    .every-width{
+        width:60%;  
+        display:flex;
+        justify-content: flex-end;
+    }
+
+    .name-link{
+        color:#3B73B7 ;
+        cursor: pointer;
+    }
+
+    .menu-main{
+        padding:5px;
+        display: block;
+    }
+
+    .menu_edit_item{
+        display: flex;
+        align-items: baseline;
+        // margin-bottom: 14px;
+    }
+
+    .menu_label{
+        width: 85px;
+        font: normal normal 600 14px/20px Segoe UI;
+        color: var(--mtsclr-label);
+    }
+
+    .date_time{
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+  }
+
+  .date-label{
+    width:50px;
+    font: normal normal 600 14px Segoe UI;
+    color: var(--mtsclr-label);
+}
+
+.main-date-div {
+	display: flex;
+	align-items: center;
+	position:relative;
+	width:173px;      
+}
+
+.inputfeild {
+	width: 100%;
+	border: 1px solid var(--mtsclr-feild-border);
+	height: 100%;
+	border-radius: 4px;
+  height: 32px;
+	padding-left: 8px;
+	padding-right: 38px;
+	color: var(--mtsclr-text);
+	font: normal normal normal 14px Segoe UI;
+}
+
+.input-time-div{
+    width: 40px; 
+    margin-left: 12px;
+}
+.input-feild-time{
+   border: 1px solid var(--mtsclr-feild-border);
+   border-radius: 4px;
+   padding: 6px 3px 6px 3px;
+   color: var(--mtsclr-text);
+   text-align: center;
+   font: normal normal normal 14px Segoe UI;
+}
+
+.time-stamp{
+	font: normal normal normal 12px/16px Segoe UI;
+	color: var(--mtsclr-text);
+	// margin-left: 6px;
+}
+
+.menu-action{
+    justify-content: flex-end;
+    display: flex;
+    align-items: baseline;
+}
+
+.cancel-mod{
+    font: normal normal normal 14px/20px Segoe UI;
+    color: #707070;
+    background: white;
+    border-radius: 4px;
+    border:1px solid var(--mtsclr-border);
+    min-width: 70px;
+    margin-right: 20px;
+    padding:unset!important;
+  }
+
+  .run-cor-btn {
+    background-color: var(--mtsclr-active);
+    border-radius: 4px;
+  }
+
+  .mat-menu-panel{
+    max-width: 1000px !important;
+    width: 695px !important;
+  }
+
+  .s1-label-model {
+    color: gray;
+    margin-bottom: 10px !important;
+    margin-left: 4px;
+    font: normal normal normal 14px/13px Segoe UI;
+  }
+
+  .dat-pixk {
+	position: absolute;
+	right: 0;
+}
+
+.edit_icon{
+    cursor: pointer;
+    // margin-left: 5px;
+    color:var(--mtsclr-link);
+    vertical-align: middle;
+}
+
+.time-css{
+    font: normal normal normal 14px/13px Segoe UI;
+    }
+
+    .date-range-padding-right{
+padding-right: 8px;
+    }
+
+    .left-padding{
+      padding-left: 11px;
+    }
+
+    .rca-padding{
+      padding: 0 10px 0 21px;
+    }
+
+    .time-header{
+      position: sticky;
+    top: 0;
+    background-color: var(--mtsclr-background);
+    z-index: 2;
+    }

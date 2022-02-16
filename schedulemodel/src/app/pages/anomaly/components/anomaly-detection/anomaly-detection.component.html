@@ -1,0 +1,526 @@
+<ion-row class="parent-content">
+    <ion-row *ngIf="isLoading" class="spinner-div">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-row>
+    <ion-col *ngIf="!isLoading" class="row no-mar no-padd wrap-cont">
+        <ion-col class="col-12 col-xs-12 col-sm-12 col-md-6 border-r  border-t no-padd" *ngIf="isShown">
+            <!-- Table view Starts  -->
+            <ion-row class="df-col">
+                <ion-row class="row no-mar">
+                    <!-- Dropdowns and refresh icon Starts here -->
+                    <ion-col class="d-flex left-head-wrap">
+                        <ion-col size="auto" class="drop-wid">
+                            <ion-col class="row">
+                                <ion-label class="s2-label-model"> Job Type: </ion-label>
+                            </ion-col>
+
+                            <mat-select disableOptionCentering [(ngModel)]="modelTypeSelected"
+                                class="form-control s1-dropdown drop-mat drop_css_one"
+                                (ngModelChange)="modeltypeChange()">
+                                <mat-option value="">
+                                    All</mat-option>
+                                <mat-option *ngFor="let selData of modelTypeList" [value]="selData">
+                                    {{selData}}</mat-option>
+                            </mat-select>
+                        </ion-col>
+
+                        <ion-col size="auto" class="drop-wid">
+                            <ion-col class="row">
+                                <ion-label class="s2-label-model">Status: </ion-label>
+                            </ion-col>
+
+                            <mat-select disableOptionCentering [(ngModel)]="anmdStatusSelected"
+                                class="form-control s1-dropdown drop-mat drop_css_one" (ngModelChange)="statusChange()">
+                                <mat-option value="">
+                                    All</mat-option>
+                                <mat-option *ngFor="let selData of anmdStatusList" [value]="selData">
+                                    {{selData}}</mat-option>
+                            </mat-select>
+                        </ion-col>
+
+                        <ion-col size="auto" class="drop-wid">
+                            <ion-col class="row">
+                                <ion-label class="s2-label-model">Data Sets: </ion-label>
+                            </ion-col>
+
+                            <mat-select disableOptionCentering [(ngModel)]="dataSetSelected"
+                                class="form-control drop-mat s2-dropdown drop_css_one"
+                                (ngModelChange)="datasetChange()">
+                                <mat-option value="">All Data Sets
+                                </mat-option>
+                                <mat-option *ngFor="let selData of dataSetList" [value]="selData">{{selData}}
+                                </mat-option>
+                            </mat-select>
+                        </ion-col>
+                    </ion-col>
+                    <!-- Dropdowns and refresh icon Ends here -->
+
+                </ion-row>
+
+                <ion-row class="d-flex row no-mar left_div_border">
+
+                    <ion-label class="page-title">Trained Models</ion-label>
+
+                        <ion-icon class="ion_icon_search"  (click)="loadTableData(true)"
+                            [src]="anomalyService.createSvgUrl('reload-outline.svg')"></ion-icon>
+
+                </ion-row>
+
+                <ion-row class="row no-mar">
+                    <ion-row class="page_css_view">
+                        <ion-row class="paginate_css">
+                            <span>
+                                <ion-icon aria-hidden="false" class="search_mat" aria-label="down icon"
+                                    [src]="anomalyService.createSvgUrl('search.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="form-control css_search" type="text"
+                                    placeholder="Search with Model Name" [(ngModel)]="searchFilter" maxlength="150"
+                                    (ngModelChange)="onsearchChange(searchFilter)">
+                            </span>
+                        </ion-row>
+                        <ion-row class="d-flex paginate-align">
+                            <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex"
+                                (pageChange)="changepage($event)">
+                                <ion-row class="d-flex process_rows_css">
+                                    <span class="mar-r-8 paginate-text">Rows:</span>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                        (selectionChange)="setNewPageSize(itemPerPage)">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                                </ion-row>
+                                <ion-row class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                        [disabled]="pT.isFirstPage()">
+                                        < </button>
+                                </ion-row>
+
+                                <ion-row class="d-flex process_matselect">
+                                    <span class="paginate-text"> Page</span>
+                                    <input autocomplete="off" matInput class="currpage-input" type="text"
+                                        [(ngModel)]="inputCurrentpage"
+                                        (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+
+                                    <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                                </ion-row>
+                                <ion-row class="pagination-next" [class.disabled]="pT.isLastPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.next()"
+                                        [disabled]="pT.isLastPage()"> > </button>
+                                </ion-row>
+                            </pagination-template>
+
+                        </ion-row>
+                    </ion-row>
+
+                </ion-row>
+                <ion-row *ngIf="isRefreshLoading" class="spinner-div">
+                    <mat-progress-spinner color="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-row>
+                <ion-row class="f-max out-table mod-table-scroll" *ngIf="!isRefreshLoading">
+                    <table class="df-col">
+                        <thead class="sticky-head">
+                            <tr class="row no-mar head-tr">
+
+                                <th class="col-4 wrap-text">Model Name
+                                    <ion-col class="select-cur" (click)="sort('modelNameDisp')">
+                                        <ion-icon *ngIf="!(key == 'modelNameDisp' && reverse)" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                            [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'modelNameDisp' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+
+                                </th>
+
+                                <th class="col-2 wrap-text">Status
+                                    <ion-col class="select-cur" (click)="sort('jobStatus')">
+                                        <ion-icon *ngIf="!(key == 'jobStatus' && reverse)" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                            [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'jobStatus' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                                <th class="col-3 wrap-text">Job Type
+                                    <ion-col class="select-cur" (click)="sort('jobType')">
+                                        <ion-icon *ngIf="!(key == 'jobType' && reverse)" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                            [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'jobType' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                                <th class="col-3 wrap-text">Data Set
+                                    <ion-col class="select-cur" (click)="sort('dataSetName')">
+                                        <ion-icon *ngIf="!(key == 'dataSetName' && reverse)" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                            [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                            name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'dataSetName' && reverse" aria-hidden="false"
+                                            class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                            [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                            name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row no-mar body-tr"
+                                [ngClass]="{'table-b-r': ( selectedModel && anmdModel.uid === selectedModel.uid)}"
+                                *ngFor="let anmdModel of tempAnomalyDetections | orderBy: key : reverse | filterBy:AlltasksFilter | exactFilter : {'jobType':  modelTypeSelected,'dataSetName': dataSetSelected, 'jobStatus': anmdStatusSelected }   | paginate: config; let i = index;">
+                                <td class="col-4 r-name wrap-text" (click)="displayModel(anmdModel)">
+                                    {{anmdModel.modelNameDisp }}</td>
+                                <!-- <td>
+                                    <span *ngIf="game.status" [ngClass]="{'bg-green': game.status == 'Finish','bg-blue': game.status == 'running','bg-orange': game.status == 'waiting'}" class="status">
+                                    {{game.status}}
+                                    </span>
+                                    </td> -->
+                                <td class="col-2 wrap-text" (click)="displayModel(anmdModel)">
+                                    <span *ngIf="anmdModel.jobStatus"
+                                        [ngClass]="{'bg-blue': (anmdModel.jobStatus.toLowerCase() === 'active' || anmdModel.jobStatus.toLowerCase() === 'training' || anmdModel.jobStatus.toLowerCase() === 'running'), 'bg-yellow' : (anmdModel.jobStatus.toLowerCase() === 'scheduled' || anmdModel.jobStatus.toLowerCase() === 'waiting' || anmdModel.jobStatus.toLowerCase() === 'queued' || anmdModel.jobStatus.toLowerCase() === 'initiated')}"
+                                        class="status">
+                                        {{anmdModel.jobStatus.toLowerCase()}}
+                                    </span>
+                                </td>
+                                <td class="col-3 wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.jobType}}
+                                </td>
+                                <td class="col-3 wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.dataSetName}}
+                                </td>
+                            </tr>
+                            <tr class="row no-mar"
+                                *ngIf="(tempAnomalyDetections | filterBy :AlltasksFilter | exactFilter : {'jobType':  modelTypeSelected,'dataSetName': dataSetSelected, 'jobStatus': anmdStatusSelected } ).length == 0">
+                                <td class="col-12 wrap-text no_rec_css">No records found</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </ion-row>
+            </ion-row>
+
+            <!-- Table view Ends -->
+
+        </ion-col>
+        <ion-col class="col-12 col-xs-12 col-sm-12 padd-22 df-col cont-scrl" [ngClass]="isShown?'col-md-6':'col-md-12'">
+            <ion-row class="fmax sub-cont-scrl">
+
+                <ion-row class="shadowbtn collapse-view-cont" [ngClass]="{'bg-open':!isShown}" (click)="toggleShow()">
+                    <ion-icon *ngIf="!isShown" class="frwrd_icon_css" aria-hidden="false"
+                        [src]="anomalyService.createSvgUrl('chevron-forward.svg')"></ion-icon>
+                    <ion-icon *ngIf="isShown" class="back_icon_css" aria-hidden="false"
+                        [src]="anomalyService.createSvgUrl('chevron-back.svg')"></ion-icon>
+                </ion-row>
+                <ion-row class="row no-mar"
+                    *ngIf="checkifObjectExist(selectedModel) == false && !(anmdDetailsLoading)">
+                    <ion-row class="col-md-12 col-sm-12 col-xs-12 mar-b-25">
+                        <ion-label class="head-label">Select at least one trained model to show the details</ion-label>
+                    </ion-row>
+
+                </ion-row>
+                <ion-row *ngIf="anmdDetailsLoading" class="spinner-div">
+                    <mat-progress-spinner color="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-row>
+                <ion-row class="right_css_view"
+                    *ngIf="checkifObjectExist(selectedModel) == true && !(anmdDetailsLoading)">
+                    <ion-row class="row no-mar">
+                        <ion-col class="andet_val_css">
+                            <ion-label class="s2-page-title">Execution</ion-label>
+                            <ion-label class="s2-label-model">{{executionJobtype(selectedModel.jobType)}}</ion-label>
+                            <span
+                            *ngIf="selectedModelAnmdDATA && selectedModelAnmdDATA.jobStatus && !(anmdDetailsLoading)"
+                            class="status_css">
+                            <button type="button" mat-stroked-button class="mts-status-btn-icon bg-completed"
+                                [ngClass]="{'bg-blue': (selectedModelAnmdDATA.jobStatus.toLowerCase() === 'active' || selectedModelAnmdDATA.jobStatus.toLowerCase() === 'training' || selectedModelAnmdDATA.jobStatus.toLowerCase() === 'running'), 'bg-yellow' : (selectedModelAnmdDATA.jobStatus.toLowerCase() === 'waiting' || selectedModelAnmdDATA.jobStatus.toLowerCase() === 'queued' || selectedModelAnmdDATA.jobStatus.toLowerCase() === 'scheduled' || selectedModelAnmdDATA.jobStatus.toLowerCase() === 'initiated'), 'bg-danger': selectedModelAnmdDATA.jobStatus.toLowerCase() === 'stopped'}">{{selectedModelAnmdDATA.jobStatus.toLowerCase()}}</button>
+                             </span>
+                        </ion-col>
+                        
+                        <ion-col size="auto" class="andet_val_css">
+                            <ion-icon class="ion_icon_search ion_icon_search-ref"  (click)="displayModel(selectedModel)"
+                            [src]="anomalyService.createSvgUrl('reload-outline.svg')"></ion-icon>
+                            <ion-button type="button" class="shadowbtn data-prev" (click)="setTask()"color="light">Training Result</ion-button>                           
+                        </ion-col>
+ 
+
+                    </ion-row>
+
+                    <ion-row class="row no-mar top-mar border-a bck-white bot-padd">
+                        
+                        <ion-col class="col-6 ">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Data Set: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.dataSetName" class="data-label">{{selectedModel.dataSetName}}
+                            </ion-col>
+                            <ion-col *ngIf="!selectedModel.dataSetName" class="data-label">NA</ion-col>
+                        </ion-col>
+                        <ion-col class="col-6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Loss Function: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.lossFunction" class="data-label">
+                                {{selectedModel.lossFunction}}</ion-col>
+                            <ion-col *ngIf="!selectedModel.lossFunction" class="data-label">NA</ion-col>
+                        </ion-col>
+                        <ion-col class="col-6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Model Config Used: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.modelConfigName" class="data-label model-color"
+                                (click)="openModelConfigDialog(selectedModel)">{{selectedModel.modelConfigName}}
+                            </ion-col>
+                            <ion-col *ngIf="!selectedModel.modelConfigName" class="data-label">NA</ion-col>
+                        </ion-col>
+
+                        <ion-col class="col-6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Accuracy: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.accuracyDisp" class="data-label">{{selectedModel.accuracyDisp}}
+                            </ion-col>
+                            <ion-col *ngIf="!selectedModel.accuracyDisp" class="data-label">NA</ion-col>
+                        </ion-col>
+
+                    </ion-row>
+                    <!-- <ion-row class="container-fluid tab-selector-bar stat_anomaly">
+                        <ion-col>
+                            <ion-label class="s2-page-title">Anomaly Detection</ion-label>
+                        </ion-col>
+                    </ion-row> -->
+                    
+                    <ion-row class="container-fluid tab-selector-bar row_div_css_val">
+                        <ion-row *ngIf="anmdDetailsLoading" class="spinner-div">
+                            <mat-progress-spinner color="slategrey" mode="indeterminate">
+                            </mat-progress-spinner>
+                        </ion-row>
+
+                        <ion-row *ngIf="checkifObjectExist(selectedModel) == true && !(anmdDetailsLoading)"
+                            class="row no-mar disp-equal">
+                            <ion-row size="12" class="no-padd">
+                                <ion-label class="s4-page-title">Anomaly Detection Result</ion-label>
+                            </ion-row>
+                            <ion-row class="float-r" size="12">
+                                <ion-row *ngIf="executionJobtype(this.selectedModel.jobType) !== 'ASCEXECUTION'">
+                                    <ion-label
+                                    class="s7-label-model">Threshold: </ion-label>
+                                <input autocomplete="off"
+                                     type="number"
+                                     [disabled]="disableThreshlod()"
+                                    [(ngModel)]="selectedModel.threshold" class="input-number-css" id="points"
+                                    name="points" min="0" max="1" step="0.001">
+                                </ion-row>
+                                <ion-row *ngIf="showDetection()">
+                                    <ion-button type="button"
+                                    [disabled]="disableDetectAnomalyBtn"
+                                    class="shadowbtn train-detect-btn" (click)="validateDetectAnomaly()">Detect Anomaly
+                                </ion-button>
+                                </ion-row>
+                            <ion-row *ngIf="showStop()">
+                                <ion-button type="button"
+                                mat-stroked-button class="shadowbtn stop-btn" (click)="stopAnomaly()"
+                                color="danger">Stop</ion-button>
+                            </ion-row>
+
+                            <!-- <ion-label *ngIf="selectedModel.jobStatus.toLowerCase() === 'completed'"
+                            class="s7-label-model">Threshold: </ion-label>
+                        <input autocomplete="off"
+                            [disabled]="selectedModelAnmdDATA && selectedModelAnmdDATA.jobStatus && (selectedModelAnmdDATA.jobStatus.toLowerCase() === 'running' || selectedModelAnmdDATA.jobStatus.toLowerCase() === 'scheduled')"
+                            *ngIf="selectedModel.jobStatus.toLowerCase() === 'completed'" type="number"
+                            [(ngModel)]="selectedModel.threshold" class="input-number-css" id="points"
+                            name="points" min="0" max="1" step="0.001">
+                            <ion-button type="button"
+                            *ngIf=" !(selectedModelAnmdDATA && selectedModelAnmdDATA.jobStatus && (selectedModelAnmdDATA.jobStatus.toLowerCase() === 'running' || selectedModelAnmdDATA.jobStatus.toLowerCase() === 'scheduled'))"
+                            [disabled]="disableDetectAnomalyBtn || getAnomalyDetectBtnStatus()"
+                            class="shadowbtn train-detect-btn" (click)="detectAnomaly()">Detect Anomaly
+                        </ion-button>
+                            <ion-button type="button"
+                            *ngIf="selectedModelAnmdDATA && selectedModelAnmdDATA.jobStatus && (selectedModelAnmdDATA.jobStatus.toLowerCase() === 'running')"
+                            mat-stroked-button class="shadowbtn stop-btn" (click)="stopAnomaly()"
+                            color="danger">Stop</ion-button> -->
+                             
+                            </ion-row>
+                        </ion-row>
+                        <ion-col class="row no-mar"
+                            *ngIf="checkifObjectExist(selectedModelAnmdDATA) == false && !(anmdDetailsLoading)">
+                            <ion-col class="col-12 no-padd">
+                                <ion-label class="head-label">No anomaly detection available for selected model name
+                                </ion-label>
+                            </ion-col>
+
+                        </ion-col>
+                        <ion-col *ngIf="checkifObjectExist(selectedModelAnmdDATA) == true && !(anmdDetailsLoading)"
+                            class="row no-padd no-mar top-mar  bot-padd">
+                            <ion-col class="col-4 border-l border-t border-b  bot-padd bck-white no-padd no-mar">
+                                <app-donut-chart [grappData]="selectedModelAnmdDATA"></app-donut-chart>
+                            </ion-col>
+                            <ion-col class="col-4 border-r border-t border-b bot-padd bck-white no-padd no-mar">
+                                <ion-col class="row">
+                                    <ion-label class="s3-label-model">Total Data Processed: </ion-label>
+                                </ion-col>
+
+                                <ion-col
+                                    *ngIf="(selectedModelAnmdDATA.numberofNormalData && selectedModelAnmdDATA.numberOfAbnormalData)"
+                                    class="data-label">{{(+selectedModelAnmdDATA.numberofNormalData) + (+
+                                    selectedModelAnmdDATA.numberOfAbnormalData)}}</ion-col>
+                                <ion-col
+                                    *ngIf="!(selectedModelAnmdDATA.numberofNormalData && selectedModelAnmdDATA.numberOfAbnormalData)"
+                                    class="data-label">NA</ion-col>
+                                <ion-col class="row">
+                                    <ion-label class="s3-label-model">Normal Data: </ion-label>
+                                </ion-col>
+
+                                <ion-col *ngIf="selectedModelAnmdDATA.numberofNormalData" class="data-label">
+                                    {{selectedModelAnmdDATA.numberofNormalData}}</ion-col>
+                                <ion-col *ngIf="!selectedModelAnmdDATA.numberofNormalData" class="data-label">NA
+                                </ion-col>
+                                <ion-col class="row">
+                                    <ion-label class="s3-label-model">Abnormal Data: </ion-label>
+                                </ion-col>
+
+                                <ion-col *ngIf="selectedModelAnmdDATA.numberOfAbnormalData" class="data-label">
+                                    {{selectedModelAnmdDATA.numberOfAbnormalData}}</ion-col>
+                                <ion-col *ngIf="!selectedModelAnmdDATA.numberOfAbnormalData" class="data-label">NA
+                                </ion-col>
+                            </ion-col>
+                            <ion-col class="col-1 bot-padd  no-padd no-mar">
+                            </ion-col>
+                            <ion-col class="col-3 border-a bot-padd bck-white no-padd no-mar chart-rt-sec">
+
+
+                                <ion-col class="row">
+                                    <ion-label class="s3-label-model">Time Used: </ion-label>
+                                </ion-col>
+
+                                <ion-col *ngIf="selectedModelAnmdDATA.timeUsed" class="data-label">
+                                    {{selectedModelAnmdDATA.timeUsed}}</ion-col>
+                                <ion-col *ngIf="!selectedModelAnmdDATA.timeUsed" class="data-label">NA</ion-col>
+
+                                <ion-col class="row">
+                                    <ion-label class="s3-label-model">Speed:</ion-label>
+                                </ion-col>
+
+                                <ion-col *ngIf="selectedModelAnmdDATA.speedDisp" class="data-label">
+                                    {{selectedModelAnmdDATA.speedDisp}}</ion-col>
+                                <ion-col *ngIf="!selectedModelAnmdDATA.speedDisp" class="data-label">NA</ion-col>
+                                <ion-col class="row">
+                                    <ion-label class="s3-label-model">Number of jobs Running: </ion-label>
+                                </ion-col>
+
+                                <ion-col *ngIf="selectedModelAnmdDATA.numberofJobsRunning" class="data-label">
+                                    {{selectedModelAnmdDATA.numberofJobsRunning}}</ion-col>
+                                <ion-col *ngIf="!selectedModelAnmdDATA.numberofJobsRunning" class="data-label">NA
+                                </ion-col>
+
+                            </ion-col>
+                        </ion-col>
+                        <!-- <ion-col  *ngIf="checkifObjectExist(selectedModelAnmdDATA) == true && !(anmdDetailsLoading)"   class="row no-mar">
+
+                    <ion-label class="s3-page-title">Graph</ion-label>
+
+                    
+
+                </ion-col> -->
+                        <ion-row
+                            *ngIf="checkifObjectExist(selectedModelAnmdDATA) == true && !(anmdDetailsLoading) && checkifObjectExist(selectedModel) == true && (selectedModel.modelUrl)"
+                            class="row no-mar top-mar bck-white border-a bot-mar">
+                            <iframe [src]="selectedModel.modelUrl" height="300" width="100%"></iframe>
+                        </ion-row>
+
+
+                        <ion-row *ngIf="checkifObjectExist(selectedModelAnmdDATA) == true && !(anmdDetailsLoading)"
+                            class="col-md-6 col-sm-12 no-padd mar-b-18">
+                            <ion-row class="train-cont ">
+                                <ion-col class="train-item-head">Resource Usage:</ion-col>
+                                <ion-col class="train-item resused-cont f-max">
+
+                                    <ion-col class="resused-att">
+                                        <ion-col class="resused-head">CPU Usage:</ion-col>
+                                        <ion-col class="resused-body row">
+                                            <ion-col class="col-6 no-padd-r">
+                                                <mat-progress-bar class="no-padd resused-progress-bar"
+                                                    mode="determinate" [value]="(selectedModelAnmdDATA.cpuUsage * 100)">
+                                                </mat-progress-bar>
+                                            </ion-col>
+                                            <ion-col *ngIf="selectedModelAnmdDATA.cpuUsageDisp"
+                                                class="data-label per-label col-6">
+                                                {{selectedModelAnmdDATA.cpuUsageDisp}}%</ion-col>
+                                            <ion-col *ngIf="!selectedModelAnmdDATA.cpuUsageDisp"
+                                                class="data-label per-label col-6">NA</ion-col>
+                                        </ion-col>
+                                    </ion-col>
+
+                                    <ion-col class="resused-att">
+                                        <ion-col class="resused-head">Memory Usage:</ion-col>
+
+                                        <ion-col class="resused-body row">
+                                            <ion-col class="col-6 no-padd-r">
+                                                <mat-progress-bar class="no-padd resused-progress-bar"
+                                                    mode="determinate"
+                                                    [value]="(selectedModelAnmdDATA.cpuMemoryUsage * 100)">
+                                                </mat-progress-bar>
+                                            </ion-col>
+                                            <ion-col *ngIf="selectedModelAnmdDATA.cpuMemoryUsageDisp"
+                                                class="data-label per-label col-6">
+                                                {{selectedModelAnmdDATA.cpuMemoryUsageDisp}}%</ion-col>
+                                            <ion-col *ngIf="!selectedModelAnmdDATA.cpuMemoryUsageDisp"
+                                                class="data-label per-label col-6">NA</ion-col>
+                                        </ion-col>
+                                    </ion-col>
+
+                                    <ion-col class="resused-att">
+                                        <ion-col class="resused-head">GPU Usage:</ion-col>
+                                        <ion-col class="resused-body row">
+                                            <ion-col class="col-6 no-padd-r">
+                                                <mat-progress-bar class="no-padd resused-progress-bar"
+                                                    mode="determinate" [value]="(selectedModelAnmdDATA.gpuUsage * 100)">
+                                                </mat-progress-bar>
+                                            </ion-col>
+                                            <ion-col *ngIf="selectedModelAnmdDATA.gpuUsageDisp"
+                                                class="data-label per-label col-6">
+                                                {{selectedModelAnmdDATA.gpuUsageDisp}}%</ion-col>
+                                            <ion-col *ngIf="!selectedModelAnmdDATA.gpuUsageDisp"
+                                                class="data-label per-label col-6">NA</ion-col>
+                                        </ion-col>
+                                    </ion-col>
+
+                                    <ion-col class="resused-att">
+                                        <ion-col class="resused-head">GPU Memory Usage:</ion-col>
+
+
+                                        <ion-col class="resused-body row">
+                                            <ion-col class="col-6 no-padd-r">
+                                                <mat-progress-bar class="no-padd resused-progress-bar"
+                                                    mode="determinate"
+                                                    [value]="(selectedModelAnmdDATA.gpuMemoryUsage * 100)">
+                                                </mat-progress-bar>
+                                            </ion-col>
+                                            <ion-col *ngIf="selectedModelAnmdDATA.gpuMemoryUsageDisp"
+                                                class="data-label per-label col-6">
+                                                {{selectedModelAnmdDATA.gpuMemoryUsageDisp}}%</ion-col>
+                                            <ion-col *ngIf="!selectedModelAnmdDATA.gpuMemoryUsageDisp"
+                                                class="data-label per-label col-6">NA</ion-col>
+                                        </ion-col>
+                                    </ion-col>
+
+                                </ion-col>
+                            </ion-row>
+                        </ion-row>
+
+                    </ion-row>
+                </ion-row>
+            </ion-row>
+        </ion-col>
+    </ion-col>
+</ion-row>

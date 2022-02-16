@@ -1,0 +1,32 @@
+{
+  "status": "success",
+  "data": {
+    "id": "5ff5f8a3da3bee22c6070031",
+    "inputShape": "30, 1",
+    "outputShape": "1",
+    "blockUnits": "50",
+    "batchSize": "1",
+    "epochs": "500",
+    "layers": "3",
+    "dropout": "0.1",
+    "activation": "tanh",
+    "innerActivation": "hard_sigmoid",
+    "loss": "mae",
+    "metrics": "r2_score",
+    "optimizer": "sgd",
+    "stateful": "True",
+    "l1L2": "0.1, 0.1",
+    "nlags": "30",
+    "nleads": "0",
+    "exclude": "None",
+    "groupBy": "None",
+    "timeStep": "1",
+    "encoderType": "None",
+    "scalerType": "minmax",
+    "modelConfigName": "OPR",
+    "testSize": "0.7",
+    "jobType": "EXECUTION",
+    "modelConfigCount": 0,
+    "modelType": "FORECAST"
+  }
+}

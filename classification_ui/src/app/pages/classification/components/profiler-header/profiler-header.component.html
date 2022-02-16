@@ -1,0 +1,186 @@
+<ion-col class="container-fluid tab-selector-bar df-col ion-no-padding">
+    <ion-row class="classification-header-row">
+        <ion-col size="2" class="wrap-text col-text-left-padding">
+            <ion-label class="classification-title">Data set:</ion-label>
+            <ion-text class="classification-value" title="{{dataSetValue}}"> &nbsp;&nbsp;
+                {{dataSetValue ? dataSetValue : 'None'}} </ion-text>
+        </ion-col>
+        <ion-col size="8" class="wrap-text">
+            <ion-label class="classification-title"> Feature Group:</ion-label>
+            <ion-text class="classification-value" title="{{selectedFeaturegroup}}"> &nbsp;&nbsp;
+                {{selectedFeaturegroup ? selectedFeaturegroup : 'None'}} </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-text-right-padding">
+            <ion-button type="button" class="shadowbtn btn btn-default change-selection-btn move-right"
+                (click)="backToFeature()">
+                <ion-text class="wrap-text">Back to Feature Selection</ion-text>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="classification-view-bar">
+        <!-- <div class="col-4 classification-title">  -->
+        <ion-col size="3" class="col-3 wrap-text">
+            <ion-label class="classification-title">Profile Result with Feature:</ion-label>
+            <ion-text class="classification-value-h2" title="{{profResultWithFeature}}">&nbsp;
+                {{profResultWithFeature ? profResultWithFeature : 'None'}} </ion-text>
+        </ion-col>
+        <ion-col size="6" class="time_feature">
+            <ion-grid>
+                <ion-label class="classification-title">Time Filter Feature:</ion-label>
+                <ion-text class="classification-value" title="{{timeFilterValue}}">&nbsp;&nbsp;{{timeFilterValue ?
+                    timeFilterValue : 'None'}}</ion-text>
+                <ion-text class="classification-value time-css" *ngIf="timeFilterValue">
+                    {{classificationFromTimePeriod}} To
+                    {{classificationToTimePeriod}} </ion-text>
+                <span class="menu-div">
+                    <!-- <i class="fa fa-pen edit_icon" [matMenuTriggerFor]="editmenu" #clickMenuTrigger="matMenuTrigger"
+                        aria-hidden="true" (click)="openTimeEditMenu()"></i> -->
+                    <mat-icon aria-hidden="false" class="edit_mat edit_icon"
+                        *ngIf="!disableAll && (!statusProfiler || (statusProfiler && (statusProfiler.toLowerCase() === 'completed' || statusProfiler.toLowerCase() === '')))"
+                        aria-label="edit icon" [matMenuTriggerFor]="editmenu" #clickMenuTrigger="matMenuTrigger"
+                        [matMenuTriggerFor]="editmenu" #clickMenuTrigger="matMenuTrigger" (click)="openTimeEditMenu()">
+                        edit</mat-icon>
+                    <mat-menu xPosition='after' [overlapTrigger]="false" #editmenu="matMenu" class="edit_menu"
+                        hasBackdrop="false">
+                        <menu class="menu-main" (click)="$event.stopPropagation();"
+                            (keydown.tab)="$event.stopPropagation()">
+                            <ion-row class="menu_edit_item">
+                                <ion-col size="12">
+                                    <ion-label class="mar-label menu_label prof_text">Profile Result with Feature:
+                                    </ion-label>
+                                    <mat-select disableOptionCentering name="filfeature"
+                                        [(ngModel)]="profResultWithFeature" class="form-control drop-mat drop_css_one">
+                                        <mat-option disabled hidden value="">Select</mat-option>
+                                        <mat-option *ngFor="let filterDet of labelDD" [value]="filterDet">{{filterDet}}
+                                        </mat-option>
+                                    </mat-select>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="5">
+                                    <ion-col class="menu_edit_item">
+                                        <ion-checkbox autocomplete="off" [(ngModel)]="timeFilterDetails.enableFilter"
+                                            (change)="OnTimeFilterCheckBox(timeFilterDetails.enableFilter)"
+                                            id="timefilter" name="timefilter"></ion-checkbox>
+                                        <ion-label class="mar-label menu_label time_fil_text">Time Filter Feature:
+                                        </ion-label>
+                                        <ion-grid>
+                                            <mat-select disableOptionCentering
+                                                [disabled]="!timeFilterDetails.enableFilter" name="filfeature"
+                                                [(ngModel)]="timeFilterDetails.filterFeature"
+                                                class="form-control drop-mat drop_css_one">
+                                                <mat-option disabled hidden value="">Select</mat-option>
+                                                <mat-option *ngFor="let filterDet of timeFilterDD"
+                                                    [value]="filterDet.time_column">{{filterDet.time_column}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </ion-grid>
+                                    </ion-col>
+                                </ion-col>
+                                <ion-col size="7">
+                                    <form #menuDateRange="ngForm">
+                                        <fieldset
+                                            [disabled]="!timeFilterDetails.enableFilter || !timeFilterDetails.filterFeature">
+                                            <ion-row class="menu_edit_item">
+                                                <ion-grid>
+                                                    <ion-row class="date_time">
+                                                        <ion-label class="date-label">From:</ion-label>
+                                                        <ion-row class="main-date-div">
+                                                            <input autocomplete="off" matInput
+                                                                class="inputfeild form-control" name="fromDate"
+                                                                [(ngModel)]="timeFilterDetails.fromDate"
+                                                                placeholder="Select Date"
+                                                                (dateChange)="onFromDateChange()"
+                                                                [matDatepicker]="pickerFrom" readonly required />
+                                                            <mat-datepicker-toggle class="dat-pixk" matSuffix
+                                                                [for]="pickerFrom"></mat-datepicker-toggle>
+                                                            <mat-datepicker #pickerFrom></mat-datepicker>
+                                                        </ion-row>
+                                                        <ion-row class="input-time-div">
+                                                            <input autocomplete="off" matInput
+                                                                class="input-feild-time form-control"
+                                                                [(ngModel)]="timeFilterDetails.fromTimeHr"
+                                                                name="fromTimeHr" [appAlphaNumeric]="'num'"
+                                                                maxlength="2" placeholder="00" type="text"
+                                                                name="timeHrFrom" [appAlphaNumeric]="'num'" required>
+                                                        </ion-row>
+                                                        <ion-row class="input-time-div">
+                                                            <input autocomplete="off" matInput
+                                                                class="input-feild-time form-control"
+                                                                [(ngModel)]="timeFilterDetails.fromTimeMin"
+                                                                name="fromTimeMin" [appAlphaNumeric]="'num'"
+                                                                maxlength="2" placeholder="00" type="text"
+                                                                name="timeMinFrom" [appAlphaNumeric]="'num'" required>
+                                                        </ion-row>
+                                                        <ion-text class="time-stamp">
+                                                            (HH-MM)
+                                                        </ion-text>
+                                                    </ion-row>
+                                                    <ion-row class="date_time">
+                                                        <ion-label class="date-label">To:</ion-label>
+                                                        <ion-row class="main-date-div">
+                                                            <input autocomplete="off" matInput
+                                                                class="inputfeild form-control"
+                                                                [(ngModel)]="timeFilterDetails.toDate" name="toDate"
+                                                                placeholder="Select Date" [matDatepicker]="pickerTo"
+                                                                [min]="timeFilterDetails.minToDate" readonly required />
+                                                            <mat-datepicker-toggle class="dat-pixk" matSuffix
+                                                                [for]="pickerTo">
+                                                            </mat-datepicker-toggle>
+                                                            <mat-datepicker #pickerTo></mat-datepicker>
+                                                        </ion-row>
+                                                        <ion-row class="input-time-div">
+                                                            <input autocomplete="off" matInput
+                                                                class="input-feild-time form-control"
+                                                                [(ngModel)]="timeFilterDetails.toTimeHr" name="toTimeHr"
+                                                                [appAlphaNumeric]="'num'" maxlength="2" placeholder="00"
+                                                                type="text" name="timeHrFrom" [appAlphaNumeric]="'num'"
+                                                                required>
+                                                        </ion-row>
+                                                        <ion-row class="input-time-div">
+                                                            <input autocomplete="off" matInput
+                                                                class="input-feild-time form-control"
+                                                                [(ngModel)]="timeFilterDetails.toTimeMin"
+                                                                name="toTimeMin" [appAlphaNumeric]="'num'" maxlength="2"
+                                                                placeholder="00" type="text" name="timeMinFrom"
+                                                                [appAlphaNumeric]="'num'" required>
+                                                        </ion-row>
+                                                        <ion-text class="time-stamp">
+                                                            (HH-MM)
+                                                        </ion-text>
+                                                    </ion-row>
+                                                </ion-grid>
+                                            </ion-row>
+                                        </fieldset>
+                                    </form>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="menu-action">
+                                <ion-button type="button" class="shadowbtn btn btn-default cancel-mod"
+                                    (click)="someMethod()">Cancel</ion-button>
+                                <ion-button type="button" class="shadowbtn btn-primary run-cor-btn"
+                                    (click)="onRunCorr()">Run Profiling</ion-button>
+                            </ion-row>
+                        </menu>
+                    </mat-menu>
+                </span>
+            </ion-grid>
+        </ion-col>
+        <ion-col size="3" class="col-text-right-padding">
+            <!-- <ion-button type="button" class="shadowbtn btn-primary edit-btn move-right" 
+            [disabled]="disableAll || !(!statusProfiler || (statusProfiler && (statusProfiler.toLowerCase() === 'completed' || statusProfiler.toLowerCase() === '')))"
+            [matMenuTriggerFor]="editmenu"
+                #clickMenuTrigger="matMenuTrigger"
+                (click)="openTimeEditMenu()">
+                Edit
+            </ion-button> -->
+            <ion-label *ngIf="statusProfiler"
+                [ngClass]="{'bg-blue': (statusProfiler.toLowerCase() === 'active'  || statusProfiler.toLowerCase() === 'running' || statusProfiler.toLowerCase() === 'training'), 'bg-yellow' : (statusProfiler.toLowerCase() === 'waiting' || statusProfiler.toLowerCase() === 'queued' || statusProfiler.toLowerCase() === 'initiated' || statusProfiler.toLowerCase() === 'scheduled')}"
+                class="status move-right col-4">
+                <ion-text>{{statusProfiler.toLowerCase() == 'suspended' ? 'paused' : statusProfiler.toLowerCase() }}</ion-text>
+            </ion-label>
+        </ion-col>
+        <!-- </div> -->
+    </ion-row>
+</ion-col>

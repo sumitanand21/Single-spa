@@ -1,0 +1,23 @@
+{
+    "status": "success",
+    "data": {
+      "data": [
+        {
+          "configurationName": "config1",
+          "dbType": "MongoDB",
+          "description": "no sql database"
+        },
+        {
+          "configurationName": "config2",
+          "dbType": "MongoDB1",
+          "description": "no sql database"
+        },
+        {
+          "configurationName": "config3",
+          "dbType": "MongoDB2",
+          "description": "no sql database"
+        }
+      ],
+      "status_code": 200
+    }
+  }

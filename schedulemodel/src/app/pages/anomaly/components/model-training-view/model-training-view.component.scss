@@ -1,0 +1,344 @@
+.train-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 18px 6px 18px;
+}
+
+.text-head{
+    font: normal normal 600 14px/20px Segoe UI;
+    color: #707070;
+}
+
+.text-body{
+    font: normal normal normal 14px/20px Segoe UI;
+    color: #232323;
+}
+.model_css_view,.progress_css{
+    display: grid;
+}
+.model-text{
+font: normal normal normal 18px/24px Segoe UI;
+color: #232323;
+white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px;
+    word-break: break-all;
+}
+.wrap-text-md{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 350px;
+    word-break: break-word;
+  }
+.input-number-css {
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid var(--mtsclr-border);
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    width: 70px;
+  }
+.train-stop-btn{
+font: normal normal normal 14px/20px Segoe UI;
+color: #FFFFFF;
+background: #C25346 0% 0% no-repeat padding-box;
+border:1px solid #C25346;
+border-radius: 4px;
+min-width: 66px;
+margin-top: 0;
+}
+
+.train-detect-btn{
+    font: normal normal normal 14px/20px Segoe UI;
+    color: #FFFFFF;
+    background: #3B73B7 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    border:1px solid #3B73B7;
+    margin-left: 5px;
+    margin-top: 0;
+}
+.prog_status{
+    width: 214px;
+}
+.value_prog{
+    display: grid;
+}
+.train-stop-btn:focus{
+    border:1px solid #C25346 !important;
+    outline: none !important;
+}
+
+.train-detect-btn:focus{
+    border:1px solid #3B73B7 !important;
+    outline: none !important;
+}
+
+.prog-comp{
+font: normal normal normal 12px/13px Segoe UI;
+color: #FFFFFF;
+background-color: #3B73B7;
+border-radius: 15px;
+padding: 4px 7px;
+margin-top:3px;
+text-align: center;
+}
+
+.genrate-comp{
+    font: normal normal normal 12px/13px Segoe UI;
+    color: #FFFFFF;
+    background-color: #999999;
+    border-radius: 15px;
+    padding: 4px 7px;
+    margin-top:3px; 
+    text-align: center;
+}
+
+.prog-process{
+    margin-top:3px;
+    width: 214px;
+}
+
+.prog-process-progress-bar{
+    height:24px !important;
+}
+
+.prog-val{
+    margin-top: -21px;
+    font: normal normal normal 12px/13px Segoe UI;
+    color: #F1F0EF;
+    position: absolute;
+    margin-left: 5px;
+}
+
+
+.train-body{
+background-color: #F1F0EF;
+height:0;
+overflow-x: hidden;
+display: block;
+overflow-y: auto;
+padding: 22px 8px 12px 8px;
+}
+
+.mar-b-18{
+    margin-bottom:18px;
+}
+
+.no-padd{
+    padding:0;
+}
+
+.no-mar{
+    margin:0;
+}
+
+.train-cont{
+    margin: 0px 10px 0px 10px;
+    /* background-color:white; */
+}
+
+.train-item{
+    background-color: #FFFFFF;
+    border: 1px solid #CBCBCB;
+}
+
+.train-item-head{
+font: normal normal 600 18px Segoe UI;
+color: #707070;
+padding-bottom: 6px;
+min-height: 40px;
+}
+
+.gen-cont{
+    padding: 8px 6px;
+    display: block;
+}
+.gen-att{
+    margin-bottom:10px;
+    display: block;
+}
+
+.gen-head{
+    font: normal normal 600 14px Segoe UI;
+    color: #707070;
+}
+
+.gen-body{
+    font: normal normal normal 14px Segoe UI;
+    color: #232323;
+}
+
+.model-color{
+    color: #3B73B7;
+    cursor: pointer;
+}
+
+
+
+
+.ceoc-cont{
+padding:20px;
+display: flex;
+align-items: center
+}
+
+.ceoc-att{
+    width: 100%;
+    height: 236px;
+    background-color: #FFFFFF;
+    border: 1px solid #A1A1A1;
+    display: grid;
+}
+.error_cluster_css{
+    display: grid;
+}
+
+
+.feature-cont{
+    padding: 8px 6px 8px 8px;
+    display: block;
+}
+
+.feature-att{
+    margin-bottom:2px;  
+    display: block;
+}
+
+.feature-att-title{
+display: flex;
+justify-content: space-between;
+margin-bottom: 10px;
+}
+
+.feature-name{
+font: normal normal 600 14px Segoe UI;
+color: #707070;
+display: block;
+}
+
+.feature-count{
+font: normal normal 600 14px Segoe UI;
+color: #707070;
+}
+
+.feature-head{
+    font: normal normal normal 14px Segoe UI;
+    color: #232323;
+    word-break: break-word;
+}
+
+.feature-body{
+    font: normal normal normal 12px Segoe UI;
+    color: #9FBDE1;
+    display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.feature-item{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.data-prev{
+    font: normal normal normal 14px/20px Segoe UI;
+    color: #707070;
+    background: #FFFFFF;
+    border: 1px solid var(--mtsclr-border);
+    border-radius: 4px;
+    height: 100%;
+    margin: 0;
+    height: 32px;
+}
+
+.data-prev:focus{
+    border: 0.5px solid var(--mtsclr-border);
+    outline: 0.5px var(--mtsclr-border);
+}
+
+.resused-cont{
+    padding: 8px 6px; 
+    display: block;
+}
+
+.resused-att{
+    /* margin-bottom:10px; */
+    display: block;
+}
+
+.resused-head{
+    font: normal normal 600 14px Segoe UI;
+    color: #707070;
+}
+
+.resused-body{
+    font: normal normal normal 14px Segoe UI;
+    margin-top: 6px;
+}
+
+button:disabled{
+        opacity: .65;
+}
+.action-sec{
+    display: flex;
+}
+.thr-label{
+    margin-top: 6px;
+    margin-bottom: 0px;
+}
+.per-label {
+    top: -12px;
+      /* align-self: end; */
+      text-align: end;
+      /* margin-right: -4px; */
+      /* margin-left: 216px; */
+      left: -15px;
+  }
+
+  @media (min-width: 1598px) and (max-width: 1928px){
+    .text-head,.gen-head,.resused-head{
+      font: normal normal 600 18px Segoe UI;
+    }
+    .genrate-comp{
+      font: normal normal normal 14px Segoe UI;
+    }
+    .text-body,.train-stop-btn,.train-detect-btn,.breadcrumb-btn,.data-prev,.gen-body,.resused-body{
+      font: normal normal normal 18px Segoe UI;
+    }
+    .btn-default{
+      font-size: 18px;
+    }
+  }
+  /* Mozila Css Starts Here */
+@-moz-document url-prefix() {
+    @media (min-width: 1598px) and (max-width: 1928px){
+        .text-head,.gen-head,.resused-head{
+            font: normal normal 600 18px Segoe ui regular !important;
+          }
+          .genrate-comp{
+            font: normal normal normal 14px Segoe ui regular !important;
+          }
+          .text-body,.train-stop-btn,.train-detect-btn,.breadcrumb-btn,.data-prev,.gen-body,.resused-body{
+            font: normal normal normal 18px Segoe ui regular !important;
+          }   
+    }
+}
+
+.gen-att-wrap{
+    // width: min(320px, 100%);
+    width: max(320px, 25%);
+    flex: 0 0 auto;
+    // flex-grow: 1;
+}
+
+.cluster-qty{
+    flex: 1 1 auto;
+    // width: max(360px, calc(100% - 640px));
+    width: max(370px,calc(100% - max(640px, 50%)));
+}
+

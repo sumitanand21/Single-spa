@@ -1,0 +1,33 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "dataId": "1MJF901@1-20-17@Spanloss@PM_NEAR_END_Tx",
+      "jobStatus": "STOPPED",
+      "dataSetName": "pmdata",
+      "jobType": "EXECUTION",
+      "modelType": "FORECAST"
+    },
+    {
+      "dataId": "1MJF901@1-20-17@OPRMAX@PM_NEAR_END_Rx",
+      "jobStatus": "STOPPED",
+      "dataSetName": "pmdata",
+      "jobType": "EXECUTION",
+      "modelType": "FORECAST"
+    },
+    {
+      "dataId": "1MJF901@1-20-17@OPRMIN@PM_NEAR_END_Rx",
+      "jobStatus": "INITIATED",
+      "dataSetName": "pmdata",
+      "jobType": "EXECUTION",
+      "modelType": "FORECAST"
+    },
+    {
+      "dataId": "1MJF901@1-20-17@OPTMAX@PM_NEAR_END_Tx",
+      "jobStatus": "INITIATED",
+      "dataSetName": "pmdata",
+      "jobType": "EXECUTION",
+      "modelType": "FORECAST"
+    }
+  ]
+}

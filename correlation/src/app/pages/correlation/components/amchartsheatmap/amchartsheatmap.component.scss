@@ -1,0 +1,184 @@
+.main_graph_div{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.amchart_hide_logo{
+    position: absolute;
+    background: white;
+    bottom:0;
+    left:0;
+    width: 60px;
+    height: 30px;
+}
+#chartdiv{
+    /* height: 400px; */
+    height: 100%;
+    width: 100%;
+}
+
+/***********************Pagination CSS************************/
+.d-flex{
+    display:flex;
+    align-items: center;
+}
+
+.paginate-align{
+    /* float:right; */
+    width:100%;  
+    display:flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+  }
+
+  .mar-r-8{
+    margin-right: 8px;
+  }
+
+  .paginate-text{
+    font-size: 12px;
+    }
+    .select-page{
+        border-bottom: 1px solid var(--mtsclr-feild-border);
+        width: 60px;
+        height: auto !important;
+        font-size: 12px;
+        margin-right:12px;
+        }
+
+        .pagination-btn{
+            cursor: pointer;
+            border:none;
+            font-weight: 600;
+            background-color: transparent;
+            }
+
+            .currpage-input{
+                text-align: center;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 1px solid var(--mtsclr-feild-border);
+                width: 60px;
+                font-size: 12px;
+                outline: none;
+                margin-right:5px;
+                margin-top: 0px;
+              }
+
+    /***********************Pagination CSS Ends************************/
+
+    .drop-mat{
+        border-radius: 4px;
+        border: 1px solid var(--mtsclr-feild-border);
+        color: var(--mtsclr-text);
+        height: 32px;
+        font: normal normal normal 14px Segoe UI;
+          }
+
+          .mat_width_css{
+            padding: 5px;
+            width: 200px;
+        }
+
+        .paginate_css{
+           padding-top: 6px;
+    position: absolute;
+    top: 0;
+    background: white;
+    z-index: 1;
+          }
+
+          .mat-drop-footer{
+              display: flex;
+              justify-content: space-between;
+              position: sticky;
+              bottom: 0;
+              z-index: 1;
+              background-color: white;
+              padding: 4px 10px;
+          }
+
+          .run-cor-btn{
+            cursor: pointer;
+            border-radius: 4px;
+            opacity: 1;
+            font-size: 14px;
+            background-color: #ffffff;
+            background-color: var(--mtsclr-success-btn);
+            border:1.5px solid var(--mtsclr-success-btn);
+            font: normal normal normal 14px Segoe UI;
+            min-width: 64px;
+        }
+
+        .cancel-mod{
+            cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 68px;
+    border: 1.5px solid var(--mtsclr-cancel-btn);
+    color: var(--mtsclr-label);
+    padding: 0px;
+    --ion-color-base: #EFEFEF!important;
+        }
+
+        .textselect{
+    width: 50% !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        }
+
+            .css_search{
+                font-size: 12px;
+                width: 100%;
+                padding: 5px 5px 5px 23px;
+                height: 32px;
+                outline: none;
+                background-color: #ffffff;
+                border-color: transparent;
+                color: var(--mtsclr-text);
+                border-bottom: 1px solid var(--mtsclr-feild-border);
+              }
+
+              .no-rec{
+                  display: flex;
+                justify-content: center !important;
+                text-align: center !important;
+                font: normal normal normal 14px Segoe UI;
+    color: var(--mtsclr-text);
+    padding: 8px 10px;
+              }
+
+
+              .filter-div{
+                  display: flex;
+                  justify-content: space-between;
+              }
+
+              .xfetaure-div{
+margin-right: 14px;
+              }
+              .wrap-mat{
+                  display: grid;
+              }
+
+              .feature-label{
+                font: normal normal 600 14px/13px Segoe UI;
+                color: var(--mtsclr-label);
+                margin-bottom: 8px;
+              }
+              .ion_icon_search{
+                  position: absolute;
+                  padding: 10px 0px 0px 5px;
+              }
+
+              .chart-padding{
+                  padding-left: 90px;
+                  padding-right: 90px;
+              }
+
+              #chartdiv{
+                  width: 100%;
+                  height: 115%;
+              }

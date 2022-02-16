@@ -1,0 +1,36 @@
+.chart-css {
+    top: -8px;
+    left: -13%;
+    display: block;
+    position: absolute;
+    width: 240px;
+}
+.chart-dis-data {
+    position: relative;
+    top: 90px;
+    /* left: 2%; */
+    display: flex;
+    text-align: center;
+    width: auto;
+    justify-content: center;
+}
+.per-label {
+    font-size: 25px;
+    font-weight: bolder;
+    display: block;
+    width: 95px;
+    text-align: center;
+}
+.s1-per-label {
+
+    font-size: 11px;
+    font-weight: 600;
+    color: #232323;
+}
+.s1-chart-dis-data {
+    position: relative;
+    top: 98px;
+    left: 34%;
+    display: flex;
+    width: 40%;
+}

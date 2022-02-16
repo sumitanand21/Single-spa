@@ -1,0 +1,58 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "uid": "616d4e3077e58366af42bcea",
+      "scheduleName": "am2_training",
+      "modelName": "am2_training_2015-10-18T10:40:01Z_2021-10-18T10:40:01Z_model.sav",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "2015-10-18T10:40:01Z-2021-10-18T10:40:01Z",
+      "accuracy": [
+        null
+      ],
+      "jobStatus": "INITIATED",
+      "jobType": "ANOMALYTRAINING2",
+      "dataSetName": "log_alarm_data"
+    },
+    {
+      "uid": "616d4e3077e58366af42bcea1",
+      "scheduleName": "am2_training",
+      "modelName": "am2_training_2015-10-18T50:40:01Z_2021-10-18T10:40:01Z_model.savs",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "2015-10-18T10:40:01Z-2021-10-18T10:40:01Z",
+      "accuracy": [
+        null
+      ],
+      "jobStatus": "STOPPED",
+      "jobType": "ANOMALYTRAINING2",
+      "dataSetName": "log_alarm_data1"
+    },
+    {
+      "uid": "616d4e3077e58366af42bcea13",
+      "scheduleName": "am2_training",
+      "modelName": "am2_training_2015-10-18T50:43:01Z_2021-10-18T10:40:01Z_model.sav1",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "2015-10-18T10:40:01Z-2021-10-18T10:40:01Z",
+      "accuracy": [
+        null
+      ],
+      "jobStatus": "COMPLETED",
+      "jobType": "ASCTRAINING",
+      "dataSetName": "log_alarm_data"
+    },
+    {
+      "uid": "616d6c3077e58366af42bcf7",
+      "scheduleName": "am2",
+      "modelName": "am2_2015-10-18T12:48:01Z_2021-10-18T12:48:01Z_model.sav",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "2015-10-18T12:48:01Z-2021-10-18T12:48:01Z",
+      "accuracy": [
+        null
+      ],
+      "jobStatus": "COMPLETED",
+      "jobType": "ANOMALYTRAINING2",
+      "dataSetName": "log_alarm_data"
+    }
+  ],
+  "elUrl":"https://ass/32101/app/dashboards#/view/093906e0-6d22-11eb-933b-df15118cab21?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1M,to:now))&_a=(description:'',filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'9ffb3930-6468-11eb-80b3-01f3d29be0ec',key:kafka_consumer.modelName,negate:!f,params:(query:'_vaxModelNamevax_'),type:phrase),query:(match_phrase:(kafka_consumer.modelName:'_vaxModelNamevax_')))),fullScreenMode:!t,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:''),timeRestore:!f,title:'Loss Histogram',viewMode:view)"
+}

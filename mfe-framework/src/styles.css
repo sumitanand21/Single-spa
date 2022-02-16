@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html,
+body {
+  font-family: Segoe UI !important;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+app-root {
+  height: 100%;
+  width: 100%;
+}
+
+/***********************************material Css*****************************************/
+.mfe-mat-sidebar-white-icon {
+  color: white;
+  cursor: pointer;
+  margin-right: 4px;
+  width: auto !important;
+  height: auto !important;
+}
+
+.mfe-mat-sidebar-exp-phead {
+  color:inherit !important;
+  padding: 0 10px 0px 6px !important;
+}
+
+.mfe-mat-sidebar-exp-phead .mat-expansion-panel-header-title{
+  color:inherit !important;
+}
+
+.mfe-mat-sidebar-exp-panel {
+  background: transparent !important;
+  margin: 0 !important;
+  cursor: pointer;
+  color: black;
+  outline: none;
+  box-shadow:none !important;
+  padding: 6px 6px;
+}
+/* .mfe-mat-sidebar-exp-panel:hover{
+  margin-top: -8px !important;
+} */
+
+.mfe-mat-sidebar-exp-panel .mat-expansion-panel-body {
+  padding: 6px 0px;
+}
+
+.mfe-home-card-header .mat-card-header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.mfe-header-toolbar-row .mat-toolbar-row,
+.mat-toolbar-multiple-rows {
+  min-height: 56px;
+  height: 56px;
+}
+
+.mfe-head-user_menu.mat-menu-panel {
+  max-width: max-content !important;
+}
+
+.mfe-head-user_menu {
+  max-width: max-content !important;
+}
+
+.mfe-head-user_menu .mat-menu-content {
+  padding: 0 !important;
+  height: 100%;
+  width: 100%;
+}
+
+.mfe-spinner-div .mat-progress-spinner circle, .mfe-spinner-div .mat-spinner circle {
+  stroke: #bebfc0;
+}

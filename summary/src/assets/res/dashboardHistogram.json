@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "clusterId": 0,
+      "noOfEvents": 5
+    },
+    {
+      "clusterId": 1,
+      "noOfEvents": 2
+    }
+]
+}

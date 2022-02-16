@@ -1,0 +1,98 @@
+<ion-row class="parent-content">
+    <ion-row class=" wrap-text"
+        *ngIf="!(url && url !== '') && statusProfiler && statusProfiler.toLowerCase() === 'completed'">
+        No data available for selected dataSetName and time range
+    </ion-row>
+    <ion-row class=" wrap-text"
+        *ngIf="!(url && url !== '') && statusProfiler && statusProfiler.toLowerCase() !== 'completed'">
+        Analysing the data...
+    </ion-row>
+
+    <ion-row *ngIf="url && url !== ''" class="mail-content">
+        <ion-col size="12" *ngIf="featureLoader" class="spinner-div">
+            <mat-progress-spinner color="slategrey" mode="indeterminate">
+            </mat-progress-spinner>
+        </ion-col>
+
+      
+            <img [src]="url" class="graph-height">
+        
+        <!-- <div *ngIf="!featureLoader">
+        <div class="page_css_view ">
+            <div class="drop-wid-s2 col-3 no-padd">
+                <label class="mar-label menu_label">Value Filter:</label>
+                <mat-select disableOptionCentering [(ngModel)]="valueFilterSelected"
+                class="form-control drop-mat drop_css_one">
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let selData of valueFilterDD" [value]="selData">
+                    {{selData}}</mat-option>
+            </mat-select>
+        </div>   
+            <div class="paginate_css">
+                <span>
+                    <i class="fa fa-search search_fafa" aria-hidden="true"></i> 
+                    <mat-icon aria-hidden="false" class="search_mat" aria-label="search icon">search</mat-icon>
+                    <input autocomplete="off" matInput class="form-control css_search" type="text" [(ngModel)]="searchFilter" placeholder="Search" (ngModelChange)="onsearchChange(searchFilter)">
+                </span>
+            </div>
+            <div class="dc-flex paginate-align">
+                <pagination-template #pT="paginationApi" [id]="config.id" class="dc-flex"
+                    (pageChange)="changepage($event)">
+                        <div class="dc-flex process_rows_css"> 
+                        <span class="mar-r-8 paginate-text">Rows:</span> 
+                            <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage" (selectionChange)="setNewPageSize(itemPerPage)">
+                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                            </mat-select>
+                        </div>
+                <div class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                <button type="button" class="pagination-btn" (click)="pT.previous()" [disabled]="pT.isFirstPage()"> < </button>
+                </div>
+                
+                <div class="dc-flex process_matselect"> 
+                    <span class="paginate-text"> Page</span>
+                        <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage" (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+                
+                <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                </div>
+                <div class="pagination-next" [class.disabled]="pT.isLastPage()">
+                    <button type="button" class="pagination-btn" (click)="pT.next()" [disabled]="pT.isLastPage()"> > </button>
+                </div>
+                </pagination-template> 
+            
+                </div>
+        </div>
+
+    </div>
+
+
+    <div class="f-max out-table mod-table-scroll">
+        <table class="df-col">
+            <thead class="sticky-head">
+            <tr class="row no-mar head-tr">
+                <th class=" col-7 wrap-text-rt">
+                    Attribute
+                </th>
+            <th class=" col-4 wrap-text">
+                Value
+            </th>   
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="row no-mar body-tr"  *ngFor="let featureDet of featureDetails | filter : searchFilter | paginate: config">
+               <td class=" col-7 wrap-text-rt">
+             {{featureDet.attribute}}
+               </td>
+               <td class="col-4 wrap-text">
+       {{featureDet.value}}
+            </td>
+            
+            </tr>
+            <tr class="row no-mar no-rec body-tr" *ngIf="(featureDetails | filter: searchFilter).length === 0">
+                <td class="col-12 wrap-text">Feature not available</td>
+            </tr>
+           
+            </tbody>
+        </table>
+        </div> -->
+    </ion-row>
+</ion-row>

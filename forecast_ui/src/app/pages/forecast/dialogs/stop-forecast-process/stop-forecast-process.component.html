@@ -1,0 +1,12 @@
+
+    <ion-row class="modal-header">
+        <ion-text id="stopPcTitle"  class="modal-title new_sch">Stop Forecasting</ion-text>
+        <ion-icon aria-hidden="false" class="close-ion-icon" mat-dialog-close aria-label="Close" id="editModalClose" [src]="forecastService.createSvgUrl('close.svg')"></ion-icon>
+    </ion-row>
+    <ion-row class="display_flex_css">            
+         <ion-text>{{data.dataSet.dataId}} will be stop forecast processing You may still find it in Forecast Selection</ion-text>
+    </ion-row>
+    <ion-row class="modal-footer footer_css">
+        <ion-button type="button" class="shadowbtn btn Css_butn cancel_btn ion-noncap-button cancel-button" aria-label="Close" mat-dialog-close>Cancel</ion-button>
+        <ion-button type="button" id="stopPcSBtn" class="shadowbtn btn Css_butn stop-btn ion-noncap-button stop-button" (click)="stopForecastProcess()" aria-label="Close">Stop</ion-button>
+    </ion-row>

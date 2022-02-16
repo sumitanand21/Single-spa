@@ -1,0 +1,214 @@
+<ion-row class="df-col">
+    <ion-col size="12" class="model-head">
+        <ion-label class="body-label">{{title}}</ion-label>
+        <ion-icon mat-dialog-close  type="button" class="disp-close" aria-label="Close" id="ModalClose" [src]="anomalyService.createSvgUrl('close-outline.svg')"></ion-icon>
+    </ion-col>
+    <ion-col size="12" *ngIf="masterDataLoader" class="spinner-div" >
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-col>
+    <ion-col size="12" *ngIf="!masterDataLoader" size="12" class="model-body f-max">
+    <form [formGroup]="upsertTask">
+        <ion-col>
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Task Name:</ion-label>
+                </ion-col>
+                <ion-col *ngIf="data.action === 'Add'" size="6">
+                    <input autocomplete="off" formControlName="schedule_name" maxlength="30" type="text" matInput class="input-feild-model " [ngClass]="{'border-den': ( upsertTask.controls.schedule_name.errors && upsertTask.controls.schedule_name.errors.cannotContainSpace)}"> 
+                </ion-col>
+                <ion-col *ngIf="data.action === 'Update'" size="6" class="selectio-div">
+                     {{data.task.schedule_name}}
+                </ion-col>
+            </ion-col>
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Job Type:</ion-label>
+                </ion-col>
+                <ion-col size="6" class="selectio-div" *ngIf="data.action === 'Add'">
+                        <mat-select disableOptionCentering formControlName="jobType" (selectionChange)="onJobTypeChange($event.value)" class="form-control drop-mat s2-dropdown drop_css_one">
+                            <mat-option *ngFor="let jobtype of jobTypeArr" [value]="jobtype">{{jobtype}}
+                            </mat-option>
+                        </mat-select>
+                </ion-col>
+                <ion-col size="6" class="selectio-div" *ngIf="data.action === 'Update'">
+                    {{data.task.job_type}}
+                </ion-col>
+            </ion-col>
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Data Set:</ion-label>
+                </ion-col>
+                <ion-col size="6"class="selectio-div"  *ngIf="data.action === 'Add'">
+                    <mat-select disableOptionCentering formControlName="dataSetName" (selectionChange)="onDataSetChange($event.value)" class="form-control drop-mat s2-dropdown drop_css_one">
+                        <mat-option *ngFor="let selData of dataSetList" [value]="selData">{{selData}}
+                        </mat-option>
+                    </mat-select>
+                </ion-col>
+                <ion-col size="6" class="selectio-div" *ngIf="data.action === 'Update'">
+                    {{data.task.data.dataSetName}}
+                </ion-col>
+            </ion-col>
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Model Configuration:</ion-label>
+                </ion-col>
+                <ion-col size="6" class="selectio-div">
+                    <mat-select disableOptionCentering formControlName="modelConfigName"
+                        class="form-control drop-mat s2-dropdown drop_css_one">
+                        <mat-option *ngFor="let selData of modelConfigList" [value]="selData">{{selData}}
+                        </mat-option>
+                    </mat-select>
+                </ion-col>
+            </ion-col>
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Training Frequency:</ion-label>
+                </ion-col>
+                <ion-col size="7" class="selectio-div">
+                    <ion-col class="row no-padd no-mar">
+                        <mat-select (selectionChange)="setFreqData($event.value)" disableOptionCentering formControlName="recur_on" class="form-control drop-mat s2-dropdown drop_css_one">
+                            <mat-option *ngFor="let selData of freqList" [value]="selData">{{selData}}
+                            </mat-option>
+                        </mat-select>
+                    </ion-col>
+                    <ion-col *ngIf="isDayEnabled" class="row no-padd no-mar padd-t">
+
+                        <ion-checkbox autocomplete="off" class="check_css_daily" color="primary" name="all" formControlName="daySu"></ion-checkbox>
+                        <ion-label class="text-data">Su</ion-label>
+
+                        <ion-checkbox autocomplete="off" class="check_css_daily" color="primary" name="all" formControlName="dayMo"></ion-checkbox>
+                        <ion-label class="text-data">Mo</ion-label>
+
+                        <ion-checkbox autocomplete="off" class="check_css_daily" color="primary" name="all" formControlName="dayTu"></ion-checkbox>
+                        <ion-label class="text-data">Tu</ion-label>
+
+                        <ion-checkbox autocomplete="off" class="check_css_daily" color="primary" name="all" formControlName="dayWe"></ion-checkbox>
+                        <ion-label class="text-data">We</ion-label>
+
+                        <ion-checkbox autocomplete="off" class="check_css_daily" color="primary" name="all" formControlName="dayTh"></ion-checkbox>
+                        <ion-label class="text-data">Th</ion-label>
+
+                        <ion-checkbox autocomplete="off" class="check_css_daily" color="primary" name="all" formControlName="dayFr"></ion-checkbox>
+                        <ion-label class="text-data">Fr</ion-label>
+
+                        <ion-checkbox autocomplete="off" class="check_css_daily" color="primary" name="all" formControlName="daySa"></ion-checkbox>
+                        <ion-label class="text-data">Sa</ion-label>
+                    </ion-col>
+                </ion-col>
+            </ion-col>
+            <mat-divider class="divider-div"></mat-divider>
+
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Schedule Starts:</ion-label>
+                </ion-col>
+                <ion-col size="4">
+                    <input autocomplete="off" matInput class="input-feild-model " (dateChange)="setOccurrence()"  [min]="minStartScDate" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="startScDate" [matDatepicker]="startDate" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="startDate" class="dt-picker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #startDate></mat-datepicker>
+
+                </ion-col>
+                <ion-col size="2">
+                    <input autocomplete="off" type="text" [appAlphaNumeric]="'num'" formControlName="scStartHours" class="input-number-css"  [min]="minScHr" (change)="limitHRInput($event,2)">
+                    <ion-label class="body-label-s2">(Hours)</ion-label>
+                </ion-col>
+                <ion-col size="2">
+                    <input autocomplete="off" type="text" [appAlphaNumeric]="'num'" formControlName="scStartMinutes"  class="input-number-css" [min]="minScMin" (change)="limitMNInput($event,2)">
+                    <ion-label class="body-label-s2">(Minutes)</ion-label>
+                </ion-col>
+            </ion-col>
+
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Schedule Ends:</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-col class="row mar-t5">
+                        <ion-col size="6">
+                            <ion-list>
+                                <ion-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="endDateFlag"
+                                class="radio-feild-model" aria-label="Select an option">
+                                <ion-col class="radio_dynamic_css">
+                                    <ion-radio #enDateRadio1 class="mat-rd-btn-s2" color="primary" value="1" [ngClass]="{'change-color': (changeonetime === 'bluronetime')}"
+                                    (click)="checkState($event, enDateRadio1)"></ion-radio>
+                                    <ion-label class="label_css">No End Date</ion-label>
+                                </ion-col>
+                                </ion-radio-group>
+                            </ion-list>
+                        </ion-col>
+                    </ion-col>
+                    <ion-col class="row mar-t">
+                        <ion-col size="5">
+                            <ion-list>
+                                <ion-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="endDateFlag"
+                                class="radio-feild-model" aria-label="Select an option">
+                                <ion-col class="radio_dynamic_css">
+                                    <ion-radio #enDateRadio2 class="mat-rd-btn-s2" color="primary" value="2" [ngClass]="{'change-color': (changeonetime === 'bluronetime')}"
+                                    (click)="checkState($event, enDateRadio2)"></ion-radio>
+                                    <ion-label class="label_css">End On</ion-label>
+                                </ion-col>
+                                </ion-radio-group>
+                            </ion-list>
+                        </ion-col>
+                        <ion-col size="7" *ngIf="endDateFlag !== '1'">
+                            <input autocomplete="off" matInput  class="input-feild-model " [min]="startScDate"   (dateChange)="setOccurrence()" formControlName="scEnd"
+                                [(ngModel)]="endScDate" [matDatepicker]="endDate" readonly>
+                            <mat-datepicker-toggle matSuffix [for]="endDate" class="dt-picker1">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                        </ion-col>
+                    </ion-col>
+                    <ion-col class="row mar-t">
+                        <ion-col size="4">
+                            <ion-list>
+                                <ion-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="endDateFlag"
+                                class="radio-feild-model" aria-label="Select an option">
+                                <ion-col class="radio_dynamic_css">
+                                    <ion-radio #enDateRadio3 class="mat-rd-btn-s2" color="primary" value="3" [ngClass]="{'change-color': (changeonetime === 'bluronetime')}"
+                                    (click)="checkState($event, enDateRadio3)"></ion-radio>
+                                    <ion-label class="label_css">After</ion-label>
+                                </ion-col>
+                                </ion-radio-group>
+                            </ion-list>
+                        </ion-col>
+                        <ion-col size="3" *ngIf="endDateFlag !== '1'">
+                            <input autocomplete="off" type="number" formControlName="afterOcc"  (change)="setEndDate($event)" 
+                            value="1" class="input-number-css" min="1" max="99" step="1">
+                            <ion-label class="body-label-s2">Occurrences</ion-label>
+                        </ion-col>
+                    </ion-col>
+
+
+                </ion-col>
+
+            </ion-col>
+          
+
+            <ion-col class="row no-mar data-set">
+                <ion-col size="4">
+                    <ion-label class="body-label">Data Range:</ion-label>
+                </ion-col>
+                <ion-col size="2">
+                    <input autocomplete="off" [appAlphaNumeric]="'num'" type="text" formControlName="dataRange" value="00" maxlength="2" class="input-number-css-s1">
+                </ion-col>
+                <ion-col size="4">
+                    <mat-select  disableOptionCentering formControlName="frequency" class="cap-text form-control drop-mat s2-dropdown drop_css_one-s1">
+                        <mat-option *ngFor="let selData of dataRangeList"[value]="selData">{{selData}}
+                        </mat-option>
+                    </mat-select>
+                </ion-col>
+            </ion-col>
+
+
+        </ion-col>        
+    </form>
+    </ion-col>
+
+    <ion-col size="12" class="model-foot">
+        <ion-button type="button" color="light" class="cancel-btn" #ddd mat-dialog-close>Cancel</ion-button>
+        <ion-button type="button" class="done-btn" [disabled]="isActionStarted || masterDataLoader" (click)="upsertSc()">{{data.action}}</ion-button>
+    </ion-col>
+</ion-row>

@@ -1,0 +1,94 @@
+{
+    "status": "success",
+    "data": {
+        "modelConfigName": "OP1_Am2",
+        "modelName": "Ae_loieas_hhgvh",
+        "status": "Active",
+        "modelType": "Model 1",
+        "dataSet": "Config ABC",
+        "acuracy": "0.98877",
+        "lossFunction": "Mean Square Error",
+        "anmdResult": {
+            "normalData": 2000,
+            "abnormalData": 243,
+            "timeUsed": "12 Hours 30 Min 20 Sec",
+            "speed": "212 KB/Sec",
+            "noOfJobsRunning": 13,
+            "gpuMemoryUsages": 0,
+              "gpuUsages": 0,
+             "cpuUsages": 0,
+            "memoryUsages": 0
+            },
+        "training": {
+            "dataRange": "Oct-17-2020 15:30 To Oct-19-2020 15:30 (48 hrs)",
+            "startTime": "14:32:01 Oct-19-2020",
+            "timeused": "12 hours 30 minutes 20 seconds",
+            "taskName": "AM2erv",
+            "noOfObs": 32211,
+            "noOfComp": "10 > 7 > 3> 7",
+            "features": [
+                {
+                    "name": "adasf",
+                    "rank": 1,
+                    "count": 121,
+                    "value": 100
+                },
+                {
+                    "name": "adahsf",
+                    "rank": 2,
+                    "count": 121,
+                    "value": 90
+                },
+                {
+                    "name": "ada2sf",
+                    "rank": 3,
+                    "count": 121,
+                    "value": 80
+                },
+                {
+                    "name": "ad0asf",
+                    "rank": 5,
+                    "count": 121,
+                    "value": 60
+                },
+                {
+                    "name": "adaskf",
+                    "rank": 4,
+                    "count": 121,
+                    "value": 70
+                },
+                {
+                    "name": "adaskhf",
+                    "rank": 6,
+                    "count": 121,
+                    "value": 50
+                },
+                {
+                    "name": "ada78sf",
+                    "rank": 7,
+                    "count": 121,
+                    "value": 40
+                },
+                {
+                    "name": "ada891sf",
+                    "rank": 8,
+                    "count": 121,
+                    "value": 30
+                },
+                {
+                    "name": "ad99asf",
+                    "rank": 9,
+                    "count": 121,
+                    "value": 20
+                },
+                {
+                    "name": "adsdasf",
+                    "rank": 10,
+                    "count": 121,
+                    "value": 10
+                }
+            ],
+            "featureCount": 39
+        }
+    }
+}

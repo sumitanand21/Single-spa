@@ -1,0 +1,309 @@
+<div class="parent-content main-border">
+    <!-- <div *ngIf="isLoading" class="spinner-div" >
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </div> -->
+
+    <ion-row *ngIf="isLoading" class="spinner-div" lines="none">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+        <!-- <ion-spinner color="slategrey" name="bubbles" mode="indeterminate"></ion-spinner> -->
+    </ion-row>
+
+    <ion-row *ngIf="!isLoading" class="row no-mar wrap-cont">
+        <ion-col class="col-12 col-xs-12 col-sm-12 col-md-4 border-r no-padd" *ngIf="isShown">
+
+       <!-- Table view Starts  -->
+       <ion-col class="df-col no-padd">
+             <!-- Dropdowns and refresh icon Starts here -->
+            <ion-row class="d-flex left_div_border row no-mar">
+                <ion-col class="drop-wid">
+                    <!-- Material Tag Leave as is -->
+                    <mat-select disableOptionCentering class="form-control drop-mat drop_css_one" placeholder="Select" [(ngModel)]="selectedDataId" (ngModelChange)="loadData()">
+                        <!-- <mat-option value="">All</mat-option> -->
+                        <mat-option *ngFor="let selData of selectionDataSet" [value]="selData">{{selData}}</mat-option>
+                    </mat-select> 
+                </ion-col>
+
+                <ion-col class="every-width">
+                    <ion-label class="d-flex span_group_css">
+                        <!-- <i class="fa fa-repeat icon_fafa" aria-hidden="true"></i>  -->
+                        <ion-icon aria-hidden="false" class="refresh_mat" (click)="refreshData()" [src]="forecastService.createSvgUrl('refresh.svg')">refresh</ion-icon>
+                    </ion-label>
+
+                    <!-- Material Tag Leave as is -->
+                    <!-- <mat-select disableOptionCentering  (selectionChange)="scheduleSoc($event.value)" class="form-control drop-mat drop_css_two mat_css_group" [(ngModel)]="refreshDataId">
+                        <mat-option value="off">off</mat-option>
+                        <mat-option *ngFor="let refreshData of refreshDataset" [value]="refreshData">{{refreshData}}</mat-option>
+                    </mat-select> -->
+                    <ion-button class="ion-mid-button ion-noncap-button compare-button" type="button" (click)="navigateToCompare()" [disabled]="!atLeastOneChecked()">Compare</ion-button>
+
+                </ion-col>
+            </ion-row>
+            <!-- Dropdowns and refresh icon Ends here -->
+
+            
+            <ion-row class="page_css_view no-padd">  
+                        <ion-col class="paginate_css">
+                            <!-- <i class="fa fa-search search_fafa" aria-hidden="true"></i>  -->
+                            <!-- <mat-icon aria-hidden="false" class="search_mat" aria-label="search icon">search</mat-icon> -->
+                            <input autocomplete="off" maxlength="150" matInput class="input-feild form-control css_search search_protect" type="text" [(ngModel)]="searchFilter" placeholder="Search with data id..." (ngModelChange)="onsearchChange(searchFilter)">
+                            <ion-icon class="search_mat"[src]="forecastService.createSvgUrl('search.svg')"></ion-icon>
+                            <!-- <ion-searchbar autocomplete="off" maxlength="150" showClearButton="never" matInput type="text" [(ngModel)]="searchFilter" placeholder="Search with data id..." (ngModelChange)="onsearchChange(searchFilter)"></ion-searchbar> -->
+                        </ion-col>
+
+                    <ion-col class="d-flex paginate-align">
+                        <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex page_select_css" (pageChange)="changepage($event)">
+
+                            <ion-row class="d-flex process_rows_css"> 
+                                <ion-text class="mar-r-8 ion-text-small">Rows:</ion-text> 
+                                <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage" (selectionChange)="setNewPageSize(itemPerPage)">
+                                    <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                </mat-select>
+                            </ion-row>
+
+                            <!-- <ion-item class="pagination-previous" [class.disabled]="pT.isFirstPage()" lines="none"> -->
+                                <ion-button color="dark" class="pagination-previous" expand="full" fill="clear" (click)="pT.previous()" [disabled]="pT.isFirstPage()"> < </ion-button>
+                            <!-- </ion-item> -->
+                        
+                            <!-- <div class="d-flex process_matselect">  -->
+                                <ion-text class="ion-text-small"> Page</ion-text>
+                                <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage" 
+                                [appAlphaNumeric]="'num'" (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+                                <ion-text class="ion-text-small"> of {{pT.getLastPage()}}</ion-text>
+                            <!-- </div> -->
+
+                            <!-- <div class="pagination-next" [class.disabled]="pT.isLastPage()"> -->
+                                <ion-button color="dark" class="pagination-next" expand="full" fill="clear" (click)="pT.next()" [disabled]="pT.isLastPage()"> > </ion-button>
+                            <!-- </div> -->
+                        </pagination-template> 
+                    
+                    </ion-col>
+            </ion-row>
+
+
+        <div class="f-max out-table mod-table-scroll">
+            <ion-row *ngIf="isRefreshLoading" class="spinner-div" lines="none">
+                <mat-progress-spinner color="slategrey" mode="indeterminate">
+                </mat-progress-spinner>
+                <!-- <ion-spinner color="slategrey" name="bubbles" mode="indeterminate"></ion-spinner> -->
+            </ion-row>
+        <!-- Table Starts -->
+        <ion-grid class="no-padd" *ngIf="!isRefreshLoading">
+                <ion-row class="head-tr sticky-head">
+
+                    <ion-col class="col-1 cust-thead-th checkbox_col_one">
+                        <ion-checkbox class="fsel-tab-checkbox"   [ngModel]="isAllChecked()" name="all"
+                        (ngModelChange)="checkAlls($event)"></ion-checkbox>
+                        <!-- <label class="check-outer ion-label-standard" style="margin-top:4px;">
+                            <input autocomplete="off" type="checkbox" name="all" [checked]="isAllChecked()" (change)="checkAlls($event)"/>
+                            <span class="checkmark"></span>
+                        </label> -->
+                    </ion-col>
+
+                    <ion-col class="col-8 cust-thead-th wrap-text">
+                        <ion-label class="ion-label-standard">Data ID</ion-label>
+                        <ion-label class="select-cur" (click)="sort('dataId')">
+                            <!-- <mat-icon *ngIf="!(key == 'dataId' && reverse)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                            <mat-icon *ngIf="key == 'dataId' && reverse" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon> -->
+                            <ion-icon *ngIf="!(key == 'dataId' && reverse)" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-down-outline.svg')"></ion-icon>
+                            <ion-icon *ngIf="key == 'dataId' && reverse" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-up-outline.svg')"></ion-icon> 
+                        </ion-label>
+                        <!-- <span class="glyphicon sort-icon" *ngIf="key =='processdataID'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                    </ion-col>
+                    
+                    <ion-col class="col-3 cust-thead-th wrap-text">
+                        <ion-label class="ion-label-standard">DataSets</ion-label>
+                        <ion-label class="select-cur" (click)="sort('dataSetName')">
+                            <!-- <mat-icon *ngIf="!(key == 'dataSetName' && reverse)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                            <mat-icon *ngIf="key == 'dataSetName' && reverse" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon> -->
+                            <ion-icon *ngIf="!(key == 'dataSetName' && reverse)" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-down-outline.svg')"></ion-icon>
+                            <ion-icon *ngIf="key == 'dataSetName' && reverse" aria-hidden="false" class="arrow_mat align-middle arrow-icon-position" [src]="forecastService.createSvgUrl('caret-up-outline.svg')"></ion-icon> 
+                        </ion-label>
+                        <!-- <span class="glyphicon sort-icon" *ngIf="key =='processsampleTime'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                    </ion-col>
+                </ion-row>
+
+            <!-- Table Body Starts -->
+            <!-- <tbody> -->
+            <ion-row class="row no-mar body-tr" [ngClass]="{'table-b-r': ( forecastprocess.dataId == selectedModel.dataId)}" *ngFor="let forecastprocess of tempforecastprocess | orderBy: key : reverse | searchFilter: {'dataId': searchFilter} | paginate: config; let i = index;">
+                <ion-col class="col-1 cust-tbody-td checkbox_col_one">
+                    <ion-checkbox class="fsel-tab-checkbox"   [(ngModel)]="forecastprocess.checkboxdata"  id="{{forecastprocess.dataId}}" name="checkboxdata"></ion-checkbox>
+                    <!-- <label class=" check-outer-td">
+                        <input autocomplete="off" type="checkbox"  [(ngModel)]="forecastprocess.checkboxdata"  id="{{forecastprocess.dataId}}" name="checkboxdata"/>
+                        <span class="checkmark"></span>
+                    </label> -->
+
+                </ion-col>
+
+                <ion-col (click)="displayModel(forecastprocess, true)" class="col-5 cust-tbody-td wrap-text r-name" [ngClass]="{'color-waiting': !forecastprocess.jobStatus || (forecastprocess.jobStatus && (forecastprocess.jobStatus.toLowerCase() === 'waiting' || forecastprocess.jobStatus.toLowerCase() === 'initiated' ||  forecastprocess.jobStatus.toLowerCase() === 'queued'))}">
+                   {{forecastprocess.dataId}} 
+                </ion-col>
+
+                <ion-col (click)="displayModel(forecastprocess, true)" class="col-3 wrap-text cust-tbody-td"> 
+                    <ion-label *ngIf="forecastprocess.jobStatus" [ngClass]="{'bg-active': (forecastprocess.jobStatus.toLowerCase() === 'active' || forecastprocess.jobStatus.toLowerCase() === 'running' ),'bg-waiting': (forecastprocess.jobStatus.toLowerCase() === 'waiting' || forecastprocess.jobStatus.toLowerCase() === 'initiated' ||  forecastprocess.jobStatus.toLowerCase() === 'queued'),'bg-stop': forecastprocess.jobStatus.toLowerCase() == 'stopped'}" class="status">
+                        {{forecastprocess.jobStatus.toLowerCase()}}
+                    </ion-label>
+                </ion-col>
+
+                <ion-col (click)="displayModel(forecastprocess, true)" class="col-3 wrap-text cust-tbody-td">{{forecastprocess.dataSetName}}</ion-col>
+            </ion-row>
+            <ion-row class="row no-mar body-tr" *ngIf="(tempforecastprocess | searchFilter: {'dataId': searchFilter} ).length == 0">
+                <ion-col class="col-12 cust-tbody-td wrap-text no_rec_css">No records found</ion-col>
+            </ion-row>
+           
+            <!-- </tbody> -->
+        </ion-grid>
+        </div>
+        </ion-col>
+
+         <!-- Table view Ends -->
+
+    </ion-col>
+    
+    <ion-col class="col-12 col-xs-12 col-sm-12 padd-22 df-col cont-scrl" [ngClass]="isShown?'col-md-8':'col-md-12'">
+        <div class="fmax sub-cont-scrl">
+
+            <!-- Panel button -->
+            <div class="shadowbtn collapse-view-cont" [ngClass]="{'bg-open':!isShown}" (click)="toggleShow()">
+                <!-- <i *ngIf="!isShown" class="fa fa-chevron-right open-tab"></i>
+                <i *ngIf="isShown" class="fa fa-chevron-left close-tab"></i> -->
+                <ion-icon *ngIf="!isShown" aria-hidden="false" class="arrow_mat open-tab" [src]="forecastService.createSvgUrl('chevron-forward.svg')"></ion-icon>
+                <ion-icon *ngIf="isShown" aria-hidden="false" class="arrow_mat close-tab" [src]="forecastService.createSvgUrl('chevron-back.svg')"></ion-icon>
+                
+                <!-- <mat-icon *ngIf="!isShown" class="arrow_mat open-tab" aria-hidden="false" aria-label="arrowright icon">keyboard_arrow_right</mat-icon> -->
+                <!-- <mat-icon *ngIf="isShown" class="arrow_mat close-tab" aria-hidden="false" aria-label="arrowleft icon">keyboard_arrow_left</mat-icon> -->
+            </div>
+
+            <ion-row class="row no-mar" *ngIf="checkifObjectExist(selectedProcess) == false && !dataSetDetailsLoading">
+                <ion-col class="col-md-6 col-sm-6 col-xs-12 mar-b-25">
+                    <ion-label *ngIf="checkifObjectExist(selectedModel) == true" class="head-label">No process details available</ion-label>
+                    <ion-label *ngIf="checkifObjectExist(selectedModel) == false" class="head-label">Select at least one process data to show the details</ion-label>
+                </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="dataSetDetailsLoading" class="spinner-div" lines="none">
+                <mat-progress-spinner color="slategrey" mode="indeterminate">
+                </mat-progress-spinner>
+                <!-- <ion-spinner color="slategrey" name="bubbles" mode="indeterminate"></ion-spinner> -->
+            </ion-row>
+
+
+            <div *ngIf="checkifObjectExist(selectedProcess) == true && !dataSetDetailsLoading">
+                <ion-row class="row no-mar" >
+                    <ion-col class="col-md-8 col-sm-8 col-xs-12 mar-b-25 no-padd">
+                        <ion-label class="head-label">{{tempSlectedProcess.dataId}}</ion-label>
+                    </ion-col>
+                    
+                    <ion-col class="col-md-4 col-sm-4 col-xs-12 mar-b-25 no-padd">
+                        <ion-item class="float-md-right float-sm-right" lines="none">
+                            <!-- <button type="button" class="btn btn-default cancel-mod">Cancel</button> -->
+                            <button type="button" class="shadowbtn stop-btn" aria-hidden="true" *ngIf="tempSlectedProcess.jobStatus.toLowerCase() != 'stopped'" (click)="openStopmodal(tempSlectedProcess)">Stop</button>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+         
+                <ion-row class="row no-mar">
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Model Configuration</ion-row>
+                        <ion-row (click)="opentEditpopup(tempSlectedProcess)" class="data-label name-link">{{tempSlectedProcess.modelConfigName}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Loss Function</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.lossFunction}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Time Series Type</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.timeseriesType}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Loss Value</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.lossValue}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Data Sets</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.dataSetName}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Data Frequency</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.dataFrequency}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Data Range</ion-row>
+                        <ion-row class="data-label">Min: {{tempSlectedProcess.minDataRange }}  &nbsp;&nbsp;  Max: {{tempSlectedProcess.maxDataRange}} </ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Time For Forward Prediction</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.timeForForwardPrediction}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-12 no-padd mar-b-12 outer-graph-frame">
+                        <iframe id="myFrame" class="graph-frame" [src]="selectedProcess.Url" ></iframe>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">CPU usage</ion-row>
+                        <ion-row class="data-label mar-t-4">
+                            <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                 [value]="(tempSlectedProcess.cpuUsage)"></ion-progress-bar>
+                        </ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Memory Usage</ion-row>
+                        <ion-row class="data-label mar-t-4">
+                            <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                mode="determinate" [value]="(tempSlectedProcess.memoryUsage)"></ion-progress-bar>
+                        </ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Speed</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.speed}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Number of job Running</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.numberOfJobRunning}}</ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">GPU Usage</ion-row>
+                        <ion-row class="data-label mar-t-4">
+                            <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                mode="determinate" [value]="(tempSlectedProcess.gpuUsage)"></ion-progress-bar>
+                        </ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">GPU Memory Usage</ion-row>
+                        <ion-row class="data-label mar-t-4">
+                            <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                mode="determinate" [value]="(tempSlectedProcess.gpuMemoryUsage)"></ion-progress-bar>
+                        </ion-row>
+                    </ion-col>
+                       
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Time of Running</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.timeOfRunning}} </ion-row>
+                    </ion-col>
+
+                    <ion-col class="col-sm-4 col-md-3 no-padd mar-b-12">
+                        <ion-row class="body-label">Number of record processed</ion-row>
+                        <ion-row class="data-label">{{tempSlectedProcess.numberofRecordsProcessed}}</ion-row>
+                    </ion-col>
+
+                </ion-row>
+            </div>
+        </div>
+    </ion-col>
+</ion-row>
+
+</div>

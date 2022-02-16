@@ -1,0 +1,59 @@
+{
+    "status" : "success",
+    "data": {
+      "column_name": "Age",
+      "correlated_features": [
+        {
+          "key1": "PassengerId",
+          "value": 0.034212112,
+          "key2": "positive"
+        },
+        {
+          "key1": "Name",
+          "value": 0.0482520185,
+          "key2": "positive"
+        },
+        {
+          "key1": "Sex",
+          "value": 0.0811625352,
+          "key2": "positive"
+        },
+        {
+          "key1": "Fare",
+          "value": 0.0966884222,
+          "key2": "positive"
+        },
+        {
+          "key1": "Pclass",
+          "value": -0.3398983284,
+          "key2": "negative"
+        },
+        {
+          "key1": "SibSp",
+          "value": -0.2332963313,
+          "key2": "negative"
+        },
+        {
+          "key1": "Parch",
+          "value": -0.172481954,
+          "key2": "negative"
+        },
+        {
+          "key1": "Ticket",
+          "value": -0.0703818335,
+          "key2": "negative"
+        },
+        {
+          "key1": "Survived",
+          "value": -0.0649104199,
+          "key2": "negative"
+        },
+        {
+          "key1": "Embarked",
+          "value": -0.0187543168,
+          "key2": "negative"
+        }
+      ]
+    }
+  }
+

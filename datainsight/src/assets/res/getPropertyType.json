@@ -1,0 +1,15 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            "str",
+            "int",
+            "float",
+            "bool",
+            "object",
+            "datetime"
+        ],
+        "responseType": "",
+        "status_code": 200
+    }
+}

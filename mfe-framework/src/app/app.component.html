@@ -1,0 +1,45 @@
+<div class="spa_container" *ngIf="!configErr">
+  <app-header (emitOut)="sideBarClose()"></app-header>
+
+<div class="mfe-wrap-container">
+  <div  class="mfe-spinner-div" *ngIf="singleSpaService.loaderSpaApp">
+    <mat-progress-spinner color="slategrey" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+  <div class="cont-nav">
+    <mat-progress-bar
+    *ngIf="isLoading"
+    style="display: flex; justify-content: center; align-items: center"
+    color="gray"
+    mode="indeterminate"
+  >
+  </mat-progress-bar>
+    <app-toaster></app-toaster>
+      <app-spa-host-nav *ngIf="navStatusBinder && !defNavbarBinder && !crudServices.defaultHomePath" [navbarAppName]="navbarBinder"></app-spa-host-nav>
+      <app-navbar *ngIf="defNavbarBinder && !navStatusBinder && !crudServices.defaultHomePath" [setFeatures]="navBarAppsBinder" (emitNavbarOut)="navbarOut($event)"></app-navbar>
+    </div>
+   <mat-sidenav-container class="flex_fill">
+     <mat-sidenav #sidenav [(opened)]="opened">
+       <app-sidebar [sideBarApps]="sideBarAppsBinder" *ngIf="sidenav.opened" (emitSidebarOut)="sidebarOut($event)"></app-sidebar>
+      </mat-sidenav>
+     <mat-sidenav-content class="flex_fill">     
+       <article class="cont-child-article">
+         <div class="layout-side">
+             <div class="cont-route">
+               <router-outlet></router-outlet>
+             </div>
+         </div>
+ 
+     </article>
+
+     <div class="mfe-appcomp-btn-wrap" *ngIf="defaultSideNavbarBinder && !crudServices.defaultHomePath">
+      <mat-icon class="mat-icon-css" (click)="toggleSideNav(true)">
+        <img class="mfe-head-icon"  src="assets/icons/expand_more_black_24dp.svg"/>
+       </mat-icon>
+
+   </div>
+   </mat-sidenav-content>
+   </mat-sidenav-container>
+  </div>
+ </div>
+

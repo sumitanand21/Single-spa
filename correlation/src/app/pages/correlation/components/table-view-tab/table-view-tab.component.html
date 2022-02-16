@@ -1,0 +1,153 @@
+<ion-row class="parent-content df-col">
+    <ion-row class="corr-header">
+	<app-correlation-header [activeView]="'Tableview'"  [disableAll]="setDisable" [allDetails]="allCorrelationDetails" (emitOut)="provideInputsToMap($event)"></app-correlation-header>
+        
+    </ion-row>
+    <ion-row class="main_div_css f-max">
+        <ion-row class="left_view col-6 df-col" *ngIf="isShown">
+            <ion-row class="row no-mar">
+                <ion-row class="page_css_view">
+                    <ion-col class="paginate_css">
+                        <span>
+                            <ion-icon class="ion_icon_search" [src]="correlationService.createSvgUrl('search.svg')"></ion-icon>
+                            <input autocomplete="off" maxlength="150" matInput class="form-control css_search" type="text" placeholder="Search" [(ngModel)]="searchFilter"
+                                (ngModelChange)="onsearchChange(searchFilter)">
+                        </span>
+                    </ion-col>
+                    <ion-col class="d-flex paginate-align">
+                        <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex"
+                            (pageChange)="changepage($event)">
+                            <ion-row class="d-flex process_rows_css">
+                                <span class="mar-r-8 paginate-text">Rows:</span>
+                                <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                    (selectionChange)="setNewPageSize(itemPerPage)">
+                                    <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                </mat-select>
+                            </ion-row>
+                            <ion-row class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                                <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                    [disabled]="pT.isFirstPage()">
+                                    < </button>
+                            </ion-row>
+
+                            <ion-row class="d-flex process_matselect">
+                                <span class="paginate-text"> Page</span>
+                                <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage"
+                                    (change)="changepageinp(inputCurrentpage,pT.getLastPage())">
+
+                                <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                            </ion-row>
+                            <ion-row class="pagination-next" [class.disabled]="pT.isLastPage()">
+                                <button type="button" class="pagination-btn" (click)="pT.next()"
+                                    [disabled]="pT.isLastPage()"> > </button>
+                            </ion-row>
+                        </pagination-template>
+
+                    </ion-col>
+                </ion-row>
+
+            </ion-row>
+
+            <ion-row class="f-max out-table mod-table-scroll">
+                <table class="df-col">
+                    <thead class="sticky-head">
+                        <tr class="row no-mar head-tr">
+                            <th class="wrap-text col-4">
+                                <ion-col class="dc-flex">
+                                    <ion-col class="mean-corr">Feature 1
+                                        <ion-col class="select-cur ion-no-padding" (click)="sort('featureone')">
+                                            <mat-icon *ngIf="!(key == 'featureone' && reverse)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                                            <mat-icon *ngIf="key == 'featureone' && reverse" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon>
+                                        </ion-col>
+                                    </ion-col>
+                                    
+                                </ion-col>
+                            </th>
+                            <th class="wrap-text col-4">
+                                <ion-col class="dc-flex">
+                                    <ion-col class="mean-corr">Feature 2
+                                        <ion-col class="select-cur ion-no-padding" (click)="sort('featuretwo')">
+                                            <mat-icon *ngIf="!(key == 'featuretwo' && reverse)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                                            <mat-icon *ngIf="key == 'featuretwo' && reverse" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon>
+                                        </ion-col>
+                                    </ion-col>
+                                </ion-col>
+                            </th>
+                            <th class="wrap-text col-4">
+                                <ion-col class="dc-flex">
+                                    <ion-col class="mean-corr">Correlation
+                                        <ion-col class="select-cur ion-no-padding" (click)="sort('correlation')">
+                                            <mat-icon *ngIf="!(key == 'correlation' && reverse)" aria-hidden="false" class="arrow_mat align-middle" aria-label="down icon">arrow_drop_down</mat-icon>
+                                            <mat-icon *ngIf="key == 'correlation' && reverse" aria-hidden="false" class="arrow_mat align-middle" aria-label="up icon">arrow_drop_up</mat-icon>
+                                        </ion-col>
+                                    </ion-col>
+                                </ion-col>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tableview of tableData | orderBy: key : reverse | filter:searchFilter | paginate: config; let i = index" role="row" class="row no-mar body-tr row-selection" [class.active]="i == selectedRow" (click)="setClickedRow(i,tableview)" id="trdata{{i}}">
+                            <td class="wrap-text col-4">{{tableview.featureone}}</td>
+                            <td class="wrap-text col-4">{{tableview.featuretwo}}</td>
+                            <td class="wrap-text col-4" *ngIf="tableview.correlation == 0.0">0.000</td>
+                            <td class="wrap-text col-4" *ngIf="tableview.correlation != null && tableview.correlation != 0.0">{{numberFormat(tableview.correlation)}}</td>
+                            <td class="wrap-text col-4" *ngIf="tableview.correlation == null">NAN</td>
+                        </tr>
+                        <tr class="row no-mar body-tr" *ngIf="(tableData | filter:searchFilter).length == 0">
+                            <td class="col-12 wrap-text no_rec_css">No records found</td>
+                        </tr>
+                    <br/>
+                    </tbody>
+                </table>
+        </ion-row>
+        </ion-row>
+        <ion-row class="right_view col-6 df-col" [ngClass]="isShown?'col-md-6':'col-md-12'">
+            <ion-col class="f-max no-height">
+                    <ion-col class="shadowbtn collapse-view-cont" [ngClass]="{'bg-open':!isShown}" (click)="toggleShow()">
+                            <ion-icon *ngIf="!isShown" class="frwrd_icon_css" aria-hidden="false" [src]="correlationService.createSvgUrl('chevron-forward-circle-outline.svg')"></ion-icon>
+                            <ion-icon *ngIf="isShown"  class="back_icon_css" aria-hidden="false" [src]="correlationService.createSvgUrl('chevron-back-circle-outline.svg')"></ion-icon>
+                    </ion-col>
+                    <ion-col *ngIf="isLoading" class="spinner-div col-12">
+                        <mat-progress-spinner color="slategrey" mode="indeterminate">
+                        </mat-progress-spinner>
+                    </ion-col>
+            <ion-col *ngIf="!selectedData && !isLoading && ScatterchartArray.length === 0" class="no_cor_select">Select at least one table view correlation to show the details</ion-col>
+           <ion-col *ngIf="selectedcorrelatedType === 'categorical'">
+            <ion-col *ngIf="selectedData && !isLoading && ScatterchartArray.length >= 0"  class="graph-height">
+                <ion-col class="f-max no-height">
+                    <ion-col>No Data Available for Categorical VS Categorical</ion-col>
+                </ion-col>
+            </ion-col>
+           </ion-col>
+
+            <ion-col *ngIf="selectedcorrelatedType !== 'categorical'">
+                <ion-col *ngIf="!isLoading"  class="graph-height">
+                    <ion-col class="f-max no-height" [ngClass]="{'hide-block':!selectedData || isLoading}">
+                        <ion-col class="graph_label">
+                            {{selectedData ? selectedData.featureone : ''}}
+                        </ion-col>
+                        <ion-row *ngIf="chartData1.length == 0 && selectedcorrelatedType !== 'continuous_categorical'" class="no-data">No Data Available</ion-row>
+                        <ion-row *ngIf="chartData1.length == 0 && selectedcorrelatedType === 'continuous_categorical'" class="no-data">No Graph view for Categorical data</ion-row>
+                        <ion-row class="graph_one" *ngIf="chartData1.length > 0">
+                        
+                            <app-datelinechart [chartId]="'dateID1'" [chartData]="chartData1"></app-datelinechart>
+                        </ion-row>
+                        <ion-col class="graph_label">
+                            {{selectedData ? selectedData.featuretwo : ''}}
+                        </ion-col>
+                        <ion-row *ngIf="chartData2.length == 0 && selectedcorrelatedType !== 'continuous_categorical'" class="no-data">No Data Available</ion-row>
+                        <ion-row *ngIf="chartData2.length == 0 && selectedcorrelatedType === 'continuous_categorical'" class="no-data">No Graph view for Categorical data</ion-row>
+                        <ion-row class="graph_two" *ngIf="chartData2.length > 0">
+                        
+                            <app-datelinechart2 [chartId]="'dateID2'" [colorCode]="'#3B73B7'" [chartData]="chartData2"></app-datelinechart2>
+                        </ion-row>
+                    </ion-col>
+                </ion-col>
+            </ion-col>
+            </ion-col>
+        </ion-row>
+    </ion-row>
+</ion-row>
+
+
+

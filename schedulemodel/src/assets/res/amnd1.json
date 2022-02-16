@@ -1,0 +1,65 @@
+{
+  "status": "success",
+  "data": {
+    "uid": "61814af08c81bc26fc9acb39",
+    "scheduleId": "618149c06d85f50001ffbd3a",
+    "scheduleName": "ASC_TRAIN",
+    "jobStatus": "COMPLETED",
+    "jobType": "ASCTRAINING",
+    "modelConfigName": "alarm_storm_data",
+    "dataSetName": "alarm_storm_data",
+    "dataRange": "2020-11-02T14:28:01Z-2021-11-02T14:28:01Z",
+    "progress": "6/6 : Training Completed",
+    "startTime": "2021-11-02 14:32:32.596499",
+    "timeUsed": "0:00:17.098584",
+    "numberOfComponents": [
+      "NA"
+    ],
+    "cpuUsage": "0.19",
+    "cpuMemoryUsage": "0.04974174499511719",
+    "gpuUsage": "None",
+    "gpuMemoryUsage": "None",
+    "accuracy": [
+      1.2
+    ],
+    "lossFunction": "mse",
+    "loss": [
+      7.818504,
+      0.24599406
+    ],
+    "numberofObservation": "6",
+    "featureImportance": {
+      "Port Loss of Light:Type=Client": "0.34675667681607125",
+      "Multiplex Structure Identifier Type Mismatch": "0.23112092545307175",
+      "Administrative State Down": "0.3467566768160712",
+      "OPR Power Out of Specification - Low:Type=SFP+": "0.3467566768160712",
+      "Comm loss occured due to NE session dropped": "0.2635781610126346",
+      "Neighbor Discovery Fail": "0.2635781610126346",
+      "Administrative State Down:Type=10GE": "0.3467566768160712",
+      "Port Loss of Light:Type=Edge": "0.2635781610126346",
+      "Payload Missing Indication": "0.2635781610126346",
+      "Loss of Signal": "0.34675667681607125",
+      "Loss of Synchronization:Type=10GE": "0.23112092545307183",
+      "Loss of Synchronization:Type=100GE": "0.2635781610126346",
+      "Pre Block Span Adjustment in Progress": "0.2635781610126346",
+      "Loss of Synchronization": "0.2635781610126346",
+      "Post Block Automatic Power Reduction": "0.2635781610126346",
+      "Power Out of Specification - Low:Type=Client": "0.2635781610126346",
+      "OPR Power Out of Specification - Low:Type=CFP2": "0.2635781610126346",
+      "OPR Power Out of Specification - Low:Type=100ME": "0.2635781610126346",
+      "Alarm Indication Signal": "0.3467566768160713",
+      "Loss of Signal:Type=10GE": "0.3467566768160712",
+      "Loss of Frame": "0.34675667681607125",
+      "Power Input Fail:Type=BDL1-3R31": "0.2635781610126346",
+      "Port Loss of Light:Type=SubportEdge": "0.3467566768160711",
+      "No Secondary Database": "0.2635781610126346"
+    },
+    "fromTime": "2020-11-02T14:28:01Z",
+    "toTime": "2021-11-02T14:28:01Z",
+    "modelName": "ASC_TRAIN_2020-11-02T14:28:01Z_2021-11-02T14:28:01Z_clus.sav",
+    "scalerName": "MinMaxScaler",
+    "encoderName": "Label",
+    "validationLoss": [],
+    "validatonAcurracy": null
+  }
+}

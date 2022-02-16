@@ -1,0 +1,193 @@
+<ion-row class="df-col">
+    <ion-row *ngIf="anmdTrResLoading" class="spinner-div" >
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-row>
+    <ion-row  *ngIf="!anmdTrResLoading" class="train-head">
+        <ion-row class="model_css_view"> 
+            <ion-col class="text-head">Model Name:</ion-col>
+            <ion-col class="model-text" *ngIf="(modelTrainingData.modelNameDisp)" [title]="modelTrainingData.modelNameDisp">{{modelTrainingData.modelNameDisp}}</ion-col>
+             <ion-col class="genrate-comp" *ngIf="!(modelTrainingData.modelNameDisp)">Generating</ion-col>
+        </ion-row>
+        <ion-row class="progress_css">
+            <ion-col class="text-head">Progress:</ion-col>
+            <ion-col class="prog_status">
+                    <ion-col class="prog-comp" *ngIf="(modelTrainingData.jobStatus.toLowerCase() === 'completed')">Completed</ion-col>
+
+                    <span class="prog-process" *ngIf="!(modelTrainingData.jobStatus.toLowerCase() === 'completed')">
+                        <mat-progress-bar class="no-padd prog-process-progress-bar" mode="determinate"
+                        [value]="(modelTrainingData.progress)"></mat-progress-bar>
+                        <span class="prog-val">{{modelTrainingData.progressPer}}%</span>
+                    </span>
+             
+
+            </ion-col>
+        </ion-row>
+        <ion-row class="model_css_view">
+            <ion-col class="text-head">Loss Function:</ion-col>
+            <ion-col *ngIf="modelTrainingData.lossFunction" class="text-body">{{modelTrainingData.lossFunction}}</ion-col>
+            <ion-col *ngIf="!modelTrainingData.lossFunction" class="text-body">NA</ion-col>
+        </ion-row>
+        <ion-row class="value_prog">
+            <ion-col class="text-head">Value:</ion-col>
+            <ion-col *ngIf="modelTrainingData.accuracyDisp" class="text-body">{{modelTrainingData.accuracyDisp}}</ion-col>
+            <ion-col *ngIf="!modelTrainingData.accuracyDisp" class="text-body">NA</ion-col>
+        </ion-row>
+        <ion-row class="action-sec " >
+             <!-- <ion-label *ngIf="(modelTrainingData.jobStatus.toLowerCase() === 'completed')" class="text-head thr-label">Threshold: </ion-label> -->
+            <!-- <input autocomplete="off" type="number" *ngIf="(modelTrainingData.jobStatus.toLowerCase() === 'completed')" [(ngModel)]="modelTrainingData.threshold" class="input-number-css" id="points" name="points" min="0" max="1" step="0.001"> -->
+            <ion-button color="danger" type="button" class="shadowbtn train-stop-btn" (click)="deleteModel()" *ngIf="(modelTrainingData.jobStatus.toLowerCase() === 'completed')">Delete</ion-button>
+            <ion-button color="danger" type="button" class="shadowbtn train-stop-btn" (click)="stopTraining()" *ngIf="(modelTrainingData.jobStatus.toLowerCase() != 'completed' && modelTrainingData.jobStatus.toLowerCase() != 'stopped')">Stop</ion-button>
+            <!-- <ion-button type="button" class="shadowbtn train-detect-btn" (click)="detectAnomaly()" [disabled]="!(modelTrainingData.jobStatus.toLowerCase() === 'completed') || disableDetectAnomalyBtn">Detect Anomaly</ion-button> -->
+        </ion-row>
+    </ion-row>
+    <ion-row *ngIf="!anmdTrResLoading" class="f-max train-body">
+
+        <ion-row class="row no-mar">
+            <ion-col class="no-padd mar-b-18 gen-att-wrap">
+                <ion-row class="train-cont df-col">
+                    <ion-row class="train-item-head">General Attributes:</ion-row>
+                    <ion-row class="train-item gen-cont f-max">
+                        <ion-row class="gen-att">
+                            <ion-row class="gen-head">Task Name:</ion-row>
+                            <ion-row *ngIf="modelTrainingData.scheduleName" class="gen-body">{{modelTrainingData.scheduleName}}</ion-row>
+                            <ion-row *ngIf="!modelTrainingData.scheduleName" class="gen-body">NA</ion-row>
+                        </ion-row>
+                        <ion-row class="gen-att">
+                            <ion-row class="gen-head">Model Config Used:</ion-row>
+                            <ion-row *ngIf="modelTrainingData.modelConfigName" class="gen-body model-color" (click)="openModelConfigDialog(modelTrainingData)">{{modelTrainingData.modelConfigName}}</ion-row>
+                            <ion-row *ngIf="!modelTrainingData.modelConfigName" class="gen-body">NA</ion-row>
+                        </ion-row>
+                        <ion-row class="gen-att">
+                            <ion-row class="gen-head">Dataset Name:</ion-row>
+                            <ion-row  *ngIf="modelTrainingData.dataSetName" class="gen-body">{{modelTrainingData.dataSetName}}</ion-row>
+                            <ion-row *ngIf="!modelTrainingData.dataSetName" class="gen-body">NA</ion-row>
+                        </ion-row>
+                        <ion-row class="gen-att">
+                            <ion-row class="gen-head">Number Of Components:</ion-row>
+                            <ion-row *ngIf="modelTrainingData.numberOfComponentsDisp" class="gen-body">{{modelTrainingData.numberOfComponentsDisp}}</ion-row>
+                            <ion-row *ngIf="!modelTrainingData.numberOfComponentsDisp" class="gen-body">NA</ion-row>
+                        </ion-row>
+                        <ion-row class="gen-att">
+                            <ion-row class="gen-head">Start Time:</ion-row>
+                            <ion-row *ngIf="modelTrainingData.startTime" class="gen-body">{{modelTrainingData.startTime}}</ion-row>
+                            <ion-row *ngIf="!modelTrainingData.startTime" class="gen-body">NA</ion-row>
+                        </ion-row>
+                        <ion-row class="gen-att">
+                            <ion-row class="gen-head">Time Used:</ion-row>
+                            <ion-row *ngIf="modelTrainingData.timeUsed" class="gen-body">{{modelTrainingData.timeUsed}}</ion-row>
+                            <ion-row *ngIf="!modelTrainingData.timeUsed" class="gen-body">NA</ion-row>
+                        </ion-row>
+                        <ion-row class="gen-att">
+                            <ion-row class="gen-head"># of Observation:</ion-row>
+                            <ion-row *ngIf="modelTrainingData.numberofObservation" class="gen-body">{{modelTrainingData.numberofObservation}}</ion-row>
+                            <ion-row *ngIf="!modelTrainingData.numberofObservation" class="gen-body">NA</ion-row>
+                        </ion-row>
+        
+                    </ion-row>
+                </ion-row>
+        
+            </ion-col>
+            <ion-col class="no-padd mar-b-18 error_cluster_css cluster-qty">
+                <ion-row class="train-cont df-col">
+                    <ion-row class="train-item-head">Construction Error Cluster Quality Chart:</ion-row>
+                    <ion-row class="train-item ceoc-cont f-max">
+                        <ion-row class="ceoc-att">
+                            <app-amchart [graphData]="modelTrainingData.loss"></app-amchart>
+                        </ion-row>
+        
+                    </ion-row>
+                </ion-row>
+            </ion-col>
+            <ion-col class="no-padd mar-b-18 gen-att-wrap">
+                <ion-row class="train-cont df-col">
+                    <ion-row class="train-item-head feature-item">
+                        <span>Features Importance:</span>
+                        <ion-button type="button" class="shadowbtn data-prev" (click)="openDataPreviewDialog()" color="light">Data Preview</ion-button>
+                    </ion-row>
+                    <ion-row class="train-item feature-cont f-max">
+                        <ion-col *ngIf="modelTrainingData.featureImportance" class="feature-att-title">
+                            <ion-row class="feature-name">Top 10 Features ({{modelTrainingData.featureImportance.length}})</ion-row>
+                            <ion-row class="feature-count move-r">Value</ion-row>
+                        </ion-col>
+        
+                        <ion-row class="feature-att" *ngFor="let featuresImp of modelTrainingData.featureImportance | orderBy: 'displayValue' : true | slice:0:10">
+                            <ion-row class="feature-head">Feature {{featuresImp.key}}:</ion-row>
+                            <ion-row class="feature-body">
+                                <mat-progress-bar class="col-8 no-padd feature-imp-progress-bar" mode="determinate"
+                                [value]="(featuresImp.barVal * 100) " [color]="featuresImp.color"></mat-progress-bar>
+                                <ion-row>{{featuresImp.displayValue}}</ion-row>
+                            </ion-row>
+                        </ion-row>
+        
+        
+        
+        
+                    </ion-row>
+                </ion-row>
+            </ion-col>
+            <ion-col class="no-padd mar-b-18 gen-att-wrap">
+                <ion-row class="train-cont df-col">
+                    <ion-row class="train-item-head">Resource Usage:</ion-row>
+                    <ion-row class="train-item resused-cont f-max">
+        
+                        <ion-row class="resused-att">
+                            <ion-row class="resused-head">CPU Usage:</ion-row>
+                            <ion-row class="resused-body row">
+                                <ion-row class="col-6 no-padd-r">
+                                    <mat-progress-bar class="no-padd resused-progress-bar" mode="determinate"
+                                    [value]="(modelTrainingData.cpuUsage * 100)"></mat-progress-bar> 
+                                </ion-row>
+                              <ion-row *ngIf="modelTrainingData.cpuUsageDisp" class="data-label per-label col-6">{{modelTrainingData.cpuUsageDisp}}%</ion-row>
+                              <ion-row *ngIf="!modelTrainingData.cpuUsageDisp" class="data-label per-label col-6">NA</ion-row>
+                            </ion-row>
+                        </ion-row>
+        
+                        <ion-row class="resused-att">
+                            <ion-row class="resused-head">Memory Usage:</ion-row>
+        
+                            <ion-row class="resused-body row">
+                                <ion-row class="col-6 no-padd-r">
+                                    <mat-progress-bar class="no-padd resused-progress-bar" mode="determinate"
+                                    [value]="(modelTrainingData.cpuMemoryUsage * 100)"></mat-progress-bar> 
+                                </ion-row>
+                              <ion-row *ngIf="modelTrainingData.cpuMemoryUsageDisp" class="data-label per-label col-6">{{modelTrainingData.cpuMemoryUsageDisp}}%</ion-row>
+                              <ion-row *ngIf="!modelTrainingData.cpuMemoryUsageDisp" class="data-label per-label col-6">NA</ion-row>
+                            </ion-row>
+                        </ion-row>
+        
+                        <ion-row class="resused-att">
+                            <ion-row class="resused-head">GPU Usage:</ion-row>
+                            <ion-row class="resused-body row">
+                                <ion-row class="col-6 no-padd-r">
+                                    <mat-progress-bar class="no-padd resused-progress-bar" mode="determinate"
+                                    [value]="(modelTrainingData.gpuUsage * 100)"></mat-progress-bar> 
+                                </ion-row>
+                              <ion-row *ngIf="modelTrainingData.gpuUsageDisp" class="data-label per-label col-6">{{modelTrainingData.gpuUsageDisp}}%</ion-row>
+                              <ion-row *ngIf="!modelTrainingData.gpuUsageDisp" class="data-label per-label col-6">NA</ion-row>
+                            </ion-row>
+                        </ion-row>
+        
+                        <ion-row class="resused-att">
+                            <ion-row class="resused-head">GPU Memory Usage:</ion-row>
+        
+        
+                            <ion-row class="resused-body row">
+                                <ion-row class="col-6 no-padd-r">
+                                    <mat-progress-bar class="no-padd resused-progress-bar" mode="determinate"
+                                    [value]="(modelTrainingData.gpuMemoryUsage * 100)"></mat-progress-bar> 
+                                </ion-row>
+                              <ion-row *ngIf="modelTrainingData.gpuMemoryUsageDisp" class="data-label per-label col-6">{{modelTrainingData.gpuMemoryUsageDisp}}%</ion-row>
+                              <ion-row *ngIf="!modelTrainingData.gpuMemoryUsageDisp" class="data-label per-label col-6">NA</ion-row>
+                            </ion-row>
+                        </ion-row>
+                    </ion-row>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        
+
+    </ion-row>
+
+
+</ion-row>

@@ -1,0 +1,32 @@
+{
+  "status": "success",
+  "data": {
+    "data": [
+      {
+        "dataSetName": "alarm_data",
+        "jobType": ["ANOMALY DETECTION", "FORECAST","CORRELATION"],
+        "dataSourceType": ["stored_data", "stream_data"],
+        "dbType": "ElasticSearch"
+      },
+      {
+        "dataSetName": "alarm_data1",
+        "jobType": ["FORECAST"],
+        "dataSourceType": ["stored_data","stream_data"],
+        "dbType": "ElasticSearch"
+      },
+      {
+        "dataSetName": "alarm_data2",
+        "jobType": ["ANOMALY DETECTION"],
+        "dataSourceType": ["stored_data"],
+        "dbType": "ElasticSearch"
+      },
+      {
+        "dataSetName": "alarm_data3",
+        "jobType": ["CLASSIFICATION", "CORRELATION"],
+        "dataSourceType": ["stored_data","stream_data"],
+        "dbType": "ElasticSearch"
+      }
+    ],
+    "status_code": 200
+  }
+}

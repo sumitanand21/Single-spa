@@ -1,0 +1,8 @@
+docker build -t 42402112/sumit2112 .
+docker push 42402112/sumit2112
+kubectl apply -f data-config.yaml
+kubectl apply -f development.yaml
+minikube service angular-service
+
+kubectl get pods
+kubectl exec -it angular-deployment-6bf8874f6-d5p8p -- /bin/sh

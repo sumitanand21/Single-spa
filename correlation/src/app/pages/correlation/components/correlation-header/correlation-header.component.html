@@ -1,0 +1,231 @@
+<ion-row class="container-fluid df-col">
+  <ion-row class="row correlation-header-row">
+    <ion-header>
+      <ion-toolbar class="toolbar-background">
+        <ion-col class="ion_header_css">
+          <ion-col class="col-2 wrap-text data_scss_class">
+            <span class="correlation-title">Data set:</span>
+            <span class="correlation-value" title="{{dataSetValue}}"> &nbsp;&nbsp; {{dataSetValue ? dataSetValue :
+              'None'}} </span>
+          </ion-col>
+          <ion-col class="col-2 wrap-text fgroup_scss_class">
+            <span class="correlation-title"> Feature Group:</span>
+            <span class="correlation-value" title="{{featureGroupValue}}"> &nbsp;&nbsp; {{featureGroupValue ?
+              featureGroupValue : 'None'}} </span>
+          </ion-col>
+          <ion-col class="col-8 time_feature">
+            <ion-col>
+              <span class="correlation-title">Time Filter Feature:</span>
+              <span class="correlation-value" title="{{timeFilterValue}}">&nbsp;&nbsp;{{timeFilterValue ?
+                timeFilterValue : 'None'}}</span>
+              <span class="correlation-value time-css" *ngIf="timeFilterValue"> {{correlationFromTimePeriod}} To
+                {{correlationToTimePeriod}} </span>
+              <span class="menu-div">
+                <mat-icon aria-hidden="false" class="edit_mat edit_icon" aria-label="edit icon"
+                  [matMenuTriggerFor]="editmenu" #clickMenuTrigger="matMenuTrigger"
+                  [ngClass]="{'disp-none' : disableAll}" (click)="openTimeEditMenu()">edit</mat-icon>
+                <mat-menu #editmenu="matMenu" class="edit_menu time-filter-feature" xPosition="before" hasBackdrop="false">
+                  
+                  <ion-col class="menu-main" (click)="$event.stopPropagation();"
+                    (keydown.tab)="$event.stopPropagation()">
+                    <ion-col class="menu_edit_item">
+                      <ion-col size="4">
+                        <ion-checkbox color="primary" autocomplete="off" type="checkbox"
+                          [(ngModel)]="timeFilterDetails.enableFilter" [disabled]="disableTimeFilterFeature()"
+                          (ionchange)="OnTimeFilterCheckBox(timeFilterDetails.enableFilter)" id="timefilter"
+                          name="timefilter"></ion-checkbox>
+                        <ion-label class="text-data-time_css">Time Filter Feature:</ion-label>
+                      </ion-col>
+                      <ion-col>
+                        <mat-select disableOptionCentering [disabled]="!timeFilterDetails.enableFilter"
+                          name="filfeature" [(ngModel)]="timeFilterDetails.filterFeature"
+                          class="form-control drop-mat-model">
+                          <mat-option disabled hidden value="">Select</mat-option>
+                          <mat-option *ngFor="let filterDet of timeFilterDD" [value]="filterDet.time_column">
+                            {{filterDet.time_column}}</mat-option>
+                        </mat-select>
+                      </ion-col>
+                    </ion-col>
+                    <form #menuDateRange="ngForm">
+                      <fieldset [disabled]="!timeFilterDetails.enableFilter || !timeFilterDetails.filterFeature">
+                        <ion-col class="menu_edit_item">
+                          <ion-col size="2" class="menu_label">Date Time:</ion-col>
+                          <ion-col>
+                            <ion-col class="date_time">
+                              <ion-col class="date-label">From:</ion-col>
+                              <ion-col size="5" class="main-date-div">
+                                <input autocomplete="off" matInput class="inputfeild form-control"
+                                  [(ngModel)]="timeFilterDetails.fromDate" name="fromDate" placeholder="Select Date"
+                                  (dateChange)="onFromDateChange()" [matDatepicker]="pickerFrom" readonly required />
+                                <mat-datepicker-toggle class="dat-pixk" matSuffix [for]="pickerFrom">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #pickerFrom></mat-datepicker>
+                              </ion-col>
+                              <ion-col class="input-time-div">
+                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                  [(ngModel)]="timeFilterDetails.fromTimeHr" name="fromTimeHr" [appAlphaNumeric]="'num'"
+                                  maxlength="2" placeholder="00" type="text" name="timeHrFrom" [appAlphaNumeric]="'num'"
+                                  required>
+                              </ion-col>
+                              <ion-col class="input-time-div no-left-margin">
+                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                  [(ngModel)]="timeFilterDetails.fromTimeMin" name="fromTimeMin"
+                                  [appAlphaNumeric]="'num'" maxlength="2" placeholder="00" type="text"
+                                  name="timeMinFrom" [appAlphaNumeric]="'num'" required>
+                              </ion-col>
+                              <ion-col class="time-stamp">
+                                (HH-MM)
+                              </ion-col>
+                            </ion-col>
+                            <ion-col class="date_time">
+                              <ion-col class="date-label">To:</ion-col>
+                              <ion-col size="5" class="main-date-div">
+                                <input autocomplete="off" matInput class="inputfeild form-control"
+                                  [(ngModel)]="timeFilterDetails.toDate" name="toDate" placeholder="Select Date"
+                                  [matDatepicker]="pickerTo" [min]="timeFilterDetails.minToDate" readonly required />
+                                <mat-datepicker-toggle class="dat-pixk" matSuffix [for]="pickerTo">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #pickerTo></mat-datepicker>
+                              </ion-col>
+                              <ion-col class="input-time-div">
+                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                  [(ngModel)]="timeFilterDetails.toTimeHr" name="toTimeHr" [appAlphaNumeric]="'num'"
+                                  maxlength="2" placeholder="00" type="text" name="timeHrTo" [appAlphaNumeric]="'num'"
+                                  required>
+                              </ion-col>
+                              <ion-col class="input-time-div no-left-margin">
+                                <input autocomplete="off" matInput class="input-feild-time form-control"
+                                  [(ngModel)]="timeFilterDetails.toTimeMin" name="toTimeMin" [appAlphaNumeric]="'num'"
+                                  maxlength="2" placeholder="00" type="text" name="timeMinTo" [appAlphaNumeric]="'num'"
+                                  required>
+                              </ion-col>
+                              <ion-col class="time-stamp">
+                                (HH-MM)
+                              </ion-col>
+                            </ion-col>
+                          </ion-col>
+                        </ion-col>
+                      </fieldset>
+                    </form>
+                    <ion-col class="menu-action">
+                      <ion-button type="button" color="light" class="shadowbtn btn btn-default cancel-mod"
+                        (click)="someMethod()">Cancel</ion-button>
+                      <ion-button type="button" class="shadowbtn btn-primary run-cor-btn" (click)="onRunCorr()">Run
+                        Correlation</ion-button>
+                    </ion-col>
+                  </ion-col>
+                  
+                </mat-menu>
+              </span>
+            </ion-col>
+            <ion-col>
+              <ion-button type="button" class="shadowbtn btn btn-default change-selection-btn move-right" color="light"
+                [disabled]="disableAll" (click)="backToFeature()"><span class="wrap-text">Back to Feature
+                  Selection</span></ion-button>
+            </ion-col>
+          </ion-col>
+        </ion-col>
+      </ion-toolbar>
+    </ion-header>
+  </ion-row>
+
+  <ion-row class="row correlation-view-bar">
+    <nav class="nav-btn-bar navbar navbar-expand-lg navbar-light">
+      <ion-label class="correlation-font-head mar-r-8"> View: &nbsp;&nbsp;</ion-label>
+      <ion-col class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ion-col class="navbar-nav">
+          <a class="menu-item nav-item nav-link correlation-font"
+            [ngClass]="{'active': activeView === 'HeatMap' , 'dis-all': disableAll }"
+            (click)="displayView('/correlation/heatmap')">Heat Map</a>
+          <a class="menu-item nav-item nav-link correlation-font"
+            [ngClass]="{'active': activeView === 'Tableview'  , 'dis-all': disableAll }"
+            (click)="displayView('/correlation/tableview')">Table View</a>
+          <a class="menu-item nav-item nav-link correlation-font"
+            [ngClass]="{'active': activeView === 'FeatureCorrelation'  , 'dis-all': disableAll  }"
+            (click)="displayView('/correlation/featurecorrelation')">Feature Correlation</a>
+          <a class="menu-item nav-item nav-link correlation-font"
+            [ngClass]="{'active': activeView === 'CorrelatedGroups'  , 'dis-all': disableAll }"
+            (click)="displayView('/correlation/correlatedgroups')">Correlated Groups</a>
+        </ion-col>
+      </ion-col>
+    </nav>
+    <ion-col class="slider-wrap">
+
+      <mat-card class="result">
+        <mat-card-content>
+          <ion-col class="sub_div_css d-flex">
+            <input autocomplete="off" class="input_css" matInput
+              [disabled]="correlationService.disableSlider || disableAll || (activeView === 'CorrelatedGroups' && groupType)"
+              type="number" id="quantity" min="-1" max="0" step="0.01" [(ngModel)]="negativeValue"
+              (change)="onChangeInpVal(false, negativeValue)">
+            <ion-col class="d-flex slider_div">
+              <span class="empty_border empty_border_left">
+                <span class="empty_border_negval">-1</span>
+              </span>
+              <span class="slider_css">
+                <mat-slider #negSlider class="example-slider mat_slider_css_one"
+                  [disabled]="correlationService.disableSlider || disableAll || (activeView === 'CorrelatedGroups' && groupType)"
+                  [invert]="negativeinvert" [max]="negativemax" [min]="negativemin" [step]="step"
+                  [thumbLabel]="thumbLabel" [tickInterval]="tickInterval" [(ngModel)]="sliderNegVal"
+                  [vertical]="vertical" (input)="onSliderInpVal(false, $event)"
+                  (pointerup)="onChangeSliderVal(false, negSlider)" (slideend)="onChangeSliderVal(false, negSlider)"
+                  (keyup)="onChangeSliderVal(false, negSlider)">
+                </mat-slider>
+              </span>
+              <span class="empty_border empty_border_center">
+                <span class="empty_border_val">0</span>
+              </span>
+              <span class="slider_css">
+                <mat-slider #posSlider class="example-slider mat_slider_css_two"
+                  [disabled]="correlationService.disableSlider || disableAll || (activeView === 'CorrelatedGroups' && !groupType)"
+                  [invert]="negativeinvert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel"
+                  [tickInterval]="tickInterval" [(ngModel)]="sliderPosVal" [vertical]="vertical"
+                  (input)="onSliderInpVal(true, $event)" (pointerup)="onChangeSliderVal(true, posSlider)"
+                  (slideend)="onChangeSliderVal(true, posSlider)" (keyup)="onChangeSliderVal(true, posSlider)">
+                </mat-slider>
+              </span>
+              <span class="empty_border empty_border_right">
+                <span class="empty_border_val">1</span>
+              </span>
+            </ion-col>
+            <input autocomplete="off" class="input_css" matInput
+              [disabled]="correlationService.disableSlider || disableAll || (activeView === 'CorrelatedGroups' && !groupType)"
+              type="number" id="quantity" min="0" max="1" step="0.01" [(ngModel)]="positiveValue"
+              (change)="onChangeInpVal(true, positiveValue)">
+          </ion-col>
+        </mat-card-content>
+      </mat-card>
+
+      <ion-col class="selection-div">
+        <mat-select disableOptionCentering [disabled]="disableAll"
+          class="form-control drop-mat mat_width_css correlation-value" [(ngModel)]="selectedCategory"
+          (selectionChange)="categoriesChanged()">
+          <mat-option *ngFor="let data of categories" [value]="data.id">{{data.name}}</mat-option>
+        </mat-select>
+      </ion-col>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row graph-head correlation-header-row dc-flex" *ngIf="activeView === 'CorrelatedGroups'">
+    <ion-col class="dc-flex">
+      <span class="correlation-title mar-r-12">Graph:</span>
+      <a class="link-font" [ngClass]="{'active-link': chartType === 'bubble', 'dis-all': disableAll }"
+        (click)="showGraphType('bubble')">Bubble Chart</a>
+      <a class="link-font" [ngClass]="{'active-link': chartType === 'histogram', 'dis-all': disableAll }"
+        (click)="showGraphType('histogram')">Histogram</a>
+    </ion-col>
+    <ion-col class="dc-flex">
+      <ion-col class="toggle-wrap">
+        <!-- <a class="shadowbtn" [ngClass]="groupType ? 'neg_corr' : 'pos_corr'" (click)="OnRadioChange(groupType)">{{ groupType ? '- Correlation' : '+ Correlation' }}</a> -->
+        <span class="neg_corr-toggle" [ngClass]="{'active-toggle':!groupType}">-ve Correlation</span>
+        <mat-slide-toggle class="slideToggle" name="groupTypeToggle" [disabled]="disableAll" [(ngModel)]="groupType"
+          (change)="OnRadioChange(groupType)" aria-label="Toggle group type"></mat-slide-toggle>
+        <span class="pos_corr-toggle" [ngClass]="{'active-toggle':groupType}">+ve Correlation</span>
+
+      </ion-col>
+      <span class="group-btn" *ngIf="showChart" (click)="showGraph(false)">Hide Graph</span>
+      <span class="group-btn" *ngIf="!showChart" (click)="showGraph(true)">Show Graph</span>
+    </ion-col>
+
+  </ion-row>
+
+</ion-row>

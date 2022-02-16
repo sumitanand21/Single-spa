@@ -1,0 +1,37 @@
+<ion-row class="container-fluid tab-selector-bar df-col">
+
+  <ion-col class="col-md-12 min-height-48 f-min main_border_css" id="colspan_css_scroll" *ngIf="dataManagementService.showDataSource || dataManagementService.showConfiguration || dataManagementService.showSystemNotification"> 
+      <input autocomplete="off" type="button" value="Data Source" class="tab-css" [ngClass]="{'active-tab' : dataManagementService.showDataSource }" id="dataSource" (click)="dataManagementNavigation('/datamanagement/datasource')">
+      <input autocomplete="off" type="button" value="Configuration" class="tab-css" [ngClass]="{'active-tab' : dataManagementService.showConfiguration }" id="Configuration" (click)="dataManagementNavigation('/datamanagement/configuration')">
+      <input autocomplete="off" type="button" value="Notifications Management" class="tab-css" [ngClass]="{'active-tab' : dataManagementService.showSystemNotification }" id="notifications" (click)="dataManagementNavigation('/datamanagement/notifications')">
+  </ion-col>
+
+   <ion-col class="col-md-12 min-height-48 d-flex no-padd f-min" id="colspan_css_scroll" *ngIf="!dataManagementService.showDataSource && !dataManagementService.showConfiguration && !dataManagementService.showSystemNotification"> 
+    
+    <ion-col class="d-flex col-12 no-padd-r">  
+      <ion-col class="col-8 d-flex no-padd" >
+        <ul class="breadcrumb-mod">
+          <li *ngIf="dataManagementService.showUpsertDataSet || dataManagementService.showDataPreview"><button  type="button" class="breadcrumb-btn btn btn-default" (click)="dataManagementNavigation('/datamanagement/datasource')">Data Source</button></li>
+          <li *ngIf="dataManagementService.showUpsertDataSet"><button  disabled type="button" class="breadcrumb-btn btn btn-default">{{dataManagementService.selectedDataSetName ? dataManagementService.selectedDataSetName : 'Add New Data Set'}}</button></li>
+          <li *ngIf="dataManagementService.showDataPreview"><button  disabled type="button" class="breadcrumb-btn btn btn-default">Data Preview</button></li>
+
+          <li *ngIf="dataManagementService.showUpsertConfiguration"><button type="button" class="breadcrumb-btn btn btn-default" (click)="dataManagementNavigation('/datamanagement/configuration')">Configuration</button></li>
+          <li *ngIf="dataManagementService.showUpsertConfiguration"><button disabled type="button" class="breadcrumb-btn btn btn-default">{{dataManagementService.selectedConfigurationName ? dataManagementService.selectedConfigurationName : 'Add New'}}</button></li>
+
+          <li *ngIf="dataManagementService.showNotificationsMgt"><button type="button" class="breadcrumb-btn btn btn-default" (click)="dataManagementNavigation('/datamanagement/notifications')">Notifications Management</button></li>
+          <li *ngIf="dataManagementService.showNotificationsMgt"><button disabled type="button" class="breadcrumb-btn btn btn-default">SMTP details</button></li>
+        
+        </ul>
+      </ion-col>
+       <!-- <ion-col class="col-4">
+        <button *ngIf="dataManagementService.AnomalyModelTraining" type="button" class="shadowbtn model-btn btn btn-default move-r" (click)="dataManagementNavigation('/datamanagement/alltask')">Back</button>
+      </ion-col> -->
+      </ion-col>
+  </ion-col>
+ <ion-col class="main_route_css f-max">
+   <ion-row class="height-100 main_view_page">
+     <router-outlet></router-outlet>
+     </ion-row>
+ </ion-col>
+   
+</ion-row>

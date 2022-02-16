@@ -1,0 +1,16 @@
+<ion-col class="parent-content df-col ion-no-padding">
+    <app-profiler-header [allDetails]="allClassificationDetails" [profilerStatus]="profilerStatus"
+        [setDisableAll]="disableSelectButton" (emitOut)="provideInputsToMap($event)"></app-profiler-header>
+    <ion-col class="wrap-cont ion-no-padding">
+        <ion-col class="heat-map ion-no-padding">
+            <ion-col size="12" *ngIf="isLoading" class="spinner-div ion-no-padding">
+                <mat-progress-spinner color="slategrey" mode="indeterminate">
+                </mat-progress-spinner>
+            </ion-col>
+            <ion-col *ngIf="!isLoading" class="graph-height ion-no-padding">
+                <app-profiler-view [profilerResult]="profilerResult" [profilerStatus]="profilerStatus">
+                </app-profiler-view>
+            </ion-col>
+        </ion-col>
+    </ion-col>
+</ion-col>

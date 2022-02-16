@@ -1,0 +1,264 @@
+{
+    "id": "5fbd51d6d45366171ef3c5d2",
+    "anomalyI": null,
+    "anomalyII": {
+        "modelTypes": [
+            "MODELI",
+            "MODELII"
+        ],
+        "encoders": [
+            "None",
+            "Label",
+            "One-hot"
+        ],
+        "scalers": [
+            "None",
+            "Standard",
+            "Minmax",
+            "Normalizer"
+        ],
+        "losses": [
+            "None",
+            "Standard",
+            "Label",
+            "sigmoid",
+            "tanh"
+        ],
+        "datasetName": {
+            "Call log": {
+                "ACD": [
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary"
+                ],
+                "bsE": [
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary"
+                ],
+                "XZA": [
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary"
+                ],
+                "LMjOQ": [
+                    "Lipsum traget_computers_personal2_loan_account.gif comp",
+                    "Lipsum traget_computeres_personal_loan_account.gif comp",
+                    "createdAtr binary",
+                    "createdAtq binary"
+                ],
+                "PQsRW": [
+                    "Lipsum traget_computers_personal_loan_account.gif comp",
+                    "Lipsum traget_computers_psersonal_loan_accosunt.gif comp",
+                    "createdAt binary",
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary",
+                    "aget_computers_personal_loan_account.gif compress",
+                    "aget_computers_personal_aloan_account.gif compress",
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary",
+                    "createdaAt11 binary",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp"
+                ]
+            },
+            "Companylog 1": {
+                "ZBC": [
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary"
+                ],
+                "Zbcd": [
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary"
+                ],
+                "ZXYZ": [
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary"
+                ],
+                "ZLMNO": [
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary",
+                    "createdaAt11 binary",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_computeres_personal_loan_account.gif comp",
+                    "createdAtr binary",
+                    "createdAtq binary"
+                ],
+                "XPQR": [
+                    "Lipsum traget_computers_personal_loan_account.gif comp",
+                    "Lipsum traget_computers_psersonal_loan_accosunt.gif comp",
+                    "createdAt binary",
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary",
+                    "aget_computers_personal_loan_account.gif compress",
+                    "aget_computers_personal_aloan_account.gif compress",
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "createdAtq binary"
+                ]
+            },
+            "Company call": {
+                "AsBCw": [
+                    "Lipsum traget_computers_personal_loan_account.gif comp",
+                    "Lipsum traget_computers_psersonal_loan_accosunt.gif comp",
+                    "createdAt binary",
+                    "createdAt2 binary",
+                    "crad eatdedAt1 binary"
+                ],
+                "bchj": [
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary",
+                    "aget_computers_personal_loan_account.gif compress",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary"
+                ],
+                "XYq": [
+                    "createdaAt11 binary",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary"
+                ],
+                "LMNOww": [
+                    "createdaAt11 binary",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary",
+                    "createdeAt2 binary",
+                    "Lipsum traget_computers_personal2_loan_account.gif comp",
+                    "Lipsum traget_computeres_personal_loan_account.gif comp",
+                    "createdAtr binary",
+                    "createdAtq binary"
+                ],
+                "PQRU": [
+                    "Lipsum traget_computers_personal_loan_account.gif comp",
+                    "Lipsum traget_computers_psersonal_loan_accosunt.gif comp",
+                    "createdAt binary",
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary",
+                    "createdeAt2 binary",
+                    "Lipsum traget_computers_personal2_loan_account.gif comp",
+                    "Lipsum traget_computeres_personal_loan_account.gif comp",
+                    "createdAtr binary",
+                    "createdAtq binary"
+                ]
+            },
+            "Companylog 3": {
+                "AsBC": [
+                    "Lipsum traget_computers_personal_loan_account.gif comp",
+                    "Lipsum traget_computers_psersonal_loan_accosunt.gif comp",
+                    "createdAt binary",
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary"
+                ],
+                "bcesd": [
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary",
+                    "aget_computers_personal_loan_account.gif compress",
+                    "aget_computers_personal_aloan_account.gif compress",
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary"
+                ],
+                "XfsYZ": [
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary",
+                    "createdaAt11 binary",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary"
+                ],
+                "LeMNO": [
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary",
+                    "createdaAt11 binary",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary",
+                    "createdeAt2 binary",
+                    "Lipsum traget_computers_personal2_loan_account.gif comp",
+                    "Lipsum traget_computeres_personal_loan_account.gif comp",
+                    "createdAtr binary",
+                    "createdAtq binary"
+                ],
+                "PQR": [
+                    "Lipsum traget_computers_personal_loan_account.gif comp",
+                    "Lipsum traget_computers_psersonal_loan_accosunt.gif comp",
+                    "createdAt binary",
+                    "createdAt2 binary",
+                    "dLipsum traget_computers_personal_loan_accou",
+                    "dLipsum traget_computerss_personal_loan_accou",
+                    "crad eatdedAt binary",
+                    "crad eatdedAt1 binary",
+                    "aget_computers_personal_loan_account.gif compress",
+                    "aget_computers_personal_aloan_account.gif compress",
+                    "createdAt binaryapplication category",
+                    "createdAt1 binaryapplication category",
+                    "um traget_computers_personal_loan_account.gif compress",
+                    "um traget_compuaters_personal_loan_account.gif compress",
+                    "createdAt1 binary",
+                    "createdaAt11 binary",
+                    "Lipsum traget_computers_personal3_loan_account.gif comp",
+                    "Lipsum traget_compueters_personal_loan_account.gif comp",
+                    "createdAt2 binary",
+                    "createdeAt2 binary",
+                    "Lipsum traget_computers_personal2_loan_account.gif comp",
+                    "Lipsum traget_computeres_personal_loan_account.gif comp",
+                    "createdAtr binary",
+                    "createdAtq binary"
+                ]
+            }
+        }
+    }
+}

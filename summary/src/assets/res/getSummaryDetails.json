@@ -1,0 +1,12 @@
+{
+    "status": "success",
+    "data": {
+        "data": {
+            "dataSetName": "",
+            "type":"static-dashboard",
+            "url": ""
+        },
+        "responseType": "",
+        "status_code": 200
+    }
+}

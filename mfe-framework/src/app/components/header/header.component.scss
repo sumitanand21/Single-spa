@@ -1,0 +1,269 @@
+.header{
+    flex-shrink: 0;
+    flex-grow: 0;
+    background: #a30b1a;
+    color: black;
+  }
+
+  .sidebar-img-icon {
+    width: 45px;
+    height: 62px;
+  }
+  .profile-img-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .profile-img-icon-fujitsu {
+    // width: 30px;
+    height: 30px;
+  }
+  .mat-icon-css {
+    cursor: pointer;
+    height: auto !important;
+    width: auto !important;
+  }
+  p {
+    font-family: Lato;
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+  
+  .example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+         causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+         `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+  
+  .example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .mat-toolbar.mat-primary {
+    z-index: 1000;
+    top: 0;
+    position: sticky !important;
+  }
+  .hamburger.mat-button:not(.starting) {
+    transition-duration: 0.4s;
+    transition-property: color, margin;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .hamburger.mat-button {
+    height: 100%;
+    margin: -15px 8px 0 -10px;
+    padding: 0; 
+       margin-bottom: -15px;
+    margin-left: -15px !important;
+  }
+  .example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .example-container {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  
+  button.vertical-menu-item {
+    border: none;
+    background-color: transparent;
+    margin-right: 0;
+    padding-left: 6px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+  }
+  .level-1 {
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 14px;
+    transition: background-color .2s;
+    text-transform: uppercase;
+  }
+  .example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .nw-speed-icon{
+    &.goodSpeed{
+      em{
+        color: #6feb21;
+      }
+    }
+    &.slowSpeed{
+      em{
+        color: red;
+      }
+    }
+  }
+
+  // .mat-toolbar-row, .mat-toolbar-single-row {
+  //   padding: 0 8px !important;
+  // }
+  .profile-box {
+    font-family: serif;
+    display: flex;
+  }
+
+  .profile-box-user-details{
+    font-family: serif;
+    display: flex;
+    height:30px;
+    width:30px;
+    cursor: pointer;
+  }
+
+  .spa-user-details{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color:#3B73B7;
+    color: #ffffff;
+    text-transform: capitalize;
+    font-family: Segoe UI !important;
+    font-size:16px;
+      }
+
+  .profile-box-UTC {
+    display: flex;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    font-family: Segoe UI !important;
+  }
+
+  .profile-box-fujitsu {
+    font-family: serif;
+    display: flex;
+    margin: 0px 20px;
+  }
+
+  .mfe-head-menu-name{
+    font-size: 20px;
+    font-weight: 500;
+    color: #232323;
+    font-family: Segoe UI !important;
+    text-transform: capitalize;
+  }
+
+  .mfe-head-menu-email{
+    font-size: 14px;
+    color: #707070;
+    font-family: Segoe UI !important;
+    text-transform: lowercase;
+  }
+
+  .mfe-head-menu-icon{
+ width:100%;
+ margin-top: 12px;
+
+    .mfe-head-menu-icon-wrap{
+      font-family: Segoe UI !important;
+      display: flex;
+      justify-content:space-between
+    }
+
+    .mfe-head-icon {
+      // width: 30px;
+      height: 22px;
+    }
+  }
+  
+
+
+  /*************new css********************/
+  .spa-header{
+    background: #a30b1a;
+    color: black;
+  }
+
+  .spa_head_tb_row{
+padding:0px 8px;
+  }
+
+  .spa-menu-icon{
+    height: 100%;
+    font-size: 34px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    justify-content: center;
+  }
+
+  .spa_tile_text{
+    margin-left: 12px;
+    cursor: pointer;
+  }
+  .spa_tile_text1{
+    margin-left: 10px;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+  }
+  .spa_tile_text2{
+    margin-left: 10px;
+    font-size: large;
+  }
+  .spa-user-det{
+    display: flex;
+    align-items: center;
+  }
+
+  .spa-menu-spacer{
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+  }
+
+
+  .mfe-head-user-menu-wrap{
+    height: auto;
+    padding: 12px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

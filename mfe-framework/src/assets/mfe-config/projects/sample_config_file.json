@@ -1,0 +1,155 @@
+{
+    "isActive": true,
+    "name": "Virtuora AX",
+    "namespace": "vax",
+    "label": "Virtuora AX",
+    "template": "SpaVerticleHostModule",
+    "iconLink": "none",
+    "description": "Do not change configs",
+    "preloadURLS": [
+      {
+        "isActive": false,
+        "name": "test",
+        "url": "test",
+        "topic": "vax-test",
+        "methodType": "GET"
+      },
+      {
+        "isActive": false,
+        "name": "test1",
+        "url": "test1",
+        "topic": "vax-test1",
+        "methodType": "GET"
+      }
+    ],
+    "microApps": [
+      {
+        "isActive": true,
+        "name": "summary",
+        "routePath": "vax-summary",
+        "url": "http://167.254.204.64:30290",
+        "label": "Summary",
+        "isLandingPage": true,
+        "isNavbar": false,
+        "apiUrl": ""
+      },
+        {
+          "isActive": true,
+          "name": "forecast",
+          "routePath": "vax-forecast",
+          "url": "http://167.254.204.64:30293",
+          "label": "Forecast",
+          "isLandingPage": true,
+          "isNavbar": false,
+          "apiUrl": ""
+        },
+        
+        {
+          "isActive": true,
+          "name": "sidenav",
+          "routePath": "vax-monitor/sidenav",
+          "url": "https://vax-innersidenav.herokuapp.com/main.js",
+          "label": "side nav",
+          "isLandingPage": false,
+          "isNavbar": false,
+          "apiUrl": "https://container-config.herokuapp.com/api",
+          "group": {
+            "name": "monitor",
+            "label": "Monitor",
+            "isLandingPage": false,
+            "isNavbar": true
+          }
+        },
+        {
+          "isActive": true,
+          "name": "alarm",
+          "routePath": "vax-monitor/alarm",
+          "url": "https://vax-innercontent.herokuapp.com/main.js",
+          "label": "Alarm Management",
+          "isLandingPage": false,
+          "isNavbar": false,
+          "apiUrl": "https://container-config.herokuapp.com/api",
+          "group": {
+            "name": "monitor",
+            "label": "Monitor",
+            "isLandingPage": true,
+            "isNavbar": false
+          }
+        },
+        {
+          "isActive": true,
+          "name": "forecast",
+          "routePath": "vax-monitor/forecast",
+          "url": "https://vax-anomaly.herokuapp.com/main.js",
+          "label": "Forecast",
+          "isLandingPage": false,
+          "isNavbar": false,
+          "apiUrl": "https://container-config.herokuapp.com/api",
+          "group": {
+            "name": "monitor",
+            "label": "Monitor"
+          }
+        },
+        {
+          "isActive": true,
+          "name": "classification",
+          "routePath": "vax-classification",
+          "url": "https://vax-anomaly.herokuapp.com/main.js",
+          "label": "Classification",
+          "isLandingPage": false,
+          "isNavbar": false,
+          "apiUrl": "https://container-config.herokuapp.com/api"
+        },
+        {
+          "isActive": true,
+          "name": "sidenavbar",
+          "routePath": "vax-summary/sidenavbar",
+          "url": "https://vax-innersidenav.herokuapp.com/main.js",
+          "label": "none",
+          "isLandingPage": false,
+          "isNavbar": false,
+          "apiUrl": "https://container-config.herokuapp.com/api",
+          "group": {
+            "name": "summary",
+            "label": "Summary",
+            "isLandingPage": false,
+            "isNavbar": true
+          }
+        },
+        {
+          "isActive": true,
+          "name": "anomaly",
+          "routePath": "vax-summary/anomaly",
+          "url": "https://vax-anomaly.herokuapp.com/main.js",
+          "label": "Anomaly",
+          "isLandingPage": false,
+          "isNavbar": false,
+          "apiUrl": "https://container-config.herokuapp.com/api",
+          "group": {
+            "name": "summary",
+            "label": "Summary",
+            "isLandingPage": true,
+            "isNavbar": false
+          }
+          
+        },
+        {
+          "isActive": true,
+          "isGroup": true,
+          "_id": "60d35b1e7eaa7f0004e3823c",
+          "name": "forecast",
+          "routePath": "vax-summary/forecast",
+          "url": "https://vax-forecast.herokuapp.com/main.js",
+          "label": "Forecast",
+          "isLandingPage": false,
+          "isNavbar": false,
+          "apiUrl": "https://container-config.herokuapp.com/api",
+          "group": {
+            "name": "summary",
+            "label": "Summary",
+            "isLandingPage": true,
+            "isNavbar": false
+          }
+        }
+      ]
+}

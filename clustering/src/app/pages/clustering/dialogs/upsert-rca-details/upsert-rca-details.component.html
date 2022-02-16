@@ -1,0 +1,90 @@
+<ion-row class="df-col df_css">
+    <ion-col class="model-head">
+    <ion-col>{{data.name}}
+    </ion-col>
+    <button mat-dialog-close  type="button" class="disp-close" aria-label="Close" id="ModalClose">
+        &times;
+     </button>
+    </ion-col>
+        
+        <ion-row size="12" class="model-body f-max">
+    
+            <ion-col *ngIf="detailLoader" class="spinner-div" >
+                <mat-progress-spinner color="slategrey" mode="indeterminate">
+                </mat-progress-spinner>
+            </ion-col>
+
+            <ion-row class="d-flex" *ngIf="data.action === 'clustername' && !detailLoader">
+                <ion-label class="label-text">Cluster Name:</ion-label>
+                <ion-col>
+                        <input autocomplete="off" maxlength="30" matInput class="form-control input-feild-name" type="text"
+                            [(ngModel)]="clusterName" placeholder="Name" [appAlphaNumeric]="'text'">
+                        <!-- <ion-label *ngIf="showErr && !clusterName" class="err-msg">{{showErr}}</ion-label> -->
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="d-flex" *ngIf="data.action != 'clustername' && !detailLoader">
+                <ion-label class="label-text">Resolution:</ion-label>
+                <ion-col>
+                        <textarea autocomplete="off" maxlength="500" matInput class="form-control res-text-box" type="text"
+                            [(ngModel)]="resolutionStr" placeholder="Resolution" 
+                            [appAlphaNumeric]="'text'"
+                            [matAutocomplete]="auto"></textarea>
+                            <mat-autocomplete #auto="matAutocomplete" class="res-mat-auto-comp">
+                                <mat-option *ngFor="let option of filteredOptions | filterBy: resolutionStr" 
+                                [title]="option"
+                                [value]="option">
+                                  {{option}}
+                                </mat-option>
+                              </mat-autocomplete>
+                </ion-col>
+            </ion-row>
+
+
+            <!-- <ion-row *ngIf="data.action != 'clustername' && !detailLoader">
+                <ion-col class="no-padd res-head" size="12">
+                    <ion-label class="label-text">Resolution ({{resolution.length}})</ion-label>
+                    <ion-icon aria-hidden="false" class="add-res" aria-label="search icon" 
+                    [src]="clusteringService.createSvgUrl('add-circle-outline.svg')"
+                    (click)="addResolution()"></ion-icon>
+                </ion-col>
+                <ion-row class="no-padd inp-main h-center" *ngIf="!resolution.length">
+                    <ion-label class="no-rec-lable">
+                    Resolution details not available
+                    </ion-label>
+                </ion-row>
+                <ion-row class="no-padd inp-main" *ngIf="resolution.length">
+                    <ion-col class="no-padd inp-wrap" *ngFor="let resObj of resolution;let i=index;">
+                        <ion-col class="d-flex res-wrap">
+                        <input autocomplete="off" matInput class="form-control input-feild-name" type="text"
+                            [(ngModel)]="resObj.dispResolution" 
+                            (ngModelChange)="onSearchResolution(resObj.dispResolution, i)"
+                            (click)="onSearchResolution(resObj.dispResolution, i)" placeholder="Name" [appAlphaNumeric]="'text'"
+                            [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptions" 
+                                [title]="option"
+                                [value]="option">
+                                  {{option}}
+                                </mat-option>
+                              </mat-autocomplete>
+                            <button  type="button" class="disp-close" aria-label="Close" 
+                            id="removeRes" (click)="removeResolution(i)">
+                                &times;
+                             </button>
+                        </ion-col>
+                        </ion-col>
+                </ion-row>
+            </ion-row> -->
+
+           
+        </ion-row>
+    
+        <ion-footer class="d-flex disp-footer">
+            <ion-button type="button" id="canceldispBtn" class="shadowbtn btn btn-default cancel-disp"
+                aria-label="Close" mat-dialog-close>Cancel</ion-button>
+            <ion-button type="button" id="actiondispBtn" class="shadowbtn btn btn-primary action-disp mar-l-15"
+                aria-label="Close" (click)="saveDetails()">Save</ion-button>
+        </ion-footer>
+</ion-row>
+    

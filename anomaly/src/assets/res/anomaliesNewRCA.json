@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "data": [{
+    "predictionReason" : ["disk_write_error > 0.5","disk_write_error > 0.6","disk_write_error > 0.5",
+      "disk_write_error > 0.5","disk_write_error > 0.6","disk_write_error > 0.5",
+      "disk_write_error > 0.5","disk_write_error > 0.6","disk_write_error > 0.5",
+      "disk_write_error > 0.5","disk_write_error > 0.6","disk_write_error > 0.5"],
+    "anomalyId" : "2021-05-14T17:25:28Z",
+    "modelName" : "demo_2_2020-05-26T14:11:01Z_2021-05-26T14:11:01Z_model.sav",
+    "dataSetName" : "log_alarm_data",
+    "fromTime" : "2021-05-01T14:20:00Z",
+    "toTime" : "2021-05-26T14:20:00Z",
+    "modelFromTime" : "2020-05-26T14:11:01Z",
+    "modelToTime" : "2021-05-26T14:11:01Z",
+    "modelType" : "MODELII",
+    "jobType" : "ANOMALYPROFILING",
+    "uid" : "60ae591d2bc4f42a895bf2e7"
+  }]
+}

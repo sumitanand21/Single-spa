@@ -1,0 +1,60 @@
+{
+    "status": "success",
+    "data": {
+        "responseType": null,
+        "reponseMessage": null,
+        "anomalyI": null,
+        "anomalyII": {
+            "id": "5fe09f4bf0a3f418a63cf7b3",
+            "uniqueFeature": "HOUP4@BER",
+            "stringFeatures": [
+                "time",
+                "HOUP2@LOA",
+                "HOUP3@LOF",
+                "HOUP3@POSH",
+                "HOUP4@BER",
+                "RICP1@LOS",
+                "RICP1@RTH",
+                "RICP2@BER",
+                "STLP1@LOS",
+                "STLP2@LOS",
+                "STLP3@LOS"
+            ],
+            "encoder": "Label",
+            "scaler": "Standard",
+            "trainingFilter": [
+                "time",
+                "HOUP2@LOA",
+                "HOUP3@LOF",
+                "HOUP3@POSH",
+                "HOUP4@BER",
+                "RICP1@LOS",
+                "RICP1@RTH",
+                "RICP2@BER",
+                "STLP1@LOS",
+                "STLP2@LOS",
+                "STLP3@LOS"
+            ],
+            "p_components": "1",
+            "modelConfigName": "Detnate_Bingo",
+            "modelType": "MODELII",
+            "jobType": "TRAINING",
+            "dataSetName": "alarm_data",
+            "modelConfigCount": 0,
+            "loss": "tanh",
+            "xfeatureList": [
+                "time",
+                "HOUP2@LOA",
+                "HOUP3@LOF",
+                "HOUP3@POSH",
+                "HOUP4@BER",
+                "RICP1@LOS",
+                "RICP1@RTH",
+                "RICP2@BER",
+                "STLP1@LOS",
+                "STLP2@LOS",
+                "STLP3@LOS"
+            ]
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "/:30189/*": {
+        "target": "http://167.254.204.64:30189",
+        "pathRewrite": { "^/:30189": "" },
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/:30807/*": {
+        "target": "http://167.254.204.64:30807",
+        "pathRewrite": { "^/:30807": "" },
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/:31007/*": {
+        "target": "http://167.254.204.64:31007",
+        "pathRewrite": { "^/:31007": "" },
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/:30920/*": {
+        "target": "http://167.254.204.64:30920",
+        "pathRewrite": { "^/:30920": "" },
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/gateway/*": {
+        "target": "https://www.myntra.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+
+}

@@ -1,0 +1,180 @@
+<ion-row class="dm_main_div_css">
+    <ion-row class="right_most_css f-max cont-scrl">
+        <ion-col class="sub-cont-scrl">
+            <form #modeledit="ngForm">
+                <ion-row class="radio_flex_css">
+                    <ion-col class="radio_css col-6">
+                    </ion-col>
+                    <ion-col class="css_sub_border_div sub_border col-6" *ngIf="options !=='add'">
+                        <ion-row class="grid_css_view view_css">
+                            <ion-button type="button" class="pause_css_btn" color="light"
+                                style="height:32px; width:80px; float:right;"
+                                [routerLink]="'/' + prefixUrl + '/datamanagement/configuration'"
+                                (click)="cancelFormData()">Cancel</ion-button>
+                            <ion-button type="button" (click)="addNewConfiguration()"
+                                *ngIf="actiontypeVal !== 'update'">Submit</ion-button>
+                            <ion-button type="button" (click)="updateNewConfiguration()"
+                                *ngIf="actiontypeVal === 'update'">Submit</ion-button>
+
+                        </ion-row>
+                    </ion-col>
+
+                    <ion-col class="css_sub_border_div sub_border col-6 db_type_css" *ngIf="options ==='add'">
+                        <ion-row class="grid_css_view view_css">
+                            <ion-button type="button" class="pause_css_btn" color="light" (click)="cancelFormData()">
+                                Cancel</ion-button>
+                            <ion-button type="button" (click)="addNewDBtype()" *ngIf="actiontypeVal !== 'update'">Add
+                            </ion-button>
+                            <ion-button type="button" (click)="updateNewDBtype()" *ngIf="actiontypeVal === 'update'">
+                                Update</ion-button>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="css_sub_border_nex" *ngIf="options !=='add'">
+                    <ion-col class="col-6 grid_css_view">
+                        <ion-text class="next_run_title">Configuration Name</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" maxlength="30" type="text"
+                            [(ngModel)]="ConfigName" name="ConfigName" *ngIf="actiontypeVal !== 'update'" required>
+                        <input autocomplete="off" class="name_input_css form-control" maxlength="30" type="text"
+                            [(ngModel)]="ConfigName" name="ConfigName" *ngIf="actiontypeVal === 'update'" required
+                            disabled>
+                        <ion-row class="col-2 add_css_view">
+                            <ion-icon (click)="addForm()" class="add_form_css"
+                                [src]="global.createSvgUrl('add-circle-outline.svg')"></ion-icon>
+
+                        </ion-row>
+                    </ion-col>
+                    <ion-col class="col-6 grid_css_view">
+                        <ion-text class="next_run_title">Host Name</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text" [(ngModel)]="HostName"
+                            name="HostName" required>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="css_sub_border_nex">
+                    <ion-col class="col-6 grid_css_view">
+                        <ion-text class="next_run_title">DB Type</ion-text>
+                        <ion-row class="data_set_wid_css" *ngIf="options !== 'add'">
+                            <mat-select disableOptionCentering
+                                class="form-control drop-mat mat_width_css sub_data_set_wid_css" [(ngModel)]="options"
+                                name="dropdownValue" (ngModelChange)="datasetChange()" required>
+                                <mat-option value="">Select</mat-option>
+                                <mat-option *ngFor="let dataset of datasetArr" [value]="dataset">{{dataset}}
+                                </mat-option>
+                                <mat-option value="add" class="add_new_default" (click)="addnewVal()">Add New
+                                </mat-option>
+                            </mat-select>
+                        </ion-row>
+                        <input autocomplete="off" maxlength="30" *ngIf="options === 'add'" [(ngModel)]="customDataName"
+                            placeholder="Name" name="custName" class="name_input_css form-control" type="text" required>
+                        <ion-row *ngIf="options === 'add'" class="col-2 add_css_view">
+
+
+                            <ion-icon (click)="removeInp()" aria-hidden="false"
+                                class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                [src]="dataManagementService.createSvgUrl('close.svg')" name="caret-down-outline">
+                            </ion-icon>
+                        </ion-row>
+                    </ion-col>
+                    <ion-col class="col-6 grid_css_view" *ngIf="options !=='add'">
+                        <span class="next_run_title">Description</span>
+                        <textarea class="form-control desc_input_css" name="Description" [(ngModel)]="description"
+                            cols="40" rows="5" required></textarea>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="css_sub_border_nex" *ngIf="options !=='add'">
+                    <ion-col class="col-6 grid_css_view">
+                        <ion-text class="next_run_title">URL</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text" [(ngModel)]="UrlVal"
+                            name="urlvalue" required>
+                    </ion-col>
+                    <ion-col class="col-6 grid_css_view">
+                        <ion-text class="next_run_title">Port Number</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text" maxlength="5"
+                            [appAlphaNumeric]="'num'" [(ngModel)]="portNumber" name="portNum" required>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="css_sub_border_nex" *ngIf="options !=='add'">
+                    <ion-col class="col-6 grid_css_view">
+                        <ion-text class="next_run_title">Steps</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text"
+                            [appAlphaNumeric]="'num'" [(ngModel)]="configurationStepValue" name="configurationsteps"
+                            required>
+                    </ion-col>
+                    <ion-col class="col-6 grid_css_view" *ngIf="options !=='add'">
+                        <ion-text class="next_run_title">Data Source Type</ion-text>
+                        <ion-col class="wrap-mat-rd unset-left-padding">
+                            <ion-radio-group class="radio-feild-model" [value]='configurationDataType'
+                                [(ngModel)]='configurationDataTypeValue' aria-label="Select an option" name="options">
+                                <ion-col>
+                                    <ion-radio value='stored_data' name='stored_data' class="radio-button">
+                                    </ion-radio>
+                                    <ion-label class="option-label">Stored Data</ion-label>
+                                </ion-col>
+                                <ion-col class="radio_css_val">
+                                    <ion-radio value='stream_data' class="radio-button" name='stream_data'>
+                                    </ion-radio>
+                                    <ion-label class="option-label">Stream Data</ion-label>
+                                </ion-col>
+                            </ion-radio-group>
+                        </ion-col>
+                    </ion-col>
+
+                </ion-row>
+
+                <ion-col class="" *ngIf="options !== 'add'">
+                    <ion-row class="css_sub_border_nex" *ngFor="let objVal of dataArray; let i=index">
+                        <ion-col class="col-6 grid_css_view">
+                            <ion-text class="next_run_title">Key</ion-text>
+                            <input autocomplete="off" class="name_input_css form-control" type="text" name="key{{i}}"
+                                [(ngModel)]="objVal.key">
+                        </ion-col>
+                        <ion-col class="col-6 grid_css_view">
+                            <ion-text class="next_run_title">Value</ion-text>
+                            <input autocomplete="off" class="name_input_css form-control" type="text" name="value{{i}}"
+                                [(ngModel)]="objVal.value">
+                            <ion-col class="col_one_css">
+                                <ion-icon (click)="removeForm(i)" class="add_form_css"
+                                    [src]="global.createSvgUrl('remove-circle-outline.svg')"></ion-icon>
+                            </ion-col>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+
+
+                <ion-col class="col-6 grid_css_view" *ngIf="options ==='add'">
+                    <ion-text class="next_run_title">Data Source Type</ion-text>
+                    <ion-col class="wrap-mat-rd unset-left-padding">
+                        <ion-radio-group class="radio-feild-model" [value]='addDbDataType'
+                            [(ngModel)]='addDbdataTypeValue' aria-label="Select an option" name="options">
+                            <ion-col>
+                                <ion-radio value='stored_data' name='stored_data' class="radio-button">
+                                </ion-radio>
+                                <ion-label class="option-label">Stored Data</ion-label>
+                            </ion-col>
+                            <ion-col class="radio_css_val">
+                                <ion-radio value='stream_data' class="radio-button" name='stream_data'>
+                                </ion-radio>
+                                <ion-label class="option-label">Stream Data</ion-label>
+                            </ion-col>
+                        </ion-radio-group>
+                    </ion-col>
+                </ion-col>
+
+                <ion-row class="" *ngIf="options ==='add'">
+                    <ion-col class="css_sub_border_nex">
+                        <ion-row class="col-6 grid_css_view">
+                            <ion-text class="next_run_title">Step</ion-text>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                [appAlphaNumeric]="'num'" [(ngModel)]="stepValue" [ngModelOptions]="{standalone: true}"
+                                required>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+                <br>
+            </form>
+        </ion-col>
+    </ion-row>
+</ion-row>

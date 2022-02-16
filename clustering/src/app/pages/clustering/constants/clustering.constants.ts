@@ -1,0 +1,51 @@
+// export const ANOMALY_URLS = {
+//     PUT_UPDATE_ANOMALYMODEL_CONFIG_API: 'updateAnmMdConfig/',
+//     POST_SAVE_ANOMALYMODEL_CONFIG_API: 'createAnmMdConfig/',
+//     GET_ANMDETECTION_TABLE_DATA_API: 'getAllAnmdTrainedModels/',
+//     GET_ANMDETECTION_MODEL_TR_DETAILS_API: 'getTrainingDetails/',
+//     GET_ANMDETECTION_MODEL_ANMD_DETAILS_API: 'getTrainingResultAnomalyDetData/',
+//     GET_ANM_TABLE_DATA_API: 'getAllAnmModels/',
+//     GET_ANM_MODEL_DETAILS_API: 'getAnmModelDetails/',
+//     GET_ALLTASK_DATA_API: 'getalltaskDetails/',
+//     GET_ANOMALY_MODEL_CONFIG: 'getAnomalyModelConfigs/',
+//     GET_ANOMALY_DATASETS: 'getAnomalyDataSets/',
+//     GET_ANOMALY_MODEL_CONFIG_USING_NAME: 'getAnomalyModelConfigUsingName/',
+//     DELETE_ANOMALY_MODEL_CONFIG: 'deleteAnomalyModel/',
+//     GET_ANOMALY_MODEL_CONFIGURATIONS_API: 'getAnmMdConfigurations/',
+//     GET_SCHEDULE_DETAILS : 'getScheduleDetails/',
+//     GET_TRAINED_MODELS : 'getTrainedModels/',
+//     GET_TRAINING_STATUS : 'getTrainingStatus/',
+//     DELETE_TRAINED_MODELS : 'deleteTrainedModels/',
+//     POST_CREATE_TASK_API : 'createTask/',
+//     PUT_UPDATE_TASK_API : 'updateTask/',
+//     ACTION_ON_TASK : 'actionOnTask/',
+//     GET_ANOMALY_DATASET_FEATURES_API: 'getAnomalyDataSetFeatures/',
+//     GET_DATA_SOURCE_DETAILS_API: 'getDataSource/',
+//     POST_SCHEDULE_DETECT_ANOMALY_API: 'scheduleAnmdDetect/',
+//     GET_DATASET_LIST: 'getDataSetForJobType/',
+//     POST_ANOMALY_SCHEDULE_PROFILING_API: 'scheduleAnmlProfiling/',
+//     GET_ANOMALY_PROFILING_RESULT_API: 'anmlProfilingResult/',
+//     POST_DATAINSIGHT_DATAPREVIEW_API: 'getDataPreviewDetails/',
+//     DELETE_STOP_TRAINEDMODEL_API: 'stopTrainingModel/',
+//     DELETE_STOP_ANOMALYDETECTION_API: 'stopAnomalyDetection/',
+// };
+
+export const CLUSTER_URLS = {
+
+    GET_CLUSTER_TABLE_DATA_API: '/api/v1/profiling/asc/clusters/',
+    GET_DATASET_LIST: '/datasource/api/getDataSet',
+    GET_ANOMALY_MODEL_CONFIG_USING_NAME: '/api/v1/modelconfigs/',
+    POST_CLUSTER_SCHEDULE_PROFILING_API: '/api/v1/profiling/asc/schedule/',
+    POST_CLUSTER_SCHEDULE_SEQUENCE_API: '/api/v1/profiling/asc/scheduleSequence/',
+    GET_CLUSTER_PROFILING_RESULT_API: '/api/v1/profiling/asc/rootcause/',
+
+    GET_ALARM_DETAILS_API: '/api/v1/profiling/asc/raw/',
+    GET_SEQUENCE_DETAILS_API: '/api/v1/profiling/asc/sequence/',
+    GET_AUTOCOMPLETE_RESOLUTION_API: '/api/v1/profiling/asc/autocomplete/',
+    GET_MASTER_RESOLUTION_API: '/api/v1/profiling/asc/allresolutions/',
+    PUT_RESOLUTION_DETAILS_API: '/api/v1/profiling/asc/resolution/',
+    PUT_CLUSTER_NAME_API: '/api/v1/profiling/asc/clusterName/',
+    DELETE_CLUSTER_NAME_API: '/api/v1/profiling/asc/clusterName/',
+};
+
+

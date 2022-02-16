@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: classification-ui
+parameters:
+- description: userinterface
+  displayName: userinterface
+  name: DOCKER_FONTEND_IMAGE_NAME
+  value:
+
+- description: NFS SERVER
+  displayName: userinterface
+  name: NFS_SERVER
+  value: 
+
+objects:       
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: classification-ui
+  spec:
+    selector:
+      matchLabels:
+        app: classification-ui
+    replicas: 1
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: classification-ui
+      spec:
+        containers: 
+          - image: ${DOCKER_FONTEND_IMAGE_NAME}
+            name: classification-ui
+            imagePullPolicy: Always
+            ports:
+            - containerPort: 80
+            volumeMounts:
+            - name: classification-ui
+              mountPath: /usr/share/nginx/html/assets/configs
+            - name: classification-nfs
+              mountPath: /usr/share/nginx/html/assets/mnt/k8sMount/ml/profiler
+        volumes:
+          - name: classification-ui
+            configMap:
+              name: classification-ui
+          - name: classification-nfs
+            nfs:
+              server: ${NFS_SERVER}
+              path: /mnt/k8sMount/ml/profiler
+  
+
+
+  status: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: classification-ui
+    creationTimestamp: null
+  spec:
+    selector:
+      app: classification-ui
+    type: NodePort
+    ports:
+    - nodePort: 30299
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  status:
+    loadBalancer: {} 
+  
+# Note : SOCKET_SCHEDULER_EXP_TIME is in minutes [ 60 to 4320 (3 days) | recommended : 360 ]
+# Note : In EL_URL replace modelName value with '_vaxModelNamevax_' for dynamizing the url in UI
+# Note : In FORECAST_GRAFANA_URL replace data Id value with '_vax_var-PM_name_vax_' for dynamizing the url in UI
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: classification-ui
+  
+  data:
+    angular_conf.json: |
+     {  
+      "SCHEDULER_POD":"http://167.254.204.64:30189",
+      "CORRELATION_POD":"http://167.254.204.64:30065",
+      "CLASSIFICATION_POD":"http://167.254.204.64:31126",
+      "DATAINSIGHT_POD":"http://167.254.204.64:31017",
+      "PROFILER_SOCKET":"http://167.254.204.64:31126/socket",
+      "CLASSIFICATION_PROFILER":"basic_profiler*",
+      "SOCKET_SCHEDULER_EXP_TIME":360,
+      "DEFAULT_NAME":"fujitsu",
+      "DEFAULT_PASSWORD":"fujitsu",
+      "CONFIG_MAP": "true"
+      }

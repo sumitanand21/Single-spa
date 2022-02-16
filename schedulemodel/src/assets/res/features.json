@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "data": [
+    "time",
+    "HOUP2@LOA",
+    "HOUP3@LOF",
+    "HOUP3@POSH",
+    "HOUP4@BER",
+    "RICP1@LOS",
+    "RICP1@RTH",
+    "RICP2@BER",
+    "STLP1@LOS",
+    "STLP2@LOS",
+    "STLP3@LOS"
+  ]
+}

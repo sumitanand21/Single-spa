@@ -1,0 +1,338 @@
+<ion-row *ngIf="tableLoader" class="spinner-div">
+    <mat-progress-spinner color="slategrey" mode="indeterminate">
+    </mat-progress-spinner>
+</ion-row>
+<ion-row *ngIf="!tableLoader" class="dm_main_div">
+
+    <!-- Left Side Panel Starts Here -->
+    <ion-col class="dm_left_div right_view_leftcss f-max df-col" size="6">
+        <ion-row class="dm_left_sub_view">
+            <span class="table_view_css">
+                <b>Data Set List</b>
+            </span>
+            <span class="table_view_css">
+                <ion-button (click)="navigateToUpsert()">Add New</ion-button>
+            </span>
+        </ion-row>
+
+        <ion-row class="row no-mar border_view_css">
+            <ion-col class="page_css_view">
+                <ion-col class="paginate_css">
+                    <span>
+                        <ion-icon class="ion_icon_search" [src]="dataManagementService.createSvgUrl('search.svg')">
+                        </ion-icon>
+                        <input autocomplete="off" maxlength="150" matInput class="form-control css_search" type="text"
+                            [(ngModel)]="searchFilter" placeholder="Search with Dataset Name"
+                            (ngModelChange)="onsearchChange(configTask.id)">
+                    </span>
+                </ion-col>
+                <ion-col class="d-flex paginate-align">
+                    <pagination-template #pT="paginationApi" [id]="configTask.id" class="d-flex"
+                        (pageChange)="changepage($event,configTask.id)">
+                        <ion-row class="d-flex process_rows_css">
+                            <span class="mar-r-8 paginate-text">Rows:</span>
+                            <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPageTask"
+                                (selectionChange)="setNewPageSize(itemPerPageTask,configTask.id)">
+                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                            </mat-select>
+                        </ion-row>
+                        <ion-row class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                            <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                [disabled]="pT.isFirstPage()">
+                                < </button>
+                        </ion-row>
+
+                        <ion-row class="d-flex process_matselect">
+                            <span class="paginate-text"> Page</span>
+                            <input autocomplete="off" matInput [appAlphaNumeric]="'num'" class="currpage-input"
+                                type="text" [(ngModel)]="inputCurrentpageTask"
+                                (change)="changepageinp(inputCurrentpageTask,pT.getLastPage(),configTask.id)">
+
+                            <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                        </ion-row>
+                        <ion-row class="pagination-next" [class.disabled]="pT.isLastPage()">
+                            <button type="button" class="pagination-btn" (click)="pT.next()"
+                                [disabled]="pT.isLastPage()"> > </button>
+                        </ion-row>
+                    </pagination-template>
+
+                </ion-col>
+            </ion-col>
+
+        </ion-row>
+        <ion-col class="f-max out-table mod-table-scroll">
+            <table class="df-col task_table">
+                <thead class="sticky-head">
+                    <tr class="row no-mar head-tr">
+                        <th class="col-6 wrap-text">
+                            DataSet Name
+                            <ion-col class="select-cur" (click)="sortTask('dataSetName')">
+                                <ion-icon *ngIf="!(keyTask == 'dataSetName' && reverseTask)" aria-hidden="false"
+                                    class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                    [src]="dataManagementService.createSvgUrl('caret-down-sharp.svg')"
+                                    name="caret-down-outline"></ion-icon>
+                                <ion-icon *ngIf="keyTask == 'dataSetName' && reverseTask" aria-hidden="false"
+                                    class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                    [src]="dataManagementService.createSvgUrl('caret-up-sharp.svg')"
+                                    name="caret-up-outline"></ion-icon>
+                            </ion-col>
+                        </th>
+                        <!-- <th class="col-4 wrap-text">
+                            DB Type
+                            <ion-col class="select-cur" (click)="sortTask('dbType')">
+                                <ion-icon *ngIf="!(keyTask == 'dbType' && reverseTask)" aria-hidden="false"
+                                    class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                    [src]="dataManagementService.createSvgUrl('caret-down-sharp.svg')"
+                                    name="caret-down-outline"></ion-icon>
+                                <ion-icon *ngIf="keyTask == 'dbType' && reverseTask" aria-hidden="false"
+                                    class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                    [src]="dataManagementService.createSvgUrl('caret-up-sharp.svg')"
+                                    name="caret-up-outline"></ion-icon>
+                            </ion-col>
+                        </th> -->
+                        <th class="col-6 wrap-text">
+                            Data Source Type
+                            <ion-col class="select-cur" (click)="sortTask('dataSourceType')">
+
+
+                                <ion-icon *ngIf="!(keyTask == 'dataSourceType' && reverseTask)" aria-hidden="false"
+                                    class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                    [src]="dataManagementService.createSvgUrl('caret-down-sharp.svg')"
+                                    name="caret-down-outline"></ion-icon>
+                                <ion-icon *ngIf="keyTask == 'dataSourceType' && reverseTask" aria-hidden="false"
+                                    class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                    [src]="dataManagementService.createSvgUrl('caret-up-sharp.svg')"
+                                    name="caret-up-outline"></ion-icon>
+                            </ion-col>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let datasource of datasourceTable | orderBy: keyTask : reverseTask | searchFilter: {'dataSetName': searchFilter} | paginate: configTask; let i = index"
+                        role="row" class="row no-mar body-tr selectTask"
+                        [class.active]="selectedDataSource && selectedDataSource.dataSetName === datasource.dataSetName"
+                        (click)="getTableDetails(datasource,i)" id="trdata{{i}}">
+                        <td class="wrap-text col-6">{{datasource.dataSetName}}</td>
+                        <!-- <td class="wrap-text col-4">{{datasource.dbType}}</td> -->
+                        <td class="wrap-text col-6">{{datasource.dataSourceType}}</td>
+                    </tr>
+                    <tr class="row no-mar border_bot_css"
+                        *ngIf="(datasourceTable | searchFilter: {'dataSetName': searchFilter}).length == 0">
+                        <td class="col-12 wrap-text no_rec_css">No records found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ion-col>
+    </ion-col>
+    <!-- Left Side Panel Ends Here -->
+    <!-- Right Side Panel Starts Here -->
+    <ion-col size="6" class="right_most_css f-max cont-scrl">
+        <ion-col *ngIf="isLoading" class="spinner-div">
+            <mat-progress-spinner color="slategrey" mode="indeterminate">
+            </mat-progress-spinner>
+        </ion-col>
+        <ion-row *ngIf="!checkifObjectExist(selectedDataSourceDetails) == true && !isLoading" class="sub-cont-scrl">
+            <label *ngIf="checkifObjectExist(selectedDataSource) == false" class="head-label">Select at least one data
+                set to show the details</label>
+            <label *ngIf="checkifObjectExist(selectedDataSource) == true" class="head-label">No data set details
+                available</label>
+        </ion-row>
+        <ion-row *ngIf="checkifObjectExist(selectedDataSourceDetails) == true && !isLoading" class="sub-cont-scrl">
+            <ion-row class="dm_right_sub_view">
+                <span class="table_view_css">
+                    <b>{{ selectedDataSourceDetails.dataSetName}}</b>
+                </span>
+                <span class="table_view_css">
+                    <ion-button class="shadowbtn btn btn-default preview_btn light_css" color="light" type="button"
+                        (click)="navigateToDataPreview(selectedDataSource.dataSetName, selectedDataSourceDetails.dataSourceType)">
+                        <span class="data_css_prev">Data Preview</span>
+                    </ion-button>
+                </span>
+            </ion-row>
+            <ion-col class="sch_btn_css">
+                <span class="d-flex span_group_css shadowbtn">
+                    <ion-icon class="ion_icon_refresh" [src]="dataManagementService.createSvgUrl('sync.svg')"
+                        (click)="refreshJobStatus()"></ion-icon>
+                </span>
+                <ion-button *ngIf="showStream" class="add_new_btn" type="button"
+                    (click)="openStreamSchedule(selectedDataSource, 'stream')" size="small">Stream</ion-button>
+                <ion-button type="button" *ngIf="showStopStream" class="stop_css"
+                    (click)="openStreamSchedule(selectedDataSource, 'stop')" color="danger">Stop</ion-button>
+                <ion-button type="button" class="delete_css" (click)="deleteDataSource(selectedDataSource)"
+                    color="danger">Delete</ion-button>
+                <ion-button type="button" class="pause_css_btn"
+                    (click)="navigateToUpsert(selectedDataSource.dataSetName)" color="primary">Edit</ion-button>
+            </ion-col>
+            <ion-row class="data_view_css">
+                <ion-row class="sch_border_css">
+                    <ion-col class="sub_border_css">
+                        <ion-col class="css_sub_border row no-padd no-mar">
+                            <ion-col size="6" class="grid_css_view">
+                                <span class="next_run_title">Name:</span>
+                                <span *ngIf="selectedDataSourceDetails.dataSetName" class="next_run_value"> {{
+                                    selectedDataSourceDetails.dataSetName}} </span>
+                                <span *ngIf="!selectedDataSourceDetails.dataSetName" class="next_run_value">NA </span>
+                            </ion-col>
+
+                            <ion-col size="6" class="grid_css_view">
+                                <span class="frequency_title">Data Source Type:</span>
+                                <span *ngIf="selectedDataSourceDetails.dataSourceType" class="frequency_value">{{
+                                    selectedDataSourceDetails.dataSourceType}}</span>
+                                <span *ngIf="!selectedDataSourceDetails.dataSourceType"
+                                    class="frequency_value">NA</span>
+                            </ion-col>
+
+                            <ion-col size="12" class="training_modal_css">
+                                <ion-col class="sche_started_title display-inline ion-no-padding">
+                                    Job Type: &nbsp;
+                                    <ion-col *ngIf="jobTypeStatusObj"
+                                        [ngClass]="{'stopStatus' : jobTypeStatusObj.jobStatus.toLowerCase() == 'stopped', 'bg-active' : jobTypeStatusObj.jobStatus.toLowerCase() == 'running', 'bg-waiting': (jobTypeStatusObj.jobStatus.toLowerCase() === 'scheduled' || jobTypeStatusObj.jobStatus.toLowerCase() === 'waiting' || jobTypeStatusObj.jobStatus.toLowerCase() === 'initiated' ||  jobTypeStatusObj.jobStatus.toLowerCase() === 'queued')}"
+                                        class="status">
+                                        {{jobTypeStatusObj.jobStatus}}
+                                    </ion-col>
+                                </ion-col>
+    
+                                <ion-col class="no-padd jobtype-text">
+                                    <span class="sche_started_value"> {{ selectedDataSourceDetails.jobType}} </span>
+                                </ion-col>
+                            </ion-col>
+
+                            <ion-col size="6" class="grid_css_view">
+                                <span class="frequency_title">Multi Variate:</span>
+                                <span *ngIf="selectedDataSourceDetails.multivariate && selectedDataSourceDetails.multivariate == 'True'" class="frequency_value">{{
+                                    selectedDataSourceDetails.multivariate}}</span>
+                                <span *ngIf="!selectedDataSourceDetails.multivariate || selectedDataSourceDetails.multivariate == 'False'"
+                                    class="frequency_value">False</span>
+                            </ion-col>
+
+                            <ion-col size="6" class="grid_css_view">
+                                <span class="frequency_title">Data Sets:</span>
+                                <span *ngIf="selectedDataSourceDetails.multivariate && selectedDataSourceDetails.multivariate == 'True'" class="frequency_value">{{
+                                    selectedDataSourceDetails.dataSets}}</span>
+                                <span *ngIf="!selectedDataSourceDetails.multivariate || selectedDataSourceDetails.multivariate == 'False'"
+                                    class="frequency_value">NA</span>
+                            </ion-col>
+
+
+                            <ion-col size="12" class="grid_css_view no-padd" *ngIf="selectedDataSourceDetails.streamData && checkIfEnableStream()">
+                               
+                                <ion-col class="sche_started_title">Stream Data Configuration:</ion-col>
+                                <ion-row>
+                                    <ion-col size="6" class="grid_css_view">
+                                    <span class="sche_started_title">Configuration:</span>
+                                    <span *ngIf="selectedDataSourceDetails.streamData.connectionDetails.configurationName"
+                                        class="sche_started_value">{{selectedDataSourceDetails.streamData.connectionDetails.configurationName}}</span>
+                                </ion-col>
+                                <ion-col size="6" class="grid_css_view">
+                                    <span class="sche_started_title">DB Type:</span>
+                                    <span class="sche_started_value">{{selectedDataSourceDetails.streamData.connectionDetails.dbType}}</span>
+                                </ion-col>
+                             </ion-row>
+                            </ion-col>
+
+                            <ion-col size="12" class="grid_css_view no-padd" *ngIf="selectedDataSourceDetails.storedData && checkIfEnableStore()">
+                               
+                                <ion-col class="sche_started_title">Stored Data Configuration:</ion-col>
+                                <ion-row>
+                                    <ion-col size="6" class="grid_css_view">
+                                    <span class="sche_started_title">{{selectedDataSourceDetails.fileName ? 'File Name' :
+                                        'Configuration'}}:</span>
+                                    <span *ngIf="selectedDataSourceDetails.fileName" class="sche_started_value">{{
+                                        selectedDataSourceDetails.fileName}}:</span>
+                                    <span *ngIf="selectedDataSourceDetails.storedData.connectionDetails.configurationName"
+                                        class="sche_started_value">{{selectedDataSourceDetails.storedData.connectionDetails.configurationName}}</span>
+                                </ion-col>
+                                <ion-col size="6" class="grid_css_view">
+                                    <span class="sche_started_title">DB Type:</span>
+                                    <span class="sche_started_value">{{selectedDataSourceDetails.storedData.connectionDetails.dbType}}</span>
+                                </ion-col>
+                                <ion-col
+                                *ngIf="selectedDataSourceDetails.storedData.configuration && selectedDataSourceDetails.storedData.configuration.length"
+                                class="css_sub_border_nex">
+                                <ion-col *ngFor="let item of selectedDataSourceDetails.storedData.configuration" size="6"
+                                    class="grid_css_view">
+                                    <span class="frequency_title">{{item.key}}:</span>
+                                    <span class="frequency_value"> {{ item.value}} </span>
+                                </ion-col>
+                            </ion-col>
+                             </ion-row>
+                            </ion-col>
+
+                            <ion-col size="12" class="grid_css_view no-padd" *ngIf="selectedDataSourceDetails.flatData && selectedDataSourceDetails.flatData == 'False'">
+                               
+                                <ion-row>
+                                    <ion-col size="6" class="grid_css_view" *ngIf="selectedDataSourceDetails.featureToDescribe && selectedDataSourceDetails.featureToDescribe.length">
+                                    <span class="sche_started_title">Feature To Describe:</span>
+                                    <span class="sche_started_value">{{selectedDataSourceDetails.featureToDescribe}}</span>
+                                </ion-col>
+                                <ion-col size="6" class="grid_css_view" *ngIf="selectedDataSourceDetails.lookUpColumns && selectedDataSourceDetails.lookUpColumns.length">
+                                    <span class="sche_started_title">Look Up Colums:</span>
+                                    <span class="sche_started_value">{{selectedDataSourceDetails.lookUpColumns}}</span>
+                                </ion-col>
+                             </ion-row>
+                            </ion-col>
+
+                            <ion-col size="12" class="grid_css_view no-padd">
+                               
+                                <ion-row>
+                                <ion-col size="6" class="grid_css_view" *ngIf="selectedDataSourceDetails.timeColumn">
+                                    <span class="sche_started_title">Time Column:</span>
+                                    <span class="sche_started_value">{{selectedDataSourceDetails.timeColumn}}</span>
+                                </ion-col>
+                                <ion-col size="6" class="grid_css_view" *ngIf="!selectedDataSourceDetails.timeColumn && selectedDataSourceDetails.startTime">
+                                    <span class="sche_started_title">Start Time:</span>
+                                    <span class="sche_started_value">{{createUTCDatefromISO(selectedDataSourceDetails.startTime) }}</span>
+                                </ion-col>
+                                <ion-col size="6" class="grid_css_view" *ngIf="!selectedDataSourceDetails.timeColumn && selectedDataSourceDetails.endTime">
+                                    <span class="sche_started_title">End Time:</span>
+                                    <span class="sche_started_value">{{createUTCDatefromISO(selectedDataSourceDetails.endTime) }}</span>
+                                </ion-col>
+                                <ion-col size="6" class="grid_css_view" *ngIf="!selectedDataSourceDetails.timeColumn && selectedDataSourceDetails.timeInterval">
+                                    <span class="sche_started_title">Time Interval (sec):</span>
+                                    <span class="sche_started_value">{{selectedDataSourceDetails.timeInterval }}</span>
+                                </ion-col>
+                             </ion-row>
+                            </ion-col>
+                     
+                          
+                        </ion-col>
+                      
+                     
+                    </ion-col>
+                </ion-row>
+                <br>
+
+                <br>
+                <ion-col *ngIf="selectedDataSourceDetails.featureMapping" class="training_modal_css no-padd">
+                    <ion-col class="sch_sub_css no-padd">
+                        <span class="font_sch_span">Feature Datatypes:</span>
+                    </ion-col>
+                    <ion-col class="training_table_css sub_border_css no-padd df-col-dummy">
+                        <ion-col class="f-max out-table mod-table-scroll_sec">
+                            <table class="df-col right_table_css">
+                                <thead class="sticky-head">
+                                    <tr class="row no-mar head-tr">
+                                        <td class="wrap-text col-9">Column</td>
+                                        <td class="wrap-text col-3">Type</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="row no-mar body-tr"
+                                        *ngFor="let item of selectedDataSourceDetails.featureMapping">
+                                        <td class="wrap-text col-9">{{item.feature}}</td>
+                                        <td class="wrap-text col-3">{{item.propertyType}}</td>
+                                    </tr>
+                                    <tr class="row no-mar border_bot_css"
+                                        *ngIf="(selectedDataSourceDetails.featureMapping).length == 0">
+                                        <td class="col-12 wrap-text">No Feature available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ion-col>
+                    </ion-col>
+                </ion-col>
+            </ion-row>
+        </ion-row>
+    </ion-col>
+    <!-- Right Side Panel Ends Here -->
+</ion-row>

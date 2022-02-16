@@ -1,0 +1,11 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            "grpc_configuration",
+            "kafka_configuration"
+        ],
+        "responseType": "",
+        "status_code": 200
+    }
+}

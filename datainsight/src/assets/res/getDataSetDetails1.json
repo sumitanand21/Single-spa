@@ -1,0 +1,138 @@
+{
+    "status": "success",
+    "data": {
+        "data": {
+            "dataSetName": "pmdata",
+            "multivariate": "True",
+            "dataSets": ["spanloss_data","sample_alarm"],
+            "flatData": "True",
+            "featureToDescribe": ["Date","_id"],
+            "lookUpColumns": ["Date","_id"],
+            "timeColumn": "Date",
+            "startTime": "2021-09-01T12:12:00.000Z",
+            "endTime": "2021-09-03T01:23:00.000Z",
+            "timeInterval": 2,
+            "dataSourceType": [
+                "stored_data",
+                "stream_data"
+            ],
+            "jobType": [
+                "FORECASTEXECUTION",
+                "Anomal"
+            ],
+            "fileName": "",
+            "dbType": "MongoDB",
+            "storedData": {
+                "dbType": "MongoDB",
+                "connectionDetails": {
+                    "configurationName": "mongodb_configuration",
+                    "description": "mongodb configuration",
+                    "dbType": "MongoDB",
+                    "dataSourceType": "stored_data",
+                    "url": "mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017",
+                    "hostName": "mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017",
+                    "portNumber": "27017",
+                    "steps": "2",
+                    "details": []
+                },
+                "configuration": [
+                    {
+                        "key": "databaseName",
+                        "value": "local",
+                        "type": "step1"
+                    },
+                    {
+                        "key": "collectionName",
+                        "value": "startup_log",
+                        "type": "step2"
+                    }
+                ]
+            },
+            "streamData": {
+                "dbType": "KAFKA",
+                "connectionDetails": {
+                    "configurationName": "kafka_configuration",
+                    "description": "kafka_configuration",
+                    "dbType": "KAFKA",
+                    "dataSourceType": "stream_data",
+                    "url": "",
+                    "hostName": "",
+                    "portNumber": "0",
+                    "steps": "0",
+                    "details": [
+                        {
+                            "key": "kafka_server",
+                            "value": "kafka-svc.msgbus"
+                        },
+                        {
+                            "key": "kafka_topic",
+                            "value": "topic1"
+                        },
+                        {
+                            "key": "kafka_port",
+                            "value": 9093
+                        }
+                    ]
+                },
+                "databaseName": "pmdata"
+            },
+            "featureMapping": [
+                {
+                    "feature": "_id",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "Date",
+                    "propertyType": "datetime"
+                },
+                {
+                    "feature": "sampleTime",
+                    "propertyType": "int64"
+                },
+                {
+                    "feature": "ne",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "pmType",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "defaultDataRange",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "timeForForwardPrediction",
+                    "propertyType": "int64"
+                },
+                {
+                    "feature": "modelConfigName",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "jobStatus",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "dataSetName",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "jobType",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "modelType",
+                    "propertyType": "object"
+                },
+                {
+                    "feature": "_class",
+                    "propertyType": "object"
+                }
+            ],
+            "timeFilterFeature": []
+        },
+        "responseType": "",
+        "status_code": 200
+    }
+}

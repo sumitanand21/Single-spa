@@ -1,0 +1,1139 @@
+.parent-main{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  }
+
+  .model-body{
+    // overflow: hidden;
+    /* padding: 0px 18px 0px 18px; */
+    display: block;
+    //padding: 0 0 0 18px;
+    height: 0;
+    }
+  
+  .no-height{
+    height:0;
+  }
+  
+  .header-pad{
+    padding: 16px 0px 16px 18px;
+  }
+  
+  .feature-head{
+  width: 28%;
+  height:100%;
+  max-width: 360px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid var(--mtsclr-border);
+  }
+  
+  .feature-body{
+    flex-grow: 100;
+    height:100%;
+    background-color: var(--mtsclr-background);
+    //padding: 11px 18px 0px 18px;
+    }
+  
+  
+  .wrap-mat{
+    max-width: 214px;
+    width: 100%;
+  }
+  
+  .action-head{
+  display: flex;
+  background-color: var(--mtsclr-background);
+  padding: 12px 6px 12px 0px;
+  }
+  
+  .action-label{
+  font: normal normal 600 14px/13px Segoe UI;
+  color: var(--mtsclr-label);
+  }
+
+  .action-label-feature-group{
+    font: normal normal 600 14px/13px Segoe UI;
+    color: var(--mtsclr-label);
+    padding-left: 8px;
+    }
+
+    .action-label-date-time{
+      font: normal normal 600 14px/13px Segoe UI;
+      color: var(--mtsclr-label);
+      padding-left: 8px;
+      padding-top: 6px;
+      }
+  .data-set-width{
+  padding: 0px 15px;
+  width:22%;
+  }
+  
+  .feature-group-width{
+    padding: 0px 15px;
+    width:30%;
+  }
+  
+  .time-filter-width{
+    padding: 0px 15px;
+    width:33%;
+  }
+  
+  .run-btn{
+    padding-top: 14px;
+    padding-left: unset;
+  }
+  
+  .filter-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 21px 12px 15px;
+    border-bottom: 1px solid var(--mtsclr-border);
+  }
+  
+  
+  
+    .clender-icon{
+      cursor: pointer;
+    }
+  
+  
+    .css_search{
+      height: 32px !important;
+      font-size: 12px;
+      /* max-width: 296px; */
+      padding: 5px 5px 5px 23px;
+      border: 1px solid var(--mtsclr-feild-border);
+      }
+  
+      .serach-div{
+        width:296px;
+        margin-left: 40px;
+      }
+  
+      .feature-head-text{
+        font: normal normal 600 18px/13px Segoe UI;
+        color: var(--mtsclr-text);
+        margin-right: 38px;
+      }
+  
+      .feature-count-text{
+        font: normal normal normal 14px/13px Segoe UI;
+        color: var(--mtsclr-label);
+      }
+  
+      .filter-head-wrap{
+        display: flex;
+        align-items: center;
+        width: auto;
+      }
+  
+  
+  
+  .feature-body-wrap{
+      height: 0;
+  }
+  
+  .fetaure-selection{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+  }
+  
+  .shift-right{
+    margin-left: auto;
+  }
+  
+  .data-set{
+      min-width: 58px;
+  }
+  
+  .mar-b-label{
+   // margin-bottom: 6px;
+    //margin-bottom: 6px;
+    margin-right: 6px;
+  }
+  
+  .mar-b-header{
+    margin-bottom: 8px;
+  }
+  
+  .bdr-seperator{
+    //padding-top: 22px;
+    border-top: 1px solid var(--mtsclr-border);
+  }
+  
+  .mat_width_css{
+      padding: 5px;
+  }
+  
+  .drop-mat{
+      // border-radius: 4px;
+      // border: 1px solid var(--mtsclr-feild-border);
+      // color: var(--mtsclr-text);
+      // height: 25px;
+      // font: normal normal normal 14px Segoe UI;
+
+      border-radius: 4px;
+    border: 1px solid var(--mtsclr-feild-border);
+    color: var(--mtsclr-text);
+    height: 25px;
+    font: normal normal normal 14px Segoe UI;
+    width: 70%;
+        }
+      
+  
+  .dc-flex{
+      display: flex;
+      align-items: center;
+  }
+  
+  .filter-sub-wrap{
+     margin-bottom: 8px;
+  }
+  
+  .run-cor-btn{
+    cursor: pointer;
+    border-radius: 4px;
+    //opacity: 1;
+    background-color: var(--mtsclr-correlate-btn);
+    /* border: 1.5px solid var(--mtsclr-correlate-btn); */
+    font: normal normal normal 18px Segoe UI;
+    font-size: 14px;
+    letter-spacing: inherit;
+    height: 30px;
+  }
+  
+  .run-cor-width{
+    // min-width: 128px;
+    // margin-top:15px;
+
+    min-width: 105px;
+    margin-top: 17px;
+  }
+  
+  .cancel-mod{
+    /* border:1.5px solid var(--mtsclr-cancel-btn);
+    color: var(--mtsclr-label);
+    background-color: #ffffff; */
+    // background-color: var(--mtsclr-correlate-btn);
+    // border:1.5px solid var(--mtsclr-correlate-btn);
+    // font: normal normal normal 14px Segoe UI;
+    // margin-left: 15px;
+    // font-size: 14px;
+    // letter-spacing: inherit;
+
+    // font: normal normal normal 14px Segoe UI;
+    // margin-left: 15px;
+    // font-size: 14px;
+    // letter-spacing: inherit;
+    // --background: var(--mtsclr-correlate-btn);
+    // background-color: unset;
+    // border-color: unset;
+
+    font: normal normal normal 14px Segoe UI;
+    font-size: 14px;
+    letter-spacing: inherit;
+    --background: var(--mtsclr-correlate-btn);
+    background-color: unset;
+    border-color: unset;
+    height: 30px;
+    
+  }
+  
+  .select-text{
+    padding-top:2px;
+    font: normal normal 600 16px/20px Segoe UI;
+    color: var(--mtsclr-label);
+    margin-left: 8px;
+  }
+  
+  .select-count-text{
+  font: normal normal normal 14px/20px Segoe UI;
+  color: var(--mtsclr-label);
+  }
+  
+  
+  
+  
+  .align-base{
+      align-items: baseline;
+  }
+  
+  .align-center{
+      align-items: center;
+  }
+  
+  
+  .feature-set{
+      min-width: 95px;
+      margin-left:9px;
+  }
+  .time-filter-set{
+    min-width: 122px;
+    margin-left: -1px;
+    margin-top: 7px;
+  }
+  
+  .filter-wrap{
+      width:100%;
+      margin-left: 9px;
+  }
+  
+  .fil-date{
+  
+  }
+  
+  .fil-date-wrap{
+      height:32px;
+      background-color: #ffffff;
+      max-width: 352px;
+      border: 1px solid var(--mtsclr-feild-border);
+      border-radius: 4px;
+      width:100%;
+  }
+  
+  .fil-date-size{
+  font: normal normal normal 14px/20px Segoe UI;
+  color:var(--mtsclr-text);
+  }
+  
+  .fil-bold{
+  //     font: normal normal bold 14px/20px Segoe UI;
+  // color:var(--mtsclr-text);
+  // text-align: center;
+  //margin: 6px 0px 6px 0px;
+
+  font: normal normal bold 14px/20px Segoe UI;
+    color: var(--mtsclr-text);
+    text-align: center;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-right: 10px;
+  }
+  
+  
+  .wrap-text{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: -2px;
+      margin-left: 2px;
+  }
+  
+  .spacing-date{
+      justify-content: space-between;
+      padding: 6px 5px 6px 6px;
+  }
+  
+  .feature-details{
+    padding-right: 85px;
+    margin:0;
+  }
+  
+  .details-wrap{
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  
+  .details-sub-wrap{
+    background: #FFFFFF;
+    border: 1px solid var(--mtsclr-feild-border);
+    border-radius: 4px;
+    width:100%;
+    margin-left: 15px;
+    padding: 6px 12px 6px 12px;
+  }
+  
+  .details-on-active{
+    background: var(--mtsclr-tr-background);
+  }
+  
+  
+  .feature-name{
+    font: normal normal normal 14px/20px Segoe UI;
+    color: #000000;
+  }
+  
+  .wrap-mat-feature{
+    width: 50%;
+    height:26px !important;
+  }
+  
+  .drop-mat-feature{
+    border-radius: 4px;
+    border: 1px solid var(--mtsclr-feild-border);
+    color: var(--mtsclr-text);
+    height: 100% !important;
+    font: normal normal normal 14px Segoe UI;
+    padding: 2px 8px 2px 8px;
+      }
+  
+      .cancel-link{
+        cursor: pointer;
+        font: normal normal normal 14px/20px Segoe UI;
+        color: var(--mtsclr-label)
+      }
+  
+      .save-link{
+        cursor: pointer;
+        font: normal normal 600 14px/20px Segoe UI;
+        color: var(--mtsclr-success-btn);
+        margin-top: 3px;
+      }
+  
+      .details-action-wrap{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 4px;
+      }
+  
+  
+      .edit_icon{
+        cursor: pointer;
+        font-size: 12px;
+        margin-left: 8px;
+        color:var(--mtsclr-label);
+    }
+  
+    
+  
+    .data-disp{
+      width: 50%;
+      font: normal normal normal 14px/20px Segoe UI;
+      color:var(--mtsclr-label);
+    }
+  
+    .disable-control{
+      pointer-events: none;
+      opacity: 0.7;
+      cursor: not-allowed !important;
+      color:var(--mtsclr-label);
+      opacity: 0.7;
+    }
+  
+    .body-tab{
+      background-color: #ffffff;
+      border: 1px solid var(--mtsclr-border);
+      height: 100%;
+      padding: 0 0 0 11px;
+    }
+
+    .width-fix-left{
+      width: 300px !important;
+    }
+
+    .full-hw{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .width-auto-right{
+      flex: 1 1 auto;
+      width: auto;
+    }
+
+    .body-tab-leftRow{
+      max-height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+    }
+  
+    .body-head{
+      padding-bottom:10px;
+    }
+  
+    .mod-table-scroll{
+      overflow-x: hidden;
+      overflow-y: auto;
+      height:0;
+      }
+  
+      .sticky-head{
+        position: sticky !important;
+        top: 0;
+        z-index: 1;
+        background: #ffffff;
+      }
+  
+      .no-padd{
+        padding:0;
+        }
+      
+        .no-mar{
+          margin:0;
+          }
+  
+          .check_top_css{
+            padding-top: 10px;
+          }
+  
+          .no-rec{
+            padding-left: 18px;
+          }
+  
+         
+  
+          .check-main{
+            padding: 0px 11px 0px 18px;
+          }
+  
+          .feature-width{
+            width:25%;
+            position: sticky!important;
+          }
+          .type-width{
+            width:11%;
+          }
+
+          .type-width-correlation{
+            width:25%;
+          }
+  
+  
+  /****************check box css Starts************************/
+  
+  /* The container */
+  .check-outer {
+      display: block;
+      position: relative;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      height: 16px;
+      width: 16px;
+      margin: 0px 0px 0px 0px
+    }
+    
+    /* Hide the browser's default checkbox */
+    .check-outer input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color:  #ffffff;
+      border: 2px solid var(--mtsclr-cancel-btn);
+      border-radius:2px;
+    }
+    
+    /* On mouse-over, add a #9C9C9C background color */
+    .check-outer:hover input ~ .checkmark {
+      background-color: #ffffff;
+    }
+    
+    /* When the checkbox is checked   , add a blue background */
+    .check-outer input:checked ~ .checkmark {
+      background-color: #ffffff;
+        border: 2px solid var(--mtsclr-success-btn);
+    }
+    
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    
+    /* Show the checkmark when checked */
+    .check-outer input:checked ~ .checkmark:after {
+      display: block;
+    }
+    
+    /* Style the checkmark/indicator */
+    .check-outer .checkmark:after {
+      top: 0;
+      left: 4px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border: 1px solid var(--mtsclr-success-btn);
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  
+    /****************check box css Ends************************/
+  
+    /*******************mat-menu Time Starts**************************/
+  
+    .menu-main{
+      padding:15px;
+  }
+  
+  .menu_edit_item{
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  
+  .menu_label{
+    width: 140px;
+    font: normal normal 600 14px/20px Segoe UI;
+    color: var(--mtsclr-label);
+  }
+  
+  
+      .menu_edit_item{
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 14px;
+    }
+  
+    .date_time{
+      // display: flex;
+      // height: 36px;
+      /* align-items: center; */
+      //margin-bottom: 8px;
+      display: flex;
+    height: 56px;
+    padding-top: 8px;
+  }
+  
+  .date-label{
+    width:50px;
+    font: normal normal 600 14px Segoe UI;
+     color: var(--mtsclr-label);
+  }
+  
+  .input-time-div{
+    padding-top: unset!important;
+    width: 40px; 
+    //margin-left: 12px;
+  }
+  
+  .input-feild-time{
+    border: 1px solid var(--mtsclr-feild-border);
+        border-radius: 4px;
+        padding: 6px 3px 6px 3px;
+        color: var(--mtsclr-text);
+        text-align: center;
+        font: normal normal normal 14px Segoe UI;
+      }
+  
+      .time-stamp{
+        font: normal normal normal 12px/16px Segoe UI;
+        color: var(--mtsclr-text);
+        opacity: 0.7;
+        text-align: center;
+      }
+  
+      .menu-action{
+        justify-content: flex-end;
+        display: flex;
+        align-items: baseline;
+    }
+  
+    .menu_btn{
+      height: 35px;
+      line-height: unset;
+    }
+  
+  
+    /*******************mat-menu Time Ends**************************/
+  
+          /***********date css**********/
+          .main-date-div {
+            height: 32px;
+            display: flex;
+            align-items: center;
+          position:relative;
+          width:100%;
+          max-width:214px;
+          padding-left: unset;
+          
+          }
+          .inputfeild {
+            width: 100%;
+            border: 1px solid var(--mtsclr-feild-border);
+            border-radius: 4px;
+            padding-left: 8px;
+            padding-right: 38px;
+            color: var(--mtsclr-text);
+            font: normal normal normal 14px Segoe UI;
+          }
+          
+          .dat-pixk {
+            position: absolute;
+          right: 0;
+          }
+    
+                /***********date css Ends**********/
+  
+  
+                /******************pagination and Search css Starts*********************/
+                .page_css_view{
+                  display: flex;
+                  width: 100%;
+                  padding: 12px 8px 12px 18px;
+                  }
+  
+                  .paginate_css{
+                    /* margin: 0px 75px 0px 0px; */
+                    width: 40%;
+                    }
+  
+                    .search_fafa{
+                      position: absolute;
+                      margin: 7px;
+                      font-size: 13px;
+                      color: var(--mtsclr-icon);
+                      }
+  
+                      .css_search{
+                        height: 32px !important;
+                        font-size: 12px;
+                        max-width: 296px;
+                        padding: 5px 5px 5px 23px;
+                        border: 1px solid var(--mtsclr-feild-border);
+                        }
+                        .paginate-align{
+                          /* float:right; */
+                          width:60%;  
+                          display:flex;
+                          justify-content: flex-end;
+                          align-items: center;
+                          }
+  
+                          .paginate-text{
+                            font: normal normal normal 12px Segoe UI;
+                            // font-size: 18px;
+                            /* padding: 22px 10px; */
+                            }
+                            .mar-r-8{
+                              margin-right: 8px;
+                              }
+  
+                              .select-page{
+                                border-bottom: 1px solid var(--mtsclr-feild-border);
+                                width: 45px;
+                                height: auto !important;
+                                // font-size: 12px;
+                                font: normal normal normal 12px Segoe UI;
+                                margin-right:12px;
+                                }
+  
+                                .pagination-btn{
+                                  cursor: pointer;
+                                  border:none;
+                                  font-weight: 600;
+                                  background-color: transparent;
+                                  }
+  
+                                  .currpage-input{
+                                    text-align: center;
+                                    border-top: none;
+                                    border-right: none;
+                                    border-left: none;
+                                    border-bottom: 1px solid var(--mtsclr-feild-border);
+                                    width: 40px;
+                                    // font-size: 12px;
+                                    font: normal normal normal 12px Segoe UI;
+                                    outline: none;
+                                    margin-right: 5px;
+                                    margin-top: 0px;
+                                    }
+    
+                     /******************pagination and Search css Ends*********************/
+                     .trash_icon{
+                      cursor: pointer;
+                      display: flex;
+                      align-items: center;
+                    }
+                    .group-action{
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      width: 100%;
+                      max-width: 214px;
+                    }
+  .ion_icon_search{
+      position: absolute;
+      padding: 6px;
+  }
+  ion-button{
+    padding: 0;
+    text-transform:none;
+  }
+  .text-data {
+    padding-left: 10px;
+  }
+
+  
+  .selected-feateures{
+    margin-top: 6px;
+  }
+
+
+.body{
+  height: 100%;
+}
+
+.text-margin{
+  margin-top: -4px;
+}
+
+.checkbox-style{
+  margin-top: 1px;
+}
+
+.selected-feature-padding{
+  margin-top: 3px;
+    display: flex;
+    align-items: baseline;
+}
+
+ion-checkbox{
+  --background-checked:#ffff;
+  --checkmark-color:var(--mtsclr-success-btn);
+  --size:16px;
+  --checkmark-width: 5px;
+}
+
+ion-content{
+  padding: 16px 0px 16px 18px;
+  --padding-top:16px;
+  --padding-end:0px;
+  --padding-bottom: 16px;
+  --padding-start:18px;
+}
+
+.side-content-padding{
+  padding: unset!important;
+}
+
+.time-feature-filter{
+  margin-bottom: -4px;
+    padding-top: 0px;
+}
+
+.unset-padding{
+  padding-left: unset;
+  padding-right: unset;
+  padding-bottom: unset;
+    padding-top: 22px;
+}
+
+/* Media Query starts here */
+@media (min-width: 1598px) and (max-width: 1928px){
+  .action-label,.select-text,.save-link{
+    font: normal normal 600 18px Segoe UI;
+  }
+  .drop-mat,.run-cor-btn,.feature-count-text,.inputfeild{
+    padding-top: 0px;
+    font: normal normal normal 18px Segoe UI;
+  }
+  .css_search,.currpage-input{
+    font-size: 18px;
+  }
+  .cancel-mod{
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1598px) and (max-width: 1928px){
+.select-page {
+    font-size: 18px !important;
+}
+}
+@media (min-width: 1598px) and (max-width: 1928px){
+td, .paginate-text, .model_css_type, .rad_css_view, .model_css_type_status, .checkbox_css_view, .no-data, .no_cor_select, .head-label, .nodata_avail {
+    font: normal normal 18px Segoe UI !important;
+}
+}
+
+@media (min-width: 1598px) and (max-width: 1928px){
+ion-label {
+    font: normal normal 18px Segoe UI !important;
+}
+}
+
+@media (min-width: 1598px) and (max-width: 1928px){
+  .action-label-feature-group {
+      font: normal normal 600 18px Segoe UI !important;
+  }
+  }
+
+  @media (min-width: 1598px) and (max-width: 1928px){
+    .theader{
+   
+          font: normal normal bold 18px Segoe UI !important;
+   }
+  }
+  
+
+
+.center-align{
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+
+.header-padding{
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background: #f1f0ef;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.display-center{
+  display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.display-start{
+  display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.display-end{
+  display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.submit-button{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.border-top{
+ //background: 1px solid #cbcbcb;
+}
+
+.status-padding{
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.classification-main{
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.table-main{
+  flex: 1 1 auto;
+  height: 0;
+}
+
+.table-main-wrap{
+  height: 100%;
+  width: 100%;
+}
+
+.mat-drop-footer{
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background-color: white;
+  padding: 4px 10px;
+}
+
+
+.option-label{
+  font-size: 14px;
+}
+
+.radio-button{
+  height:15px;
+  width: 15px;
+  margin-right: 6px;
+}
+
+.radio_css_val{
+  padding-left: 16px;
+}
+
+.display-center{
+  display: flex;
+  align-items: center;
+}
+
+.radio-feild-model{
+  display: flex;
+}
+
+.left-padding{
+  padding-left: 12px;
+}
+
+.status-row-height{
+  height: 50px;
+}
+
+ion-card{
+  margin-left: unset;
+}
+
+.table-wrap{
+  width: 0;
+  // max-height: 100%;
+  height: fit-content;
+  overflow-x: auto;
+  overflow-y: auto;
+  min-width: 100%;
+  max-height: 100%;
+  //min-height: 500px;
+  // height:254px;
+
+  // display: flex;
+  //   padding: 0px 11px 0px 18px;
+  //   justify-content: center;
+        }
+
+        .feature-thead{ 
+          display: block;
+          align-items: flex-end;
+          justify-content: center;
+          font: normal normal bold 14px Segoe UI;
+          color: #707070;
+     
+        }
+
+        .select-cur{
+          cursor: pointer;
+          padding: 0;
+margin-left: 4px;
+      }
+
+      .arrow_mat {
+        font-size: 12px;
+        color: var(--mtsclr-icon);
+    }
+
+    .align-middle{
+      vertical-align: middle !important;
+  }
+
+  .prev-table-wrap{
+    /* border: 1px solid #CBCBCB; */
+    /* height: 100%;
+    overflow: auto;
+    padding: 0px 18px 0px 18px;
+    display:flex; */
+
+        //  height: 0;
+         display:flex;
+         padding: 0px 18px 0px 18px;
+         justify-content: center;
+  }
+
+  .prev-table{
+/* width:100%; */
+flex: 1;
+border-right: 1px solid #CBCBCB;
+  }
+
+  .prev-table-wrap .prev-table:last-child{
+      border-right: none;
+  }
+
+  table{
+    // border-top:none !important;
+    width: 100%;
+     //border: 1px solid #CBCBCB;
+    border-collapse: collapse;
+    // table-layout: fixed;
+    //border:1px solid var(--mtsclr-border);
+  }
+
+table td, th {
+  min-width: 120px;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+  th{
+    // border: 1px solid #CBCBCB;
+    /* border-bottom: 1.5px solid #CBCBCB; */
+    // border-top: none !important;
+    // border-bottom: none !important;
+    height: 34px;
+    // background: #F1F0EF;
+    text-align: center;
+    vertical-align: bottom;
+    padding: 5px 10px 5px 10px;
+    // font: normal normal normal 14px/13px Segoe UI;
+  color: #232323;
+  position: sticky;
+  top: 0;
+  // box-shadow: inset 0 0.8px 0 #CBCBCB, inset 0 -1.5px 0 #CBCBCB;
+  }
+
+  .sticky-head{
+    position: sticky !important;
+    top: 0;
+    z-index: 1;
+    background: #ffffff;
+    box-shadow: inset 0 -2px 0 #cbcbcb;
+  }
+  
+
+  td{
+    // border-right: 1px solid #CBCBCB;
+    font: normal normal normal 14px/13px Segoe UI;
+    color: #232323;
+    padding: 15px 10px 5px 10px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .loading:after {
+    overflow: hidden;
+    display: inline-block;
+    //vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+    animation: ellipsis steps(4,end) 900ms infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+    width: 0px;
+  }
+  
+  @keyframes ellipsis {
+    to {
+      width: 20px;    
+    }
+  }
+  
+  @-webkit-keyframes ellipsis {
+    to {
+      width: 20px;    
+    }
+  }
+
+  .reasonColor{
+    color: red;
+    font-weight: bold;
+  }
+
+  

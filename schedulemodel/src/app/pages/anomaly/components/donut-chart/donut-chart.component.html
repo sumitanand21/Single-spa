@@ -1,0 +1,22 @@
+
+<div class="chart-css" >
+    <div class="chart-dis-data">
+       <label class="per-label">
+           {{selectedPer}}%
+       </label>
+      
+    </div>
+    <div class="s1-chart-dis-data">
+        <label class="s1-per-label">
+            {{selectedData}}
+        </label>
+    </div>
+  <canvas baseChart
+  [options]='chartOptions'
+  [colors]="colors"
+  [labels]="doughnutChartLabels"
+              [data]="demodoughnutChartData"
+              [chartType]="doughnutChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+</div>

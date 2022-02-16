@@ -1,0 +1,60 @@
+{
+  "status": "success",
+  "data": {
+    "data": [
+    {
+    "feature": "Age",
+    "propertyType": "float"
+    },
+    {
+      "feature": "Date",
+      "propertyType": "datetime"
+    },
+    {
+    "feature": "Cabin",
+    "propertyType": "text"
+    },
+    {
+    "feature": "Embarked",
+    "propertyType": "text"
+    },
+    {
+    "feature": "Fare",
+    "propertyType": "float"
+    },
+    {
+    "feature": "Name",
+    "propertyType": "text"
+    },
+    {
+    "feature": "Parch",
+    "propertyType": "long"
+    },
+    {
+    "feature": "PassengerId",
+    "propertyType": "long"
+    },
+    {
+    "feature": "Pclass",
+    "propertyType": "long"
+    },
+    {
+    "feature": "Sex",
+    "propertyType": "text"
+    },
+    {
+    "feature": "SibSp",
+    "propertyType": "long"
+    },
+    {
+    "feature": "Survived",
+    "propertyType": "long"
+    },
+    {
+    "feature": "Ticket",
+    "propertyType": "text"
+    }
+    ],
+    "status_code": 200
+    }
+}

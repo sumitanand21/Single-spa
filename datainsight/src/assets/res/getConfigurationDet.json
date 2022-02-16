@@ -1,0 +1,18 @@
+{
+    "status": "success",
+    "data": {
+        "data": {
+            "configurationName": "mongodb_configuration",
+            "description": "mongodb configuration",
+            "dbType": "MongoDB",
+            "dataSourceType": "stored_data",
+            "url": "mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017",
+            "hostName": "mongo-node-1.database.svc:27017,mongo-node-2.database.svc:27017,mongo-node-3.database.svc:27017",
+            "portNumber": "27017",
+            "steps": "2",
+            "details": []
+        },
+        "responseType": "",
+        "status_code": 200
+    }
+}

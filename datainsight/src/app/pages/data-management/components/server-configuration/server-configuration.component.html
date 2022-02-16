@@ -1,0 +1,70 @@
+<ion-row class="dm_main_div_css">
+    <ion-row class="right_most_css f-max cont-scrl">
+        <ion-col class="sub-cont-scrl">
+            <form #modeledit="ngForm">
+                <ion-row class="radio_flex_css css_sub_border_nex">
+                    <ion-col class="col-6 grid_css_view">
+                        <b>SMTP Details</b>
+                    </ion-col>
+                    <ion-col class="ion-text-end col-6 grid_css_view align-right">
+                        <ion-button type="button" class="pause_css_btn" color="light" style="height:32px; width:80px;"
+                            [routerLink]="'/' + prefixUrl + '/datamanagement/notifications'">Cancel</ion-button>
+                        <ion-button type="button" (click)="saveData()">Submit</ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="css_sub_border_nex">
+                    <ion-col class="col-6 grid_css_view">
+                        <ion-text class="next_run_title auth-label-margin">
+                            Authorization
+                        </ion-text>
+                        <span class="checkbox-style">
+                            <ion-checkbox autocomplete="off" type="checkbox" [(ngModel)]="auth" slot="start"
+                                (ionChange)="onCheckboxSelected()" id="auth" name="auth">
+                            </ion-checkbox>
+                        </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="css_sub_border_nex">
+                    <ion-col class="col-4 grid_css_view">
+                        <ion-text class="next_run_title">Email Interval</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text"
+                            [(ngModel)]="data.email_interval" name="emailInterval" [appAlphaNumeric]="'num'" required>
+                    </ion-col>
+                    <ion-col class="col-2 grid_css_view"></ion-col>
+                    <ion-col class="col-4 grid_css_view">
+                        <ion-text class="next_run_title">Max Events</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text" maxlength="5"
+                            [appAlphaNumeric]="'num'" [(ngModel)]="data.max_events" name="maxEvents" required>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="css_sub_border_nex">
+                    <ion-col class="col-4 grid_css_view">
+                        <ion-text class="next_run_title">SMTP Port</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text"
+                            [(ngModel)]="data.smtp_port" name="smtpPort" required>
+                    </ion-col>
+                    <ion-col class="col-2 grid_css_view"></ion-col>
+                    <ion-col class="col-4 grid_css_view">
+                        <ion-text class="next_run_title">SMTP Server</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text"
+                            [appAlphaNumeric]="'num'" [(ngModel)]="data.smtp_server" name="smtpServer" required>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row *ngIf="auth" class="css_sub_border_nex">
+                    <ion-col class="col-4 grid_css_view">
+                        <ion-text class="next_run_title">Username</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="text" [(ngModel)]="data.username"
+                            name="username" required>
+                    </ion-col>
+                    <ion-col class="col-2 grid_css_view"></ion-col>
+                    <ion-col class="col-4 grid_css_view">
+                        <ion-text class="next_run_title">Password</ion-text>
+                        <input autocomplete="off" class="name_input_css form-control" type="password"
+                         [(ngModel)]="data.password" name="password" required>
+                    </ion-col>
+                </ion-row>
+            </form>
+        </ion-col>
+    </ion-row>
+</ion-row>

@@ -1,0 +1,33 @@
+{
+    "status": "success",
+    "data": [
+   {
+      "datasetName":"DataSet1",
+      "description":"LorenIpsum Cloudy Mantis",
+      "streaming":10,
+      "type":"OPR",
+      "dataSource":"102.45.34.34"
+   },
+   {
+      "datasetName":"DataSet2",
+      "description":"LorenIpsum Cloudy Mantis Dataset2",
+      "streaming":20,
+      "type":"OPR1",
+      "dataSource":"6589.65.89"
+   },
+   {
+      "datasetName":"DataSet3",
+      "description":"LorenIpsum Cloudy Mantis Daatset3",
+      "streaming":30,
+      "type":"OPR2",
+      "dataSource":"8965.23.05.28"
+   },
+   {
+      "datasetName":"DataSet4",
+      "description":"LorenIpsum Cloudy Mantis Dataset4",
+      "streaming":40,
+      "type":"OPR3",
+      "dataSource":"123.23.34.56"
+   }
+]
+}

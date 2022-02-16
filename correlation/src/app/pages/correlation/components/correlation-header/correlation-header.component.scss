@@ -1,0 +1,566 @@
+/** slider css **/
+.result{
+    box-shadow: none;
+    // width: 60%;
+    padding: 0;
+    background: none;
+    height: 32px;
+}
+.mat-slider-horizontal{
+    min-width: 160px;
+    padding: 0;
+    margin: 7.5px -14px 0px 0px;
+    height: 10px;
+    top: 0px;
+    vertical-align: top;
+}
+
+
+.sub_div_css{
+    display: flex;
+}
+.slider_css{
+    position: relative;
+}
+.slider_div{
+    position: relative;
+    margin: 0px 10px;
+}
+
+.empty_border_center{
+    left: 150px;
+}
+.empty_border_left{
+    left: 0px;
+}
+.empty_border_right{
+    right: -9px;
+}
+
+.empty_border_negval{
+    margin: 10px 0px 0px -5px;
+    position: absolute;
+    font: normal normal normal 14px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.empty_border_val{
+    margin: 10px 0px 0px -1px;
+    position: absolute;
+    font: normal normal normal 14px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.empty_border{
+    height: 10px;
+    width: 10px;
+    top: 9px;
+    border: 2px solid #707070;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+}
+
+/** end of slider css **/
+.correlation-title{
+    font : normal normal 600 14px Segoe UI;
+    color: var(--mtsclr-label);
+    opacity: 1;
+}
+.correlation-value{
+    font: normal normal normal 13px Segoe UI;
+    color : var(--mtsclr-text);
+    opacity: 1;
+}
+
+.change-selection-btn{
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 1;
+    background-color: #ffffff;
+    /* background-color: var(--mtsclr-success-btn);
+    border:1.5px solid var(--mtsclr-success-btn); */
+    font: normal normal normal 14px Segoe UI;
+    border:1.5px solid var(--mtsclr-cancel-btn);
+    color: var(--mtsclr-label);
+}
+
+.run-cor-btn{
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 1;
+    background-color: #ffffff;
+    background-color: var(--mtsclr-success-btn);
+    border:1.5px solid var(--mtsclr-success-btn);
+    font: normal normal normal 14px Segoe UI;
+}
+
+.move-right{
+    float: right;
+}
+
+.correlation-header-row{
+    background-color: var(--mtsclr-background);
+    // height: 48px;
+    align-items: center;
+}
+
+.dc-flex{
+   display: flex;
+   align-items: center;
+}
+
+.mar-r-12{
+    margin-right: 12px;
+}
+
+.mar-r-8{
+    margin-right: 8px;
+    margin-top: 10px;
+}
+
+.graph-head{
+    padding-left: 15px;
+    padding-right: 18px;
+    justify-content: space-between;
+}
+.correlation-view-bar{
+    background-color: #FFFFFF;
+    height: 65px;
+    align-items: center;
+    border-bottom: 1px solid #B7B7B7;
+}
+.correlation-font{
+    font: normal normal 600 14px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.link-font{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E9E9F0;
+    display: block;
+    padding: .5rem 1rem;
+    font: normal normal normal 14px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.correlation-font-head{
+    font: normal normal 600 14px Segoe UI;
+    color: var(--mtsclr-label);
+}
+
+.no-padd{
+    padding: 0px;
+}
+
+.wrap-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time-css{
+    margin-left: 30px;
+}
+
+.selection-div{
+    max-width: 180px;
+    width: 100%;
+}
+.slider-wrap{
+display: flex;
+justify-content: space-between;
+width:55%;
+padding-right:15px;
+}
+.menu-item{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E9E9F0;
+
+}
+a{
+    cursor: pointer;
+}
+
+
+.nav-btn-bar{
+width:45%;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--mtsclr-text);
+    font: normal normal normal 14px/20px Segoe UI;
+}
+
+.navbar-light .navbar-nav .nav-link.active
+{
+    color: var(--mtsclr-active);
+    font: normal normal 600 14px/20px Segoe UI;
+}
+.border-css{
+    border-bottom: 1px solid #B7B7B7;
+}
+.input_css{
+    width: 52px;
+    height: 24px;
+    margin-left: 10px;
+    border: 1px solid var(--mtsclr-feild-border);
+    border-radius: 4px;
+    margin-top: 2px;
+    font: normal normal normal 12px/20px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.input_css:focus{
+    outline: none;
+}
+.mat_width_css{
+    padding: 5px;
+}
+
+.group-btn{
+font: normal normal normal 14px/20px Segoe UI;
+color: var(--mtsclr-link);
+opacity: 1;
+cursor: pointer;
+}
+
+.edit_icon{
+    cursor: pointer;
+    /* font-size: 12px; */
+    margin-left: 12px;
+    color:var(--mtsclr-link);
+    vertical-align: middle;
+}
+
+.menu_edit_item{
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.time_feature{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.menu_label{
+    width: 140px;
+    font: normal normal 600 14px/20px Segoe UI;
+    color: var(--mtsclr-label);
+}
+.cancel-mod{
+    width: 61px;
+    border:1.5px solid var(--mtsclr-cancel-btn);
+    color: var(--mtsclr-label);
+    padding: 0px;
+    font: normal normal normal 14px Segoe UI;
+}
+
+.run-cor-btn{
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: var(--mtsclr-correlate-btn);
+        border:1.5px solid var(--mtsclr-correlate-btn);
+        font: normal normal normal 14px Segoe UI;
+        margin-left: 12px;
+}
+
+.menu-action{
+    justify-content: flex-end;
+    display: flex;
+    align-items: baseline;
+}
+
+.menu-main{
+    padding:15px;
+}
+.menu-div{
+    position: relative;
+}
+
+.drop-mat-model{
+    border-radius: 4px;
+    border: 1px solid var(--mtsclr-feild-border);
+    color: var(--mtsclr-text);
+    height: 32px;
+    width: 214px;
+    font: normal normal normal 14px Segoe UI;
+      }
+
+      .date_time{
+          display: flex;
+          align-items: center;
+          margin-bottom: -5px;
+      }
+
+      .input-time-div{
+         width: 40px; 
+         margin-left: 12px;
+      }
+
+      .input-feild-time{
+        border: 1px solid var(--mtsclr-feild-border);
+            border-radius: 4px;
+            padding: 6px 3px 6px 3px;
+            color: var(--mtsclr-text);
+            text-align: center;
+            font: normal normal normal 14px Segoe UI;
+          }
+
+          .date-label{
+              width:105px;
+              font: normal normal 600 14px Segoe UI;
+               color: var(--mtsclr-label);
+          }
+
+          .time-stamp{
+            font: normal normal normal 12px/16px Segoe UI;
+            color: var(--mtsclr-text);
+            margin-left: 6px;
+          }
+
+
+      /***********date css**********/
+      .main-date-div {
+        height: 47px;
+        display: flex;
+        align-items: center;
+      position:relative;
+      width:173px;
+      
+      }
+      .inputfeild {
+        width: 100%;
+        border: 1px solid var(--mtsclr-feild-border);
+        height: 100%;
+        border-radius: 4px;
+        padding-left: 8px;
+        padding-right: 38px;
+        color: var(--mtsclr-text);
+        font: normal normal normal 14px Segoe UI;
+      }
+      
+      .dat-pixk {
+        position: absolute;
+      right: 0;
+      }
+
+      .mar-label{
+margin-left:6px;
+      }
+
+            /***********date css Ends**********/
+
+            /****************check box css Starts************************/
+
+/* The container */
+.check-outer {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 16px;
+    width: 16px;
+    margin: 0px 0px -3px 0px
+  }
+  
+  /* Hide the browser's default checkbox */
+  .check-outer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color:  #ffffff;
+    border: 2px solid var(--mtsclr-cancel-btn);
+    border-radius:2px;
+  }
+  
+  /* On mouse-over, add a #9C9C9C background color */
+  .check-outer:hover input ~ .checkmark {
+    background-color: #ffffff;
+  }
+  
+  /* When the checkbox is checked   , add a blue background */
+  .check-outer input:checked ~ .checkmark {
+    background-color: #ffffff;
+      border: 2px solid var(--mtsclr-success-btn);
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .check-outer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .check-outer .checkmark:after {
+    top: 0;
+    left: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border: 1px solid var(--mtsclr-success-btn);
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  /****************check box css Ends************************/
+
+  .active-link
+{
+    color: var(--mtsclr-active) !important;
+    font: normal normal 600 14px/20px Segoe UI;
+}
+
+.radio-btn{
+    font: normal normal normal 14px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.toggle-wrap{
+    padding: 0px 50px 0px 50px;
+}
+
+.mar-r-20{
+    margin-right: 20px;
+}
+
+.neg_corr{
+    padding-right: 12px;
+    font: normal normal normal 14px Segoe UI;
+    color: #FFFFFF;
+    background-color: var(--mtsclr-negative);
+    border: 1px solid var(--mtsclr-negative);
+    display: block;
+    padding: .5rem 1rem;
+
+}
+
+.pos_corr{
+    padding-left: 12px;
+    font: normal normal normal 14px Segoe UI;
+    color: #FFFFFF;
+    background-color: var(--mtsclr-positive);
+    border: 1px solid var(--mtsclr-positive);
+    display: block;
+    padding: .5rem 1rem;
+}
+
+.neg_corr-toggle{
+    padding-right: 12px;
+    font: normal normal normal 14px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.pos_corr-toggle{
+    padding-left: 12px;
+    font: normal normal normal 14px Segoe UI;
+    color: var(--mtsclr-text);
+}
+
+.active-toggle{
+color:var(--mtsclr-active);
+}
+
+.disable-div{
+    pointer-events: none;
+    cursor: not-allowed !important;
+}
+.dis-all {
+    cursor: not-allowed !important;
+}
+
+.disp-none {
+    display: none !important;
+}
+
+ion-button{
+    padding: 0;
+    text-transform: capitalize;
+    cursor: pointer;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+/* Media Query starts here */
+// @media (min-width: 1598px) and (max-width: 1928px){
+//     .date-label,.correlation-font-head,.navbar-light .navbar-nav .nav-link.active,.correlation-title,.active-link,.menu_label{
+//         font: normal normal 600 18px Segoe UI;
+//     }   
+//     .input-feild-time,.inputfeild,.drop-mat-model,.navbar-light .navbar-nav .nav-link,.input_css,.link-font,.neg_corr-toggle,.pos_corr-toggle,.group-btn,.run-cor-btn,.correlation-value,.change-selection-btn {
+//         font: normal normal normal 18px Segoe UI;
+//     }
+//     .mat-select-value{
+//         padding-top: 5px;
+//     }    
+//     .menu_label{
+//         width: 200px;
+//     }
+//     .check-outer{
+//         margin: 0px 0px -2px 0px;
+//     }
+//     .cancel-mod{
+//         width: 65px;
+//         font: normal normal normal 18px Segoe UI;
+//     }
+//     .change-selection-btn{
+//         padding: 0px 10px;
+//     }
+// }
+
+/* Mozila Css Starts Here */
+@-moz-document url-prefix() {
+    @media (min-width: 1598px) and (max-width: 1928px){
+        .date-label,.correlation-font-head,.navbar-light .navbar-nav .nav-link.active,.correlation-title,.active-link,.menu_label{
+            font: normal normal 600 18px Segoe ui regular !important;
+        }   
+        .input-feild-time,.inputfeild,.drop-mat-model,.navbar-light .navbar-nav .nav-link,.input_css,.link-font,.neg_corr-toggle,.pos_corr-toggle,.group-btn,.run-cor-btn,.correlation-value,.change-selection-btn {
+            font: normal normal normal 18px Segoe ui regular !important;
+        }
+        .cancel-mod{
+            width: 65px;
+            font: normal normal normal 18px Segoe ui regular !important;
+        }
+    }
+}
+.ion_header_css{
+    display: flex;
+    height: 55px;
+}
+.data_scss_class,.fgroup_scss_class {
+    top:5px;
+}
+
+.toolbar-background{
+    --background: var(--mtsclr-background);
+}
+
+.no-left-margin{
+    margin-left: 0px!important;
+}

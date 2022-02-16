@@ -1,0 +1,392 @@
+<ion-row class="parent-content">
+    <ion-col *ngIf="isLoading || masterDataLoader" class="spinner-div">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-col>
+    <ion-col *ngIf="!isLoading && !masterDataLoader" class="row no-mar wrap-cont">
+        <ion-col class="col-12 col-xs-12 col-sm-12 col-md-6 border-r border-t no-padd" *ngIf="isShown">
+            <!-- Table view Starts  -->
+            <ion-col class="df-col df-col_css">
+
+
+                <ion-row class="page_css_wrap">
+                   
+                    <ion-row class="page_css_view_s1">
+                        <ion-col size="6" class="paginate_css no-padd">
+                                <ion-icon aria-hidden="false" class="search_mat" 
+                                [src]="summaryService.createSvgUrl('search-sharp.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="form-control css_search" type="text" placeholder="Search with data id..." [(ngModel)]="searchFilterMain" maxlength="150"
+                                    (ngModelChange)="onsearchChange(searchFilterMain)">
+                        </ion-col>
+                        <ion-col size="6" class="d-flex paginate-align align_css_mar no-padd">
+                            <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex"
+                                (pageChange)="changepage($event, true)">
+                                <ion-col class="d-flex process_rows_css">
+                                    <span class="mar-r-8 paginate-text">Rows:</span>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                        (selectionChange)="setNewPageSize(itemPerPage, true)">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                                </ion-col>
+                                <ion-col class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                        [disabled]="pT.isFirstPage()">
+                                        < </button>
+                                </ion-col>
+
+                                <ion-col class="d-flex process_matselect">
+                                    <span class="paginate-text"> Page</span>
+                                    <input autocomplete="off" matInput class="currpage-input" type="text" [appAlphaNumeric]="'num'" [(ngModel)]="inputCurrentpage"
+                                        (change)="changepageinp(inputCurrentpage,pT.getLastPage(), true)">
+
+                                    <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                                </ion-col>
+                                <ion-col class="pagination-next" [class.disabled]="pT.isLastPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.next()"
+                                        [disabled]="pT.isLastPage()"> > </button>
+                                </ion-col>
+                            </pagination-template>
+
+                        </ion-col>
+                    </ion-row>
+
+                </ion-row>
+                <ion-row *ngIf="isTableLoading" class="spinner-div">
+                    <mat-progress-spinner rowor="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-row>
+                <ion-col *ngIf="!isTableLoading" class="f-max out-table mod-table-scroll">
+                    <table class="df-col task_table">
+                        <thead class="sticky-head">
+                            <tr class="row no-mar head-tr">
+
+                                <th class="width-Id wrap-text">Data ID
+                                    <ion-col class="select-cur" (click)="sort('dataSet')">
+                                        <ion-icon *ngIf="!(key == 'dataSet' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="summaryService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'dataSet' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="summaryService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+
+                                </th>
+
+                                <th class="width-model wrap-text">Model Config
+                                    <ion-col class="select-cur" (click)="sort('modelConfigName')">
+                                        <ion-icon *ngIf="!(key == 'modelConfigName' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="summaryService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                    <ion-icon *ngIf="key == 'modelConfigName' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="summaryService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+
+                                <th class="width-type wrap-text">Job Type
+                                    <ion-col class="select-cur" (click)="sort('jobType')">
+                                        <ion-icon *ngIf="!(key == 'jobType' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="summaryService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                    <ion-icon *ngIf="key == 'jobType' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="summaryService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                                <th  class="width-name wrap-text">Model Name
+                                    <ion-col class="select-cur" (click)="sort('modelNameDisp')">
+                                        <ion-icon *ngIf="!(key == 'modelNameDisp' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="summaryService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                    <ion-icon *ngIf="key == 'modelNameDisp' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="summaryService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let anmdModel of tempAnomalyDetections | orderBy: key : reverse | searchFilter: {'dataSet': searchFilterMain} | paginate: config; let i = index;"
+                                 class="row no-mar body-tr selectTask" [class.active]="selectedModel && selectedModel.dataSet === anmdModel.dataSet"
+                                (click)="getConfigDetailsOnRow(anmdModel,i)" id="trdata{{i}}">
+                                <td class="width-Id r-name wrap-text" (click)="displayModel(anmdModel)">
+                                    {{anmdModel.dataSet}}</td>
+                                <!-- <td>
+                                    <span *ngIf="game.status" [ngClass]="{'bg-green': game.status == 'Finish','bg-blue': game.status == 'running','bg-orange': game.status == 'waiting'}" class="status">
+                                    {{game.status}}
+                                    </span>
+                                    </td> -->
+                                    <td class="width-model wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.modelConfigName}}
+                                    <td class="width-type wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.jobType}}
+                                    </td>
+                                <td class="width-name wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.modelNameDisp}}
+                                </td>
+                                
+                            </tr>
+                            <tr class="row no-mar"
+                                *ngIf="(tempAnomalyDetections | searchFilter: {'dataSet': searchFilterMain} | paginate: config).length == 0">
+                                <td class="col-12 wrap-text no_rec_css">No records found</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </ion-col>
+            </ion-col>
+
+            <!-- Table view Ends -->
+
+        </ion-col>
+        <ion-col class="col-12 col-xs-12 col-sm-12 padd-22 df-col cont-scrl" [ngClass]="isShown?'col-md-6':'col-md-12'">
+            <ion-col class="f-max sub-cont-scrl">
+
+                <ion-row *ngIf="false" class="shadowbtn collapse-view-cont" [ngClass]="{'bg-open':!isShown}" (click)="toggleShow()">
+                    <ion-icon *ngIf="!isShown" class="frwrd_icon_css" aria-hidden="false" [src]="summaryService.createSvgUrl('chevron-forward.svg')"></ion-icon>
+                    <ion-icon *ngIf="isShown"  class="back_icon_css" aria-hidden="false" [src]="summaryService.createSvgUrl('chevron-back.svg')"></ion-icon>
+                </ion-row>
+                <ion-row class="row no-mar" *ngIf="checkifObjectExist() == false && !dataSetDetailsLoading">
+                    <ion-col class="col-md-12 col-sm-12 col-xs-12 mar-b-25 no-padd">
+                        <ion-label class="head-label">Select at least one Alarm storm data to show the details</ion-label>
+                    </ion-col>
+
+                </ion-row>
+                <ion-row *ngIf="dataSetDetailsLoading" class="spinner-div">
+                    <mat-progress-spinner color="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-row>
+                <ion-row class="right_div_row"*ngIf="checkifObjectExist() == true && !dataSetDetailsLoading ">
+                    <ion-row class="row no-mar full-width">
+                        <ion-label class="s2-page-title">{{selectedModel.dataSet}}</ion-label><ion-label
+                            class="s2-label-model">{{selectedModel.jobType}}</ion-label>
+
+                    </ion-row>
+                    <ion-row *ngIf=" selectedModel && checkifObjectExist() == true && !dataSetDetailsLoading " class="row no-mar top-mar border-a bck-white bot-padd full-width">
+
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Data Set: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.dataSetName" class="data-label">{{selectedModel.dataSetName}}</ion-col>
+                            <ion-col  *ngIf="!selectedModel.dataSetName" class="data-label">NA</ion-col>
+                        </ion-col>
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Cluster Name: </ion-label>
+                                <!-- <ion-label class="s3-icon-label-model" *ngIf="selectedModel.reasonStatus.toLowerCase() === 'completed' && selectedModel.RCAObj && selectedModel.RCAObj.clusterId"> 
+                                    <ion-icon  class="edit_mat edit_icon" aria-hidden="false" (click)="openUpsertRcaDialog('clustername')" [src]="summaryService.createSvgUrl('pencil.svg')"></ion-icon>
+                                    <ion-icon *ngIf="selectedModel.RCAObj.clusterName && selectedModel.RCAObj.clusterName.toUpperCase() != 'NA'" class="delete_icon" aria-hidden="false" (click)="deleteClusterName()" [src]="summaryService.createSvgUrl('trash.svg')"></ion-icon>
+                                </ion-label> -->
+                               
+                            </ion-col>
+                            <ion-col *ngIf="selectedModel.RCAObj && selectedModel.RCAObj.clusterName" class="data-label">{{selectedModel.RCAObj.clusterName}}</ion-col>
+                            <ion-col  *ngIf="!selectedModel.RCAObj || !selectedModel.RCAObj.clusterName" class="data-label">NA</ion-col>
+                        </ion-col>
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Model Config Used: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.modelConfigName" class="data-label model-color" (click)="openModelConfigDialog(selectedModel)">{{selectedModel.modelConfigName}}</ion-col>
+                            <ion-col  *ngIf="!selectedModel.modelConfigName" class="data-label">NA</ion-col>
+                        </ion-col>
+                       
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Prediction Status: </ion-label>
+                            </ion-col>
+                            <span *ngIf="selectedModel.reasonStatus"
+                            [ngClass]="{'bg-blue': (selectedModel.reasonStatus.toLowerCase() === 'active'  || selectedModel.reasonStatus.toLowerCase() === 'running' || selectedModel.reasonStatus.toLowerCase() === 'training'), 'bg-yellow' : (selectedModel.reasonStatus.toLowerCase() === 'waiting' || selectedModel.reasonStatus.toLowerCase() === 'queued' || selectedModel.reasonStatus.toLowerCase() === 'initiated')}"
+                            class="status predict_css">
+                            {{selectedModel.reasonStatus.toLowerCase()}}
+                        </span>
+                            <ion-col  *ngIf="!selectedModel.reasonStatus" class="data-label">NA</ion-col>
+                        </ion-col>
+
+                        
+                        <ion-col class=""size="6">
+                            <ion-col *ngIf="selectedModel.reasonStatus.toLowerCase() === 'completed'" class="data-label model-color" (click)="openDataPreviewDialog('alarm')">Alarm Details</ion-col>
+                        </ion-col>
+
+                        
+                        <ion-col class=""size="6">
+                            <ion-col *ngIf="selectedModel.reasonStatus.toLowerCase() === 'completed'" class="data-label model-color" (click)="openDataPreviewDialog('sequence')">sequence Details</ion-col>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row  *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.clusteringReason" class="ion-no-padding row no-mar full-width mar-t-18">
+                        <ion-label class="s4-page-title">Potential Root Cause</ion-label>
+                    </ion-row>
+
+                    <ion-row *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.clusteringReason" class="table-padding row no-mar anm-details-table  top-mar border-a bck-white full-width">
+                        <!-- <ion-row class="row no-mar">
+                            <ion-col class="ion-no-padding page_css_view">
+                                <ion-col class="ion-no-padding paginate_css">
+                                    <span>
+                                        <ion-icon aria-hidden="false" class="search_mat" 
+                                        [src]="summaryService.createSvgUrl('search-sharp.svg')"></ion-icon>
+                                        <input autocomplete="off" matInput class="form-control css_search" type="text" placeholder="Search with attribute" [(ngModel)]="searchFilter" maxlength="150"
+                                            (ngModelChange)="onsearchChangeMin(searchFilter)">
+                                    </span>
+                                </ion-col>
+                                <ion-col class="d-flex paginate-align ion-no-padding">
+                                    <pagination-template #pT1="paginationApi" [id]="configMinTable.id" class="d-flex"
+                                        (pageChange)="changepage($event, false)">
+                                        <ion-col class="d-flex process_rows_css">
+                                            <span class="mar-r-8 paginate-text">Rows:</span>
+                                            <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPageMinTable"
+                                                (selectionChange)="setNewPageSize(itemPerPageMinTable , false)">
+                                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                            </mat-select>
+                                        </ion-col>
+                                        <ion-col class="pagination-previous" [class.disabled]="pT1.isFirstPage()">
+                                            <button type="button" class="pagination-btn" (click)="pT1.previous()"
+                                                [disabled]="pT1.isFirstPage()">
+                                                < </button>
+                                        </ion-col>
+        
+                                        <ion-col class="d-flex process_matselect">
+                                            <span class="paginate-text"> Page</span>
+                                            <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpageMinTable"
+                                                (change)="changepageinp(inputCurrentpageMinTable,pT1.getLastPage() , false)">
+        
+                                            <span class="paginate-text"> of {{pT1.getLastPage()}}</span>
+                                        </ion-col>
+                                        <ion-col class="ion-no-padding pagination-next" [class.disabled]="pT1.isLastPage()">
+                                            <button type="button" class="pagination-btn" (click)="pT1.next()"
+                                                [disabled]="pT1.isLastPage()"> > </button>
+                                        </ion-col>
+                                    </pagination-template>
+        
+                                </ion-col>
+                            </ion-col>
+        
+                        </ion-row> -->
+
+
+                        <ion-col *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.clusteringReason" class="">
+                            <ion-row>
+                            <ion-col size="6" *ngFor="let predictionRes of selectedModel.clusteringReason">
+                                    <ul class="tab-ul">
+                                         <li class="tab-li">
+                                         <span class="tab-data-label">{{predictionRes.dispClusteringReason}}</span>
+                                     </li>
+                                 </ul>
+                             
+                            </ion-col>
+                            <ion-col size="12"
+                            *ngIf="selectedModel.clusteringReason.length == 0">
+                            <ion-col class="col-12 wrap-text no_rec_css">No records found</ion-col>
+                            <!-- <ion-col *ngIf="selectedModel.reasonStatus.toLowerCase() !== 'completed'" class="col-12 wrap-text no_rec_css">Analysing the Data</ion-col> -->
+                        </ion-col>
+                        </ion-row>
+                            
+                            <!-- <table class="df-col">
+                                <thead class="sticky-head">
+                                    <tr class="row no-mar head-tr">
+        
+                                        <th  class="col-12 wrap-text">Attribute&nbsp;
+                                            <ion-col class="select-cur" (click)="sortMin('dispPredictionReason')">
+
+
+                                                <ion-icon *ngIf="!(keyP == 'dispPredictionReason' && reverseP)"  aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                                [src]="summaryService.createSvgUrl('caret-down-sharp.svg')"
+                                                name="caret-down-outline"></ion-icon>
+                                                <ion-icon *ngIf="keyP == 'dispPredictionReason' && reverseP" aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                                [src]="summaryService.createSvgUrl('caret-up-sharp.svg')"
+                                                name="caret-up-outline"></ion-icon>
+                                            </ion-col>
+        
+                                        </th>
+                                       
+                                        <th class="col-4 wrap-text">Value
+                                            <ion-col class="select-cur" (click)="sortMin('value')">
+                                                <ion-icon *ngIf="!(keyP == 'value' && reverseP)"  aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                                [src]="summaryService.createSvgUrl('caret-down-sharp.svg')"
+                                                name="caret-down-outline"></ion-icon>
+                                                <ion-icon *ngIf="keyP == 'value' && reverseP" aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                                [src]="summaryService.createSvgUrl('caret-up-sharp.svg')"
+                                                name="caret-up-outline"></ion-icon>
+                                            </ion-col>
+                                        </th>
+                                       
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="row no-mar"
+                                        *ngFor="let predictionRes of selectedModel.predictionReason | orderBy: keyP : reverseP | searchFilter: {'dispPredictionReason': searchFilter}; let i = index;">
+                                        <td class="col-12  wrap-text" >
+                                            {{predictionRes.dispPredictionReason }}</td>
+                                     
+                                           
+                                        <td class="col-4 wrap-text" >{{predictionRes.value}}
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr class="row no-mar"
+                                        *ngIf="(selectedModel.predictionReason | searchFilter: {'key': searchFilter}).length == 0">
+                                        <td *ngIf="selectedModel.reasonStatus.toLowerCase() === 'completed'" class="col-12 wrap-text no_rec_css">No records found</td>
+                                        <td *ngIf="selectedModel.reasonStatus.toLowerCase() !== 'completed'" class="col-12 wrap-text no_rec_css">Analysing the Data</td>
+                                    </tr>
+        
+                                </tbody>
+                            </table> -->
+                        </ion-col>
+
+
+                       
+
+                    </ion-row>
+
+                    <ion-row  *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.resolution" class="ion-no-padding row no-mar full-width mar-t-18">
+                     <ion-label class="s4-page-title">Resolution Details</ion-label>
+                     <ion-row *ngIf="selectedModel.reasonStatus.toLowerCase() === 'completed' && selectedModel.RCAObj && selectedModel.RCAObj.clusterId">
+                        <!-- <ion-icon class="edit_mat edit_icon" aria-hidden="false" (click)="openUpsertRcaDialog('resolution')" [src]="summaryService.createSvgUrl('pencil.svg')"></ion-icon> -->
+                        <!-- <ion-icon *ngIf="selectedModel.resolution.length" class="delete_icon" aria-hidden="false" (click)="deleteAllResolution()" [src]="summaryService.createSvgUrl('trash.svg')"></ion-icon> -->
+                     </ion-row>
+                    </ion-row>
+
+                    <ion-row *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.resolution" class="table-padding row no-mar anm-details-table  top-mar border-a bck-white full-width">
+
+                        <ion-col *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.resolution" class="">
+                            <ion-row>
+                            <ion-col size="12" *ngFor="let resolutionRes of selectedModel.resolution">
+                                    <ul class="tab-ul">
+                                         <li class="tab-li">
+                                         <span class="tab-data-label">{{resolutionRes.dispResolution}}</span>
+                                     </li>
+                                 </ul>
+                             
+                            </ion-col>
+                            <ion-col size="12"
+                            *ngIf="selectedModel.resolution.length == 0">
+                            <ion-col class="col-12 wrap-text no_rec_css">No records found</ion-col>
+                            <!-- <ion-col *ngIf="selectedModel.reasonStatus.toLowerCase() !== 'completed'" class="col-12 wrap-text no_rec_css">Analysing the Data</ion-col> -->
+                        </ion-col>
+                        </ion-row>
+        
+                        </ion-col>
+
+
+                       
+
+                    </ion-row>
+                </ion-row>
+            </ion-col>
+
+        </ion-col>
+    </ion-col>
+</ion-row>

@@ -1,0 +1,46 @@
+{
+    "status": "success",
+    "data": [{
+        "modelConfigName" : "Bezton_XE",
+        "jobStatus" : "Active",
+        "jobType": "ANOMALYTRAINING1",
+        "dataSetName": "alarm_data",
+        "accuracy" : "0.98877"
+        },
+        {
+        "modelConfigName" : "Ae_loiesavh",
+        "jobStatus" : "ACTIVE",
+        "jobType": "ANOMALYTRAINING1",
+        "dataSetName": "Config ABC",
+        "accuracy" : "0.98877"
+        },
+        {
+        "modelConfigName" : "model1",
+        "jobStatus" : "Active",
+        "jobType": "ANOMALYTRAINING2",
+        "dataSetName": "alarm_data",
+        "accuracy" : "0.98877"
+        },
+        {
+        "modelConfigName" : "Ae_loisseas_hhgvh",
+        "jobStatus" : "Stopped",
+        "jobType": "ANOMALYTRAINING2",
+        "dataSetName": "Config ABC",
+        "accuracy" : "0.98877"
+        },
+        {
+        "modelConfigName" : "A_loieas_hhgvh",
+        "jobStatus" : "Active",
+        "jobType": "ANOMALYTRAINING1",
+        "dataSetName": "Config AB",
+        "accuracy" : "0.98877"
+        },
+        {
+        "modelConfigName" : "Ae_loisseas_hhgvh",
+        "jobStatus" : "Stopped",
+        "jobType": "ANOMALYTRAINING1",
+        "dataSetName": "Config ABCd",
+        "accuracy" : "0.98877"
+        }
+        ]
+}

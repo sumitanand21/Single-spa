@@ -1,0 +1,481 @@
+<ion-row class="parent-content">
+    <ion-col *ngIf="isLoading || masterDataLoader" class="spinner-div">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-col>
+    <ion-col *ngIf="!isLoading && !masterDataLoader" class="row no-mar wrap-cont">
+        <ion-col class="col-12 col-xs-12 col-sm-12 col-md-6 border-r border-t no-padd" *ngIf="isShown">
+            <!-- Table view Starts  -->
+            <ion-col class="df-col df-col_css">
+
+                <ion-row class="wrap-left-head">
+                    <!-- Dropdowns and refresh icon Starts here -->
+                    <ion-row class="d-flex left_div_border-s1">
+
+                        <ion-col class="drop-wid">
+                            <ion-row>
+                                <ion-label class="head-label-model">Job Type: </ion-label>
+                            </ion-row>
+
+                            <mat-select disableOptionCentering [(ngModel)]="jobTypeSelected" 
+                            (selectionChange)="getDataSetList()" placeholder="Select"
+                                class="form-control drop-mat s2-dropdown drop_css_one">
+                                <mat-option *ngFor="let selJobType of jobTypeList" [value]="selJobType">{{selJobType}}
+                                </mat-option>
+                            </mat-select>
+                        </ion-col>
+
+                        <ion-col class="drop-wid">
+                            <ion-row>
+                                <ion-label class="head-label-model">Data Sets: </ion-label>
+                            </ion-row>
+
+                            <mat-select disableOptionCentering [(ngModel)]="dataSetSelected" placeholder="Select"
+                                class="form-control drop-mat s2-dropdown drop_css_one">
+                                <mat-option *ngFor="let selData of dataSetList" [value]="selData">{{selData}}
+                                </mat-option>
+                            </mat-select>
+                        </ion-col>
+
+                        <ion-col class="drop-wid-s1">
+                            <ion-label class="modal-text">Anomaly Found:  </ion-label> <ion-label class="modal-text-s1">{{anomalyCount}}</ion-label>
+                        </ion-col>
+
+                
+                        
+                    </ion-row>
+
+                    <ion-row class="d-flex left_div_border-s1">
+                        <ion-col class="drop-wid-range">
+                            <ion-row>
+                                <ion-label class="s1-label-model"> Data Range: </ion-label>
+                            </ion-row>
+    
+                            <span class="correlation-value time-css"> {{correlationFromTimePeriod}} To {{correlationToTimePeriod}} </span>
+                            <span class="menu-div">
+                              <ion-icon class="edit_mat edit_icon" aria-hidden="false" [matMenuTriggerFor]="editmenu" #clickMenuTrigger="matMenuTrigger" (click)="openTimeEditMenu()" [src]="anomalyService.createSvgUrl('pencil.svg')"></ion-icon>
+                              <mat-menu #editmenu="matMenu" class="edit_menu"  xPosition="before" hasBackdrop="false">
+                                <ion-row class="menu-main" (click)="$event.stopPropagation();" (keydown.tab)="$event.stopPropagation()">
+                              
+                              <form #menuDateRange="ngForm" >
+                                <fieldset>
+                              <ion-row class="menu_edit_item">
+                                <ion-col class="menu_label" size="2">Date Time:</ion-col>
+                                <ion-col size="10">
+                                  <ion-row class="date_time">
+                                  <ion-col class="date-label" size="2">From:</ion-col>
+                                  <ion-col class="main-date-div" size="4">
+                                    <input autocomplete="off" matInput class="inputfeild form-control" [(ngModel)]="timeFilterDetails.fromDate" name="fromDate" placeholder="Select Date" (dateChange)="onFromDateChange()"  [matDatepicker]="pickerFrom" readonly required/>
+                                    <mat-datepicker-toggle
+                                      class="dat-pixk"
+                                      matSuffix
+                                      [for]="pickerFrom"
+                                    ></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerFrom></mat-datepicker>
+                                  </ion-col>
+                                  <ion-col class="input-time-div" size="1">
+                                    <input autocomplete="off" matInput class="input-feild-time form-control" [(ngModel)]="timeFilterDetails.fromTimeHr" name="fromTimeHr" [appAlphaNumeric]="'num'" maxlength="2"  placeholder="00" type="text" name="timeHrFrom"
+                                       [appAlphaNumeric]="'num'" required>
+                                  </ion-col>
+                                  <ion-col class="input-time-div" size="1">
+                                    <input autocomplete="off" matInput class="input-feild-time form-control" [(ngModel)]="timeFilterDetails.fromTimeMin" name="fromTimeMin" [appAlphaNumeric]="'num'" maxlength="2"  placeholder="00" type="text" name="timeMinFrom"
+                                       [appAlphaNumeric]="'num'" required>
+                                  </ion-col>
+                                  <ion-col class="time-stamp" size="2">
+                                    (HH-MM)
+                                  </ion-col>
+                                 </ion-row>
+                                 <ion-row class="date_time">
+                                  <ion-col class="date-label" size="2">To:</ion-col>
+                                  <ion-col class="main-date-div" size="4">
+                                    <input autocomplete="off" matInput class="inputfeild form-control" [(ngModel)]="timeFilterDetails.toDate" name="toDate" placeholder="Select Date" [matDatepicker]="pickerTo" [min]="timeFilterDetails.minToDate" readonly required/>
+                                    <mat-datepicker-toggle
+                                      class="dat-pixk"
+                                      matSuffix
+                                      [for]="pickerTo"
+                                    ></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerTo></mat-datepicker>
+                                  </ion-col>
+                                  <ion-col class="input-time-div" size="1">
+                                    <input autocomplete="off" matInput class="input-feild-time form-control" [(ngModel)]="timeFilterDetails.toTimeHr" name="toTimeHr" [appAlphaNumeric]="'num'" maxlength="2"  placeholder="00" type="text" name="timeHrTo"
+                                       [appAlphaNumeric]="'num'" required>
+                                  </ion-col>
+                                  <ion-col class="input-time-div" size="1">
+                                    <input autocomplete="off" matInput class="input-feild-time form-control" [(ngModel)]="timeFilterDetails.toTimeMin" name="toTimeMin" [appAlphaNumeric]="'num'" maxlength="2"  placeholder="00" type="text" name="timeMinTo"
+                                       [appAlphaNumeric]="'num'" required>
+                                  </ion-col>
+                                  <ion-col class="time-stamp" size="2">
+                                    (HH-MM)
+                                  </ion-col>
+                                 </ion-row>
+                                </ion-col>
+                              </ion-row>
+                            </fieldset>
+                             </form>
+                              <ion-col class="menu-action">
+                                <ion-button color="light" type="button" class="shadowbtn btn btn-default cancel-mod" (click)="someMethod()">Cancel</ion-button>
+                                <ion-button type="button" class="shadowbtn btn-primary run-cor-btn" (click)="setDateDetails()">Apply</ion-button>
+                              </ion-col>
+                            </ion-row>
+                              </mat-menu>
+                            </span>
+                            
+                        </ion-col>
+    
+                        <ion-col class="d-flex left_div_border-s2" align="end">
+                            <ion-button type="button" mat-stroked-button class="shadowbtn mts-btn-save" [disabled]="isTableLoading" (click)="loadTableData()">Show Anomaly</ion-button>
+              
+                        </ion-col>
+                    </ion-row>            
+
+                 
+                    <!-- Dropdowns and refresh icon Ends here -->
+
+                </ion-row>
+
+                <ion-row class="page_css_wrap">
+                    <!-- <ion-row class="d-flex left_div_border-s3">
+                    <ion-col class="drop-wid-s2">
+                            <ion-label class="s7-label-model">Job Type: </ion-label>
+                            <mat-select disableOptionCentering [(ngModel)]="jobTypeSelected"
+                            class="form-control s1-dropdown drop-mat drop_css_one" (ngModelChange)="clearSelection()">
+                            <mat-option value="">All </mat-option>
+                            <mat-option *ngFor="let selData of jobTypeList" [value]="selData">
+                                {{selData}}</mat-option>
+                        </mat-select>
+                    </ion-col>
+                    <ion-col class="drop-wid-s1" align="end">
+                        <ion-label class="modal-text">Anomaly Found:  </ion-label> <ion-label class="modal-text-s1">{{anomalyCount}}</ion-label>
+                    </ion-col>
+                    </ion-row> -->
+                    <ion-row class="page_css_view_s1">
+                        <ion-col size="6" class="paginate_css no-padd">
+                                <ion-icon aria-hidden="false" class="search_mat" 
+                                [src]="anomalyService.createSvgUrl('search-sharp.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="form-control css_search" type="text" placeholder="Search with data id..." [(ngModel)]="searchFilterMain" maxlength="150"
+                                    (ngModelChange)="onsearchChange(searchFilterMain)">
+                        </ion-col>
+                        <ion-col size="6" class="d-flex paginate-align align_css_mar no-padd">
+                            <pagination-template #pT="paginationApi" [id]="config.id" class="d-flex"
+                                (pageChange)="changepage($event, true)">
+                                <ion-col class="d-flex process_rows_css">
+                                    <span class="mar-r-8 paginate-text">Rows:</span>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPage"
+                                        (selectionChange)="setNewPageSize(itemPerPage, true)">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                                </ion-col>
+                                <ion-col class="pagination-previous" [class.disabled]="pT.isFirstPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.previous()"
+                                        [disabled]="pT.isFirstPage()">
+                                        < </button>
+                                </ion-col>
+
+                                <ion-col class="d-flex process_matselect">
+                                    <span class="paginate-text"> Page</span>
+                                    <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpage"
+                                        (change)="changepageinp(inputCurrentpage,pT.getLastPage(), true)">
+
+                                    <span class="paginate-text"> of {{pT.getLastPage()}}</span>
+                                </ion-col>
+                                <ion-col class="pagination-next" [class.disabled]="pT.isLastPage()">
+                                    <button type="button" class="pagination-btn" (click)="pT.next()"
+                                        [disabled]="pT.isLastPage()"> > </button>
+                                </ion-col>
+                            </pagination-template>
+
+                        </ion-col>
+                    </ion-row>
+
+                </ion-row>
+                <ion-row *ngIf="isTableLoading" class="spinner-div">
+                    <mat-progress-spinner rowor="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-row>
+                <ion-col *ngIf="!isTableLoading" class="f-max out-table mod-table-scroll">
+                    <table class="df-col task_table">
+                        <thead class="sticky-head">
+                            <tr class="row no-mar head-tr">
+
+                                <th class="width-Id wrap-text">Data ID
+                                    <ion-col class="select-cur" (click)="sort('dataSet')">
+                                        <ion-icon *ngIf="!(key == 'dataSet' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                        <ion-icon *ngIf="key == 'dataSet' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+
+                                </th>
+
+                                <th class="width-model wrap-text">Model Config
+                                    <ion-col class="select-cur" (click)="sort('modelConfigName')">
+                                        <ion-icon *ngIf="!(key == 'modelConfigName' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                    <ion-icon *ngIf="key == 'modelConfigName' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+
+                                <th class="width-type wrap-text">Job Type
+                                    <ion-col class="select-cur" (click)="sort('jobType')">
+                                        <ion-icon *ngIf="!(key == 'jobType' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                    <ion-icon *ngIf="key == 'jobType' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                                <th  class="width-name wrap-text">Model Name
+                                    <ion-col class="select-cur" (click)="sort('modelNameDisp')">
+                                        <ion-icon *ngIf="!(key == 'modelNameDisp' && reverse)" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                        [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                        name="caret-down-outline"></ion-icon>
+                                    <ion-icon *ngIf="key == 'modelNameDisp' && reverse" aria-hidden="false"
+                                        class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                        [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                        name="caret-up-outline"></ion-icon>
+                                    </ion-col>
+                                </th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let anmdModel of tempAnomalyDetections | orderBy: key : reverse | searchFilter: {'dataSet': searchFilterMain} | paginate: config; let i = index;"
+                                 class="row no-mar body-tr selectTask" [class.active]="selectedModel && selectedModel.dataSet === anmdModel.dataSet"
+                                (click)="getConfigDetailsOnRow(anmdModel,i)" id="trdata{{i}}">
+                                <td class="width-Id r-name wrap-text" (click)="displayModel(anmdModel)">
+                                    {{anmdModel.dataSet}}</td>
+                                <!-- <td>
+                                    <span *ngIf="game.status" [ngClass]="{'bg-green': game.status == 'Finish','bg-blue': game.status == 'running','bg-orange': game.status == 'waiting'}" class="status">
+                                    {{game.status}}
+                                    </span>
+                                    </td> -->
+                                    <td class="width-model wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.modelConfigName}}
+                                    <td class="width-type wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.jobType}}
+                                    </td>
+                                <td class="width-name wrap-text" (click)="displayModel(anmdModel)">{{anmdModel.modelNameDisp}}
+                                </td>
+                                
+                            </tr>
+                            <tr class="row no-mar"
+                                *ngIf="(tempAnomalyDetections | searchFilter: {'dataSet': searchFilterMain} | paginate: config).length == 0">
+                                <td class="col-12 wrap-text no_rec_css">No records found</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </ion-col>
+            </ion-col>
+
+            <!-- Table view Ends -->
+
+        </ion-col>
+        <ion-col class="col-12 col-xs-12 col-sm-12 padd-22 df-col cont-scrl" [ngClass]="isShown?'col-md-6':'col-md-12'">
+            <ion-col class="f-max sub-cont-scrl">
+
+                <ion-row class="shadowbtn collapse-view-cont" [ngClass]="{'bg-open':!isShown}" (click)="toggleShow()">
+                    <ion-icon *ngIf="!isShown" class="frwrd_icon_css" aria-hidden="false" [src]="anomalyService.createSvgUrl('chevron-forward.svg')"></ion-icon>
+                    <ion-icon *ngIf="isShown"  class="back_icon_css" aria-hidden="false" [src]="anomalyService.createSvgUrl('chevron-back.svg')"></ion-icon>
+                </ion-row>
+                <ion-row class="row no-mar" *ngIf="checkifObjectExist() == false && !dataSetDetailsLoading">
+                    <ion-col class="col-md-12 col-sm-12 col-xs-12 mar-b-25 no-padd">
+                        <ion-label class="head-label">Select at least one anomaly data to show the details</ion-label>
+                    </ion-col>
+
+                </ion-row>
+                <ion-row *ngIf="dataSetDetailsLoading" class="spinner-div">
+                    <mat-progress-spinner color="slategrey" mode="indeterminate">
+                    </mat-progress-spinner>
+                </ion-row>
+                <ion-row class="right_div_row"*ngIf="checkifObjectExist() == true && !dataSetDetailsLoading ">
+                    <ion-row class="row no-mar full-width">
+                        <ion-label class="s2-page-title">{{selectedModel.dataSet}}</ion-label><ion-label
+                            class="s2-label-model">{{selectedModel.jobType}}</ion-label>
+
+                    </ion-row>
+                    <ion-row *ngIf=" selectedModel && checkifObjectExist() == true && !dataSetDetailsLoading " class="row no-mar top-mar border-a bck-white bot-padd full-width">
+
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Data Set: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.dataSetName" class="data-label">{{selectedModel.dataSetName}}</ion-col>
+                            <ion-col  *ngIf="!selectedModel.dataSetName" class="data-label">NA</ion-col>
+                        </ion-col>
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Loss: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.loss" class="data-label">{{selectedModel.loss}}</ion-col>
+                            <ion-col  *ngIf="!selectedModel.loss" class="data-label">NA</ion-col>
+                        </ion-col>
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Model Config Used: </ion-label>
+                            </ion-col>
+
+                            <ion-col *ngIf="selectedModel.modelConfigName" class="data-label model-color" (click)="openModelConfigDialog(selectedModel)">{{selectedModel.modelConfigName}}</ion-col>
+                            <ion-col  *ngIf="!selectedModel.modelConfigName" class="data-label">NA</ion-col>
+                        </ion-col>
+                       
+                        <ion-col class=""size="6">
+                            <ion-col class="row">
+                                <ion-label class="s3-label-model">Prediction Status: </ion-label>
+                            </ion-col>
+                            <span *ngIf="selectedModel.reasonStatus"
+                            [ngClass]="{'bg-blue': (selectedModel.reasonStatus.toLowerCase() === 'active'  || selectedModel.reasonStatus.toLowerCase() === 'running' || selectedModel.reasonStatus.toLowerCase() === 'training'), 'bg-yellow' : (selectedModel.reasonStatus.toLowerCase() === 'waiting' || selectedModel.reasonStatus.toLowerCase() === 'queued' || selectedModel.reasonStatus.toLowerCase() === 'initiated')}"
+                            class="status predict_css">
+                            {{selectedModel.reasonStatus.toLowerCase()}}
+                        </span>
+                            <ion-col  *ngIf="!selectedModel.reasonStatus" class="data-label">NA</ion-col>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row  *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.predictionReason" class="ion-no-padding row no-mar full-width">
+                        <ion-label class="s4-page-title">Potential Root Cause</ion-label>
+                    </ion-row>
+
+                    <ion-row *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.predictionReason" class="table-padding row no-mar anm-details-table  top-mar border-a bck-white full-width">
+                        <!-- <ion-row class="row no-mar">
+                            <ion-col class="ion-no-padding page_css_view">
+                                <ion-col class="ion-no-padding paginate_css">
+                                    <span>
+                                        <ion-icon aria-hidden="false" class="search_mat" 
+                                        [src]="anomalyService.createSvgUrl('search-sharp.svg')"></ion-icon>
+                                        <input autocomplete="off" matInput class="form-control css_search" type="text" placeholder="Search with attribute" [(ngModel)]="searchFilter" maxlength="150"
+                                            (ngModelChange)="onsearchChangeMin(searchFilter)">
+                                    </span>
+                                </ion-col>
+                                <ion-col class="d-flex paginate-align ion-no-padding">
+                                    <pagination-template #pT1="paginationApi" [id]="configMinTable.id" class="d-flex"
+                                        (pageChange)="changepage($event, false)">
+                                        <ion-col class="d-flex process_rows_css">
+                                            <span class="mar-r-8 paginate-text">Rows:</span>
+                                            <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPageMinTable"
+                                                (selectionChange)="setNewPageSize(itemPerPageMinTable , false)">
+                                                <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                            </mat-select>
+                                        </ion-col>
+                                        <ion-col class="pagination-previous" [class.disabled]="pT1.isFirstPage()">
+                                            <button type="button" class="pagination-btn" (click)="pT1.previous()"
+                                                [disabled]="pT1.isFirstPage()">
+                                                < </button>
+                                        </ion-col>
+        
+                                        <ion-col class="d-flex process_matselect">
+                                            <span class="paginate-text"> Page</span>
+                                            <input autocomplete="off" matInput class="currpage-input" type="text" [(ngModel)]="inputCurrentpageMinTable"
+                                                (change)="changepageinp(inputCurrentpageMinTable,pT1.getLastPage() , false)">
+        
+                                            <span class="paginate-text"> of {{pT1.getLastPage()}}</span>
+                                        </ion-col>
+                                        <ion-col class="ion-no-padding pagination-next" [class.disabled]="pT1.isLastPage()">
+                                            <button type="button" class="pagination-btn" (click)="pT1.next()"
+                                                [disabled]="pT1.isLastPage()"> > </button>
+                                        </ion-col>
+                                    </pagination-template>
+        
+                                </ion-col>
+                            </ion-col>
+        
+                        </ion-row> -->
+
+
+                        <ion-col *ngIf="checkifObjectExist() == true && !dataSetDetailsLoading && selectedModel &&  selectedModel.predictionReason" class="">
+                            <ion-row>
+                            <ion-col size="6" *ngFor="let predictionRes of selectedModel.predictionReason">
+                                    <ul class="tab-ul">
+                                         <li class="tab-li">
+                                         <span class="tab-data-label">{{predictionRes.dispPredictionReason}}</span>
+                                     </li>
+                                 </ul>
+                             
+                            </ion-col>
+                            <ion-col size="12"
+                            *ngIf="selectedModel.predictionReason.length == 0">
+                            <ion-row *ngIf="selectedModel.reasonStatus.toLowerCase() === 'completed'" class="col-12 wrap-text no_rec_css">No records found</ion-row>
+                            <ion-row *ngIf="selectedModel.reasonStatus.toLowerCase() !== 'completed'" class="col-12 wrap-text no_rec_css">Analysing the Data</ion-row>
+                        </ion-col>
+                        </ion-row>
+                            
+                            <!-- <table class="df-col">
+                                <thead class="sticky-head">
+                                    <tr class="row no-mar head-tr">
+        
+                                        <th  class="col-12 wrap-text">Attribute&nbsp;
+                                            <ion-col class="select-cur" (click)="sortMin('dispPredictionReason')">
+
+
+                                                <ion-icon *ngIf="!(keyP == 'dispPredictionReason' && reverseP)"  aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                                [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                                name="caret-down-outline"></ion-icon>
+                                                <ion-icon *ngIf="keyP == 'dispPredictionReason' && reverseP" aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                                [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                                name="caret-up-outline"></ion-icon>
+                                            </ion-col>
+        
+                                        </th>
+                                       
+                                        <th class="col-4 wrap-text">Value
+                                            <ion-col class="select-cur" (click)="sortMin('value')">
+                                                <ion-icon *ngIf="!(keyP == 'value' && reverseP)"  aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="down icon"
+                                                [src]="anomalyService.createSvgUrl('caret-down-sharp.svg')"
+                                                name="caret-down-outline"></ion-icon>
+                                                <ion-icon *ngIf="keyP == 'value' && reverseP" aria-hidden="false"
+                                                class="arrow_mat align-middle mat-top-bottom" aria-label="up icon"
+                                                [src]="anomalyService.createSvgUrl('caret-up-sharp.svg')"
+                                                name="caret-up-outline"></ion-icon>
+                                            </ion-col>
+                                        </th>
+                                       
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="row no-mar"
+                                        *ngFor="let predictionRes of selectedModel.predictionReason | orderBy: keyP : reverseP | searchFilter: {'dispPredictionReason': searchFilter}; let i = index;">
+                                        <td class="col-12  wrap-text" >
+                                            {{predictionRes.dispPredictionReason }}</td>
+                                     
+                                           
+                                        <td class="col-4 wrap-text" >{{predictionRes.value}}
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr class="row no-mar"
+                                        *ngIf="(selectedModel.predictionReason | searchFilter: {'key': searchFilter}).length == 0">
+                                        <td *ngIf="selectedModel.reasonStatus.toLowerCase() === 'completed'" class="col-12 wrap-text no_rec_css">No records found</td>
+                                        <td *ngIf="selectedModel.reasonStatus.toLowerCase() !== 'completed'" class="col-12 wrap-text no_rec_css">Analysing the Data</td>
+                                    </tr>
+        
+                                </tbody>
+                            </table> -->
+                        </ion-col>
+
+
+                       
+
+                    </ion-row>
+                </ion-row>
+            </ion-col>
+
+        </ion-col>
+    </ion-col>
+</ion-row>

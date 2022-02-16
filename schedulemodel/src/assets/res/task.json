@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "data": {
+    "id": "6170349339628d00014b6db0",
+    "schedule_name": "am1",
+    "schedule_id": "6170349339628d00014b6db0",
+    "job_type": "ANOMALYTRAINING1",
+    "schedule_status": "COMPLETED",
+    "job_status": "ACTIVE",
+    "schedule_from": "2021-10-20 15:25:01 UTC",
+    "schedule_to": "2021-10-21 15:25:01 UTC",
+    "created_ts": 1634743443034,
+    "schedule_day": "",
+    "recur_on": "ONETIME",
+    "no_of_recurrence": 0,
+    "last_run": 1634743500000,
+    "next_run": 0,
+    "data": {
+      "dataSetName": "alarm_data",
+      "modelConfigName": "Bezton_XE",
+      "dataRange": "06",
+      "frequency": "months",
+      "schedule_from": "2021-10-20 15:25:01 UTC",
+      "interval_time": ""
+    },
+    "interval_time": 0
+  }
+}

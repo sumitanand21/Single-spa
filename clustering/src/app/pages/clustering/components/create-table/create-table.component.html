@@ -1,0 +1,14 @@
+<div class="mainclass">
+    <!-- <button (click)="addDataSource()">Click</button> -->
+    <app-generic-table 
+    [datasourceTable]="dataSource"
+    [uniqueFeild]="uniqueFeild"
+    [selectedRow]="seletedRowStr"
+    [dataStructure]="dataStructure"
+    [searchFilterObj]="searchFilterObj"
+    [exactFilterObj]="exactFilterObj"
+    [defaultngxFilterObj]="defaultngxFilterObj"
+
+    (emitOutData)="getOutput($event)"></app-generic-table>
+</div>
+

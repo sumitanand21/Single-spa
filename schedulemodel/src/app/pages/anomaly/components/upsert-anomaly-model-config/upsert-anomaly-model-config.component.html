@@ -1,0 +1,380 @@
+<ion-row class="df-col cont-scrl ">
+    <ion-col *ngIf="masterDataLoading || createFormLoader" class="spinner-div" >
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+    </ion-col>
+    <ion-col *ngIf="!masterDataLoading && !createFormLoader" class="upsert-page-css f-max">
+        <form [formGroup]="upsertAnmModel" >
+            <ion-row class="model-header-section">
+                <ion-col *ngIf="action !== 'Update'" class="col-sm-4 header-disp">
+                    <ion-label class="s1-label-model">Name: </ion-label>
+                    <input autocomplete="off" maxlength = "30" formControlName="modelConfigName" type="text" matInput class="input-feild-model" placeholder="Enter model name....">
+                </ion-col>
+
+                <ion-col *ngIf="action === 'Update'" class="col-sm-4 header-disp">
+                            <ion-label class="s1-label-model">Name: </ion-label>
+                            <ion-label class="data-label">{{anomalyService.AnomalymodelName}}</ion-label>
+                </ion-col>
+                <ion-col *ngIf="action !== 'Update'" class="col-sm-4 header-disp">
+                    <ion-label class="s1-label-model">Job Type: </ion-label>
+                    <mat-select disableOptionCentering formControlName="jobType" (selectionChange)="getDataSetByJobType($event.value, true)" class="form-control drop-mat s2-dropdown drop_css_one">
+                        <mat-option *ngFor="let jobtype of jobTypeArr" [value]="jobtype" [disabled]="action === 'Update'">{{jobtype}}
+                        </mat-option>
+                    </mat-select>
+                </ion-col>
+                <ion-col *ngIf="action === 'Update'" class="col-sm-4 header-disp">
+                            <ion-label class="s1-label-model">Job Type: </ion-label>
+                            <ion-label class="data-label">{{anomalyService.AnomalymodelType}}</ion-label>
+                </ion-col>
+                <ion-col class="col-sm-4">
+                    <ion-button type="button" mat-stroked-button (click)="saveAnmModelData()" class="shadowbtn mts-right-btn mts-btn-save">{{action}}</ion-button>
+                    <ion-button type="button" mat-stroked-button *ngIf="anomalyService.activatedPath.includes('alltask')" class="shadowbtn mts-right-btn mts-btn" (click)="anomalyNavigation('/schedule/alltask/anomalymodelconfig', true)"color="light">Cancel</ion-button>
+                    <ion-button type="button" mat-stroked-button *ngIf="anomalyService.activatedPath.includes('anomalydetection')" class="shadowbtn mts-right-btn mts-btn" (click)="anomalyNavigation('/schedule/anomalydetection/anomalymodelconfig', true)" color="light">Cancel</ion-button>
+                    <ion-button type="button" mat-stroked-button *ngIf="anomalyService.activatedPath.includes('anomalyview')" class="shadowbtn mts-right-btn mts-btn" (click)="anomalyNavigation('/schedule/anomalyview/anomalymodelconfig', true)"color="light">Cancel</ion-button>
+                </ion-col>
+            </ion-row>
+            <mat-divider></mat-divider>
+            <ion-row class="model-header-section s2-div">
+                <ion-col class="col-sm-2 disp-col-css" *ngIf="displayObj.encoder">
+                        <ion-label class="s2-label-model">Encoders: </ion-label>
+                    <ion-list class="enc_sub_val_css">
+                        <ion-radio-group formControlName="encoder" class="s2-radio-feild-model" aria-label="Select an option">
+                            <ion-col class="radio_all_css" *ngFor="let item of encoders;let i = index">
+                                <ion-radio color="primary" class="mat-rd-btn-s2"
+                                    [value]="item" checked="i === 0"></ion-radio>
+                                <ion-label class="label_css">{{item}}</ion-label>
+                            </ion-col>
+                        </ion-radio-group>
+                    </ion-list>
+                </ion-col>
+                <ion-col class="col-sm-2 disp-col-css" *ngIf="displayObj.scaler">
+                        <ion-label class="s2-label-model">Scalers: </ion-label>
+                   
+                    <ion-list class="enc_sub_val_css">
+                        <ion-radio-group formControlName="scaler" class="s2-radio-feild-model" aria-label="Select an option">
+                            <ion-col class="radio_all_css" *ngFor="let item of scalers;let i = index">
+                                <ion-radio color="primary" class="mat-rd-btn-s2"
+                                    [value]="item" checked="i === 0"></ion-radio>
+                                <ion-label class="label_css">{{item}}</ion-label>
+                            </ion-col>
+                        </ion-radio-group>
+                    </ion-list>
+                </ion-col>
+                <ion-col *ngIf="displayObj.optimizer" class="col-sm-2 disp-col-css">
+                        <ion-label class="s2-label-model">Optimizer: </ion-label>
+                    
+                    <ion-list class="enc_sub_val_css">
+                        <ion-radio-group formControlName="optimizer" class="s2-radio-feild-model" aria-label="Select an option">
+                            <ion-col class="radio_all_css" *ngFor="let item of optimizers;let i = index">
+                                <ion-radio color="primary" class="mat-rd-btn-s2"
+                                    [value]="item" checked="i === 0"></ion-radio>
+                                <ion-label class="label_css">{{item}}</ion-label>
+                            </ion-col>
+                        </ion-radio-group>
+                    </ion-list>
+                </ion-col>
+                <ion-col *ngIf="displayObj.activation" class="col-sm-2 disp-col-css">
+                        <ion-label class="s2-label-model">Activation: </ion-label>
+                    
+                    <ion-list class="enc_sub_val_css">
+                        <ion-radio-group formControlName="activation" class="s2-radio-feild-model" aria-label="Select an option">
+                            <ion-col class="radio_all_css" *ngFor="let item of activations;let i = index">
+                                <ion-radio color="primary" class="mat-rd-btn-s2"
+                                    [value]="item" checked="i === 0"></ion-radio>
+                                <ion-label class="label_css">{{item}}</ion-label>
+                            </ion-col>
+                        </ion-radio-group>
+                    </ion-list>
+                </ion-col>
+                <ion-col *ngIf="displayObj.decoder_activation" class="col-sm-2 disp-col-css">
+                        <ion-label class="s2-label-model">decoder_Activation: </ion-label>
+                    
+                    <ion-list class="enc_sub_val_css">
+                        <ion-radio-group formControlName="decoder_activation" class="s2-radio-feild-model" aria-label="Select an option">
+                            <ion-col class="radio_all_css" *ngFor="let item of decoder_Activations;let i = index">
+                                <ion-radio color="primary" class="mat-rd-btn-s2"
+                                    [value]="item" checked="i === 0"></ion-radio>
+                                <ion-label class="label_css">{{item}}</ion-label>
+                            </ion-col>
+                        </ion-radio-group>
+                    </ion-list>
+                </ion-col>
+                <ion-col class="col-sm-2 disp-col-css" *ngIf="displayObj.loss">
+                        <ion-label class="s2-label-model">Loss: </ion-label>
+                    
+                    <ion-list class="enc_sub_val_css">
+                        <ion-radio-group formControlName="loss" class="s2-radio-feild-model" aria-label="Select an option">
+                            <ion-col class="radio_all_css" *ngFor="let item of losses;let i = index">
+                                <ion-radio color="primary" class="mat-rd-btn-s2"
+                                    [value]="item" checked="i === 0"></ion-radio>
+                                <ion-label class="label_css">{{item}}</ion-label>
+                            </ion-col>
+                        </ion-radio-group>
+                    </ion-list>
+                </ion-col>
+
+                <ion-col *ngIf="displayObj.epochs" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">Epochs: </ion-label>
+                <input autocomplete="off" formControlName="epochs" [appAlphaNumeric]="'num'" placeholder="0" class="s2-input-feild-model" type="text" maxlength = "10" matInput>
+            </ion-col>
+            <ion-col  *ngIf="displayObj.p_components" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">p_components: </ion-label>
+                <input autocomplete="off" formControlName="p_components" [appAlphaNumeric]="'num'" placeholder="0" class="s2-input-feild-model"  type="text" maxlength = "5" matInput>
+            </ion-col>
+            <ion-col *ngIf="displayObj.dropout" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">Dropout: </ion-label>
+                <!-- <input autocomplete="off" formControlName="dropout" min="0" max="1" step="0.01" [appAlphaNumeric]="'positivefloat'" placeholder="0" class="s2-input-feild-model" type="number" matInput> -->
+                <input autocomplete="off" maxlength="30" formControlName="dropout" [appAlphaNumeric]="'positivefloat'" placeholder="0" class="s2-input-feild-model" type="text" matInput>
+            </ion-col>
+            <ion-col *ngIf="displayObj.l1L2" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">L1L2: </ion-label>
+                <input autocomplete="off" formControlName="l1L2" placeholder="0, 0" [appAlphaNumeric]="'maskNumDecimal'" class="s2-input-feild-model"  matInput>
+            </ion-col>
+            <ion-col *ngIf="displayObj.batchSize" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">Batch Size: </ion-label>
+                <input autocomplete="off" formControlName="batchSize" [appAlphaNumeric]="'num'" placeholder="0" class="s2-input-feild-model" type="text" maxlength = "5" matInput>
+            </ion-col>
+            <ion-col *ngIf="displayObj.metrics" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">Metrics: </ion-label>
+                
+                <ion-list class="enc_sub_val_css">
+                    <ion-radio-group formControlName="metrics" class="s2-radio-feild-model" aria-label="Select an option">
+                        <ion-col class="radio_all_css" *ngFor="let item of metrics;let i = index">
+                            <ion-radio color="primary" class="mat-rd-btn-s2"
+                                [value]="item" checked="i === 0"></ion-radio>
+                            <ion-label class="label_css">{{item}}</ion-label>
+                        </ion-col>
+                    </ion-radio-group>
+                </ion-list>
+            </ion-col>
+            <ion-col *ngIf="displayObj.krange" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">K Range: </ion-label>
+                <input autocomplete="off" formControlName="krange" placeholder="0, 0" [appAlphaNumeric]="'maskNumNoLimit'" class="s2-input-feild-model"  matInput>
+            </ion-col>
+
+            <ion-col *ngIf="displayObj.desiredVariance" class="col-sm-2 disp-col-css">
+                    <ion-label class="s2-label-model">Desired Variance: </ion-label>
+                <input autocomplete="off" maxlength="30" formControlName="desiredVariance" [appAlphaNumeric]="'positivefloat'" placeholder="0" class="s2-input-feild-model" type="text" matInput>
+            </ion-col>
+            </ion-row>
+            <!-- <ion-row class="model-header-section s2-div">
+                
+            </ion-row> -->
+            <ion-row *ngIf="displayObj.nodes" class="model-header-section node_css">
+                <!-- <ion-col class="col-sm-1 disp-col-css"> -->
+                        <ion-label class="span-label-model">Nodes: </ion-label>
+                <!-- </ion-col> -->
+                <ion-col class="plus_minus_css"> 
+                <span>Total:</span>
+                <span class="plus_minus">
+                    <button type="button" class="nd-btn-right" (click)="removeNodes()"> -</button>
+                    <input autocomplete="off" class="s3-input-feild-model" [value]="nodeListLength"  type="text" maxlength = "5" [appAlphaNumeric]="'num'" matInput readonly>
+                    <button type="button" class="nd-btn-left" (click)="addNodes()">+</button>
+                </span>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="displayObj.nodes"  class="model-header-section">
+                <ion-col *ngIf="!isNodeValueChanged" class="node-val-css">
+                    <input autocomplete="off"   [appAlphaNumeric]="'num'" *ngFor="let item of nodeList;let i = index;" [value]="item"  (change)="setValue($event, i)"  class="nd-btn-lower"  min="1" max="5000" onchange="if(parseInt(this.value,10)>5000 || parseInt(this.value,10)<0 )this.value='0';"  type="text" maxlength = "5" matInput> 
+                </ion-col>
+            </ion-row>
+            <mat-divider></mat-divider>
+            <ion-row class="model-header-section s2-div">
+                <ion-col class="col-sm-2 disp-col-nomar" *ngIf="displayObj.dataSetName">
+                        <ion-label class="s2-label-model">Data set: </ion-label>
+                    <mat-select (selectionChange)="setDataSetUniqueFeatures($event.value, upsertAnmModel.get('jobType').value)" disableOptionCentering formControlName="dataSetName" class="form-control s1-dropdown" >
+                        <mat-option *ngFor="let item of datasets" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </ion-col>
+                <ion-col class="col-sm-2 disp-col-nomar" *ngIf="displayObj.uniqueFeature">
+                        <ion-label class="s2-label-model">Unique Features: </ion-label>
+                    <mat-select disableOptionCentering formControlName="uniqueFeature" class="form-control s1-dropdown">
+                        <mat-option *ngFor="let item of uniqueFeatures" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </ion-col>
+            </ion-row>
+            <ion-row class="s2-model-header-section ">
+                <mat-tab-group class="feature-tab feature-tab-upsert-page compare-tab" mat-align-tabs="start" (selectedTabChange)="onFeatureTabChanged($event);">
+                    <mat-tab label="Xfeature List({{xfeatures.length}})">
+                        <ion-col class="row s3-model-header-section">
+                            <ion-col class="col-sm-4 select-All-css s2-col">
+                                <ion-row class="check-outer sele_css">
+                                    <ion-checkbox color="primary" autocomplete="off" type="checkbox" [(ngModel)]="selectAll"  [ngModelOptions]="{standalone: true}" (ngModelChange)="checkAlls(selectAll)"></ion-checkbox>
+                                    <ion-label class="text-data">Select All</ion-label>
+                                </ion-row>
+                                <ion-button color="light" type="button" mat-stroked-button (click)="clearAllSelection(1)" class="shadowbtn mts-basic-btn mts-btn">Clear Selections</ion-button>
+
+                            </ion-col>
+                            <ion-col class="col-md-4 s2-col">
+                                <ion-icon class="search_mat_icon" aria-hidden="false"
+                                                [src]="anomalyService.createSvgUrl('search.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="s4-input-feild-model" [(ngModel)]="searchFilterX" (ngModelChange)="onsearchChange(searchFilterX, 'XFeature')" maxlength="150" [ngModelOptions]="{standalone: true}" placeholder="Search Feature" type="text">
+                            </ion-col>
+                            <ion-col class="col-md-4 s2-col end-flex">
+
+                                <pagination-template #pTX="paginationApi" [id]="configXFeature.id" class="pagination-wrap-temp"
+                                (pageChange)="changepage($event, 'XFeature')">
+                                <ion-row class="page-flex process_rows_css">
+                              
+                                    <ion-text class="mar-r-8 ion-text-small">Rows:</ion-text>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPageX"
+                                    [ngModelOptions]="{standalone: true}" (selectionChange)="setNewPageSize(itemPerPageX, 'XFeature')">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                              
+                                </ion-row>
+                    
+                                <ion-button color="dark" class="pagination-previous" expand="full" fill="clear"
+                                (click)="pTX.previous()" [disabled]="pTX.isFirstPage()">
+                                    < </ion-button>
+    
+                                        <ion-text class="ion-text-small"> Page</ion-text>
+                                        <input autocomplete="off" matInput class="currpage-input" type="text"
+                                        [appAlphaNumeric]="'num'"  [(ngModel)]="inputCurrentpageX"  [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="inputCurrentpageX" [appAlphaNumeric]="'num'"
+                                            (change)="changepageinp(inputCurrentpageX,pTX.getLastPage(), 'XFeature')">
+                                        <ion-text class="ion-text-small"> of {{pTX.getLastPage()}}</ion-text>
+    
+                                        <ion-button color="dark" class="pagination-next" expand="full" fill="clear"
+                                        (click)="pTX.next()" [disabled]="pTX.isLastPage()"> > </ion-button>
+    
+                            </pagination-template>
+
+
+                        
+
+                            </ion-col>
+                        </ion-col>
+                        <mat-divider></mat-divider>
+                        <ion-col class="row s4-model-header-section">
+                            <ion-col class="col-md-4 s2-col"
+                                *ngFor="let item of xfeatures | orderBy: key : reverse | searchFilter: {'name': searchFilterX}  | paginate: configXFeature; let i = index"
+                                role="row"  id="trdata{{i}}">
+                                <ion-label class="check-outer">
+                                    <ion-checkbox color="primary" autocomplete="off" [(ngModel)]="item.checkXData" id="item{{i}}" [ngModelOptions]="{standalone: true}" (ngModelChange)="isAllChecked()" name="item"></ion-checkbox>
+                                    <ion-label class="text-data">{{item.name}}</ion-label>
+                                </ion-label>
+                            </ion-col>
+                        </ion-col>
+                    </mat-tab>
+                    <mat-tab label="Training Filters({{tfeatures.length}})">
+                        <ion-col class="row s3-model-header-section">
+                            <ion-col class="col-sm-4  select-All-css s2-col">
+                                <ion-row class="check-outer sele_css">
+                                    <ion-checkbox color="primary" autocomplete="off" class="input-chkbox" type="checkbox"  [(ngModel)]="uniqueselectAll"  [ngModelOptions]="{standalone: true}" (ngModelChange)="checkAllunique(uniqueselectAll)"></ion-checkbox>
+                                    <ion-label class="text-data">Select All</ion-label>
+                                </ion-row>
+                                <ion-button color="light" type="button" mat-stroked-button (click)="clearAllSelection(2)" class="shadowbtn mts-basic-btn mts-btn">Clear Selections</ion-button>
+
+                            </ion-col>
+                            <ion-col class="col-md-4 s2-col">
+                                <ion-icon class="search_mat_icon" aria-hidden="false"
+                                [src]="anomalyService.createSvgUrl('search.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="s4-input-feild-model" [(ngModel)]="searchFilterT" (ngModelChange)="onsearchChange(searchFilterT, 'TFeature')" maxlength="150" [ngModelOptions]="{standalone: true}" placeholder="Search Feature" type="text">
+                            </ion-col>
+                            <ion-col class="col-md-4 end-flex s2-col">
+                                <pagination-template #pTT="paginationApi" [id]="configTFeature.id" class="pagination-wrap-temp"
+                                (pageChange)="changepage($event, 'TFeature')">
+                                <ion-row class="page-flex process_rows_css">
+                                
+                                    <ion-text class="mar-r-8 ion-text-small">Rows:</ion-text>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPageT"
+                                    [ngModelOptions]="{standalone: true}" (selectionChange)="setNewPageSize(itemPerPageT, 'TFeature')">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                                
+                                </ion-row>
+                                
+                                <ion-button color="dark" class="pagination-previous" expand="full" fill="clear"
+                                (click)="pTT.previous()" [disabled]="pTT.isFirstPage()">
+                                    < </ion-button>
+                                
+                                        <ion-text class="ion-text-small"> Page</ion-text>
+                                        <input autocomplete="off" matInput class="currpage-input" type="text"
+                                        [appAlphaNumeric]="'num'"  [(ngModel)]="inputCurrentpageT"  [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="inputCurrentpageT" [appAlphaNumeric]="'num'"
+                                            (change)="changepageinp(inputCurrentpageT,pTT.getLastPage(), 'TFeature')">
+                                        <ion-text class="ion-text-small"> of {{pTT.getLastPage()}}</ion-text>
+                                
+                                        <ion-button color="dark" class="pagination-next" expand="full" fill="clear"
+                                        (click)="pTT.next()" [disabled]="pTT.isLastPage()"> > </ion-button>
+                                
+                                </pagination-template>
+                            </ion-col>
+                        </ion-col>
+                        <mat-divider></mat-divider>
+                        <ion-col class="row s4-model-header-section">
+                            <ion-col class="col-md-4 s2-col"
+                                *ngFor="let item of tfeatures | orderBy: key : reverse | searchFilter: {'name': searchFilterT} | paginate: configTFeature; let i = index"
+                                role="row" id="trdata{{i}}">
+                                <ion-label class="check-outer">
+                                    <ion-checkbox color="primary" type="checkbox" [(ngModel)]="item.checkTrainData" id="item{{i}}" [ngModelOptions]="{standalone: true}" (ngModelChange)="uniqueisAllChecked()" name="item"></ion-checkbox>
+                                    <ion-label class="text-data">{{item.name}}</ion-label>
+                                </ion-label>
+                            </ion-col>
+                        </ion-col>
+
+                    </mat-tab>
+                    <mat-tab label="String Features({{sfeatures.length}})">
+                        <ion-col class="row s3-model-header-section">
+                            <ion-col class="col-sm-4  select-All-css s2-col">
+                                <ion-row class="check-outer sele_css">
+                                    <ion-checkbox color="primary" autocomplete="off" class="input-chkbox" type="checkbox"  [(ngModel)]="stringselectAll"  [ngModelOptions]="{standalone: true}" (ngModelChange)="checkAllselected(stringselectAll)"></ion-checkbox>
+                                    <ion-label class="text-data">Select All</ion-label>
+                                </ion-row>
+                                <ion-button color="light" type="button" mat-stroked-button (click)="clearAllSelection(3)" class="shadowbtn mts-basic-btn mts-btn">Clear Selections</ion-button>
+
+                            </ion-col>
+                            <ion-col class="col-md-4 s2-col">
+                                <ion-icon class="search_mat_icon" aria-hidden="false"
+                                [src]="anomalyService.createSvgUrl('search.svg')"></ion-icon>
+                                <input autocomplete="off" matInput class="s4-input-feild-model" [(ngModel)]="searchFilterS" [ngModelOptions]="{standalone: true}" maxlength="150" (ngModelChange)="onsearchChange(searchFilterS, 'SFeature')" placeholder="Search Feature" type="text">
+                            </ion-col>
+                            <ion-col class="col-md-4 end-flex s2-col">
+                                <pagination-template #pTS="paginationApi" [id]="configSFeature.id" class="pagination-wrap-temp"
+                                (pageChange)="changepage($event, 'SFeature')">
+                                <ion-row class="page-flex process_rows_css">
+                              
+                                    <ion-text class="mar-r-8 ion-text-small">Rows:</ion-text>
+                                    <mat-select disableOptionCentering class="select-page" [(ngModel)]="itemPerPageS"
+                                    [ngModelOptions]="{standalone: true}" (selectionChange)="setNewPageSize(itemPerPageS, 'SFeature')">
+                                        <mat-option *ngFor="let pgrec of pageArr" [value]="pgrec">{{pgrec}}</mat-option>
+                                    </mat-select>
+                              
+                                </ion-row>
+                    
+                                <ion-button color="dark" class="pagination-previous" expand="full" fill="clear"
+                                (click)="pTS.previous()" [disabled]="pTS.isFirstPage()">
+                                    < </ion-button>
+    
+                                        <ion-text class="ion-text-small"> Page</ion-text>
+                                        <input autocomplete="off" matInput class="currpage-input" type="text"
+                                        [appAlphaNumeric]="'num'"  [(ngModel)]="inputCurrentpageS"  [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="inputCurrentpageS" [appAlphaNumeric]="'num'"
+                                            (change)="changepageinp(inputCurrentpageS,pTS.getLastPage(), 'SFeature')">
+                                        <ion-text class="ion-text-small"> of {{pTS.getLastPage()}}</ion-text>
+    
+                                        <ion-button color="dark" class="pagination-next" expand="full" fill="clear"
+                                        (click)="pTS.next()" [disabled]="pTS.isLastPage()"> > </ion-button>
+    
+                            </pagination-template>
+                            </ion-col>
+                        </ion-col>
+                        <mat-divider></mat-divider>
+                        <ion-col class="row s4-model-header-section">
+                            <ion-col class="col-md-4 s2-col"
+                                *ngFor="let item of sfeatures | orderBy: key : reverse | searchFilter: {'name': searchFilterS} | paginate: configSFeature; let i = index"
+                                role="row" id="trdata{{i}}">
+                                <ion-label class="check-outer">
+                                    <ion-checkbox color="primary" autocomplete="off" type="checkbox" [(ngModel)]="item.checkStringData" id="item{{i}}" [ngModelOptions]="{standalone: true}" (ngModelChange)="isAllCheckedstring()" name="item"></ion-checkbox>
+                                    <ion-label class="text-data">{{item.name}}</ion-label>
+                                </ion-label>
+                            </ion-col>
+                        </ion-col>
+
+                    </mat-tab>
+                </mat-tab-group>
+            </ion-row>
+        </form>
+    </ion-col>
+</ion-row>

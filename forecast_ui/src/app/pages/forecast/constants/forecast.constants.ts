@@ -1,0 +1,41 @@
+// export const FORECAST_URLS = {
+//     GET_ALL_MODELCONFIGS_API: 'getAllModelConfigs/',
+//     GET_MODELCONFIG_DETAILS_API: 'getModelConfigDetails/',
+//     PUT_UPDATE_FORECASTSELECTION_API: 'updateForecastSelection/',
+//     POST_SAVE_FORECASTSELECTION_API: 'saveForecastSelection/',
+//     PUT_HANDLE_FORECASTPROCESSING_API: 'handleForecastProcessing/',
+//     GET_FORECASTPROCESSING_MODELCONFIG_DETAILS_API: 'forecastProcessingModelDetails/',
+//     POST_CREATE_FORECASTMODELCONFIG_API: 'createModelConfiguration',
+//     PUT_UPDATE_FORECASTMODELCONFIG_API: 'updateModelConfiguration',
+//     DELETE_REMOVE_FORECASTMODELCONFIG_API: 'forecastdeleteModelConfig',
+//     GET_FORECAST_SELECTION_API: 'ForecastSelectiontable/',
+//     GET_FORECAST_PROCESSING_API: 'forecastProcessingtable/',
+//     UPDATE_FORECAST_SELECTION_TABLE_API: 'ForecastSelectionUpdatetable',
+//     GET_CONFIGURATION_FORECASTMODELCONFIG_API: 'forecastProcessingModelDetails',
+//     GET_DATASETNAMES: 'Datasetname',
+//     GET_DROPDOWN_FORECASTMODELCONFIG_API: 'configurationModelConfig',
+//     PUT_SCHEDULE_FORECASTSELECTION_API: 'scheduleForecastSelection',
+//     POST_FETCH_FORECASTCOMPARE_API: 'getForecastCompare',
+//     GET_DATASET_LIST: 'getDataSetForJobType/'
+// };
+
+export const FORECAST_URLS = {
+    GET_ALL_MODELCONFIGS_API: '/api/forecast/v1/modelconfigs/',
+    GET_MODELCONFIG_DETAILS_API: '/api/forecast/v1/modelconfigs/',
+    PUT_UPDATE_FORECASTSELECTION_API: '/api/scheduler/v1/pmforecast',
+    POST_SAVE_FORECASTSELECTION_API: '/api/scheduler/v1/pmforecast',
+    PUT_HANDLE_FORECASTPROCESSING_API: '/api/forecast/v1/forecastselectionprocesingtableupdate',
+    GET_FORECASTPROCESSING_MODELCONFIG_DETAILS_API: '/api/forecast/v1/forecastprocessingbyid/',
+    POST_CREATE_FORECASTMODELCONFIG_API: '/api/forecast/v1/modelconfigs/',
+    PUT_UPDATE_FORECASTMODELCONFIG_API: '/api/forecast/v1/modelconfigs/',
+    DELETE_REMOVE_FORECASTMODELCONFIG_API: '/api/forecast/v1/modelconfigs/',
+    GET_FORECAST_SELECTION_API: '/api/forecast/v1/forecastselection/',
+    GET_FORECAST_PROCESSING_API: '/api/forecast/v1/forecastselectionprocesingtable/',
+    UPDATE_FORECAST_SELECTION_TABLE_API: '/api/forecast/v1/forecastselectionupdate',
+    GET_CONFIGURATION_FORECASTMODELCONFIG_API: 'forecastProcessingModelDetails',
+    GET_DATASETNAMES: 'Datasetname',
+    GET_DROPDOWN_FORECASTMODELCONFIG_API: '/api/forecast/v1/configurationformodelconfig/FORECASTEXECUTION',
+    PUT_SCHEDULE_FORECASTSELECTION_API: '/api/forecast/v1/forecastschedulingapi',
+    POST_FETCH_FORECASTCOMPARE_API: '/api/forecast/v1/forecastprocessingbylistids',
+    GET_DATASET_LIST: '/datasource/api/getDataSet'
+};

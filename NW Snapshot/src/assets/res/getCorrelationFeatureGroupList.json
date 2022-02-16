@@ -1,0 +1,9 @@
+{
+    "status": "success",
+    "data": {
+        "db_name": "alarm_data",
+        "groups": [
+            "group1", "group2"
+        ]
+    }
+}

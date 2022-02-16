@@ -1,0 +1,62 @@
+<div class="mfe-nav-sidebar-section">
+  <mat-sidenav-container class="mfe-nav-sidebar-container" (backdropClick)="closeSideNav(true)">
+    <mat-sidenav-content class="mfe-nav-sidebar-content">
+      <div class="mfe-nav-sidebar-wrap">
+        <mat-accordion [@.disabled]="disableAnimation">
+          <mat-expansion-panel [expanded]="false" (click)="closeSideNav((!x.menuItems || x.menuItems.length == 0) ? true : false)" 
+          [disabled]="!x.menuItems || x.menuItems.length == 0" 
+          [hideToggle]="!x.menuItems || x.menuItems.length == 0" 
+          class="mfe-mat-sidebar-exp-panel" 
+          [routerLink]="(x.routerLink && !x.menuItems || x.menuItems.length == 0) ? x.routerLink : null"
+          *ngFor="let x of sideMenuData">
+            <mat-expansion-panel-header  class="mfe-mat-sidebar-exp-phead" collapsedHeight="48px"
+              expandedHeight="48px"
+              [ngClass]="{'mfe-sidenav-active-router' : (router.url.includes('/'+ x.routerLink))}">
+              <mat-panel-title id="sidebar-menu">
+                <div class="mfe-icon-wrap">
+                  <div class="mfe-icon-sub-wrap">
+                    <mat-icon class="mfe-mat-sidebar-white-icon">
+                      <img class="mfe-sidebar-img-icon" src="{{x.img}}" /></mat-icon>
+                  </div>
+                    {{x.label}}
+                  </div>
+             
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="mfe-ul-type" *ngFor="let y of x.menuItems;let i=index">
+              <div class="mfe-list-type" (click)="closeSideNav(true)" [routerLink]="y.routerLink" routerLinkActive="mfe-sidenav-active-router">
+                {{y.label}}
+              </div>
+
+            </div>
+            <!-- <ul class="mfe-ul-type">
+              <li class="mfe-list-type" 
+              routerLinkActive="mfe-sidenav-active-router" 
+              [routerLinkActiveOptions]="{exact: false}"
+              *ngFor="let y of x.menuItems">
+                <a class="mfe-link" [routerLink]="y.routerLink"
+                  (click)="closeSideNav(true)"> {{y.label}}
+                      </a></li>
+            </ul> -->
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- <div class="log-out-child">
+            <button mat-button class="mfe-logout-btn" (click)="logOut()"> 
+              <div class="mfe-icon-wrap">
+              <mat-icon class="mfe-mat-sidebar-white-icon">
+                <img class="mfe-sidebar-img-icon" src="assets/icons/icons8-exit-50.png"  
+                #tooltip="matTooltip"
+              matTooltip="Sign Out"
+              matTooltipPosition="right"
+              matTooltipClass="example-tooltip-red" />
+                </mat-icon> Sign Out
+              </div>
+            </button> 
+        </div> -->
+        </div>
+         
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  </div>
+  

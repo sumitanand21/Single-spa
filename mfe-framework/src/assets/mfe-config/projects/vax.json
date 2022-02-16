@@ -1,0 +1,173 @@
+{
+  "isActive": true,
+  "navbar": true,
+  "sidenav": false,
+  "name": "Virtuora AX",
+  "namespace": "vax",
+  "label": "Virtuora AX",
+  "template": "SpaVerticleHostModule",
+  "iconLink": "none",
+  "description": "Do not change configs",
+  "preloadURLS": [
+    {
+      "isActive": false,
+      "name": "test",
+      "url": "test",
+      "topic": "vax-test",
+      "methodType": "GET"
+    },
+    {
+      "isActive": false,
+      "name": "test1",
+      "url": "test1",
+      "topic": "vax-test1",
+      "methodType": "GET"
+    }
+  ],
+  "microApps": [
+    {
+      "isActive": true,
+      "name": "dashboards",
+      "routePath": "vax-apps/mfedashboards",
+      "url": "http://localhost:8201/main.js",
+      "label": "Dashboards",
+      "isLandingPage": true,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "apps",
+        "label": "Apps",
+        "isLandingPage": true,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "nwsnapshot",
+      "routePath": "vax-apps/mfenwsnapshot",
+      "url": "http://167.254.204.64:30213/main-es2015.js",
+      "label": "NW Snapshot",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "apps",
+        "label": "Apps",
+        "isLandingPage": false,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "anomaly",
+      "routePath": "vax-ml/mfeanomaly",
+      "url": "http://167.254.204.64:30292/main-es2015.js",
+      "label": "Anomaly Detection",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "ml",
+        "label": "Machine Learning Analysis",
+        "isLandingPage": true,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "clustering",
+      "routePath": "vax-ml/mfeclustering",
+      "url": "http://167.254.204.64:30212/main-es2015.js",
+      "label": "Clustering",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "ml",
+        "label": "Machine Learning Analysis",
+        "isLandingPage": false,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "classification",
+      "routePath": "vax-ml/mfeclassification",
+      "url": "http://167.254.204.64:30299/main-es2015.js",
+      "label": "Classification",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "ml",
+        "label": "Machine Learning Analysis",
+        "isLandingPage": false,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "correlation",
+      "routePath": "vax-ml/mfecorrelation",
+      "url": "http://167.254.204.64:30295/main-es2015.js",
+      "label": "Correlation",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "ml",
+        "label": "Machine Learning Analysis",
+        "isLandingPage": false,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "forecast",
+      "routePath": "vax-ml/mfeforecast",
+      "url": "http://167.254.204.64:30293/main-es2015.js",
+      "label": "Forecast",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "ml",
+        "label": "Machine Learning Analysis",
+        "isLandingPage": false,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "datasource",
+      "routePath": "vax-datainsights/mfedatasource",
+      "url": "http://167.254.204.64:30294/main-es2015.js",
+      "label": "Data Source",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "datainsights",
+        "label": "Data Insights",
+        "isLandingPage": true,
+        "isNavbar": false
+      }
+    },
+    {
+      "isActive": true,
+      "name": "model",
+      "routePath": "vax-datainsights/mfemodel",
+      "url": "http://167.254.204.64:30219/main-es2015.js",
+      "label": "Model Management",
+      "isLandingPage": false,
+      "isNavbar": false,
+      "apiUrl": "",
+      "group": {
+        "name": "datainsights",
+        "label": "Data Insights",
+        "isLandingPage": false,
+        "isNavbar": false
+      }
+    }
+  ]
+}

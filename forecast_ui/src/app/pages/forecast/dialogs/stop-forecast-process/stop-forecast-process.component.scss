@@ -1,0 +1,605 @@
+.parent-content{
+    height:100%;
+    width:100%;
+    padding: 0px 0px 0px 0px;
+    /* display: flex; */
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+    /* flex-direction: column; */
+}
+
+.cont-scrl{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.out-table{
+    padding-left:18px;
+}
+
+.sub-cont-scrl{
+   height:0;
+}
+
+.wrap-cont{
+    height:100%;
+    /* height:0; */
+}
+.border-r{
+    border-right:1.5px solid var(--mtsclr-border);
+}
+
+
+.no-padd{
+    padding:0;
+    }
+
+    .no-mar{
+      margin:0;
+      }
+    
+    .mar-b-25{
+        margin-bottom: 25px;
+    }
+
+
+
+ /* The container */
+.check-outer {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .check-outer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color:  #ffffff;
+    border: 2px solid #CBCBCB;
+    border-radius:2px;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .check-outer:hover input ~ .checkmark {
+    background-color: #ffffff;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .check-outer input:checked ~ .checkmark {
+    background-color: #ffffff;
+      border: 2px solid #3B73B7;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .check-outer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .check-outer .checkmark:after {
+    top: 0;
+    left: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border: 1px solid #3B73B7;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+    .text-center{
+        padding-left: 10px;
+    }
+
+    .mar-b-12{
+        margin-bottom: 12px;
+    }
+
+    .mar-l-15{
+margin-left:15px;
+    }
+
+    .save-mod{
+        border:1.5px solid #3B73B7;
+        background-color: #3B73B7;
+        width: 56px;
+        padding: 0px;
+    }
+
+    
+    .delete-mod{
+        border:1.5px solid #ff0000;
+        background-color: #ff0000;
+        width:66px;
+        padding: 0px;
+    }
+
+
+    .head-label{
+      font: normal normal normal 16px Segoe UI;
+      color: #232323;
+    }
+
+    .body-label{
+      color: #707070;
+      margin: 0;
+      font: normal normal 600 14px Segoe UI;
+    }
+
+
+    .data-label{
+      color: #232323;
+      font: normal normal normal 14px Segoe UI;
+    }
+
+    .padd-22{
+        padding: 22px;
+    }
+
+    .scroll-view{   
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    }
+
+    .no-height{
+        /* height:0px; */
+    }
+
+
+/*************Table view Css Starts*************************/
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    table-layout: fixed;
+  }
+  tr{
+    border-bottom : 2px solid var(--mtsclr-border);
+    width:100%;
+    margin:0;
+  }
+  /* Zebra striping */
+  th { 
+    font: normal normal bold 14px Segoe UI;
+    color: #707070;
+    padding: 7px 6px 3px 0px; 
+    text-align: left; 
+  }
+
+  td{ 
+    padding: 10px 6px 10px 0px; 
+    text-align: left;
+    font: normal normal normal 14px Segoe UI;
+    color: #43425D; 
+  }
+  
+
+  .table-b-r{
+    background-color:#3B73B733;
+  }
+
+  .sticky-head{
+    position: sticky !important;
+    top: 0;
+    z-index: 1;
+    background: #ffffff;
+  }
+  
+ 
+
+  .no-padd-r{
+    padding-right: 0;
+    padding-left: 18px;
+  }
+
+  .d-flex{
+      display:flex;
+      align-items: center;
+  }
+
+  .wrap-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 0;
+  }
+
+  .r-name{
+    cursor: pointer;
+    color:#3B73B7;
+    /* width:57%; */
+  }
+
+/*************Table view Css Ends*************************/
+
+.search_fafa{
+  position: absolute;
+  margin: 7px;
+  font-size: 13px;
+  color: #707070;
+  }
+.page_css_view{
+  display: flex;
+  width: 100%;
+  padding: 12px 8px 12px 18px;
+}
+.fafa_next_input{
+  /* padding: 0px 0px 0px 35px; */
+}
+.css_search{
+  height: 32px !important;
+  font-size: 12px;
+  max-width: 196px;
+  padding: 5px 5px 5px 23px;
+  border: 1.5px solid #d8d8d8 !important;
+}
+.form-control{
+  color: #495057;
+  height: 32px;
+  background-color: #fff;
+  border-color: transparent;
+  outline: 0;
+  border: 1px solid var(--mtsclr-border);
+}
+.paginate-align{
+  /* float:right; */
+  width:65%;  
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.paginate_fafanext{ 
+  /* margin: 0% 0% 0% -10%; */
+}
+.select-page{
+  border-bottom: 2px solid #d8d8d8 !important;
+  width: 45px;
+  height: 25px;
+  font-size: 12px;
+  margin-right:12px;
+}
+.pagination-previous{
+  /* margin: 37px 5px; */
+}
+.pagination-next{
+  /* margin: 37px 5px; */
+}
+
+.paginate-text{
+  font-size: 12px;
+  /* padding: 22px 10px; */
+}
+
+.pagination-btn{
+  cursor: pointer;
+  border:none;
+  font-weight: 600;
+  background-color: transparent;
+}
+.currpage-input{
+  text-align: center;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #d8d8d8 !important;
+  width: 40px;
+  font-size: 12px;
+  outline: none;
+  margin-right: 5px;
+  margin-top: 0px;
+}
+.mar-t-12{
+  margin-top:12px;
+}
+.mar-r-8{
+  margin-right: 8px;
+}
+.mar-l-12{
+  margin-left:12px
+}
+.paginate_css{
+  /* margin: 0px 75px 0px 0px; */
+  width: 35%;
+}
+
+tbody{
+  /* max-height: 600px; */
+  display: block;
+  /* height: 350px; */
+  /* overflow-y: auto; */
+}
+
+.mod-table-scroll{
+  overflow-x: hidden;
+  overflow-y: auto;
+  height:0;
+}
+
+
+table.tableBodyScroll tbody {
+  display: block;
+  /* height: 300px; */
+  /* max-height: 1000px; */
+  /* overflow-y: auto; */
+}
+.new_paginate_text{
+  margin-top: 4%;
+}
+.temp_model_config_css{
+  position: absolute;
+  margin: -7% 0% 0% -7%;
+}
+
+.stop-btn{
+    border:1.5px solid var(--mtsclr-danger-btn);
+    background-color: var(--mtsclr-danger-btn);
+    color:#ffffff;
+    padding: 0px;
+    border-radius:4px;
+    width: 66px;
+    float:right;
+}
+
+.mar-t-4{  
+    margin-top: 4px;
+    }
+
+    .graph-frame{
+        /* height: 120px;
+        width: 100%;
+        background-color: #D8D8D8;
+        border: none; */
+    
+        -webkit-transform: scale(0.5);
+        -moz-transform: scale(0.5);
+        transform: scale(0.5);
+        -moz-transform-origin: top left;
+        -webkit-transform-origin: top left;
+        -o-transform-origin: top left;
+        -ms-transform-origin: top left;
+        transform-origin: top left;
+    
+        height: 450px;
+        width: 200%;
+        background-color: #d8d8d8;
+        border: none;
+    }
+    
+    .outer-graph-frame{
+        height: 226px;
+        width: 100%;
+    }
+
+
+    .collapse-view-cont{
+        position: fixed;
+        height: 20px;
+        width: 20px;
+        font-size: 11px;
+        box-shadow: 0px 3px 4px #00000029;
+        border: 1px solid #CBCBCB;
+        margin-top: -8px;
+        margin-left: -32px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+    .bg-open{
+        background-color: #3B73B7;
+    }
+
+    .open-tab{
+color:#ffffff;
+    }
+
+    .close-tab{
+      color: var(--mtsclr-icon);
+        margin-left: -10%;
+            }
+
+            .left_div_border{
+                border-bottom: 1px solid var(--mtsclr-border);
+                width: 100%;
+                padding : 25px 18px 14px 18px;
+            }
+
+
+            .drop-mat{
+                /* border-radius: 4px 0px 0px 4px; */
+                border: 1.5px solid #d8d8d8 !important;
+                  }
+
+                  .drop_css_one{
+                    width: 90%;
+                    max-width: 150px;
+                    padding: 3px 12px 3px 12px;
+                    font-size: 14px;
+                }
+
+                .icon_fafa{
+                    width: 16px;
+                    height: 16px;
+                    color: #000000;
+                }
+
+                .every_css{
+                    margin: 0 7px 0 10px;
+                    font-size: 14px;
+                    color: #232323;
+                }
+
+
+                .drop_css_two{
+                  width: 100%;
+                    max-width: 82px;
+                    padding: 3px 12px 3px 12px;
+                    font-size: 14px;
+                    margin-right: 21px;
+                }
+
+                button{
+                    height: 32px;
+                }
+                .load-btn{
+                  background-color: #3B73B7;
+                  width: 74px;
+                  padding: 0;
+                  color:#ffffff;
+                }
+
+                .drop-wid{
+                  width:40%;
+                }
+
+                .every-width{
+                    width:60%;  
+                    display:flex;
+                    justify-content: flex-end;
+                }
+
+                .name-link{
+                    color:#3B73B7 ;
+                    cursor: pointer;
+                }
+
+
+
+
+
+/*************CSS for Model ***************************/
+
+.new_sch{
+  color: #2B2B2B;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.flex_contian_css{
+  display: flex !important;
+}
+.flex_stop{
+  display: flex;
+}
+.display_flex_css{
+  padding: 10px 30px 10px 30px;
+  /* display: flex; */
+}
+
+.date_label_css{
+  /* padding: 10px 0px; */
+  font-size: 14px;
+}
+
+.container {
+  display: inline;
+  position: relative;
+  padding-left: 30px;
+  padding-right: 0px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.down_Button{
+  /* padding: 10px; */
+}
+
+.Css_butn{
+  float: right;
+}
+
+.cancel_btn{
+  border-radius: 4px;
+  width: 61px;
+  padding: 0px;
+  margin-right: 15px;
+  // border: 1px solid #ced4da;
+  border: 1.5px solid var(--mtsclr-cancel-btn);
+  color: var(--mtsclr-label);
+}
+.ion-noncap-button {
+  text-transform: none;
+}
+
+
+.cancel-button {
+  --background: #ffff;
+  height: 30px !important;
+  font-size:15px;
+  --box-shadow:none;
+}
+
+.stop-button {
+  --background: var(--mtsclr-danger-btn);;
+  height: 30px !important;
+  font-size:15px;
+  --box-shadow:none;
+}
+
+.done_btn{
+  width: 76px;
+  padding: 0px;
+  height: 32px;
+}
+    
+.modal-footer{
+  padding: 5px !important;
+}
+
+.close-ion-icon{
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--mtsclr-icon);
+}
+
+.modal-header{
+display: flex;
+align-items: center;
+}
+
+button:focus {
+  /* outline: 5px auto transparent !important; */
+  outline:none;
+  border:none;
+  box-shadow: unset !important;
+}
+.shadowbtn:active {
+  /* outline: 5px auto transparent !important; */
+  outline:none;
+  border:none;
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12) !important;
+}

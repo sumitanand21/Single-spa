@@ -1,0 +1,35 @@
+{
+    "status": "success",
+    "data": [{
+        "Alarm Severity" : "MN",
+        "NE ID" : "Term-Node-D",
+        "AID Type" : "shelf",
+        "AID" : "COM",
+        "Alarm Description" : "No Secondary Database",
+        "EMS Date Time(CDT)" : "2021-05-20 16:37:12",
+        "Clear Date Time(CDT)" : "2021-05-20 16:45:22",
+        "NE Date Time(CDT)" : "2021-05-20 16:35:51",
+        "Service Affect" : false,
+        "Location" : "NEND",
+        "Direction" : null,
+        "Ack User" : null,
+        "Ack Date Time(CDT)" : null
+      }, 
+  {
+        "Alarm Severity" : "MJ",
+        "NE ID" : "Term-Node-D",
+        "AID Type" : "shelf",
+        "AID" : "Shelf-1",
+        "Alarm Description" : "Power Input Fail:Type=BDL1-3R31",
+        "EMS Date Time(CDT)" : "2021-05-20 16:27:33",
+        "Clear Date Time(CDT)" : "2021-05-20 16:37:12",
+        "NE Date Time(CDT)" : "2021-05-20 16:27:33",
+        "Service Affect" : false,
+        "Location" : "NEND",
+        "Direction" : null,
+        "Ack User" : null,
+        "Ack Date Time(CDT)" : null
+      }	
+  ]
+
+}

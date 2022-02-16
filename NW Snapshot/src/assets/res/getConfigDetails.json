@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "data": {
+    "data": {
+      "configurationName": "config1",
+      "description": "no sql database",
+      "dbType": "MongoDB",
+      "url": "http://localhost:27017",
+      "hostName": "localhost",
+      "portNumber": "27017",
+      "steps": "2",
+      "details": []
+    },
+    "status_code": 200
+  }
+}

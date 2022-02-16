@@ -1,0 +1,386 @@
+<ion-col class="parent-content df-col main-border">
+  <form #modeledit="ngForm">
+
+  <div *ngIf="isLoading" class="spinner-div" >
+    <mat-progress-spinner color="slategrey" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+
+  <div *ngIf="!isLoading" class="wrap-cont f-max">
+    <ion-row class="row">
+      <ion-col class="col-md-6 col-sm-6 col-xs-12">
+        <label class="head-label">{{modelConfigName ? modelConfigName : 'New Model Configuration'}}</label>
+      </ion-col>
+
+      <ion-col class="col-md-6 col-sm-6 col-xs-12">
+        <div class="float-md-right float-sm-right">
+
+          <ion-button  *ngIf="forecastService.activatedPath.includes('forecastselect')" type="button" class="shadowbtn btn btn-default cancel-mod ion-noncap-button cancel-button"
+            (click)="navigateTo('/forecast/forecastselect/modelconfig', true)">Cancel</ion-button>
+
+          <ion-button *ngIf="forecastService.activatedPath.includes('forecastprocess')" type="button" class="shadowbtn btn btn-default cancel-mod ion-noncap-button cancel-button"
+            (click)="navigateTo('/forecast/forecastprocess/modelconfig' , true)">Cancel</ion-button>
+
+          <button *ngIf="modelObject.id !== ''" type="button" class="shadowbtn btn btn-danger delete-mod mar-l-15"
+            (click)="deleteModelConfig()">Delete</button>
+
+          <ion-button type="button" class="shadowbtn btn btn-primary save-mod mar-l-15 ion-mid-button ion-noncap-button save-button"  (click)="saveModelDetails()">Save</ion-button>
+
+        </div>
+      </ion-col>
+    </ion-row>
+    <div>
+      
+        <ion-row class="row">
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15">
+            <ion-label class="body-label">Name</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput [disabled]="modelObject.id !== ''" class="input-feild-model form-control text-box-width2" placeholder="Name" type="text" name="modelName"
+                [(ngModel)]="modelObject.modelConfigName" [appAlphaNumeric]="'text'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15">
+            <ion-label class="body-label">Lstm Type</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modellstmType" [(ngModel)]="modelObject.lstmType" (ngModelChange)="lstmChangeEnableConfigs(modelObject.lstmType)" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let lstmTypeObj of lstmTypeDD" [value]="lstmTypeObj">{{lstmTypeObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.blockUnits">
+            <ion-label class="body-label">Block Unit</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelBlockUnit"
+                [(ngModel)]="modelObject.blockUnits" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.batchSize">
+            <ion-label class="body-label">Batch Size</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelbatchsize"
+                [(ngModel)]="modelObject.batchSize" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.epochs">
+            <ion-label class="body-label">Epochs</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelepochs"
+                [(ngModel)]="modelObject.epochs" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.layers">
+            <ion-label class="body-label">Layers</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+             
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width left-margin" placeholder="0, 0" type="text" name="modelLayer"
+                [(ngModel)]="modelObject.layers" [appAlphaNumeric]="'maskNumNoLimit'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.dropout">
+            <ion-label class="body-label">Drop Out</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modeldropout"
+                [(ngModel)]="modelObject.dropout" [appAlphaNumeric]="'positivefloat'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.activation">
+            <ion-label class="body-label">Activation</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelactivation" [(ngModel)]="modelObject.activation" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let actObj of activationDD" [value]="actObj">{{actObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <!-- <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.innerActivation">
+            <ion-label class="body-label">Inner Activation</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelinnerActivation" [(ngModel)]="modelObject.innerActivation"
+                class="form-control drop-mat-model left-margin" required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let innActObj of innerActivationDD" [value]="innActObj">{{innActObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col> -->
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.loss">
+            <ion-label class="body-label">Loss</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelloss" [(ngModel)]="modelObject.loss" class="form-control drop-mat-model" required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let lossObj of lossDD" [value]="lossObj">{{lossObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.metrics">
+            <ion-label class="body-label">Metrics</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelmetrics" [(ngModel)]="modelObject.metrics" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let metricsObj of metricsDD" [value]="metricsObj">{{metricsObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.optimizer">
+            <ion-label class="body-label">Optimizer</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modeloptimizer" [(ngModel)]="modelObject.optimizer" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let optimizerObj of optimizerDD" [value]="optimizerObj">{{optimizerObj}}
+                </mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.stateful">
+            <ion-label class="body-label">State</ion-label>
+            <ion-row class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <ion-radio-group class="cust-radio-group" name="modelstateful" [(ngModel)]="modelObject.stateful" aria-label="Select stateful" required>
+                <ion-col class="cust-radio-column no-padd mar-r-20">
+                    <ion-radio class="cust-radio-btn" value="True"></ion-radio>
+                    <ion-label class="cust-radio-label">True</ion-label>
+                </ion-col>
+                <ion-col class="cust-radio-column no-padd">
+                    <ion-radio class="cust-radio-btn" value="False"></ion-radio>
+                    <ion-label class="cust-radio-label">False</ion-label>
+                </ion-col>
+            </ion-radio-group>
+
+              <!-- <mat-radio-group class="radio-btn" name="modelstateful" [(ngModel)]="modelObject.stateful" aria-label="Select stateful">
+                <mat-radio-button class="mar-r-20" value="True">True</mat-radio-button>
+                <mat-radio-button value="False">False</mat-radio-button>
+              </mat-radio-group> -->
+            </ion-row>
+          </ion-col>
+
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.l1L2">
+            <ion-label class="body-label">L1, L2</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0.0, 0.0" type="text" name="modell1L2"
+                [(ngModel)]="modelObject.l1L2" [appAlphaNumeric]="'maskNumDecimal'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.nlags">
+            <ion-label class="body-label">nLags</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelnlags"
+                [(ngModel)]="modelObject.nlags" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.nleads">
+            <ion-label class="body-label">nLeads</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelnleads"
+                [(ngModel)]="modelObject.nleads" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.exclude">
+            <ion-label class="body-label">Exclude</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="None" type="text" name="modelexclude"
+                [(ngModel)]="modelObject.exclude" [appAlphaNumeric]="'text'" required>
+            </ion-col>
+          </ion-col>
+
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.groupBy">
+            <ion-label class="body-label">Group By</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="None" type="text" name="modelgroupBy"
+                [(ngModel)]="modelObject.groupBy" [appAlphaNumeric]="'text'" required>
+            </ion-col>
+          </ion-col>
+
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.encoderType">
+            <ion-label class="body-label">Encoder</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelencoderType" [(ngModel)]="modelObject.encoderType"
+                class="form-control drop-mat-model" required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let encoderTypeObj of EncoderTypeDD" [value]="encoderTypeObj">{{encoderTypeObj}}
+                </mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.scalerType">
+            <ion-label class="body-label">Scaler</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelscalerType" [(ngModel)]="modelObject.scalerType" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let scalerTypeObj of scalarTypeDD" [value]="scalerTypeObj">{{scalerTypeObj}}
+                </mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.testSize">
+            <ion-label class="body-label">Test Size</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modeltestSize"
+                [(ngModel)]="modelObject.testSize" [appAlphaNumeric]="'positivefloat'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.resetWeights">
+            <ion-label class="body-label">Reset Weights (sec)</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelresetWeights"
+                [(ngModel)]="modelObject.resetWeights" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.encLayers">
+            <ion-label class="body-label">ENC Layers</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width left-margin" placeholder="0, 0" type="text" name="modelencLayers"
+                [(ngModel)]="modelObject.encLayers" [appAlphaNumeric]="'maskNumNoLimit'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.decLayers">
+            <ion-label class="body-label">DEC Layers</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width left-margin" placeholder="0, 0" type="text" name="modeldecLayers"
+                [(ngModel)]="modelObject.decLayers" [appAlphaNumeric]="'maskNumNoLimit'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.cnnActivation">
+            <ion-label class="body-label">CNN Activation</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelcnnActivation" [(ngModel)]="modelObject.cnnActivation" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let cnnActivationObj of cnnActivationDD" [value]="cnnActivationObj">{{cnnActivationObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.convActivation">
+            <ion-label class="body-label">Conv Activation</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelconvActivation" [(ngModel)]="modelObject.convActivation" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let convActivationObj of convActivationDD" [value]="convActivationObj">{{convActivationObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.lstmActivation">
+            <ion-label class="body-label">Lstm Activation</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modellstmActivation" [(ngModel)]="modelObject.lstmActivation" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let lstmActivationObj of lstmActivationDD" [value]="lstmActivationObj">{{lstmActivationObj}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.cnnLayers">
+            <ion-label class="body-label">CNN Layers</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width left-margin" placeholder="0, 0" type="text" name="modelcnnLayers"
+                [(ngModel)]="modelObject.cnnLayers" [appAlphaNumeric]="'maskNumNoLimit'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.convLayers">
+            <ion-label class="body-label">Conv Layers</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width left-margin" placeholder="0, 0" type="text" name="modelconvLayers"
+                [(ngModel)]="modelObject.convLayers" [appAlphaNumeric]="'maskNumNoLimit'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.lstmLayers">
+            <ion-label class="body-label">Lstm Layers</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width left-margin" placeholder="0, 0" type="text" name="modellstmLayers"
+                [(ngModel)]="modelObject.lstmLayers" [appAlphaNumeric]="'maskNumNoLimit'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.filters">
+            <ion-label class="body-label">Filters</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelfilters"
+                [(ngModel)]="modelObject.filters" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.kernelSize">
+            <ion-label class="body-label">Kernel Size</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelkernelSize"
+                [(ngModel)]="modelObject.kernelSize" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.poolsize">
+            <ion-label class="body-label">Pool Size</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width" placeholder="0" type="text" name="modelpoolsize"
+                [(ngModel)]="modelObject.poolsize" [appAlphaNumeric]="'num'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.fcnActivation">
+            <ion-label class="body-label">FCN Activation</ion-label>
+            <div class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <mat-select disableOptionCentering name="modelfcnActivation" [(ngModel)]="modelObject.fcnActivation" class="form-control drop-mat-model"
+                required>
+                <mat-option disabled hidden value="">Select</mat-option>
+                <mat-option *ngFor="let fcnActivation of fcnActivationDD" [value]="fcnActivation">{{fcnActivation}}</mat-option>
+              </mat-select>
+            </div>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15" *ngIf="displayObj.fcnLayers">
+            <ion-label class="body-label">FCN Layers</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-4 col-sm-4 col-xs-12">
+              <input autocomplete="off" maxlength="30" matInput class="input-feild-model form-control text-box-width left-margin" placeholder="0, 0" type="text" name="modelfcnLayers"
+                [(ngModel)]="modelObject.fcnLayers" [appAlphaNumeric]="'maskNumNoLimit'" required>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="col-md-3 col-sm-4 col-xs-12 mar-b-15">
+            <ion-label class="body-label">Job Type</ion-label>
+            <ion-col class="no-padd mat_select_update col-md-8 col-sm-8 col-xs-12">
+              <input autocomplete="off" matInput disabled class="input-feild-model form-control text-box-width2" [placeholder]="defaultJobType" type="text"
+                name="modeljobType" [(ngModel)]="modelObject.jobType" [appAlphaNumeric]="'text'" required>
+            </ion-col>
+          </ion-col>
+
+        </ion-row>
+
+    </div>
+  </div>
+</form>
+</ion-col>

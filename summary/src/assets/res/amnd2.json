@@ -1,0 +1,27 @@
+{
+  "status": "success",
+  "data": {
+    "uid": "60116bdc1b63ef138210b660",
+    "modelId": "60116a601b63ef138210b65e",
+    "scheduleName": "testingmodel2",
+    "jobStatus": "RUNNING",
+    "modelType": "MODELII",
+    "jobType": "EXECUTION",
+    "dataSetName": "alarm_data",
+    "modelName": "testingmodel2_2021-01-15T01:28Z_2021-01-27T13:28Z_Standard_model.sav",
+    "accuracy": "0.09404484374473726",
+    "numberofNormalData": "0",
+    "numberOfAbnormalData": "2910",
+    "timeUsed": "51 seconds",
+    "speed": "2.5666666666",
+    "numberOfRecordsprocessed": "2910",
+    "numberofJobsRunning": "1",
+    "threshold": "0.8",
+    "lossFunction": "Mean Squared Error",
+    "modelConfigName": "model2",
+    "cpuUsage": "0.26",
+    "cpuMemoryUsage": "0.046544647216796874",
+    "gpuUsage": "None",
+    "gpuMemoryUsage": "None"
+  }
+}

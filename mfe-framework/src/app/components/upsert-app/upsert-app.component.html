@@ -1,0 +1,223 @@
+<div *ngIf="!isLoading" class="upsert_main_div" [formGroup]="upsertAppForm">
+
+    <div class="text_div_css">
+        <div class="col_6_css1">
+            <span>
+                <b>Project Details</b>
+            </span>
+        </div>
+        <div class="col_6_css2">
+            <span>
+                <b>Template</b>
+            </span>
+        </div>
+    </div>
+    <div class="dyn_div_css">
+        <div class="div_seperation col_6_css1">
+            <div class="grid_css_view">
+                <div class="col-3">Name :</div>
+                <input autocomplete="off" class="name_input_css form-control" formControlName="name" type="text">
+            </div>
+            <div class="grid_css_view">
+                <div class="col-3">Description :</div>
+                <input autocomplete="off" class="name_input_css form-control" formControlName="description" type="text">
+            </div>
+            <div class="grid_css_view">
+                <div class="col-3">Icon Link :</div>
+                <input autocomplete="off" class="name_input_css form-control" formControlName="iconLink" type="text">
+            </div>
+            <div class="grid_css_view">
+                <div class="col-3">Name Space :</div>
+                <input autocomplete="off" class="name_input_css form-control" formControlName="namespace" type="text">
+            </div>
+            <div class="grid_css_view">
+                <div class="col-3">Label :</div>
+                <input autocomplete="off" class="name_input_css form-control" formControlName="label" type="text">
+            </div>
+            <div class="grid_css_view">
+                <div class="col-3">Is Active :</div>
+                <mat-slide-toggle formControlName="isActive"></mat-slide-toggle>
+            </div>
+            <div class="grid_css_view">
+                <div class="col-3">Rank :</div>
+                <input autocomplete="off" class="name_input_css form-control" formControlName="rank" type="number">
+            </div>
+        </div>
+        <div class="div_seperation col_6_css2">
+            <textarea type="text" class="name_input_css form-control textarea_css"
+                formControlName="template"></textarea>
+        </div>
+    </div>
+    <div class="div_seperation_css">
+        <div class="app_css_text">
+            <span><b>Preload URLs</b></span>
+            <mat-icon class="mat-icon-add">
+                <span (click)="addPreloadControl()" class="remove_css">add_circle_outline</span>
+            </mat-icon>
+            <!-- <span class="plus_icon_css" (click)="addForm()">+</span> -->
+        </div>
+    </div>
+    <div class="div_seperation">
+        <div class="">
+            <div class="css_sub_border_nex" formArrayName="preloadURLS"
+                *ngFor="let mapp of preloadControls(); let i = index;">
+                <div class="second_div_css" [formGroupName]="i">
+                    <div class="proj_first_css">
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Name :</div>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                formControlName="name">
+                        </div>
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">URL :</div>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                formControlName="url">
+                        </div>
+                    </div>
+
+                    <div class="proj_first_css">
+                        <div class="grid_css_view col-6">
+                            <!-- <div class="col-3">Rank :</div>
+                            <input autocomplete="off" class="name_input_css form-control" disabled="true" type="text"formControlName="rank"> -->
+                        </div>
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Is Active :</div>
+                            <mat-slide-toggle formControlName="isActive"></mat-slide-toggle>
+                        </div>
+                    </div>
+
+
+
+                    <div class="proj_second_css">
+                        <div class="grid_css_view col-2 new_remove_css2">
+                            <div class="col_one_css">
+                                <mat-icon class="mat-icon-remove mat-icon-pad-css">
+                                    <span (click)="shiftPreloadControlUp(i)" class="remove_css">north</span>
+                                </mat-icon>
+                                <mat-icon class="mat-icon-remove mat-icon-pad-css">
+                                    <span (click)="shiftPreloadControlDown(i)" class="remove_css">south</span>
+                                </mat-icon>
+                                <mat-icon class="mat-icon-remove mat-icon-pad-css">
+                                    <span (click)="removePreloadControl(i)" class="remove_css">delete_outline</span>
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="div_seperation_css">
+        <div class="app_css_text">
+            <span><b>Micro-App Configurations</b></span>
+            <mat-icon class="mat-icon-add">
+                <span (click)="addDataControl()" class="remove_css">add_circle_outline</span>
+            </mat-icon>
+            <!-- <span class="plus_icon_css" (click)="addForm()">+</span> -->
+        </div>
+    </div>
+    <div class="div_seperation">
+        <div class="">
+            <div class="css_sub_border_nex" formArrayName="microApps"
+                *ngFor="let mapp of dataControls(); let i = index;">
+                <div class="second_div_css" [formGroupName]="i">
+                    <div class="proj_first_css">
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Name :</div>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                formControlName="name">
+                        </div>
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">URL :</div>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                formControlName="url">
+                        </div>
+                    </div>
+                    <div class="proj_first_css">
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Label :</div>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                formControlName="label">
+                        </div>
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">API URL :</div>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                formControlName="apiUrl">
+
+                        </div>
+                    </div>
+
+                    <div class="proj_first_css">
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Is Group :</div>
+                            <mat-slide-toggle (change)="enableGroupName($event.checked, i)" formControlName="isGroup">
+                            </mat-slide-toggle>
+                        </div>
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Group Name :</div>
+                            <input autocomplete="off" class="name_input_css form-control" type="text"
+                                formControlName="groupName">
+
+                        </div>
+                    </div>
+
+                    <div class="proj_second_css">
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Is Landing Page :</div>
+                            <div class="radio_css">
+                                <mat-slide-toggle (change)="resetLandingPage($event.checked, i)"
+                                    formControlName="isLandingPage"></mat-slide-toggle>
+                            </div>
+                        </div>
+                        <div class="grid_css_view col-6">
+                            
+                        </div>
+                    </div>
+                    <div class="proj_first_css">
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Is Navbar :</div>
+                            <div class="radio_css">
+                                <mat-slide-toggle (change)="resetNavbar($event.checked,i)" formControlName="isNavbar">
+                                </mat-slide-toggle>
+                            </div>
+                            </div>
+                        <div class="grid_css_view col-6">
+                            <div class="col-3">Is Active :</div>
+                            <mat-slide-toggle (change)="notifyActivation($event.checked)" formControlName="isActive">
+                            </mat-slide-toggle>
+
+                        </div>
+                    </div>
+
+
+                    <div class="proj_second_css">
+                        <div class="grid_css_view col-2 new_remove_css">
+                            <div class="col_one_css">
+                                <mat-icon class="mat-icon-remove mat-icon-pad-css">
+                                    <span (click)="shiftDataControlUp(i)" class="remove_css">north</span>
+                                </mat-icon>
+                                <mat-icon class="mat-icon-remove mat-icon-pad-css">
+                                    <span (click)="shiftDataControlDown(i)" class="remove_css">south</span>
+                                </mat-icon>
+                                <mat-icon class="mat-icon-remove mat-icon-pad-css">
+                                    <span (click)="removeDataControl(i)" class="remove_css">delete_outline</span>
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="div_seperation_css">
+        <div class="submit_css">
+            <button class="btn btn-primary save_btn" (click)="addNewApp()">{{createAction ? 'Add' : 'Update'}}</button>
+            <button class="btn btn-secondary" (click)="cancelApp()">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,166 @@
+.parent-content{
+    height:100%;
+    width:100%;
+    padding: 20px 18px 10px 40px;
+    /* display: flex; */
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* flex-direction: column; */
+}
+.mat-select-trigger{
+    margin-top: -10% !important;
+}
+
+.wrap-cont{
+    height:0;
+}
+
+.mar-r-20{
+    margin-right: 20px;
+}
+
+.radio-btn{
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--mtsclr-label);
+}
+
+.no-padd{
+    padding:0;
+    }
+    
+    .mar-b-25{
+        margin-bottom: 25px;
+    }
+
+    .mar-l-15{
+margin-left:15px;
+    }
+
+    .save-mod{
+        padding: 0px;
+        border:1.5px solid var(--mtsclr-success-btn);
+        background-color: var(--mtsclr-success-btn);
+        width: 75px;
+    }
+
+    
+    .delete-mod{
+        padding: 0px;
+        border:1.5px solid var(--mtsclr-danger-btn);
+        background-color: var(--mtsclr-danger-btn);
+        width: 75px;
+    }
+
+    .cancel-mod{
+        width: 76px;
+        border:1.5px solid var(--mtsclr-cancel-btn);
+        color: var(--mtsclr-label);
+        padding: 0px;
+    }
+
+    .head-label{
+        font: normal normal normal 18px Segoe UI;
+        color: var(--mtsclr-text);
+    }
+
+    .body-label{
+    font: normal normal 600 14px/20px Segoe UI;
+    color: var(--mtsclr-label);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    }
+
+.drop-mat-model{
+    border-radius: 4px;
+    border: 1px solid var(--mtsclr-feild-border);
+    color: var(--mtsclr-label);
+    height: 32px;
+    width: 209px;
+      }
+.input-feild-model{
+    border: 1px solid var(--mtsclr-feild-border);
+        border-radius: 4px;
+        padding: 6px 12px 6px 12px;
+        color: var(--mtsclr-label);
+      }
+
+      .scroll-view{   
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-right: 40px;
+    
+        }
+    
+
+              /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.main-border {
+    border-top: 1px solid var(--mtsclr-border);
+  }
+
+  /* Media Query starts here */
+// @media (min-width: 1598px) and (max-width: 1928px){
+//     .body-label{
+//         font: normal normal 600 18px Segoe UI;
+//     }
+//     .input-feild-model,.drop-mat-model,.save-mod,.cancel-mod{
+//         font-size: 18px;
+//     }
+// }
+/* Mozila Css Starts Here */
+@-moz-document url-prefix() {
+    @media (min-width: 1598px) and (max-width: 1928px){
+        .body-label{
+            font: normal normal 600 18px Segoe ui regular !important;
+        }
+    }
+}
+
+.mar-b-15 {
+    margin-bottom:15px;
+}
+
+.text-box-width {
+    max-width: 110px;
+}
+
+.text-box-width2{
+    max-width: 240px;
+}
+
+.left-margin {
+    padding-left: 10px !important;
+
+}
+
+.cust-radio-group{
+    display: flex;
+    align-items: center;
+
+    .cust-radio-column{
+        display:flex;
+        align-items: center;
+            }
+        
+            .cust-radio-btn{
+                height: 16px;
+                width: 16px;
+                --color: var(--mtsclr-border);
+                --color-checked: var(--mtsclr-success-btn);;
+            }
+        
+            .cust-radio-label{
+                padding-left: 6px;
+                font-size: 14px
+            }
+}

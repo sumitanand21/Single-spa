@@ -1,0 +1,9 @@
+{
+    "status": "success",
+    "data": [
+        "sgd",
+        "adam",
+        "adadeita",
+        "adagrad"
+    ]
+}

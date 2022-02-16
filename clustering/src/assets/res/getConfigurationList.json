@@ -1,0 +1,11 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            "config1",
+            "config2"
+        ],
+        "status_code": 200
+    }
+      
+}

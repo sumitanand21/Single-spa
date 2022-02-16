@@ -1,0 +1,33 @@
+<ion-row class="parent-content df-col">
+    <ion-row class="corr-header">
+        <app-correlation-header [activeView]="'FeatureCorrelation'" [disableAll]="setDisable"
+            [allDetails]="allCorrelationDetails" (emitOut)="provideInputsToMap($event)"></app-correlation-header>
+    </ion-row>
+    <ion-col class="wrap-cont f-max">
+        <ion-row class="groups-text-margin">
+            <ion-col size="12" class="first_div_css">
+                <ion-row>
+                    <ion-col class="ion-text-end">
+                        <b class="correlate_css">Groups Correlated with </b>
+                    </ion-col>
+                    <ion-col>
+                        <mat-select disableOptionCentering class="form-control mat_css" [(ngModel)]="selecteddata"
+                            (selectionChange)="OnGroupCorrelated()" placeholder="Select">
+                            <mat-option *ngFor="let data of groupsData" [value]="data">{{data}}</mat-option>
+                        </mat-select>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-col size="12" *ngIf="isLoading" class="spinner-div">
+            <mat-progress-spinner color="slategrey" mode="indeterminate">
+            </mat-progress-spinner>
+        </ion-col>
+        <ion-col size="12" class="no-data"
+            *ngIf="!isLoading && chartArrayvalue.negValLength == 0 && chartArrayvalue.posValLength == 0">No Data
+            Available</ion-col>
+        <app-partionedchart
+            *ngIf="!isLoading && !(chartArrayvalue.negValLength == 0 && chartArrayvalue.posValLength == 0)"
+            [chartData]="chartArrayvalue"></app-partionedchart>
+    </ion-col>
+</ion-row>

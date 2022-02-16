@@ -1,0 +1,15 @@
+{
+    "status": "success",
+    "data": [
+        {
+          "modelConfigName": "testmodel2",
+          "modelType": "MODELI",
+          "modelConfigCount": 0
+        },
+        {
+          "modelConfigName": "testmodel3",
+          "modelType": "MODELII",
+          "modelConfigCount": 1
+        }
+      ]
+}

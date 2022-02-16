@@ -1,0 +1,14 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            "ANOMALY DETECTION",
+            "CORRELATION",
+            "CLASSIFICATION",
+            "FORECASTEXECUTION",
+            "SUMMARY"
+        ],
+        "responseType": "",
+        "status_code": 200
+    }
+}

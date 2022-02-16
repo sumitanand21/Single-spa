@@ -1,0 +1,13 @@
+{
+    "status": "success",
+    "data": {
+        "data": [
+            "String",
+            "Int",
+            "Boolean",
+            "Float",
+            "Long"
+        ],
+        "status_code": 200
+    }
+}

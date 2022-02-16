@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-deployment
+spec:
+  selector:
+    matchLabels:
+      app: angular
+  replicas: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: angular
+    spec:
+      containers: 
+        - image: 42402112/sumit2112:latest
+          name: angular
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+          volumeMounts:
+            - name: angularconfigmfe
+              mountPath: /usr/share/nginx/html/assets/angular_conf.json
+              subPath: angular_conf.json
+      volumes:
+        - name: angularconfigmfe
+          configMap:
+            name: angularmfe-config
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-service
+spec:
+  selector:
+    app: angular
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31000
+  type: NodePort

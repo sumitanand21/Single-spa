@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "data": [{"uid": "87f32",
+    "clusteringReason": ["Power Input Fail:Type=BDL1-3R31 > 0.5", "Power Input Fail:Type=BDL1-3R31 > 0.5"],
+    "@timestamp": "2021-08-26T12:05:03Z",
+    "modelName": "savedModel1",
+    "dataSetName": "cluster_alarm",
+    "clusterId": 1,
+    "endTime": "2021-05-20 15:36:16",
+    "startTime": "2021-05-20 15:36:03",
+    "clusterName": "some cluster name",
+    "fromTime": "2021-08-26T12:05:03Z",
+    "jobType": "ASCEXECUTION",
+    "resolution": ["This is a resolution for clusters 1", "This is a resolution for clusters 2", "This is a resolution for clusters 3"],
+    "toTime": "2021-08-31T12:47:13Z"}]
+}

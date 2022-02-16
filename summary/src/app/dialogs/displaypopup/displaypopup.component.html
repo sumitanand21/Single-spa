@@ -1,0 +1,17 @@
+<div class="disp-header d-flex">
+    <div class="width-50">
+        <h4 id="dispHeader" class="disp-title">{{headerText}}</h4>
+    </div>
+    <div class="width-50">
+        <button mat-dialog-close  type="button" class="disp-close" aria-label="Close" id="dispModalClose">
+           &times;
+        </button>
+    </div>
+    </div>
+        <div class="disp-text">                
+                <span>{{textmsg}}</span>
+        </div>
+        <div class="d-flex disp-footer">
+            <button *ngIf="dispCancel" type="button" id="canceldispBtn" class="shadowbtn btn btn-default cancel-disp" aria-label="Close" mat-dialog-close>Cancel</button>
+            <button type="button" id="actiondispBtn" class="shadowbtn btn save-mod action-disp mar-l-15" [ngClass]="(buttonText =='Delete') ? 'btn-danger':'btn-primary'" aria-label="Close" (click)="returnvalue()">{{buttonText}}</button>
+        </div>

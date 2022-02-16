@@ -1,0 +1,21 @@
+<header class="mfe-nav-header">
+    <div class="mfe-nav-wrap">
+        <!-- <input autocomplete="off" type="checkbox" id="nav-check"> -->
+        
+        <!-- <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div> -->
+        
+        <div *ngFor="let item of features" class="mfe-nav-link-wrap">
+            <a  (click)="navigateTo(item.routerLink, item)" [routerLink]="item.routerLink" routerLinkActive="active" class="mfe-nav-link">{{item.label}}</a> 
+         </div>
+         <div class="mfe-nav-grow-div"></div>
+  
+    </div>
+  </header>
+      
+  

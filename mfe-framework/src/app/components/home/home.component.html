@@ -1,0 +1,17 @@
+<div class="mfe-home-body_css">
+<div class="mfe-home-body_wrap">
+<mat-card class="mfe-home-project-card" *ngFor="let dataList of listData" (click)="loadApp(dataList)">
+	<mat-card-header #tooltip="matTooltip"
+                 
+                  
+    [matTooltip]="dataList.description"
+    matTooltipPosition="below"
+    matTooltipClass="example-tooltip-red"  class="mfe-home-card-header">
+		<mat-card-title class="mfe-home-title">{{dataList.name}}</mat-card-title>
+		<!-- <mat-card-subtitle class="mfe-home-subtitle">{{dataList.namespace}}</mat-card-subtitle> -->
+	</mat-card-header>
+</mat-card>
+
+</div>
+
+</div>

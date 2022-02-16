@@ -1,0 +1,33 @@
+<div class="toasts-container">
+  <div class="row {{message.style}}" *ngFor="let message of messages; index as i">
+    <div class="col-xl-11" *ngIf="message.style=='info'">
+      <div class="alert alert-info alert-dismissible" *ngIf="!message.dismissed">
+        {{message.content}}
+        <p (click)="dismiss(i)" class="close-margin">x</p>
+      </div>
+    </div>
+    <div class="col-xl-11" *ngIf="message.style=='success'">
+      <div class="alert alert-success alert-dismissible" *ngIf="!message.dismissed">
+        {{message.content}}
+        <p (click)="dismiss(i)" class="close-margin">x</p>
+        <!-- <span class="fa fa-close" (click)="dismiss(i)"></span> -->
+      </div>
+    </div>
+    <div class="col-xl-11" *ngIf="message.style=='error'">
+      <div class="alert alert-danger alert-dismissible" *ngIf="!message.dismissed">
+        {{message.content}}
+        <p (click)="dismiss(i)" class="close-margin">x</p>
+        <!-- <span class="fa fa-close" (click)="dismiss(i)"></span> -->
+      </div>
+    </div>
+    <div class="col-xl-11" *ngIf="message.style=='warning'">
+      <div class="alert alert-danger alert-dismissible" *ngIf="!message.dismissed">
+        {{message.content}}
+        <p (click)="dismiss(i)" class="close-margin">x</p>
+        <!-- <span class="fa fa-close" (click)="dismiss(i)"></span> -->
+      </div>
+    </div>
+    
+  </div>
+
+</div>

@@ -1,0 +1,169 @@
+<ion-row class="modal-header">
+    <ion-text class="modal-title new_sch">Model Configuration </ion-text>
+        <ion-icon aria-hidden="false" class="close-ion-icon" mat-dialog-close aria-label="Close" id="editModalClose" [src]="forecastService.createSvgUrl('close.svg')"></ion-icon>
+</ion-row>
+
+<ion-row *ngIf="isLoading" class="forecast-dialog-spinner-div" lines="none">
+    <mat-progress-spinner color="slategrey" mode="indeterminate">
+    </mat-progress-spinner>
+    <!-- <ion-spinner color="slategrey" name="bubbles" mode="indeterminate"></ion-spinner> -->
+</ion-row>
+
+<ion-row  *ngIf="!isLoading" class="modal_article_css">
+
+    <ion-row class="container flex_contian_css bottom-margin">
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12">
+            <ion-label class="date_label_css">Name</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard" id="modelConfigName">{{selectedModelObject.modelConfigName}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12">
+            <ion-label class="date_label_css">Lstm Type</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard" id="lstmType">{{selectedModelObject.lstmType}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.blockUnits !== ''">
+            <ion-label class="date_label_css">Block Unit</ion-label>
+            <p class="edit_forecast_css ion-text-standard">{{selectedModelObject.blockUnits}}</p>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.batchSize !== ''">
+            <ion-label class="date_label_css">Batch size</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.batchSize}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.epochs !== ''">
+            <ion-label class="date_label_css">Epochs</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.epochs}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.layers !== ''">
+            <ion-label class="date_label_css">Layers</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.layers}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.dropout !== ''">
+            <ion-label class="date_label_css">Dropout</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.dropout}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.activation !== ''">
+            <ion-label class="date_label_css">Activation</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.activation}}</ion-text>
+        </ion-col>
+        <!-- <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.innerActivation !== ''">
+            <ion-label class="date_label_css">Inner Activation</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.innerActivation}}</ion-text>
+        </ion-col> -->
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.loss !== ''">
+            <ion-label class="date_label_css">Loss</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.loss}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.metrics !== ''">
+            <ion-label class="date_label_css">Metrics</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.metrics}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.optimizer !== ''">
+            <ion-label class="date_label_css">Optimizer</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.optimizer}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.stateful !== ''">
+            <ion-label class="date_label_css">State</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.stateful}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.l1L2 !== ''">
+            <ion-label class="date_label_css">L1, L2</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.l1L2}}</ion-text>
+        </ion-col>
+        <!-- <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.l1L2 !== ''">
+            <ion-label class="date_label_css">L2</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.L2}}</ion-text>
+        </ion-col> -->
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.nlags !== ''">
+            <ion-label class="date_label_css">nlags</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.nlags}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.nleads !== ''">
+            <ion-label class="date_label_css">nleads</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.nleads}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.exclude !== ''">
+            <ion-label class="date_label_css">Exclude</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.exclude}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.groupBy !== ''">
+            <ion-label class="date_label_css">GroupBy</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.groupBy}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.encoderType !== ''">
+            <ion-label class="date_label_css">Encoder</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.encoderType}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.scalerType !== ''">
+            <ion-label class="date_label_css">Scaler</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.scalerType}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.testSize !== ''">
+            <ion-label class="date_label_css">Test Size</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.testSize}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.resetWeights !== ''">
+            <ion-label class="date_label_css">Reset Weights (sec)</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.resetWeights}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.encLayers !== ''">
+            <ion-label class="date_label_css">ENC Layers</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.encLayers}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.decLayers !== ''">
+            <ion-label class="date_label_css">DEC Layers</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.decLayers}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.cnnActivation !== ''">
+            <ion-label class="date_label_css">CNN Activation</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.cnnActivation}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.convActivation !== ''">
+            <ion-label class="date_label_css">Conv Activation</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.convActivation}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.lstmActivation !== ''">
+            <ion-label class="date_label_css">Lstm Activation</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.lstmActivation}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.cnnLayers !== ''">
+            <ion-label class="date_label_css">CNN Layers</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.cnnLayers}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.convLayers !== ''">
+            <ion-label class="date_label_css">Conv Layers</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.convLayers}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.lstmLayers !== ''">
+            <ion-label class="date_label_css">Lstm Layers</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.lstmLayers}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.filters !== ''">
+            <ion-label class="date_label_css">Filters</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.filters}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.kernelSize !== ''">
+            <ion-label class="date_label_css">Kernel Size</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.kernelSize}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.poolsize !== ''">
+            <ion-label class="date_label_css">Pool Size</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.poolsize}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.fcnActivation !== ''">
+            <ion-label class="date_label_css">FCN Activation</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.fcnActivation}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12" *ngIf="selectedModelObject.fcnLayers !== ''">
+            <ion-label class="date_label_css">FCN Layers</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.fcnLayers}}</ion-text>
+        </ion-col>
+        <ion-col class="display_flex_css col-md-3 col-sm-4 col-xs-12">
+            <ion-label class="date_label_css">Job Type</ion-label>
+            <ion-text class="edit_forecast_css ion-text-standard">{{selectedModelObject.jobType}}</ion-text>
+        </ion-col>
+        
+    </ion-row>
+</ion-row>
+
+<ion-row class="modal-footer footer_css">
+    <ion-button type="button" class="shadowbtn btn Css_butn ion-noncap-button done-button" aria-label="Close" mat-dialog-close>Done</ion-button>
+</ion-row>

@@ -1,0 +1,4 @@
+{
+  "status": "success",
+  "data": {"jobType":"msg.jobType","uid":"msg.uid","status":"accepted"}
+}

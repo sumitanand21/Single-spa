@@ -1,0 +1,176 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "job_type": "ANOMALYTRAINING1",
+      "modelConfigName": "log_alarm_data",
+      "dataRange": "06",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634743443,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943280,
+        "time": 1634743443000,
+        "date": "2021-10-20T15:24:03.000+0000",
+        "timeSecond": 1634743443
+      },
+      "schedule_name": "am1",
+      "schedule_id": "6170349339628d00014b6db0",
+      "frequency": "months"
+    },
+    {
+      "job_type": "ASCTRAINING",
+      "modelConfigName": "alarm_storm_data",
+      "dataRange": "06",
+      "dataSetName": "example_raw_data",
+      "schedule_status": "SCHEDULED",
+      "_id": {
+        "timestamp": 1634743562,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943282,
+        "time": 1634743562000,
+        "date": "2021-10-20T15:26:02.000+0000",
+        "timeSecond": 1634743562
+      },
+      "schedule_name": "asc",
+      "schedule_id": "6170350a39628d00014b6db2",
+      "frequency": "months"
+    },
+    {
+      "job_type": "ANOMALYTRAINING2",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "06",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634791580,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943283,
+        "time": 1634791580000,
+        "date": "2021-10-21T04:46:20.000+0000",
+        "timeSecond": 1634791580
+      },
+      "schedule_name": "am2_new",
+      "schedule_id": "6170f09c39628d00014b6db3",
+      "frequency": "months"
+    },
+    {
+      "job_type": "ANOMALYTRAINING1",
+      "modelConfigName": "log_alarm_data",
+      "dataRange": "5",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634802694,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943284,
+        "time": 1634802694000,
+        "date": "2021-10-21T07:51:34.000+0000",
+        "timeSecond": 1634802694
+      },
+      "schedule_name": "AT1_1",
+      "schedule_id": "61711c0639628d00014b6db4",
+      "frequency": "hours"
+    },
+    {
+      "job_type": "ANOMALYTRAINING2",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "16",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634806062,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943285,
+        "time": 1634806062000,
+        "date": "2021-10-21T08:47:42.000+0000",
+        "timeSecond": 1634806062
+      },
+      "schedule_name": "AT2_1",
+      "schedule_id": "6171292e39628d00014b6db5",
+      "frequency": "hours"
+    },
+    {
+      "job_type": "ANOMALYTRAINING2",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "01",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634806841,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943286,
+        "time": 1634806841000,
+        "date": "2021-10-21T09:00:41.000+0000",
+        "timeSecond": 1634806841
+      },
+      "schedule_name": "AT2_1_2",
+      "schedule_id": "61712c3939628d00014b6db6",
+      "frequency": "hours"
+    },
+    {
+      "job_type": "ANOMALYTRAINING1",
+      "modelConfigName": "log_alarm_data",
+      "dataRange": "01",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634807270,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943287,
+        "time": 1634807270000,
+        "date": "2021-10-21T09:07:50.000+0000",
+        "timeSecond": 1634807270
+      },
+      "schedule_name": "AT1_1_2",
+      "schedule_id": "61712de639628d00014b6db7",
+      "frequency": "years"
+    },
+    {
+      "job_type": "ANOMALYTRAINING1",
+      "modelConfigName": "log_alarm_data",
+      "dataRange": "01",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634813104,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943288,
+        "time": 1634813104000,
+        "date": "2021-10-21T10:45:04.000+0000",
+        "timeSecond": 1634813104
+      },
+      "schedule_name": "am1_dont_delete",
+      "schedule_id": "617144b039628d00014b6db8",
+      "frequency": "years"
+    },
+    {
+      "job_type": "ANOMALYTRAINING2",
+      "modelConfigName": "log_alarm_data2",
+      "dataRange": "01",
+      "dataSetName": "log_alarm_data",
+      "schedule_status": "COMPLETED",
+      "_id": {
+        "timestamp": 1634813152,
+        "machineIdentifier": 3760781,
+        "processIdentifier": 1,
+        "counter": 4943289,
+        "time": 1634813152000,
+        "date": "2021-10-21T10:45:52.000+0000",
+        "timeSecond": 1634813152
+      },
+      "schedule_name": "am2_dont_delete",
+      "schedule_id": "617144e039628d00014b6db9",
+      "frequency": "years"
+    }
+  ]
+}

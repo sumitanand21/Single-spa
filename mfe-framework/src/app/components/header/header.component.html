@@ -1,0 +1,83 @@
+<!-- <div class="header">
+    <nav>
+      <mat-icon class="mat-icon-css" [routerLink]="['/container']" ><img class="sidebar-img-icon"  src="assets/icons/spa.svg"   /></mat-icon>
+       </nav>
+  </div> -->
+
+
+<!-- 
+  <div class="header-section">
+    <mat-toolbar class="mat-elevation-z4 header-alignment row">
+      <div class="logo-box col-6">
+        <mat-icon class="mat-icon-css" [routerLink]="['/container']" ><img class="sidebar-img-icon"  src="assets/icons/spa.svg"   /></mat-icon>
+   </div>
+      <div class="action-box col-6">
+        
+  
+  
+  
+        <div class="profile-box">
+  
+          
+          <div class="nw-speed-icon" [ngClass]="networkSpeedStatus ? 'goodSpeed' : 'slowSpeed'">
+            <em class="material-icons">
+              wifi
+            </em>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+
+ -->
+<mat-toolbar class="spa-header">
+  <mat-toolbar-row class="spa_head_tb_row mfe-header-toolbar-row">
+    <button mat-icon-button (click)="toggleSideNav()" [routerLink]="['/container']">
+      <mat-icon class="spa-menu-icon"><img class="profile-img-icon"  src="assets/icons/icons8-home-50-white.png"   />
+      </mat-icon>
+      <!-- <mat-icon class="spa-menu-icon">menu</mat-icon> -->
+    </button>
+    <!-- <span class="spa_tile_text" [routerLink]="['/container']">MFE FRAMEWORK</span> -->
+    <span class="spa_tile_text1" *ngIf="spaService.projectName"> {{spaService.projectName}}</span>
+    <!-- <span class="spa_tile_text2" *ngIf="spaService.appName" > | {{spaService.appName}}</span> -->
+    <span class="spa-menu-spacer">
+      <div class="spa-user-det">
+        <span fxShow="true" fxHide.lt-sm="true" class="profile-box-UTC">
+          {{currentDate | date:'yyyy-MM-dd HH:mm:ss'}} UTC &nbsp;
+        </span>
+        <span class="profile-box-fujitsu">
+          <mat-icon class="mat-icon-css"><img class="profile-img-icon-fujitsu"  src="assets/icons/fujitsu.png" />
+          </mat-icon>
+
+        </span>
+        <span class="profile-box-user-details" [matMenuTriggerFor]="userDetails" #userDetMenuTrigger="matMenuTrigger">
+          <div class="spa-user-details">
+            {{getFirstChar(user)}}
+          </div>
+          <!-- <mat-icon class="mat-icon-css"  ><img class="profile-img-icon"  src="assets/icons/icons8-user-50.png"   /></mat-icon> -->
+
+        </span>
+
+        <mat-menu #userDetails="matMenu" class="mfe-head-user_menu" xPosition="before">
+          <div class="mfe-head-user-menu-wrap" (click)="$event.stopPropagation();"
+            (keydown.tab)="$event.stopPropagation()">
+            <div class="mfe-head-menu-name">{{user}}</div>
+            <div class="mfe-head-menu-email" *ngIf="userProfile && userProfile.email">{{userProfile.email}}</div>
+            <div class="mfe-head-menu-icon">
+              <span class="mfe-head-menu-icon-wrap">
+                <mat-icon class="mat-icon-css" title="Sign Out" (click)="logOut()"><img class="mfe-head-icon"
+                     src="assets/icons/icons8-exit-50.png" /></mat-icon>
+                <a [href]="keyCloakInstance.authServerUrl" target="_blank" (click)="openKeyCloak()">
+                  <mat-icon title="keycloak configuration" class="mat-icon-css"><img class="mfe-head-icon"
+                       src="assets/icons/icons8-settings-50.png" /></mat-icon>
+                </a>
+
+              </span>
+            </div>
+          </div>
+        </mat-menu>
+
+      </div>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>

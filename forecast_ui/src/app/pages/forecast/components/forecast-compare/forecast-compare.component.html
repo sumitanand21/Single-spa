@@ -1,0 +1,174 @@
+<ion-col class="parent-content df-col">
+
+    <ion-row *ngIf="isLoading" class="spinner-div" lines="none">
+        <mat-progress-spinner color="slategrey" mode="indeterminate">
+        </mat-progress-spinner>
+        <!-- <ion-spinner color="slategrey" name="bubbles" mode="indeterminate"></ion-spinner> -->
+    </ion-row>
+
+    <ion-grid *ngIf="!isLoading" class="wrap-cont f-max">
+        <ion-grid class="d-flex btn-head">
+            <ion-label class="view-text">View : </ion-label>
+            <ion-button class="shadowbtn view-btn ion-white-button" [ngClass]="!stackView? 'active-btn' : ''" type="button" (click)="toggleView(false)">
+                <ion-label class="btn-icon">
+                    <!-- <span class="line-v"></span> -->
+                  <!-- <span class="line-h"></span> -->
+                    <!-- <i class="fa fa-square" aria-hidden="true"></i> -->
+                    <ion-icon aria-hidden="false" class="view_agenda_mat" [src]="forecastService.createSvgUrl('grid-sharp.svg')"></ion-icon>
+                    <!-- <mat-icon aria-hidden="false" class="view_agenda_mat" aria-label="view_agenda icon">view_agenda</mat-icon> -->
+                </ion-label>
+                <ion-text class="ion-text-font">Compact</ion-text>
+            </ion-button>
+
+            <ion-button class="shadowbtn view-btn ion-white-button" [ngClass]="stackView? 'active-btn' : ''" type="button" (click)="toggleView(true)">
+                <span class="btn-icon">
+                    <span class="line-h"></span>
+                    <!-- <i class="fa fa-square" aria-hidden="true"></i> -->
+                    <ion-icon aria-hidden="false" class="view_agenda_mat" [src]="forecastService.createSvgUrl('square-sharp.svg')">
+                  
+                    </ion-icon>
+                    <!-- <mat-icon aria-hidden="false" class="view_agenda_mat" aria-label="view_agenda icon">view_agenda</mat-icon> -->
+                </span>
+                <ion-text class="ion-text-font">Stack</ion-text>
+            </ion-button>
+        </ion-grid>
+
+        <ion-row class="d-flex btn-head" *ngIf="displayError || displayNoRecord">
+            <ion-label class="view-text" *ngIf="displayError">Error occured, Please try again later </ion-label>
+            <ion-label class="view-text" *ngIf="displayNoRecord">No Data Available </ion-label>
+        </ion-row>
+
+        <ion-row class="row outer-row">
+            <ion-col class="compareSet no-padd" [ngClass]="!stackView ? 'col-md-6 mar-b-60' : 'col-md-12 mar-b-30'"
+                *ngFor="let compare of compareProcess;let i=index">
+
+
+                <ion-row class="row out-main-row"  [ngClass]="{'d-flex-end': !stackView && (i%2 != 0)}">
+                    <ion-grid class="compare-main no-padd pull-right"
+                        [ngClass]="!stackView ? 'col-md-11' : 'col-md-12'">
+
+                        <ion-row class="compare-head">
+                            <ion-col class="col-11 no-padd comp-name"> {{compare.dataId}}</ion-col>
+                            <ion-col class="col-1 no-padd comp-name">
+                                <ion-button fill="clear" class="btn-close clear-button" (click)="removeCompareProcess(compare)"><ion-icon aria-hidden="false" aria-label="clear" [src]="forecastService.createSvgUrl('close.svg')">clear</ion-icon></ion-button>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-grid class="compare-body">
+                            <mat-tab-group class="compare-tab" mat-align-tabs="start">
+                                <mat-tab label="Graph">
+                                    <ion-grid class="graph-tab">
+                                        <ion-grid class="outer-graph-frame">
+                                        <iframe id="myFrame{{i}}" class="graph-frame" [src]="compare.graphUrl" ></iframe>
+                                    </ion-grid>
+                                        <ion-row class="row graph-row">
+                                            <ion-col class="col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                <ion-row class="body-label row-padding">Model Configuration</ion-row>
+                                                <ion-row class="data-label">{{compare.modelConfigName}}</ion-row>
+                                            </ion-col>
+                                            <ion-col  class="col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                <ion-row class="body-label row-padding">Loss Function</ion-row>
+                                                <ion-row class="data-label">{{compare.lossFunction}}</ion-row>
+                                            </ion-col>
+                                            <ion-col  class="col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                <ion-row class="body-label row-padding">Time Series Type</ion-row>
+                                                <ion-row class="data-label">{{compare.timeseriesType}} </ion-row>
+                                            </ion-col>
+                                            <ion-col  class="col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                <ion-row class="body-label row-padding">Loss Value</ion-row>
+                                                <ion-row class="data-label">{{compare.lossValue}}</ion-row>
+                                            </ion-col>
+                                        </ion-row>
+                                </ion-grid>
+                                </mat-tab>
+                                <mat-tab label="Detail Specs">
+                                        <ion-grid class="detail-tab">
+                                            <ion-row class="row detail-tab-body">
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Data Sets</ion-row>
+                                                    <ion-row class="data-label">{{compare.dataSetName}}</ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Data Frequency</ion-row>
+                                                    <ion-row class="data-label">{{compare.dataFrequency}}</ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Data Range</ion-row>
+                                                    <ion-row class="data-label">Min: {{compare.minDataRange }}  &nbsp;&nbsp;  Max: {{compare.maxDataRange}} </ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Time For Forward Prediction</ion-row>
+                                                    <ion-row class="data-label">{{compare.timeForForwardPrediction}}</ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">CPU usage</ion-row>
+                                                    <ion-row class="data-label">
+                                                        <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                                             [value]="(compare.cpuUsage)"></ion-progress-bar>
+                                                    </ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Memory Usage</ion-row>
+                                                    <ion-row class="data-label">
+                                                        <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                                              [value]="(compare.memoryUsage)"></ion-progress-bar>
+                                                    </ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">GPU Usage</ion-row>
+                                                    <ion-row class="data-label">
+                                                        <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                                            mode="determinate"  [value]="(compare.gpuUsage)"></ion-progress-bar>
+                                                    </ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">GPU Memory Usage</ion-row>
+                                                    <ion-row class="data-label">
+                                                        <ion-progress-bar class="col-9 no-padd specs-progress-bar"
+                                                            mode="determinate"  [value]="(compare.gpuMemoryUsage)"></ion-progress-bar>
+                                                    </ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Speed</ion-row>
+                                                    <ion-row class="data-label">{{compare.speed}}</ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Number of Jobs Running</ion-row>
+                                                    <ion-row class="data-label">{{compare.numberOfJobRunning}}</ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Time of Running</ion-row>
+                                                    <ion-row class="data-label">{{compare.timeOfRunning}} </ion-row>
+                                                </ion-col>
+
+                                                <ion-col class="mar-b-12 col-6 box-body" [ngClass]="!stackView ? 'col-md-6' : 'col-md-3'">
+                                                    <ion-row class="body-label row-padding">Number of Records Processed</ion-row>
+                                                    <ion-row class="data-label">{{compare.numberofRecordsProcessed}}</ion-row>
+                                                </ion-col>
+    
+                                            </ion-row>
+                                     
+                                    </ion-grid>
+                                    
+                                </mat-tab>
+                            </mat-tab-group>
+                        </ion-grid>
+
+
+                    </ion-grid>
+                </ion-row>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-col>

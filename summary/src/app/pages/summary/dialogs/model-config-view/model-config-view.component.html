@@ -1,0 +1,221 @@
+<ion-row class="df-col df_css">
+    <ion-col class="model-head">
+    <ion-col>{{data.modelConfigName}}
+    </ion-col>
+    <button mat-dialog-close  type="button" class="disp-close" aria-label="Close" id="ModalClose">
+        &times;
+     </button>
+    </ion-col>
+        
+        <ion-row size="12" class="model-body f-max">
+    
+            <ion-col *ngIf="detailLoader" class="spinner-div" >
+                <mat-progress-spinner color="slategrey" mode="indeterminate">
+                </mat-progress-spinner>
+            </ion-col>
+
+            <ion-col class="row no-mar" *ngIf="checkifObjectExist() == false && !detailLoader">
+                <ion-col class="no-padd mar-b-25" size="6">
+                    <ion-label class="head-label">Model configuration not available</ion-label>
+                  </ion-col>
+    
+            </ion-col>
+            
+            <ion-row *ngIf="checkifObjectExist() == true && !detailLoader" class="config_css">
+                 <ion-col class="row no-mar">
+                    <ion-col size="3" class="mar-b-25 conf_css">
+                        <ion-label class="body-label">Configuration Name</ion-label>
+                        <ion-col class="data-label">{{selectedModelObject.modelConfigName}}</ion-col>
+                    </ion-col>
+              
+                        <ion-col size="3" class=" col-xs-12 mar-b-25 conf_css">
+                        <ion-label class="body-label">Job Type</ion-label>
+                        <ion-col class="data-label">{{selectedModelObject.jobType}}</ion-col>
+                        </ion-col>
+              
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.encoder">
+                            <ion-label class="body-label">Encoder</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.encoder}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.scaler">
+                            <ion-label class="body-label">Scalar</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.scaler}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.optimizer">
+                            <ion-label class="body-label">Optimizer</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.optimizer}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.activation">
+                            <ion-label class="body-label">Activation</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.activation}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.decoder_activation">
+                            <ion-label class="body-label">Decoder_activation</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.decoder_activation}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.loss">
+                            <ion-label class="body-label">Loss</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.loss}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.epochs">
+                            <ion-label class="body-label">Epochs</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.epochs}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.p_components">
+                            <ion-label class="body-label">p_components</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.p_components}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.dropout">
+                            <ion-label class="body-label">Dropout</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.dropout}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.l1L2">
+                            <ion-label class="body-label">L1, L2</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.l1L2}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="col-xs-12 mar-b-25 conf_css" *ngIf="selectedModelObject.batchSize">
+                            <ion-label class="body-label">Batch Size</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.batchSize}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.metrics">
+                            <ion-label class="body-label">Metrics</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.metrics}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.krange">
+                            <ion-label class="body-label">K Range</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.krange}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.desiredVariance">
+                            <ion-label class="body-label">Desired Variance</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.desiredVariance}}</ion-col>
+                        </ion-col>
+
+                        <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.nodes">
+                            <ion-label class="body-label">Node List</ion-label>
+                            <ion-col class="data-label">{{selectedModelObject.nodes}}</ion-col>
+                        </ion-col>
+
+                        <ion-col class=""size="12" >
+                            <ion-row class="data-set-border"></ion-row>
+                         </ion-col>
+              
+                    </ion-col>
+    
+    <ion-col class="row no-mar css_row_view">
+        <ion-row>
+            <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.dataSetName">
+                <ion-label class="body-label">Data Set</ion-label>
+                <ion-col class="data-label">{{selectedModelObject.dataSetName}}</ion-col>
+            </ion-col>
+        
+            <ion-col size="3" class="mar-b-25 conf_css" *ngIf="selectedModelObject.uniqueFeature">
+               <ion-label class="body-label">Unique Feature</ion-label>
+               <ion-col class="data-label">{{selectedModelObject.uniqueFeature}}</ion-col>
+            </ion-col>
+        </ion-row>
+        
+        <ion-row size="12" class="mar-b-25">
+        <ion-col class="outer-row">
+                    <mat-tab-group class="feature-tab" (selectedTabChange)="onFeatureTabChanged($event);" mat-align-tabs="start">
+                        <mat-tab label="Xfeature List({{selectedModelObject.xfeatureList.length}})">
+                        <ion-row size="12" class="no-padd outer_css_view">
+                                <span>
+                                    <ion-icon aria-hidden="false" class="search_mat" aria-label="search icon" [src]="summaryService.createSvgUrl('search-outline.svg')"></ion-icon>
+                                    <input autocomplete="off" matInput class="input-feild-search form-control" placeholder="Search" type="text" [(ngModel)]="xFeatureSearch">
+                                </span>
+                        </ion-row>
+                            <ion-row class="feature-tab-list" size="12">
+                                <ion-col class="row no-mar">
+                            
+                                    <ion-col size="6" class="" *ngFor="let xfeature of selectedModelObject.xfeatureList | filter:xFeatureSearch">
+                                   <ul class="tab-ul">
+                                        <li class="tab-li">
+                                        <span class="tab-data-label">{{xfeature.name}}</span>
+                                    </li>
+                                </ul>
+                                   
+                                    </ion-col>
+                               
+                                </ion-col>
+                        </ion-row>
+                        </mat-tab>
+    
+                        <mat-tab label="Training Filters({{selectedModelObject.trainingFilter.length}})">
+                            <ion-row class="no-padd outer_css_view">
+                                    <span>
+                                        <ion-icon aria-hidden="false" class="search_mat" aria-label="search icon" [src]="summaryService.createSvgUrl('search-outline.svg')"></ion-icon>
+                                        <input autocomplete="off" matInput class="input-feild-search form-control" placeholder="Search" type="text" [(ngModel)]="trainFilterSearch">
+                                    </span>
+                            </ion-row>
+                                <ion-row class="feature-tab-list" size="12">
+                                    <ion-col class="row no-mar">
+                                
+                                        <ion-col size="6" class="" *ngFor="let trainFilter of selectedModelObject.trainingFilter | filter:trainFilterSearch">
+                                       <ul class="tab-ul">
+                                            <li class="tab-li">
+                                            <span class="tab-data-label">{{trainFilter.name}}</span>
+                                        </li>
+                                    </ul>
+                                       
+                                        </ion-col>
+                                   
+                                    </ion-col>
+                            </ion-row>
+                            </mat-tab>
+    
+                            <mat-tab label="String Features({{selectedModelObject.stringFeatures.length}})">
+                                <ion-row class="no-padd outer_css_view">
+                                        <span>
+                                            <ion-icon aria-hidden="false" class="search_mat" aria-label="search icon" [src]="summaryService.createSvgUrl('search-outline.svg')"></ion-icon>
+                                            <input autocomplete="off" matInput class="input-feild-search form-control" placeholder="Search" type="text" [(ngModel)]="strFeatureSearch">
+                                        </span>
+                                </ion-row>
+                                    <ion-row class="feature-tab-list" size="12">
+                                        <ion-col class="row no-mar">
+                                    
+                                            <ion-col class=""size="6"  *ngFor="let strfeature of selectedModelObject.stringFeatures | filter:strFeatureSearch">
+                                           <ul class="tab-ul">
+                                                <li class="tab-li">
+                                                <span class="tab-data-label">{{strfeature.name}}</span>
+                                            </li>
+                                        </ul>
+                                           
+                                            </ion-col>
+                                       
+                                        </ion-col>
+                                </ion-row>
+                                </mat-tab>
+                     
+                    </mat-tab-group>
+             
+    
+    
+           
+        </ion-col>
+    
+    </ion-row>
+    
+    
+    </ion-col>
+    
+                </ion-row>
+        </ion-row>
+    
+    <ion-col class="model-foot">
+        <button type="button" class="shadowbtn done-btn" mat-dialog-close>Done</button>
+    </ion-col>
+</ion-row>
+    

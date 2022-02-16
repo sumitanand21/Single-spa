@@ -1,0 +1,361 @@
+header {
+    background-color: #E80B1C;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    height: auto;
+    width: 100%;
+    z-index: 10;
+}
+.second_div{
+    margin: 8% 0% 0% 0%;
+}
+.title_css{
+    float: right;
+    margin-right: 7%;
+	padding-bottom: 2px;
+}
+section {
+    display: -webkit-flex;
+    display: flex;
+    background: gray;
+}
+article{
+    margin: 8% 0% 0% 15%;
+    background: white;
+    padding: 25px;
+}
+nav {
+    background: #FFFFFF;
+    /* margin-top: 50px;
+    position: fixed;
+    height: 100%;
+    z-index: 10; */
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #FDFDFD;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
+  
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    width: 200px;
+}  
+ul li a{
+    color:#141836;
+    font-size: 15px;
+    margin: 0 10%;
+}
+li a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+ul .hover_css:hover{
+    background:#000000;
+}
+a.active { 
+    color: #3B73B7 !important;
+    font-weight:bolder;
+    /* padding: 42px;
+    border-bottom: 3px solid;
+    margin: -2% 0% 2% 0% !important; */
+    /* border-bottom: 2px solid #3B73B7; */
+}
+nav a {
+    color: #111111;
+    height: 60px;
+    padding: 10px;
+    width: 200px;
+}
+img{
+    padding: 0px 10px 13px 0px;
+}
+.ai_ml{
+    float: left;
+    font-size: 20px;
+    padding: 5px;
+    font-weight: 400;
+    top: 14px;
+    left: 15px;
+    width: 160px;
+    height: 40px;
+    margin-top: -3px;
+}
+.sub-header{
+  font-size: 22px;
+    float: left;
+    height: 32px;
+    font-family: Segoe UI;
+    color: black !important;
+    padding: 0px 44px;
+}
+li{
+    cursor:pointer;
+}
+a:hover{
+    background-color: transparent !important;
+}
+.icon_css{
+    padding-right:20px;
+}
+.drop_css_ui{
+    float: left;
+    top: 17px;
+    margin-top: -5px;
+    left: 209px;
+    width: 118px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 1px solid #E9E9F0;
+    border-radius: 4px;
+    opacity: 1;
+    font-size: 13px;
+    padding-left: 0px;
+  
+}
+.head_sub_css{
+    margin: 1%;
+}
+.img_fa_css{
+    padding: 5px;
+}
+
+/* Header nav bar css Starts Here */
+.nav-links{
+    width: 100%;
+    border-bottom: 1px solid var(--mtsclr-main-border);
+    height: auto;
+    top: 70px;
+    margin-top: 10px;
+}
+  .nav {
+    /* height: 50px; */
+    width: 100%;
+    background-color: #FFFFFF;
+    position: relative;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .nav > .nav-btn {
+    display: none;
+  }  
+  a.active { 
+    font: normal normal bold 24px/32px Segoe UI;
+    letter-spacing: 0px;
+    color: #3B73B7;
+    opacity: 1;
+    border-bottom:2px solid;  
+    padding-bottom:40px;
+  }
+
+  .nav > .nav-links > a {
+    text-decoration: none;
+    margin: 0.5% 0% 0% 0%;
+    width: 15%;
+    color: #111111;
+  }
+  
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}  
+.nav > #nav-check {
+  display: none;
+}  
+@media (min-width:925px) and (max-width:1110px){
+  .sub-header{
+      font-size: 20px;
+      font-weight: 600;
+  }
+  .nav >.nav-links >a{
+    padding-bottom:40px;       
+  }
+}
+@media (min-width:601px) and (max-width:924px){
+  .sub-header{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 3px; 
+  }
+  .nav >.nav-links > a{
+    padding-bottom: 29px;
+  }      
+}
+
+  @media (max-width:600px) {
+    .nav > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      height: 100%;
+      cursor: pointer;
+    }
+    .nav > .nav-btn > label {
+      display: inline-block;
+      width: auto;
+      height: auto;
+      padding: 10px;
+      background: #E80B1C;
+    }
+    .nav-btn{
+        cursor: pointer;
+    }
+    .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+      background-color:#E80B1C;
+    }
+    .nav > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .nav > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color: #333;
+      height: 0px;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+    }
+    .nav > .nav-links > a {
+      display: block;
+      width: 100%;
+    }
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+    .nav > #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+      border-top: 1px solid darkgray;
+      background: #FFFFFF;
+    }
+  }
+@media(max-width:599px){
+.show1 {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0%;
+}
+.show1:hover {
+  overflow: visible;
+  white-space: normal;
+}    
+}
+@media(min-width:600px) and (max-width:839px){
+.show1 {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0%;
+}
+.show1:hover {
+  overflow: visible;
+  white-space: normal;
+  height: auto;
+  padding-bottom: 0px !important;
+}
+}
+@media(min-width:925px) and (max-width:1312px){
+.show1 {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0%;
+}
+.show1:hover {
+  overflow: visible;
+  white-space: normal;
+  /* height: auto; */
+}  
+}
+@media (min-width:925px) and (max-width:1110px){
+    .sub-header{
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+@media (min-width:601px) and (max-width:924px){
+    .sub-header{
+        font-size: 16px;
+        font-weight: 600;
+        padding: 3px;
+    }
+}
+
+@media (min-width:925px) and (max-width:995px){
+  .show1:hover {
+    padding-bottom: 55px !important;
+  }
+}  
+@media (max-width:500px){
+  .Header_main{
+    display: inline-block;
+  }
+  .title_css{
+    float: left;
+    margin-right: auto;
+    padding-bottom: initial;
+    padding-top: 10px;
+    padding-left: 10px;
+  } 
+  .nav-links{
+    border-bottom: 0px;
+  }
+  .nav > .nav-btn {
+    top: 55px;
+  }
+  .nav > .nav-links{
+    top: 100px !important;
+  }
+  .nav-btn > label {
+    padding: 5px 10px !important; 
+  }
+  header{
+    height: 100px;
+  }
+}
+
+@-moz-document url-prefix() {
+  .sub-header{
+    font-family: Segoe UI !important;
+  }
+}
